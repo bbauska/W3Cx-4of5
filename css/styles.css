@@ -82,11 +82,11 @@ body {
 
 details {
   font: 11px Inter, sans-serif, Bahnschrift, Calibri;
-  width: min-content;  /* 75%; */
+  width: 10em;  /* min-content;  75%; */
 }
 details > summary {
   padding: 2px 6px;
-  width: max-content;  /* 12em */
+  width: 12em;  /* max-content;  12em */
   background-color: #eee;  /* very light gray */
   border: none;
   box-shadow: 3px 3px 4px #00008b;  /* dark blue */

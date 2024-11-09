@@ -5459,8 +5459,7 @@ JSBin](https://jsbin.com/fuyejuz/edit?html,js,console,output):
   alt="A video player with real time waveform visualization." />
 </p>
 
-Example #3: both previous examples, this time with the graphic
-equalizer
+Example #3: both previous examples, this time with the graphic equalizer
 
 Adding the graphic equalizer to the graph changes nothing, we visualize
 the sound that goes to the speakers. Try lowering the slider values -

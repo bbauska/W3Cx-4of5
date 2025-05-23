@@ -12903,7 +12903,9 @@ Let's start with a very simple example.
 
 Here I will download a song that is located on one of my servers here...
 
+```
 > mainline.i3s.unice.fr
+```
 
 When I will click on the download (button) and play the example song, it
 will start the download.
@@ -13011,8 +13013,7 @@ data. With XHR2, you can ask the browser to encode/decode the file you
 send/receive, natively. To do this, when you use XMLHttpRequest to send
 or receive a file, you must set the xhr.responseType as arrayBuffer.
 
-Below is a function that loads a sound sample using XMLHttpRequest level
-2.
+Below is a function that loads a sound sample using XMLHttpRequest level 2.
 
 <i>Note</i>: 1) the simple and concise syntax, and 2) the use of the
 new arrayBuffer type for the expected response (<i>line 5</i>):
@@ -13035,8 +13036,7 @@ new arrayBuffer type for the expected response (<i>line 5</i>):
 [Try this example on
 JSBin](https://jsbin.com/mecakaz/edit?html,js,console,output):
 
-In this example, instead of reading the file from disk, we download it
-using XHR2.
+In this example, instead of reading the file from disk, we download it using XHR2.
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~ 164. download file using xhr2 (277) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -13138,22 +13138,20 @@ using XHR2.
 
 </details>
 
-<h4>Explanations</h4>:
-
--   <i>Line 12</i>: a click on this button will call
+<h4>Explanations:</h4>
+<ul>
+  <li><i>Line 12</i>: a click on this button will call
     the downloadSoundFile function, passing it the URL of a sample mp3
-    file.
-
--   <i>Lines 58-73</i>: this function sends the Ajax request, and when the
-    file has arrived, the xhr.onload callback is called (<i>line 63</i>).
-
--   <i>Lines 39-55</i>: The initSound function decodes the mp3 into memory
-    using the WebAudio API, and enables the play and stop buttons.
-
--   When the play button is enabled and clicked (<i>line 15</i>) it calls
+    file.</li>
+  <li><i>Lines 58-73</i>: this function sends the Ajax request, and when the
+    file has arrived, the xhr.onload callback is called (<i>line 63</i>).</li>
+  <li><i>Lines 39-55</i>: The initSound function decodes the mp3 into memory
+    using the WebAudio API, and enables the play and stop buttons.</li>
+  <li>When the play button is enabled and clicked (<i>line 15</i>) it calls
     the playSound function. This builds a minimal Web Audio graph with
     a BufferSource node that contains the decoded sound (<i>lines 31-32</i>),
-    connects it to the speakers (<i>line 35</i>), and then plays it.
+    connects it to the speakers (<i>line 35</i>), and then plays it.</li>
+</ul>
 
 <h4>Monitoring uploads or downloads using a progress event</h4>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -13278,14 +13276,14 @@ does this for a download operation:
 
 </details>
 
-<b>Explanations</b>: by setting the value and max attributes of
+<p><b>Explanations</b>: by setting the value and max attributes of
 the &lt;progress&gt; element with the current number of bytes downloaded by
 the browser and the total size of the file (<i>lines 10-11</i>), it will
-reflect the actual proportions of the file downloaded/still to come.
+reflect the actual proportions of the file downloaded/still to come.</p>
 
-For example, with a file that is 10,000 bytes long, if the current
+<p>For example, with a file that is 10,000 bytes long, if the current
 number of bytes downloaded is 1000, then &lt;progress value=1000
-max=10000&gt; will look like this:
+max=10000&gt; will look like this:</p>
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~ 166. progress value 1000, max 10000 (280) ~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -13296,9 +13294,8 @@ max=10000&gt; will look like this:
   alt="Progress bar at 10 percent, 1000/10000." />
 </p>
 
-And a current download of 2000 bytes will define &lt;progress value=2000
-max=10000&gt; and will look like this:
-
+<p>And a current download of 2000 bytes will define &lt;progress value=2000 max=10000&gt; 
+and will look like this:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 167. progress bar at 20 percent (280) ~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p align="center" width="100%">
@@ -13318,92 +13315,90 @@ max=10000&gt; and will look like this:
   alt="Monitoring download of a song file." />
 </p>
 
-This is a variant of the previous example that uses the progress event
+<p>This is a variant of the previous example that uses the progress event
 and a &lt;progress&gt; HTML5 element to display an animated progression bar
-while the download is going on.
+while the download is going on.</p>
 
-[Try it on JSBin](https://jsbin.com/nuxanaf/edit?html,output) - look at
-the code, which includes the previous source code extract.
-
+<p><a href="https://jsbin.com/nuxanaf/edit?html,output">Try it on JSBin</a> - look at
+the code, which includes the previous source code extract.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-2-3">3.2.3 Uploading files and monitoring progress</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-We saw how to download files. Let's see now how we can upload files!
+<p>We saw how to download files. Let's see now how we can upload files!</p>
 
-Uploading a file means sending it to a remote server. In this example,
+<p>Uploading a file means sending it to a remote server. In this example,
 we will just look at the simplest possible thing: uploading one single file.
 Later on, in the course, course you will see how to upload multiple files, including form input
 fields and so on. We've got a file selector here: an input type=file, and we will
-select one file.
+select one file.</p>
 
-For example, here I'm selecting an mp3 song. As soon as the file has
+<p>For example, here I'm selecting an mp3 song. As soon as the file has
 been selected, in this example, you see that the file is uploaded to a
-remote server.
+remote server.</p>
 
-Let's look at how we can get the file we selected and send it.
+<p>Let's look at how we can get the file we selected and send it.</p>
 
-We attached to the file selector a change event listener, that will be
+<p>We attached to the file selector a change event listener, that will be
 called as soon as we select the file. In this callback we create an XML
-HTTP request and we indicate that it's a POST request.
+HTTP request and we indicate that it's a POST request.</p>
 
-POST is used for sending data to a remote server. We are using JSBin,
-and the upload.html.
+<p>POST is used for sending data to a remote server. We are using JSBin,
+and the upload.html.</p>
 
-You see, here, is the URL of a fake server. We don't have a remote
+<p>You see, here, is the URL of a fake server. We don't have a remote
 server ready in this example, however JSBin handles that and pretends
-that the server exists.
+that the server exists.</p>
 
-We created the request, indicated the method and the URL of the server.
-Then, we will prepare an object that is a FormData object.
+<p>We created the request, indicated the method and the URL of the server.
+Then, we will prepare an object that is a FormData object.</p>
 
-It's a container in which you can append files or append any sort of
-data.
+<p>It's a container in which you can append files or append any sort of
+data.</p>
 
-And the data are key/value pairs. Here I added an object called "file"
+<p>And the data are key/value pairs. Here I added an object called "file"
 with a value that is the file I have selected earlier using the file
-input type=file element.
+input type=file element.</p>
 
-And when I send the request, I pass the FormData object that contains
-the file.
+<p>And when I send the request, I pass the FormData object that contains
+the file.</p>
 
-And then, as soon as the send method is called, the browser will handle
-the upload in background.
+<p>And then, as soon as the send method is called, the browser will handle
+the upload in background.</p>
 
-And this may take some time.
+<p>And this may take some time.</p>
 
-Let's start again here... if I select a file, you see that it takes some
-time before it's uploaded.
+<p>Let's start again here... if I select a file, you see that it takes some
+time before it's uploaded.</p>
 
-And when the upload you see the "upload complete message" because when
+<p>And when the upload you see the "upload complete message" because when
 the upload is complete the browser will call to onload callback for your
-request.
+request.</p>
 
-And during the upload, it will call the xhr.upload.onprogress callback.
+<p>And during the upload, it will call the xhr.upload.onprogress callback.</p>
 
-That's a function that works exactly like the xhr.onprogress callback we
-used for downloading.
+<p>That's a function that works exactly like the xhr.onprogress callback we
+used for downloading.</p>
 
-It's just this ".upload" that you write before the "onprogress" here.
-That's the only difference with monitoring progress with download.
+<p>It's just this ".upload" that you write before the "onprogress" here.
+That's the only difference with monitoring progress with download.</p>
 
-And here you can see that the "upload complete" message appears. If we
-want to send multiple files, we can append multiple files here.
+<p>And here you can see that the "upload complete" message appears. If we
+want to send multiple files, we can append multiple files here.</p>
 
-That's all for this video! Bye! Bye!
+<p>That's all for this video! Bye! Bye!</p>
 
-Here is an example that uses a FormData object for uploading one or more
-files to an HTTP server.
+<p>Here is an example that uses a FormData object for uploading one or more
+files to an HTTP server.</p>
 
-Notice that the URL of the server is fake, so the request will fail.
+<p>Notice that the URL of the server is fake, so the request will fail.
 However, the simulation takes time, and it is interesting to see how it
-works.
+works.</p>
 
-Later on, we will show full examples of real working code with
+<p>Later on, we will show full examples of real working code with
 server-side PHP source, during the “File API, drag and drop and XHR2”
-lecture.
+lecture.</p>
 
-[Try the example on JSBin](https://jsbin.com/pidusap/edit):
-
+<p><a href="https://jsbin.com/pidusap/edit">Try the example on JSBin</a>:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 169. file update example 1 (282) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p align="center" width="100%">
@@ -13458,34 +13453,28 @@ lecture.
 </details>
 
 <h4><b>Explanations</b>:</h4>
-
--   <i>Line 18</i>: callback called when the user selects a file.
-
--   <i>Lines 19-20</i>: preparation of the XHR2 request.
-
--   <i>Lines 27-30</i>: a FormData object is created (this will contain the
-    (MIME) multipart form-data which will be sent by the POST request).
-
--   <i>Line 30</i>: the request is sent, with the FormData object passed as a
-    parameter (all data is sent).
-
--   <i>Line 23</i>: when the file is completely uploaded, the onload listener
-    is called and an alert message is displayed.
-
+<ul>
+  <li><i>Line 18</i>: callback called when the user selects a file.</li>
+  <li><i>Lines 19-20</i>: preparation of the XHR2 request.</li>
+  <li><i>Lines 27-30</i>: a FormData object is created (this will contain the
+    (MIME) multipart form-data which will be sent by the POST request).</li>
+  <li><i>Line 30</i>: the request is sent, with the FormData object passed as a
+    parameter (all data is sent).</li>
+  <li><i>Line 23</i>: when the file is completely uploaded, the onload listener
+    is called and an alert message is displayed.</li>
+</ul>
 <h4>Monitor the upload progress</h4>
 
-Here is a more user-friendly example. It is basically the same, but this
+<p>Here is a more user-friendly example. It is basically the same, but this
 time, we'll monitor the progress of the upload using a method similar to
-that used for monitoring file downloads:
-
--   We use a &lt;progress&gt; element and its two attributes value and max.
-
--   We also bind an event handler to the progress event that an
-    XMLHttpRequest will trigger. The event has two
-    properties: loaded and total that respectively correspond to the
-    number of bytes that have been uploaded, and to the total number of
-    bytes we need to upload (i.e., the file size).
-
+that used for monitoring file downloads:</p>
+<ul>
+  <li>We use a &lt;progress&gt; element and its two attributes value and max.</li>
+  <li>We also bind an event handler to the progress event that an XMLHttpRequest will trigger. 
+    The event has two properties: loaded and total that respectively correspond to the number 
+	of bytes that have been uploaded, and to the total number of bytes we need to upload 
+	(i.e., the file size).</li>
+</ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~ 170. file upload with progress bar (283) ~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p align="center" width="100%">
@@ -13495,7 +13484,7 @@ that used for monitoring file downloads:
   alt="File upload with progress bar." />
 </p>
 
-Here is the code of such an event listener:
+<p>Here is the code of such an event listener:</p>
 
 ```
 1. xhr.upload.onprogress = function(e) {
@@ -13521,34 +13510,33 @@ Here is the code of such an event listener:
 7.   
 8.  <body>
 9.  <h1>Example of XHR2 file upload, with progress bar</h1>
-10. Choose a file and wait a little until it is uploaded (on a fake
-    server).
+10. Choose a file and wait a little until it is uploaded (on a fake server).
 11. <p>
 12. <input id="file" type="file" />
 13. <br/><br/>
 14. <progress id="progress" value=0></progress>
 15.  
 16. <script>
-17.    var fileInput = document.querySelector('#file'),
-18.    progress = document.querySelector('#progress');
+17.   var fileInput = document.querySelector('#file'),
+18.   progress = document.querySelector('#progress');
 19.  
-20.    fileInput.onchange = function() {
-21.      var xhr = new XMLHttpRequest();
-22.      xhr.open('POST', 'upload.html');
+20.   fileInput.onchange = function() {
+21.     var xhr = new XMLHttpRequest();
+22.     xhr.open('POST', 'upload.html');
 23.  
-24.      xhr.upload.onprogress = function(e) {
-25.        progress.value = e.loaded;
-26.        progress.max = e.total;
-27.      };
+24.     xhr.upload.onprogress = function(e) {
+25.       progress.value = e.loaded;
+26.       progress.max = e.total;
+27.     };
 28. 
-29.      xhr.onload = function() {
-30.      alert('Upload complete!');
-31.    };
+29.     xhr.onload = function() {
+30.     alert('Upload complete!');
+31.   };
 32.  
-33.    var form = new FormData();
-34.    form.append('file', fileInput.files[0]);
+33.   var form = new FormData();
+34.   form.append('file', fileInput.files[0]);
 35.  
-36.    xhr.send(form);
+36.   xhr.send(form);
 37. };
 38. </script>
 39. </body>
@@ -13626,15 +13614,10 @@ the particular case of drag and dropping files.
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-3-2">3.3.2 Drag detection</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-Hi! Welcome to the drag and drop lesson. So, the first thing is that
-before looking at examples is that
-
-you must know that not all elements in an HTML document are draggable
-
+Hi! Welcome to the drag and drop lesson. So, the first thing is that before looking at 
+examples is that you must know that not all elements in an HTML document are draggable
 by default. By default, a text selection is draggable, as you can see...
-An image
-
-is draggable too, but you cannot drag a H1 or drag a list item without
+An image is draggable too, but you cannot drag a H1 or drag a list item without
 adding first a draggable=true attribute.
 
 In the examples we are going to detail. We added draggable=true to the
@@ -13653,25 +13636,23 @@ we have here on CodePen is the same as (the one) I've just showed in the course.
 We've got a list with an ondragstart event handler, and we've got list
 items with draggable=true.
 
-The code from the drastart handler is just showing an alert. If I click
-and start to drag one item while maintaining the button pressed, it
-displays a dragstart event. What we show here is that we display the
-alert (the event.target), that means "the element that raised, that
-fired the event". ".innerHTML », so it displays the content. Instead of
-using "innerHTML" to get the HTML content here (the text inside the list
-item), I can also use the dataset interface that is also an addition
-from HTML5. And we can now add "data attributes" that start with "data"
-followed by a minus sign, and this is the name of the data attribute
-("value"- in this case), so I can use the dataset interface followed by
-the name of the attribute, and it will produce the same thing:
-fruit-apple. And I can name it as I like: I can call it "data-fruit"
-and, use it here... and it works too. I can get the content!
+The code from the drastart handler is just showing an alert. If I click and start to drag 
+one item while maintaining the button pressed, it displays a dragstart event. What we show 
+here is that we display the alert (the event.target), that means "the element that raised, 
+that fired the event". ".innerHTML », so it displays the content. Instead of using 
+"innerHTML" to get the HTML content here (the text inside the list item), I can also use 
+the dataset interface that is also an addition from HTML5. And we can now add "data 
+attributes" that start with "data" followed by a minus sign, and this is the name of the 
+data attribute ("value"- in this case), so I can use the dataset interface followed by
+the name of the attribute, and it will produce the same thing: fruit-apple. And I can name 
+it as I like: I can call it "data-fruit" and, use it here... and it works too. I can get 
+the content!
 
 And these attributes, these data attributes, are all valid! I go back to
 the initial code.
 
-Once we managed to detect a drag, and can get some values... some interesting values from the dragged
-object, now we will detect a drop!
+Once we managed to detect a drag, and can get some values... some interesting values from the 
+dragged object, now we will detect a drop!
 
 What do we do when we want to drag something and drop it somewhere, and
 make something happen in the drop zone? We need to copy, in the
@@ -13683,7 +13664,8 @@ And it's got a setData method for writing in it a key/value pair,
 so here we copy, with the name "fruit", the value of the data attribute
 of the dragged object.
 
-And in the drop handler, we will get back the data that was copied in the drag and drop clipboard, using getData.
+And in the drop handler, we will get back the data that was copied in the drag and drop 
+clipboard, using getData.
 
 We wrote a value with a key="fruit", we get this value back here. And in
 the drop handler, in that case, we create a list item element and then
@@ -13691,7 +13673,9 @@ we initialize, we set the text content of the list item, with the value
 corresponding to the value we got back from the clipboard.
 
 And then, we just add to do drop zone...
-(#droppedFruits)...appendChild() the list item. Let's look at how the drop zone was defined: the drop zone in that example is a div. We've got an ondrop listener, that calls the drop callback we just saw.
+(#droppedFruits)...appendChild() the list item. Let's look at how the drop zone was defined: 
+the drop zone in that example is a div. We've got an ondrop listener, that calls the drop 
+callback we just saw.
 
 And we also added an ondragover="return false" listener. This will avoid
 the propagation of the event, because when we drag over the drop zone, each
@@ -13699,16 +13683,19 @@ mouse movement will fire a lot of dagover events and this can slow down
 the browser... so in that case we just returned false for performance
 reasons.
 
-When I drop it, I'm in the drop handler, I get back "Apples », I creates a list item, I set the list item content with "Apples", and I append the list item to the drop, to the div.
+When I drop it, I'm in the drop handler, I get back "Apples », I creates a list item, I set 
+the list item content with "Apples", and I append the list item to the drop, to the div.
 
 That's all for this video! You understood the main steps for doing drag and drop:
 detect a drag, copy some data in the clipboard, detect a drop, get back the data and do something.
 
 And avoid firing too many events by just stopping the propagation with an ondragover="return false";
 
-See you for the next video! I will explain how to give a nice visual feedback when we drag and drop things.
+See you for the next video! I will explain how to give a nice visual feedback when we drag and 
+drop things.
 
-In order to make any visible element <i>draggable</i>, add the draggable="true" attribute to any visible HTML5 element.
+In order to make any visible element <i>draggable</i>, add the draggable="true" attribute to 
+any visible HTML5 element.
 Notice that some elements are draggable by default, such as &lt;img&gt; elements.
 
 In order to detect a drag, add an event listener for the dragstart event:
@@ -13725,11 +13712,13 @@ In the above code, we made all of the &lt;li&gt; elements draggable, and we
 detect a dragstart event occurring to any item within the ordered
 list: &lt;ol ondragstart="dragStarthandler(event)"&gt;.
 
+<blockquote>
 > When you put an ondragstart handler on an element, each of its
 > draggable children could fire the event! It's a sort of "inheritance
 > of handlers"... In the above example, the handler is declared at
 > the &lt;ol&gt; level, so any subordinate &lt;li&gt; element will fire the
 > event.
+</blockquote>
 
 Try the following interactive example in your browser (just click and
 drag one of the list items) or [play with it at
@@ -14159,11 +14148,8 @@ copy the data we need to get back once we dropped the elements, but we
 will also change some of the style (the CSS style) of the dragged
 element. And to remove this style, we also listen to the ‘dragend’
 event. Let's have a look at the CSS. In the CSS, we defined two classes:
-
 one is called "dragged" and the other "draggedOver". I just discovered
-that they are
-
-the same… so there is certainly a way to simplify this example... So,
+that they are the same… so there is certainly a way to simplify this example... So,
 the "dragged" and the "draggedOver" classes just add a border (2 pixels
 dashed black) and change the background color to green.
 
@@ -14841,8 +14827,8 @@ default behavior of the browser:
 4.  event.preventDefault();
 ```
 
-> <b>Best practice</b>: add these lines to the drop handler AND
-> to the dragOver handler attached to the drop zone!
+<p><b>Best practice</b>: add these lines to the drop handler AND
+to the dragOver handler attached to the drop zone!</p>
 
 <h4>... like in this example:</h4>
 
@@ -14882,10 +14868,8 @@ default behavior of the browser:
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-4-2">3.4.2 Drag and drop files in a drop zone</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-Hi! This time let's look at how we can drag and
-
-drop files into a document. So, the first thing you must know is that, 
-by default, the browser does things when you drag and drop.
+Hi! This time let's look at how we can drag and drop files into a document. So, the first 
+thing you must know is that, by default, the browser does things when you drag and drop.
 
 If I drag and drop an image, it just shows the image in full size in a
 new tab.
@@ -14911,8 +14895,8 @@ We also created an empty numbered list inside the div … this is the container 
 be used to display the file names here. What do we do in order to prevent this default
 behavior?
 
-Because if I drag and drop an image in this div without taking some precautions, it will just open a new tab with
-the image.
+Because if I drag and drop an image in this div without taking some precautions, it will 
+just open a new tab with the image.
 
 So, in the different drop and dragover handlers we will have to call
 event.preventDefault() for preventing this default behavior and we also call stopPropagation(),
@@ -21063,7 +21047,8 @@ to its normal position would return:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~ 260. mobile phone coordinates system (450) ~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p align="center" width="100%">
 <img src="./images/webp/image260.webp"
-  width="30%"
+  style="width:30%"
+  title="Mobile phone coordinates system"
   alt="Mobile phone coordinates system." />
 </p>
 
@@ -21156,7 +21141,8 @@ later on)...
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~ 261. devicemotion api example (452) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p align="center" width="100%">
 <img src="./images/webp/image261.webp"
-  width="30%"
+  style="width:30%"
+  title="Devicemotion API example"
   alt="Devicemotion API example." />
 </p>
 
@@ -21254,7 +21240,8 @@ it: <a href="https://jsbin.com/uyuqek/4/edit">https://jsbin.com/uyuqek/4/edit</
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 262. devicemotion api (454) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p align="center" width="100%">
 <img src="./images/webp/image262.webp"
-  width="35%"
+  style="width:35%"
+  title="Devicemotion API.  Uses jQuery mobile"
   alt="Devicemotion API.  Uses jQuery mobile." />
 </p>
 
@@ -21352,7 +21339,8 @@ mobile device, <a href="https://jsbin.com/eyahuv/2">use this URL instead</a>!
 <!--~~~~~~~~~~~~~~~~~~~~ 263. move a ball on the screen - last image (455) ~~~~~~~~~~~~~~~~~~~~~-->
 <p align="center" width="100%">
 <img src="./images/webp/image263.webp"
-  width="200px;"
+  style="width:200px;"
+  title="Move a Ball on the Screen - last image"
   alt="Move a Ball on the Screen - last image." />
 </p>
 <!-- style="width:3in;height:1.99379in" -->

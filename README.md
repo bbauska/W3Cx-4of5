@@ -5567,7 +5567,7 @@ the same as in the first example.
 The new visualization code:
 
 <details>
-  <summary>Code extract!</h4>
+  <summary>Code extract!</summary>
 
 ```
 1.  function visualize() {
@@ -5666,7 +5666,7 @@ with the Chrome WebAudio Inspector extension):
 Source code from this example's the buildAudioGraph function:
 
 <details>
-  <summary>Code extract!</h4>
+  <summary>Code extract!</summary>
 
 ```
 1.  function buildAudioGraph() {
@@ -5745,7 +5745,7 @@ rectangle.
 Here are the two functions we will call from the animation loop:
 
 <details>
-  <summary>Code extract!</h4>
+  <summary>Code extract!</summary>
 
 ```
 1.  function drawVolumeMeter() {
@@ -5789,7 +5789,7 @@ value which we will draw as the volume meter.
 This is how we create the gradient:
 
 <details>
-  <summary>Code extract!</h4>
+  <summary>Code extract!</summary>
 
 ```
 1.  // create a vertical gradient of the height of the canvas
@@ -5807,7 +5807,7 @@ clarity, we have moved the code that draws the signal waveform to a
 separate function):
 
 <details>
-  <summary>Code extract!</h4>
+  <summary>Code extract!</summary>
 
 ```
 1.  function visualize() {
@@ -9892,6 +9892,7 @@ Here is the [online example at JSBin](https://jsbin.com/bonutur/edit).
 <p align="center" width="100%">
 <img src="./images/webp/image117.webp"
   style="width:384px;"
+  title="setFrameRateInFramesPerSecond"
   alt="setFrameRateInFramesPerSecond." />
 </p>
 
@@ -10163,6 +10164,7 @@ shows 60 fps.
 <p align="center" width="100%">
 <img src="./images/webp/image118.webp"
   style="width:337px;"
+  title="Screenshot of the monster moving at 60 f/s"
   alt="Screenshot of the monster moving at 60 f/s." />
 </p>
 
@@ -10178,6 +10180,7 @@ version, which ran at 60 fps.
 <p align="center" width="100%">
 <img src="./images/webp/image119.webp"
   style="width:334px;"
+  title="Screenshot of example that runs at 37 f/s"
   alt="Screenshot of example that runs at 37 f/s." />
 </p>
 
@@ -10333,6 +10336,7 @@ will not use time-based animation in the first examples.
 <p align="center" width="100%">
 <img src="./images/webp/image120.webp"
   style="width:306px;"
+  title="Animating multiple balls which bounce off horizontal and vertical walls"
   alt="Animating multiple balls which bounce off horizontal and vertical walls." />
 </p>
 

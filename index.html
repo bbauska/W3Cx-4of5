@@ -18932,22 +18932,21 @@ worker.</p>
   <summary>JavaScript code!</summary>
   
 <pre>
-1.  postMessage(&quot;Hey, in 3s, I&#39;ll start to compute prime numbers...&quot;);
-2.  
-3.  setTimeout(function() {
-4.    // The setTimeout is just useful for displaying the message in
+postMessage(&quot;Hey, in 3s, I&#39;ll start to compute prime numbers...&quot;);
+setTimeout(function() {
+  // The setTimeout is just useful for displaying the message in
       line 1 for 3 seconds and
-5.      // making it visible
-6.      var n = 1;
-7.      search: while (true) {
-8.        n += 1;
-9.        for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
-10.       if (n % i == 0)
-11.         continue search;
-12.         // found a prime!
-13.         postMessage(n);
-14.     }
-15.  }, 3000);</pre>
+  // making it visible
+  var n = 1;
+  search: while (true) {
+    n += 1;
+    for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
+    if (n % i == 0)
+    continue search;
+    // found a prime!
+    postMessage(n);
+  }
+}, 3000);</pre>
 
 </details>
 
@@ -18971,11 +18970,10 @@ the worker’s JavaScript file:</p>
 
 <h4>worker.js:</h4>
 
-<pre>1. importScripts(&#39;script1.js&#39;);
-2. importScripts(&#39;script2.js&#39;);
-3.
-4. // Other possible syntax
-5. importScripts(&#39;script1.js&#39;, &#39;script2.js&#39;);</pre>
+<pre>importScripts(&#39;script1.js&#39;);
+importScripts(&#39;script2.js&#39;);
+// Other possible syntax
+importScripts(&#39;script1.js&#39;, &#39;script2.js&#39;);</pre>
 
 <p>The included scripts must follow <a
 href="https://developer.mozilla.org/en-US/docs/JavaScript/Same_origin_policy_for_JavaScript?redirectlocale=en-US&amp;redirectslug=Same_origin_policy_for_JavaScript" target="_blank" rel="noopener noreferrer">the
@@ -19618,16 +19616,13 @@ to the device orientation API discussed earlier.</p>
 
 <h4>Basic usage</h4>
 
-<pre>1. function handleMotionEvent(event) {
-2. 
-3.    var x = event.accelerationIncludingGravity.x;
-4.    var y = event.accelerationIncludingGravity.y;
-5.    var z = event.accelerationIncludingGravity.z;
-6. 
-7.    // Process ...
-8. }
-9. 
-10. window.addEventListener(&quot;devicemotion&quot;, handleMotionEvent, true);</pre>
+<pre>function handleMotionEvent(event) {
+  var x = event.accelerationIncludingGravity.x;
+  var y = event.accelerationIncludingGravity.y;
+  var z = event.accelerationIncludingGravity.z;
+  // Process ...
+}
+window.addEventListener(&quot;devicemotion&quot;, handleMotionEvent, true);</pre>
 
 <h4>Basics about acceleration</h4>
 
@@ -19737,45 +19732,39 @@ This example uses the accelerationIncludingGravity property of the event.</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  function deviceMotionHandler(eventData) {
-2.     // Grab the acceleration including gravity from the results
-3.     var acceleration = eventData.accelerationIncludingGravity;
-4.  
-5.     // Convert the value from acceleration to degrees
-6.     // acceleration.x|y is the acceleration according
-7.     //  to gravity, we&#39;ll assume we&#39;re on  Earth and divide
-8.     // by 9.81 (earth gravity) to get a percentage value, 
-9.     // and then multiply that by 90 to convert to degrees.
-10.    var tiltLR = Math.round(((acceleration.x) / 9.81) * -90);
-11.    var tiltFB = Math.round(((acceleration.y + 9.81) / 9.81) * 90 * facingUp);
-12. 
-13.    // ... do something
-14. }</pre>
+<pre>function deviceMotionHandler(eventData) {
+  // Grab the acceleration including gravity from the results
+  var acceleration = eventData.accelerationIncludingGravity;
+  // Convert the value from acceleration to degrees
+  // acceleration.x|y is the acceleration according
+  //  to gravity, we&#39;ll assume we&#39;re on  Earth and divide
+  // by 9.81 (earth gravity) to get a percentage value, 
+  // and then multiply that by 90 to convert to degrees.
+  var tiltLR = Math.round(((acceleration.x) / 9.81) * -90);
+  var tiltFB = Math.round(((acceleration.y + 9.81) / 9.81) * 90 * facingUp);
+  // ... do something
+}</pre>
 
 </details>
 
 <p>Compute the vertical (direction of the sky) - this extract comes from a complete example further down this page…</p>
 
-<pre>1.  ...
-2.  var angle = Math.atan2(accel.y,accel.x);
-3.  
-4.  var canvas = document.getElementById(&#39;myCanvas&#39;);
-5.  var ctx = canvas.getContext(&#39;2d&#39;);
-6.   
-7.  ctx.moveTo(50,50);
-8.  // Draw sky direction in the canvas
-9.  ctx.lineTo(50-50*Math.cos(angle),50+50*Math.sin(angle));
-10. ctx.stroke();</pre>
+<pre>...
+var angle = Math.atan2(accel.y,accel.x);
+var canvas = document.getElementById(&#39;myCanvas&#39;);
+var ctx = canvas.getContext(&#39;2d&#39;);
+ctx.moveTo(50,50);
+// Draw sky direction in the canvas
+ctx.lineTo(50-50*Math.cos(angle),50+50*Math.sin(angle));
+ctx.stroke();</pre>
 
 <p>Use acceleration values to move a ball on the screen of a tablet when the tablet is tilted front / back or left / right (complete example
 later on)…</p>
 
-<pre>1. ...
-2.  
-3. ball.x += acceleration.x;
-4. ball.y += acceleration.y;
-5.  
-6. ...</pre>
+<pre>...
+ball.x += acceleration.x;
+ball.y += acceleration.y;
+...</pre>
 
 <h4>Complete examples</h4>
 
@@ -19989,151 +19978,131 @@ target="_blank" rel="noopener noreferrer">use this URL instead</a>!</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
-2.  &lt;html xmlns=&quot;https://www.w3.org/1999/xhtml&quot;&gt;
-3.  
-4.      &lt;head&gt;
-5.         &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
-6.         &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
-7.                                        target-densityDpi=device-dpi,
-8.                                        initial-scale=1.0,
-9.                                        user-scalable=no,
-10.                                       maximum-scale=1.0&quot;&gt;
-11.        &lt;title&gt;iOS 4.2 Device Accellerometer&lt;/title&gt;
-12.        &lt;style&gt;
-13.           body {
-14.              font-family:Arial, Helvetica, sans-serif;
-15.              font-size: 14px;
-16.           }
-17.           #board {
-18.              position:absolute;
-19.              left:0px;
-20.              right:0px;
-21.              top:0px;
-22.              bottom:0px;
-23.           }
-24.           #ball {
-25.              position:absolute;
-26.              width: 60px;
-27.              height: 60px;
-28.              border-radius: 30px;
-29.              background-image: -webkit-gradient(radial, 45% 45%, 5, 60% 60%,
-30.                  40, from(red), color-stop(75%, black), to(rgba(255, 255, 255, 0)));
-31.              -webkit-box-shadow: 3px 3px 5px #888;
-32.           }
-33.        &lt;/style&gt;
-34.        &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js&quot;&gt;
-35.        &lt;/script&gt;
-36.        &lt;script&gt;
-37.           !window.jQuery &amp;&amp; document.write(&#39;&lt;script src=&quot;./js/jquery.min.js&quot;&gt;&lt;/script&gt;&#39;)
-38.        &lt;/script&gt;
-39.        &lt;script&gt;
-40.           var offset;
-41.           var velocity;
-42.           var board;
-43.           var ball;
-44.           var interval;
-45. 
-46.           $(document).ready(function() {
-47.              window.addEventListener(&quot;devicemotion&quot;, onDeviceMotion, false);
-48.               $(&#39;#timestamp&#39;).html(new Date().toString());
-49.               $(&#39;#status&#39;).html(&quot;Ready!&quot;);
-50. 
-51.               velocity = {};
-52.               velocity.x = 0;
-53.               velocity.y = 0;
-54. 
-55.               offset = {};
-56.               board = $(&#39;#board&#39;);
-57.               ball = $(&#39;#ball&#39;);
-58. 
-59.               offset.left = (board.width() - ball.width()) / 2;
-60.               offset.top = (board.height() - ball.height()) / 2;
-61. 
-62.               $(&#39;#ball&#39;).offset(offset);
-63.               interval = setInterval(updateBall, 25);
-64.           });
-65. 
-66.           function onDeviceMotion(event) {
-67.              $(&#39;#timestamp&#39;).html(new Date().toString());
-68.              $(&#39;#status&#39;).html(&quot;Device Motion Event&quot;);
-69. 
-70.              var eventDetails;
-71.              try {
-72.                  var accel = event.accelerationIncludingGravity;
-73.                  eventDetails = &quot;accelerationIncludingGravity: {&quot; +
-74.                  &quot;&lt;br&gt;     x: &quot; + accel.x +
-75.                  &quot;&lt;br&gt;     y: &quot; + accel.y +
-76.                  &quot;&lt;br&gt;     z: &quot; + accel.z +
-77.                  &quot;&lt;br/&gt;} &lt;/br&gt;&lt;br/&gt;&quot; +
-78.                  &quot;interval: &quot; + event.interval;
-79.                  updateVelocity(event);
-80.              } catch (e) {
-81.                  eventDetails = e.toString();
-82.              }
-83. 
-84.              $(&#39;#details&#39;).html(eventDetails);
-85.           }
-86. 
-87.           var decay = .9;
-88.           var bounceDecay = .95;
-89.           var maxVelocity = 100;
-90. 
-91.           function updateVelocity(event) {
-92.              velocity.x += event.accelerationIncludingGravity.x;
-93.              if (Math.abs(velocity.x) &gt; maxVelocity) {
-94.                  if (velocity.x &gt; 0) velocity.x = maxVelocity;
-95.                  else velocity.x = -maxVelocity;
-96.              }
-97. 
-98.              velocity.y += event.accelerationIncludingGravity.y;
-99.              if (Math.abs(velocity.y) &gt; maxVelocity) {
-100.                  if (velocity.y &gt; 0) velocity.y = maxVelocity;
-101.                  else velocity.y = -maxVelocity;
-102.              }
-103.           }
-104. 
-105.           function updateBall() {
-106.              if (offset.left &lt;= -(ball.width() / 2)) {
-107.                 velocity.x = Math.abs(velocity.x * bounceDecay);
-108.              } else if (offset.left &gt;= (board.width() - (ball.width() / 2))) {
-109.                 velocity.x = -Math.abs(velocity.x * bounceDecay);
-110.              } else {
-111.                 velocity.x = parseInt(velocity.x);
-112.                 velocity.x *= decay;
-113.              }
-114. 
-115.           if (offset.top &lt;= -(ball.height() / 2)) {
-116.              velocity.y = -Math.abs(velocity.y * bounceDecay);
-117.           } else if (offset.top &gt;= (board.height() - (ball.height() / 2))) {
-118.              velocity.y = Math.abs(velocity.y * bounceDecay);
-119.           } else {
-120.              velocity.y = parseInt(velocity.y);
-121.              velocity.y *= decay;
-122.           }
-123. 
-124.           offset.left += velocity.x;
-125.           offset.top -= velocity.y;
-126. 
-127. 
-128.           $(&#39;#ball&#39;).offset(offset);
-129.       }
-130.     &lt;/script&gt;
-131.   &lt;/head&gt;
-132. 
-133.   &lt;body&gt;
-134.      &lt;div id=&quot;timestamp&quot;&gt;&lt;/div&gt;
-135.      &lt;div id=&quot;status&quot;&gt;&lt;/div&gt;
-136.      &lt;div id=&quot;details&quot;&gt;&lt;/div&gt;
-137.      &lt;div id=&quot;board&quot;&gt;
-138.        &lt;div id=&quot;ball&quot;&gt;&lt;/div&gt;
-139.      &lt;/div&gt;
-spec: 
-&lt;a href=&quot;https://w3c.github.io/deviceorientation/spec-source-orientation.html&quot; target=&quot;https://w3c.github.io/deviceorientation/spec-source-orientation.html&quot;&gt;https://w3c.github.io/deviceorientation/spec-source-orientation.html&lt;/a&gt;
-140. 
-141.   &lt;/body&gt;
-142. 
-143. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;https://www.w3.org/1999/xhtml&quot;&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+      target-densityDpi=device-dpi,
+      initial-scale=1.0,
+      user-scalable=no,
+      maximum-scale=1.0&quot;&gt;
+    &lt;title&gt;iOS 4.2 Device Accellerometer&lt;/title&gt;
+    &lt;style&gt;
+      body {
+        font-family:Arial, Helvetica, sans-serif;
+        font-size: 14px;
+      }
+      #board {
+        position:absolute;
+        left:0px;
+        right:0px;
+        top:0px;
+        bottom:0px;
+      }
+      #ball {
+        position:absolute;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        background-image: -webkit-gradient(radial, 45% 45%, 5, 60% 60%,
+        40, from(red), color-stop(75%, black), to(rgba(255, 255, 255, 0)));
+        -webkit-box-shadow: 3px 3px 5px #888;
+      }
+      &lt;/style&gt;
+      &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js&quot;&gt;
+        &lt;/script&gt;
+      &lt;script&gt;
+        !window.jQuery &amp;&amp; document.write(&#39;&lt;script src=&quot;./js/jquery.min.js&quot;&gt;&lt;/script&gt;&#39;)
+      &lt;/script&gt;
+      &lt;script&gt;
+        var offset;
+        var velocity;
+        var board;
+        var ball;
+        var interval;
+        $(document).ready(function() {
+          window.addEventListener(&quot;devicemotion&quot;, onDeviceMotion, false);
+          $(&#39;#timestamp&#39;).html(new Date().toString());
+          $(&#39;#status&#39;).html(&quot;Ready!&quot;);
+          velocity = {};
+          velocity.x = 0;
+          velocity.y = 0;
+          offset = {};
+          board = $(&#39;#board&#39;);
+          ball = $(&#39;#ball&#39;);
+          offset.left = (board.width() - ball.width()) / 2;
+          offset.top = (board.height() - ball.height()) / 2;
+          $(&#39;#ball&#39;).offset(offset);
+          interval = setInterval(updateBall, 25);
+        });
+        function onDeviceMotion(event) {
+          $(&#39;#timestamp&#39;).html(new Date().toString());
+          $(&#39;#status&#39;).html(&quot;Device Motion Event&quot;);
+          var eventDetails;
+          try {
+            var accel = event.accelerationIncludingGravity;
+            eventDetails = &quot;accelerationIncludingGravity: {&quot; +
+              &quot;&lt;br&gt;     x: &quot; + accel.x +
+              &quot;&lt;br&gt;     y: &quot; + accel.y +
+              &quot;&lt;br&gt;     z: &quot; + accel.z +
+              &quot;&lt;br/&gt;} &lt;/br&gt;&lt;br/&gt;&quot; +
+              &quot;interval: &quot; + event.interval;
+              updateVelocity(event);
+          } catch (e) {
+            eventDetails = e.toString();
+          }
+          $(&#39;#details&#39;).html(eventDetails);
+        }
+      var decay = .9;
+      var bounceDecay = .95;
+      var maxVelocity = 100;
+      function updateVelocity(event) {
+        velocity.x += event.accelerationIncludingGravity.x;
+        if (Math.abs(velocity.x) &gt; maxVelocity) {
+          if (velocity.x &gt; 0) velocity.x = maxVelocity;
+            else velocity.x = -maxVelocity;
+        }
+        velocity.y += event.accelerationIncludingGravity.y;
+        if (Math.abs(velocity.y) &gt; maxVelocity) {
+          if (velocity.y &gt; 0) velocity.y = maxVelocity;
+            else velocity.y = -maxVelocity;
+          }
+      }
+      function updateBall() {
+        if (offset.left &lt;= -(ball.width() / 2)) {
+          velocity.x = Math.abs(velocity.x * bounceDecay);
+        } else if (offset.left &gt;= (board.width() - (ball.width() / 2))) {
+          velocity.x = -Math.abs(velocity.x * bounceDecay);
+        } else {
+          velocity.x = parseInt(velocity.x);
+          velocity.x *= decay;
+        }
+        if (offset.top &lt;= -(ball.height() / 2)) {
+          velocity.y = -Math.abs(velocity.y * bounceDecay);
+        } else if (offset.top &gt;= (board.height() - (ball.height() / 2))) {
+          velocity.y = Math.abs(velocity.y * bounceDecay);
+        } else {
+          velocity.y = parseInt(velocity.y);
+          velocity.y *= decay;
+        }
+        offset.left += velocity.x;
+        offset.top -= velocity.y;
+        $(&#39;#ball&#39;).offset(offset);
+      }
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;timestamp&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;status&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;details&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;board&quot;&gt;
+      &lt;div id=&quot;ball&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    spec: 
+    &lt;a href=&quot;https://w3c.github.io/deviceorientation/spec-source-orientation.html&quot; target=&quot;https://w3c.github.io/deviceorientation/spec-source-orientation.html&quot;&gt;https://w3c.github.io/deviceorientation/spec-source-orientation.html&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 

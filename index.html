@@ -1425,14 +1425,14 @@ associated TextTrack object.</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1. // HTML tracks
-2. var htmlTracks = document.querySelectorAll(&quot;track&quot;);
-3. // The TextTrack object associated with the first HTML track
-4. var textTrack = htmlTracks[0].track;
-5. var kind = textTrack.kind;
-6. var label = textTrack.label;
-7. var lang = textTrack.language;
-8. // etc.</pre>
+<pre>// HTML tracks
+var htmlTracks = document.querySelectorAll(&quot;track&quot;);
+// The TextTrack object associated with the first HTML track
+var textTrack = htmlTracks[0].track;
+var kind = textTrack.kind;
+var label = textTrack.label;
+var lang = textTrack.language;
+// etc.</pre>
 
 </details>
 
@@ -1447,11 +1447,11 @@ and methods are described later in this lesson.</p>
 <p>The &lt;video&gt; element (and &lt;audio&gt; element too) has
 a TextTrack property accessible from JavaScript:</p>
 
-<pre>1. var videoElement = document.querySelector(&quot;#myVideo&quot;);
-2. var textTracks = videoElement.textTracks; // one TextTrack for each HTML track element
-3. var textTrack = textTracks[0]; // corresponds to the first track element
-4. var kind = textTrack.kind // e.g. &quot;subtitles&quot;
-5. var mode = textTrack.mode // e.g. &quot;disabled&quot;, &quot;hidden&quot; or &quot;showing&quot;</pre>
+<pre>var videoElement = document.querySelector(&quot;#myVideo&quot;);
+var textTracks = videoElement.textTracks; // one TextTrack for each HTML track element
+var textTrack = textTracks[0]; // corresponds to the first track element
+var kind = textTrack.kind // e.g. &quot;subtitles&quot;
+var mode = textTrack.mode // e.g. &quot;disabled&quot;, &quot;hidden&quot; or &quot;showing&quot;</pre>
 
 <p>The mode property of TextTrack objects TextTrack objects have a mode property, that is set to one of:</p>
 
@@ -2987,11 +2987,11 @@ declaration of the track. Here is how we declared a chapter track in one of the 
   <li>We add a “show English chapters” button with a click event listener similar to this:</li>
 </ol>
 
-<pre>1. &lt;button disabled id=&quot;buttonEnglishChapters&quot; 
-     onclick=&quot;loadTranscript(&#39;en&#39;, 
-     &#39;chapters&#39;);&quot;&lt;/b&gt;&gt;
-2.   // Display English chapter markers
-3. &lt;/button&gt;</pre>
+<pre>&lt;button disabled id=&quot;buttonEnglishChapters&quot; 
+  onclick=&quot;loadTranscript(&#39;en&#39;, 
+  &#39;chapters&#39;);&quot;&lt;/b&gt;&gt;
+  // Display English chapter markers
+&lt;/button&gt;</pre>
 
 <ol type="1">
   <li value="2">We modify the loadTranscript function from the previous example, so that it matches both the srclang and the kind attribute of the track.</li>
@@ -2999,16 +2999,16 @@ declaration of the track. Here is how we declared a chapter track in one of the 
 
 <p>Here is a new version:</p>
 
-<pre>1.  function loadTranscript(lang, kind) {
-2.    ...
-3.    // Locate the track with lang and kind that match the parameters
-4.    for(var i = 0; i &lt; tracks.length; i++) {
-5.      ...
-6.      if((track.language === lang) &amp;&amp; (track.kind === kind)) {
-7.      // display it contents...
-8.      }
-9.    }
-10. }</pre>
+<pre>function loadTranscript(lang, kind) {
+  ...
+  // Locate the track with lang and kind that match the parameters
+  for(var i = 0; i &lt; tracks.length; i++) {
+    ...
+    if((track.language === lang) &amp;&amp; (track.kind === kind)) {
+      // display it contents...
+    }
+  }
+}</pre>
 
 <p>Simple approach: chapters as clickable text on the right of the video.</p>
 <p><a href="https://jsbin.com/rifekik/edit?html,css,js" target="_blank" rel="noopener noreferrer">Try it on JSBin</a>; this version includes the modifications we presented earlier - nothing more. Notice that we kept the existing buttons to display a clickable transcript:</p>
@@ -3051,16 +3051,16 @@ processing such data from JavaScript is easier than parsing plain text.</p>
 <details>
   <summary>WEBVTT code!</summary>
 
-<pre>1.  WEBVTT
-2.  Wikipedia
-3.  00:01:15.200 --&gt; 00:02:18.800
-4.  {
-5.  &quot;title&quot;: &quot;State of Wikipedia&quot;,
-6.  &quot;description&quot;: &quot;Jimmy Wales talking ...&quot;,
-7.  &quot;src&quot;: &quot;https://upload.wikimedia.org/...../120px-Wikipedia-logo-
-8.  v2.svg.png&quot;,
-9.  &quot;href&quot;: &quot;https://en.wikipedia.org/wiki/Wikipedia&quot;
-10. }</pre>
+<pre>WEBVTT
+Wikipedia
+00:01:15.200 --&gt; 00:02:18.800
+{
+  &quot;title&quot;: &quot;State of Wikipedia&quot;,
+  &quot;description&quot;: &quot;Jimmy Wales talking ...&quot;,
+  &quot;src&quot;: &quot;https://upload.wikimedia.org/...../120px-Wikipedia-logo-
+  v2.svg.png&quot;,
+  &quot;href&quot;: &quot;https://en.wikipedia.org/wiki/Wikipedia&quot;
+}</pre>
 
 </details>
 
@@ -3070,20 +3070,17 @@ examples, we can extract this text content using the  cue.text property. For 
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var videoElement = document.querySelector(&quot;#myvideo&quot;);
-2.  var textTracks = videoElement.textTracks; // one for each track element
-3.  var textTrack = textTracks[0]; // corresponds to the first track element
-4.  
-5.  var cues = textTrack.cues;
-6.  var cue = cues[0]; // first cue
-7.  
-8.  // cue.text is in JSON format, with JSON.parse we turn it back
-9.  // to a real JavaScript object
-10. var obj = JSON.parse(cue.text); 
-11. 
-12. var title = obj.title; // &quot;State of Wikipedia&quot;
-13. var description = obj.description; // Jimmy Wales talking...
-14. etc...</pre>
+<pre>var videoElement = document.querySelector(&quot;#myvideo&quot;);
+var textTracks = videoElement.textTracks; // one for each track element
+var textTrack = textTracks[0]; // corresponds to the first track element
+var cues = textTrack.cues;
+var cue = cues[0]; // first cue
+// cue.text is in JSON format, with JSON.parse we turn it back
+// to a real JavaScript object
+var obj = JSON.parse(cue.text); 
+var title = obj.title; // &quot;State of Wikipedia&quot;
+var description = obj.description; // Jimmy Wales talking...
+etc...</pre>
 
 </details>
 
@@ -3339,12 +3336,12 @@ right of the video.</p>
 
 <h4>Here is the HTML code for one menu marker:</h4>
 
-<pre>1. &lt;figure class=&quot;img&quot;&gt;
-2.     &gt;  &lt;img onclick=&quot;jumpTo(0);&quot; class=&quot;thumb&quot; src=&quot;https://...../introduction.jpg&quot;&gt;
-3.    &lt;figcaption class=&quot;desc&quot;&gt;
-4.       Introduction
-5.    &lt;/figcaption&gt;
-6. &lt;/figure&gt;</pre>
+<pre>&lt;figure class=&quot;img&quot;&gt;
+    &gt;  &lt;img onclick=&quot;jumpTo(0);&quot; class=&quot;thumb&quot; src=&quot;https://...../introduction.jpg&quot;&gt;
+   &lt;figcaption class=&quot;desc&quot;&gt;
+      Introduction
+   &lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
 
 <p>Notice that we add a click listener to each thumbnail image. Clicking a chapter 
 thumbnail will cause the video to jump to the chapter time location (the example 
@@ -3658,13 +3655,13 @@ within a cuechange listener attached to a TextTrack:</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1. textTrack.oncuechange = function (){
-2.     // &quot;this&quot; is the textTrack that fired the event.
-3.     // Let&#39;s get the first active cue for this time segment
-4.     var cue = this.activeCues[0]; 
-5.     var obj = JSON.parse(cue.text);
-6.     // do something
-7. }</pre>
+<pre>textTrack.oncuechange = function (){
+  // &quot;this&quot; is the textTrack that fired the event.
+  // Let&#39;s get the first active cue for this time segment
+  var cue = this.activeCues[0]; 
+  var obj = JSON.parse(cue.text);
+  // do something
+}</pre>
 
 </details>
 
@@ -14453,146 +14450,129 @@ CodePen</a>:</p>
 <details>
   <summary>HTML source code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.     &lt;style&gt;
-5.        div {
-6.            height: 150px;
-7.            width: 350px;
-8.            border: 2px solid #666666;
-9.            background-color: #ccc;
-10.           margin-right: 5px;
-11.           border-radius: 10px;
-12.           box-shadow: inset 0 0 3px #000;
-13.           text-align: center;
-14.           cursor: move;
-15.       }
-16.  
-17.       .dragged {
-18.           border: 2px dashed #000;
-19.           background-color: green;
-20.       }
-21. 
-22.       .draggedOver {
-23.           border: 2px dashed #000;
-24.           background-color: green;
-25.       }
-26.  
-27.    &lt;/style&gt;
-28.    &lt;script&gt;
-29.       function dragLeaveHandler(event) {
-30.          console.log(&quot;drag leave&quot;);
-31.          // Set style of drop zone to default
-32.          event.target.classList.remove(&#39;draggedOver&#39;);
-33.       }
-34. 
-35.       function dragEnterHandler(event) {
-36.          console.log(&quot;Drag enter&quot;);
-37.          // Show some visual feedback
-38.          event.target.classList.add(&#39;draggedOver&#39;);
-39.       }
-40. 
-41.       function dragOverHandler(event) {
-42.          //console.log(&quot;Drag over a droppable zone&quot;);
-43.          // Do not propagate the event
-44.          event.stopPropagation();
-45.          // Prevent default behavior, in particular when we drop
-46.          // images or links
-47.          event.preventDefault();
-48.       }
-49. 
-50.       function dropHandler(event) {
-51.          console.log(&#39;drop event&#39;);
-52. 
-53.          // Do not propagate the event
-54.          event.stopPropagation();
-55.          // Prevent default behavior, in particular when we drop
-56.          // images or links
-57.          event.preventDefault();
-58. 
-59. 
-60.          // reset the visual look of the drop zone to default
-61.          event.target.classList.remove(&#39;draggedOver&#39;);
-62. 
-63. 
-64.          // get the files from the clipboard
-65.          var files = event.dataTransfer.files;
-66.          var filesLen = files.length;
-67.          var filenames = &quot;&quot;;
-68. 
-69.          // iterate on the files, get details using the file API
-70.          // Display file names in a list.
-71.          for(var i = 0 ; i &lt; filesLen ; i++) {
-72.             filenames += &#39;n&#39; + files[i].name;
-73.             // Create a li, set its value to a file name, add it to the ol
-74.             var li = document.createElement(&#39;li&#39;);
-75.             li.textContent = files[i].name;
-76.             document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
-77.          }
-78.          console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
-79. 
-80.          readFilesAndDisplayPreview(files);
-81.       }
-82. 
-83.       function readFilesAndDisplayPreview(files) {
-84.          // Loop through the FileList and render image files as
-85.          // thumbnails.
-86.          for (var i = 0, f; f = files[i]; i++) {
-87. 
-88.             // Only process image files.
-89.             if (!f.type.match(&#39;image.*&#39;)) {
-90.                continue;
-91.             }
-92. 
-93.             var reader = new FileReader();
-94. 
-95.             //capture the file information.
-96.             reader.onload = function(e) {
-97.                // Render thumbnail.
-98.                var span = document.createElement(&#39;span&#39;);
-99.                span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; width=&#39;100&#39; src=&#39;&quot; +
-100.                                 e.target.result + &quot;&#39;/&gt;&quot;;
-101.              document.getElementById(&#39;list&#39;).insertBefore(span, null);
-102.             };            
-103.            // Read the image file as a data URL.
-104.            reader.readAsDataURL(f);
-105.         }
-106.      }
-107. 
-108.      function handleFileSelect(evt) {
-109.         var files = evt.target.files; // FileList object
-110.         // do something with files... why not call
-111.         // readFilesAndDisplayPreview!
-112.        readFilesAndDisplayPreview(files);
-113.      }
-114.   &lt;/script&gt;
-115. &lt;/head&gt;
-116. &lt;body&gt;
-117.   &lt;h2&gt;Use one of these input fields for selecting files&lt;/h2&gt;
-118.   &lt;p&gt;Beware, the directory choser  may overload
-119.     your browser memory if there are too many big images in the
-120.     directory you choose.&lt;/p&gt;
-121.   Choose multiple files: &lt;input type=&quot;file&quot; id=&quot;files&quot; multiple
-122.                                onchange=&quot;handleFileSelect(event)&quot;/&gt;
-123.   &lt;/p&gt;
-124.   &lt;p&gt;Choose a directory (Chrome only): &lt;input type=&quot;file&quot;
-125.                                         id=&quot;dir&quot; webkitdirectory
-126.                                         onchange=&quot;handleFileSelect(event)&quot;/&gt;
-127.   &lt;/p&gt;
-128.  
-129.   &lt;h2&gt;Drop your files here!&lt;/h2&gt;
-130.   &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot;
-131.                           ondrop=&quot;dropHandler(event)&quot;
-132.                           ondragover=&quot;dragOverHandler(event)&quot;
-133.                           ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
-134.     Drop zone
-135.     &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
-136.   &lt;/div&gt;
-137.   &lt;br/&gt;
-138.   &lt;output id=&quot;list&quot;&gt;&lt;/output&gt;
-139. &lt;/body&gt;
-140. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+   &lt;style&gt;
+      div {
+          height: 150px;
+          width: 350px;
+          border: 2px solid #666666;
+          background-color: #ccc;
+          margin-right: 5px;
+          border-radius: 10px;
+          box-shadow: inset 0 0 3px #000;
+          text-align: center;
+          cursor: move;
+      }
+      .dragged {
+          border: 2px dashed #000;
+          background-color: green;
+      }
+      .draggedOver {
+          border: 2px dashed #000;
+          background-color: green;
+      }
+   &lt;/style&gt;
+   &lt;script&gt;
+      function dragLeaveHandler(event) {
+         console.log(&quot;drag leave&quot;);
+         // Set style of drop zone to default
+         event.target.classList.remove(&#39;draggedOver&#39;);
+      }
+      function dragEnterHandler(event) {
+         console.log(&quot;Drag enter&quot;);
+         // Show some visual feedback
+         event.target.classList.add(&#39;draggedOver&#39;);
+      }
+      function dragOverHandler(event) {
+         //console.log(&quot;Drag over a droppable zone&quot;);
+         // Do not propagate the event
+         event.stopPropagation();
+         // Prevent default behavior, in particular when we drop
+         // images or links
+         event.preventDefault();
+      }
+      function dropHandler(event) {
+         console.log(&#39;drop event&#39;);
+
+         // Do not propagate the event
+         event.stopPropagation();
+         // Prevent default behavior, in particular when we drop
+         // images or links
+         event.preventDefault();
+         // reset the visual look of the drop zone to default
+         event.target.classList.remove(&#39;draggedOver&#39;);
+         // get the files from the clipboard
+         var files = event.dataTransfer.files;
+         var filesLen = files.length;
+         var filenames = &quot;&quot;;
+         // iterate on the files, get details using the file API
+         // Display file names in a list.
+         for(var i = 0 ; i &lt; filesLen ; i++) {
+            filenames += &#39;n&#39; + files[i].name;
+            // Create a li, set its value to a file name, add it to the ol
+            var li = document.createElement(&#39;li&#39;);
+            li.textContent = files[i].name;
+            document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
+         }
+         console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
+         readFilesAndDisplayPreview(files);
+      }
+      function readFilesAndDisplayPreview(files) {
+         // Loop through the FileList and render image files as
+         // thumbnails.
+         for (var i = 0, f; f = files[i]; i++) {
+
+            // Only process image files.
+            if (!f.type.match(&#39;image.*&#39;)) {
+               continue;
+            }
+            var reader = new FileReader();
+            //capture the file information.
+            reader.onload = function(e) {
+               // Render thumbnail.
+               var span = document.createElement(&#39;span&#39;);
+               span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; width=&#39;100&#39; src=&#39;&quot; +
+                                 e.target.result + &quot;&#39;/&gt;&quot;;
+              document.getElementById(&#39;list&#39;).insertBefore(span, null);
+             };            
+            // Read the image file as a data URL.
+            reader.readAsDataURL(f);
+         }
+      }
+      function handleFileSelect(evt) {
+         var files = evt.target.files; // FileList object
+         // do something with files... why not call
+         // readFilesAndDisplayPreview!
+        readFilesAndDisplayPreview(files);
+      }
+   &lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   &lt;h2&gt;Use one of these input fields for selecting files&lt;/h2&gt;
+   &lt;p&gt;Beware, the directory choser  may overload
+     your browser memory if there are too many big images in the
+     directory you choose.&lt;/p&gt;
+   Choose multiple files: &lt;input type=&quot;file&quot; id=&quot;files&quot; multiple
+                                onchange=&quot;handleFileSelect(event)&quot;/&gt;
+   &lt;/p&gt;
+   &lt;p&gt;Choose a directory (Chrome only): &lt;input type=&quot;file&quot;
+                                         id=&quot;dir&quot; webkitdirectory
+                                         onchange=&quot;handleFileSelect(event)&quot;/&gt;
+   &lt;/p&gt;
+   &lt;h2&gt;Drop your files here!&lt;/h2&gt;
+   &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot;
+                           ondrop=&quot;dropHandler(event)&quot;
+                           ondragover=&quot;dragOverHandler(event)&quot;
+                           ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
+    Drop zone
+    &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
+  &lt;/div&gt;
+  &lt;br/&gt;
+  &lt;output id=&quot;list&quot;&gt;&lt;/output&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -15904,9 +15884,8 @@ access mode.</p>
 <p>Source code example for creating a transaction associated with the
 object store named “customers”:</p>
 
-<pre>
-1. var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-2.   //or &quot;read&quot;...</pre>
+<pre>var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+//or &quot;read&quot;...</pre>
 
 <p>Transactions, when created, must have a mode set that is
 either readonly, readwrite or versionchange (this last mode is only for
@@ -16012,55 +15991,54 @@ store:</p>
 <p>We just added a single function into the example from the previous
 section - the function AddACustomer() that adds one customer:</p>
 
-<pre>
-1. { ssn: &quot;123-45-6789&quot;, name: &quot;Michel Buffa&quot;, age: 47, email: 
-2. &quot;buffa@i3s.unice.fr&quot; }</pre>
+<pre>{ ssn: &quot;123-45-6789&quot;, name: &quot;Michel Buffa&quot;, age: 47, email: 
+&quot;buffa@i3s.unice.fr&quot; }</pre>
 
 <p>Here is the complete source code of the addACustomer function:</p>
 
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  function addACustomer() {
-2.     // 1 - get a transaction on the &quot;customers&quot; object store
-3.     // in readwrite, as we are going to insert a new object
-4.     var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-5.  
-6.     // Do something when all the data is added to the database.
-7.     // This callback is called after transaction has been completely
-8.     // executed (committed)
-9.     transaction.oncomplete = function(event) {
-10.        alert(&quot;All done!&quot;);
-11.    };
-12. 
-13.    // This callback is called in case of error (rollback)
-14.    transaction.onerror = function(event) {
-15.       console.log(&quot;transaction.onerror
-    errcode=&quot; + event.target.error.name);
-16.    };
-17. 
-18.    // 2 - Init the transaction on the objectStore
-19.    var objectStore = transaction.objectStore(&quot;customers&quot;);
-20. 
-21.    // 3 - Get a request from the transaction for adding a new object
-22.    var request = objectStore.add({ ssn: &quot;123-45-6789&quot;,
-23.                                    name: &quot;Michel Buffa&quot;,
-24.                                    age: 47,
-25.                                    email: &quot;buffa@i3s.unice.fr&quot; });
-26. 
-27.    // The insertion was ok
-28.    request.onsuccess = function(event) {
-29.        console.log(&quot;Customer with ssn= &quot; + event.target.result + &quot;
-30.                     added.&quot;);
-31.    };
-32. 
-33.    // the insertion led to an error (object already in the store,
-34.    // for example)
-35.    request.onerror = function(event) {
-36.        console.log(&quot;request.onerror, could not insert customer,
-37.                     errcode = &quot; + event.target.error.name);
-38.    };
-39. }</pre>
+<pre>function addACustomer() {
+   // 1 - get a transaction on the &quot;customers&quot; object store
+   // in readwrite, as we are going to insert a new object
+   var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+
+   // Do something when all the data is added to the database.
+   // This callback is called after transaction has been completely
+   // executed (committed)
+   transaction.oncomplete = function(event) {
+       alert(&quot;All done!&quot;);
+   };
+
+   // This callback is called in case of error (rollback)
+   transaction.onerror = function(event) {
+      console.log(&quot;transaction.onerror
+errcode=&quot; + event.target.error.name);
+   };
+
+   // 2 - Init the transaction on the objectStore
+   var objectStore = transaction.objectStore(&quot;customers&quot;);
+
+   // 3 - Get a request from the transaction for adding a new object
+   var request = objectStore.add({ ssn: &quot;123-45-6789&quot;,
+                                   name: &quot;Michel Buffa&quot;,
+                                   age: 47,
+                                   email: &quot;buffa@i3s.unice.fr&quot; });
+
+   // The insertion was ok
+   request.onsuccess = function(event) {
+       console.log(&quot;Customer with ssn= &quot; + event.target.result + &quot;
+                    added.&quot;);
+   };
+
+   // the insertion led to an error (object already in the store,
+   // for example)
+   request.onerror = function(event) {
+       console.log(&quot;request.onerror, could not insert customer,
+                     errcode = &quot; + event.target.error.name);
+   };
+}</pre>
 
 </details>
 
@@ -16137,65 +16115,56 @@ entering a new customer.</p>
 
 <h4>Here is the updated version of the HTML code of this example:</h4>
 
-<pre>1.  &lt;fieldset&gt;
-2.    SSN: &lt;input type=&quot;text&quot; id=&quot;ssn&quot; placeholder=&quot;444-44-4444&quot;
-3.                required/&gt;&lt;br&gt;
-4.    Name: &lt;input type=&quot;text&quot; id=&quot;name&quot;/&gt;&lt;br&gt;
-5.    Age: &lt;input type=&quot;number&quot; id=&quot;age&quot; min=&quot;1&quot; max=&quot;100&quot;/&gt;&lt;br&gt;
-6.    Email:&lt;input type=&quot;email&quot; id=&quot;email&quot;/&gt; reminder, email must be
-7.                 unique (we declared it as a &quot;unique&quot; index)&lt;br&gt;
-8.  &lt;/fieldset&gt;
-9.  
-10. &lt;button onclick=&quot;addACustomer();&quot;&gt;Add a new Customer&lt;/button&gt;</pre>
+<pre>&lt;fieldset&gt;
+  SSN: &lt;input type=&quot;text&quot; id=&quot;ssn&quot; placeholder=&quot;444-44-4444&quot;
+              required/&gt;&lt;br&gt;
+  Name: &lt;input type=&quot;text&quot; id=&quot;name&quot;/&gt;&lt;br&gt;
+  Age: &lt;input type=&quot;number&quot; id=&quot;age&quot; min=&quot;1&quot; max=&quot;100&quot;/&gt;&lt;br&gt;
+  Email:&lt;input type=&quot;email&quot; id=&quot;email&quot;/&gt; reminder, email must be
+               unique (we declared it as a &quot;unique&quot; index)&lt;br&gt;
+&lt;/fieldset&gt;
+&lt;button onclick=&quot;addACustomer();&quot;&gt;Add a new Customer&lt;/button&gt;</pre>
 
 <h4>And here is the new version of the addACustomer() JavaScript function:</h4>
 
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function addACustomer() {
-2.     if(db === null) {
-3.        alert(&#39;Database must be opened, please click the Create
-4.               CustomerDB Database first&#39;);
-5.        return;
-6.     }
-7.  
-8.     var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-9.  
-10.    // Do something when all the data is added to the database.
-11.    transaction.oncomplete = function(event) {
-12.      console.log(&quot;All done!&quot;);
-13.    };
-14. 
-15.    transaction.onerror = function(event) {
-16.      console.log(&quot;transaction.onerror
+<pre>function addACustomer() {
+   if(db === null) {
+      alert(&#39;Database must be opened, please click the Create
+             CustomerDB Database first&#39;);
+      return;
+   }
+   var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+   // Do something when all the data is added to the database.
+   transaction.oncomplete = function(event) {
+     console.log(&quot;All done!&quot;);
+   };
+   transaction.onerror = function(event) {
+     console.log(&quot;transaction.onerror
     errcode=&quot; + event.target.error.name);
-17.    };
-18. 
-19.    var objectStore = transaction.objectStore(&quot;customers&quot;);
-20. 
-21.    // adds the customer data
-22.    var newCustomer={};
-23.    newCustomer.ssn = document.querySelector(&quot;#ssn&quot;).value;
-24.    newCustomer.name = document.querySelector(&quot;#name&quot;).value;
-25.    newCustomer.age = document.querySelector(&quot;#age&quot;).value;
-26.    newCustomer.email = document.querySelector(&quot;#email&quot;).value;
-27.    alert(&#39;adding customer ssn=&#39; + newCustomer.ssn);
-28.  
-29.    var request = objectStore.add(newCustomer);
-30. 
-31.    request.onsuccess = function(event) {
-32.      console.log(&quot;Customer with ssn= &quot; + event.target.result + &quot;
-33.                   added.&quot;);
-34.      };
-35.  
-36.   request.onerror = function(event) {
-37.      alert(&quot;request.onerror, could not insert customer, errcode = &quot;
-38.            + event.target.error.name +
-39.            &quot;. Certainly either the ssn or the email is already
-40.            present in the Database&quot;);
-41.   };
-42. }</pre>
+   };
+   var objectStore = transaction.objectStore(&quot;customers&quot;);
+   // adds the customer data
+   var newCustomer={};
+   newCustomer.ssn = document.querySelector(&quot;#ssn&quot;).value;
+   newCustomer.name = document.querySelector(&quot;#name&quot;).value;
+   newCustomer.age = document.querySelector(&quot;#age&quot;).value;
+   newCustomer.email = document.querySelector(&quot;#email&quot;).value;
+   alert(&#39;adding customer ssn=&#39; + newCustomer.ssn);
+   var request = objectStore.add(newCustomer);
+   request.onsuccess = function(event) {
+     console.log(&quot;Customer with ssn= &quot; + event.target.result + &quot;
+                  added.&quot;);
+     };
+   request.onerror = function(event) {
+     alert(&quot;request.onerror, could not insert customer, errcode = &quot;
+           + event.target.error.name +
+           &quot;. Certainly either the ssn or the email is already
+           present in the Database&quot;);
+  };
+}</pre>
 
 </details>
 
@@ -16206,10 +16175,9 @@ etc.).</p>
 
 <h4>Here is the short version:</h4>
 
-<pre>
-1. var request = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;)
-2.   .objectStore(&quot;customers&quot;)
-3.   .add(newCustomer);</pre>
+<pre>var request = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;)
+  .objectStore(&quot;customers&quot;)
+  .add(newCustomer);</pre>
 
 <p>The above code does not perform all the tests, but you may encounter
 such a way of coding (!).</p>
@@ -16258,40 +16226,33 @@ versions of Google Chrome.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function removeACustomer() {
-2.     if(db === null) {
-3.        alert(&#39;Database must be opened first, please click the
-4.               Create CustomerDB Database first&#39;);
-5.        return;
-6.     }
-7.  
-8.     var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-9.  
-10.    // Do something when all the data is added to the database.
-11.    transaction.oncomplete = function(event) {
-12.       console.log(&quot;All done!&quot;);
-13.    };
-14. 
-15.    transaction.onerror = function(event) {
-16.       console.log(&quot;transaction.onerror errcode=&quot; +
-17.                    event.target.error.name);
-18.    };
-19. 
-20.    var objectStore = transaction.objectStore(&quot;customers&quot;);
-21. 
-22.    alert(&#39;removing customer ssn=444-44-4444&#39;);
-23.    var request = objectStore.delete(&quot;444-44-4444&quot;);
-24. 
-25.    request.onsuccess = function(event) {
-26.       console.log(&quot;Customer removed.&quot;);
-27.    };
-28. 
-29.    request.onerror = function(event) {
-30.       alert(&quot;request.onerror, could not remove customer, errcode
-31.             = &quot; + event.target.error.name + &quot;. The ssn does not
-32.             exist in the Database&quot;);
-33.    };
-34. }</pre>
+<pre>function removeACustomer() {
+   if(db === null) {
+      alert(&#39;Database must be opened first, please click the
+             Create CustomerDB Database first&#39;);
+      return;
+   }
+   var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+   // Do something when all the data is added to the database.
+   transaction.oncomplete = function(event) {
+      console.log(&quot;All done!&quot;);
+   };
+   transaction.onerror = function(event) {
+      console.log(&quot;transaction.onerror errcode=&quot; +
+                   event.target.error.name);
+   };
+   var objectStore = transaction.objectStore(&quot;customers&quot;);
+   alert(&#39;removing customer ssn=444-44-4444&#39;);
+   var request = objectStore.delete(&quot;444-44-4444&quot;);
+   request.onsuccess = function(event) {
+      console.log(&quot;Customer removed.&quot;);
+   };
+   request.onerror = function(event) {
+      alert(&quot;request.onerror, could not remove customer, errcode
+            = &quot; + event.target.error.name + &quot;. The ssn does not
+            exist in the Database&quot;);
+   };
+}</pre>
 
 </details>
 
@@ -16306,10 +16267,9 @@ by concatenating the different operations (getting the store from the
 db, getting the request, calling delete, etc.). Here is the short
 version:</p>
 
-<pre>
-1. var request = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;)
-2.   .objectStore(&quot;customers&quot;)
-3.   .delete(&quot;444-44-4444&quot;);</pre>
+<pre>var request = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;)
+  .objectStore(&quot;customers&quot;)
+  .delete(&quot;444-44-4444&quot;);</pre>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-6-9">3.6.9 Modifying data</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -16842,29 +16802,24 @@ from this MDN article</a>):</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  // Only match &quot;Donna&quot;
-2.  var singleKeyRange = IDBKeyRange.only(&quot;Donna&quot;);
-3.   
-4.  // Match anything past &quot;Bill&quot;, including &quot;Bill&quot;
-5.  var lowerBoundKeyRange = IDBKeyRange.lowerBound(&quot;Bill&quot;);
-6.   
-7.  // Match anything past &quot;Bill&quot;, but don&#39;t include &quot;Bill&quot;
-8.  var lowerBoundOpenKeyRange = IDBKeyRange.lowerBound(&quot;Bill&quot;, true);
-9.   
-10. // Match anything up to, but not including, &quot;Donna&quot;
-11. var upperBoundOpenKeyRange = IDBKeyRange.upperBound(&quot;Donna&quot;, true);
-12.  
-13. // Match anything between &quot;Bill&quot; and &quot;Donna&quot;, but not including &quot;Donna&quot;
-14. var boundKeyRange = IDBKeyRange.bound(&quot;Bill&quot;, &quot;Donna&quot;, false, true);
-15.  
-16. // To use one of the key ranges, pass it in as the first argument of openCursor()/openKeyCursor()
-17. index.openCursor(boundKeyRange).onsuccess = function(event) {
-18.     var cursor = event.target.result;
-19.     if (cursor) {
-20.         // Do something with the matches.
-21.         cursor.continue();
-22.     }
-23. }</pre>
+<pre>// Only match &quot;Donna&quot;
+var singleKeyRange = IDBKeyRange.only(&quot;Donna&quot;);
+// Match anything past &quot;Bill&quot;, including &quot;Bill&quot;
+var lowerBoundKeyRange = IDBKeyRange.lowerBound(&quot;Bill&quot;);
+// Match anything past &quot;Bill&quot;, but don&#39;t include &quot;Bill&quot;
+var lowerBoundOpenKeyRange = IDBKeyRange.lowerBound(&quot;Bill&quot;, true);
+// Match anything up to, but not including, &quot;Donna&quot;
+var upperBoundOpenKeyRange = IDBKeyRange.upperBound(&quot;Donna&quot;, true);
+// Match anything between &quot;Bill&quot; and &quot;Donna&quot;, but not including &quot;Donna&quot;
+var boundKeyRange = IDBKeyRange.bound(&quot;Bill&quot;, &quot;Donna&quot;, false, true);
+// To use one of the key ranges, pass it in as the first argument of openCursor()/openKeyCursor()
+index.openCursor(boundKeyRange).onsuccess = function(event) {
+    var cursor = event.target.result;
+    if (cursor) {
+        // Do something with the matches.
+        cursor.continue();
+    }
+}</pre>
 
 </details>
 
@@ -17128,7 +17083,7 @@ calendar, an input text with vocal recognition, a nice chart, etc.</p>
 
 <p>Let’s start with an example! This code…:</p>
 
-<pre>1. &lt;x-gif src=&quot;https://i.imgur.com/iKXH4E2.gif&quot; ping-pong&gt;&lt;/x-gif&gt;</pre>
+<pre>&lt;x-gif src=&quot;https://i.imgur.com/iKXH4E2.gif&quot; ping-pong&gt;&lt;/x-gif&gt;</pre>
 
 <p>… renders an animated GIF, and it loops forever in ping-pong mode:
 the order of the animation is reversed when the last image is reached
@@ -17149,7 +17104,7 @@ Web site</a>.</p>
 <p>If you look at the source of the demo page, you note the following at
 the top of the page:</p>
 
-<pre>1. &lt;link rel=&quot;import&quot; href=&quot;dist/x-gif.html&quot;&gt;</pre>
+<pre>&lt;link rel=&quot;import&quot; href=&quot;dist/x-gif.html&quot;&gt;</pre>
 
 <p>It’s called an “HTML import”. If your browser supports <i>HTML
 imports</i>, you can now import <i>another HTML document, </i>that will
@@ -17338,10 +17293,10 @@ not be played, etc.) until the template is used.</p>
 
 <p>Here is an example of code that defines a template:</p>
 
-<pre>1. &lt;template id=&quot;mytemplate&quot;&gt;
-2.    &lt;img src=&quot;&quot; alt=&quot;great image&quot;&gt;
-3.    &lt;div class=&quot;comment&quot;&gt;&lt;/div&gt;
-4. &lt;/template&gt;</pre>
+<pre>&lt;template id=&quot;mytemplate&quot;&gt;
+   &lt;img src=&quot;&quot; alt=&quot;great image&quot;&gt;
+   &lt;div class=&quot;comment&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;</pre>
 
 <p>Note that it’s ok to have the <b>src</b> attribute empty here, we
 will initialize it when the template is activated.</p>
@@ -17710,28 +17665,25 @@ etc.</p>
 
 <h4>HTML part:</h4>
 
-<pre>1.  &lt;template id=&quot;mytemplate&quot;&gt;
-2.     &lt;style&gt;
-3.       h1 {color:white; background:red}
-4.     &lt;/style&gt;
-5.     &lt;h1&gt;This is a shadowed H1&lt;/h1&gt;
-6.  &lt;/template&gt;</pre>
+<pre>&lt;template id=&quot;mytemplate&quot;&gt;
+   &lt;style&gt;
+     h1 {color:white; background:red}
+   &lt;/style&gt;
+   &lt;h1&gt;This is a shadowed H1&lt;/h1&gt;
+&lt;/template&gt;</pre>
 
 <p>The JavaScript part:</p>
 
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  // Instanciate the template
-2.  var t = document.querySelector(&#39;#mytemplate&#39;);
-3.   
-4.  // Create a root node under our H1 title
-5.  var host = document.querySelector(&#39;#withShadowDom&#39;);
-6.   
-7.  const shadowRoot = host.attachShadow({mode: &#39;open&#39;});
-8.  
-9.  // insert something into the shadow DOM, this will be rendered
-10. shadowRoot.appendChild(document.importNode(t.content, true));</pre>
+<pre>// Instanciate the template
+var t = document.querySelector(&#39;#mytemplate&#39;);
+// Create a root node under our H1 title
+var host = document.querySelector(&#39;#withShadowDom&#39;);
+const shadowRoot = host.attachShadow({mode: &#39;open&#39;});
+// insert something into the shadow DOM, this will be rendered
+shadowRoot.appendChild(document.importNode(t.content, true));</pre>
 
 </details>
 
@@ -17776,18 +17728,16 @@ Component.</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;template id=&quot;mytemplate&quot;&gt;
-2.     &lt;style&gt;
-3.       h1 {color:white; background:red}
-4.     &lt;/style&gt;
-5.     &lt;h1&gt;This is a shadowed H1&lt;/h1&gt;
-6.  &lt;/template&gt;
-7.  
-8.  &lt;body&gt;
-9.     &lt;h1 id=&quot;withShadowDom&quot;&gt;This is a text header&lt;/h1&gt;
-10. 
-11.    &lt;h1&gt;Normal header with no shadow DOM associated.&lt;/h1&gt;
-12. &lt;/body&gt;</pre>
+<pre>&lt;template id=&quot;mytemplate&quot;&gt;
+   &lt;style&gt;
+     h1 {color:white; background:red}
+   &lt;/style&gt;
+   &lt;h1&gt;This is a shadowed H1&lt;/h1&gt;
+&lt;/template&gt;
+&lt;body&gt;
+   &lt;h1 id=&quot;withShadowDom&quot;&gt;This is a text header&lt;/h1&gt;
+   &lt;h1&gt;Normal header with no shadow DOM associated.&lt;/h1&gt;
+&lt;/body&gt;</pre>
 
 </details>
 
@@ -17806,9 +17756,9 @@ Component.</p>
 <p>The second H1 is not affected by the CSS defined in the template used
 by the first H1. Try to add this CSS rule to this example:</p>
 
-<pre>1.  h1 {
-2.      color:green;
-3.  }</pre>
+<pre>h1 {
+  color:green;
+}</pre>
 
 <p>And you should see something like that:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -17838,18 +17788,17 @@ the &lt;slot&gt;…&lt;/slot&gt; element, as shown below:</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;template id=&quot;mytemplate&quot;&gt;
-2.      &lt;h1 part=&#39;heading&#39;&gt;This is a shadowed H1&lt;/h1&gt;
-3.      &lt;p part=&quot;paragraph&quot;&gt;
-4.          &lt;slot name=&quot;my-text&quot;&gt;My default text&lt;/slot&gt;
-5.      &lt;/p&gt;
-6.  &lt;/template&gt;
-7.   
-8.  &lt;body&gt;
-9.  &lt;h1 id=&quot;myWidget&quot;&gt;
-10.     &lt;span slot=&quot;my-text&quot;&gt;Injected content using slot elem&lt;/span&gt;
-11. &lt;/h1&gt;
-12. &lt;/body&gt;</pre>
+<pre>&lt;template id=&quot;mytemplate&quot;&gt;
+    &lt;h1 part=&#39;heading&#39;&gt;This is a shadowed H1&lt;/h1&gt;
+    &lt;p part=&quot;paragraph&quot;&gt;
+        &lt;slot name=&quot;my-text&quot;&gt;My default text&lt;/slot&gt;
+    &lt;/p&gt;
+&lt;/template&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;myWidget&quot;&gt;
+    &lt;span slot=&quot;my-text&quot;&gt;Injected content using slot elem&lt;/span&gt;
+&lt;/h1&gt;
+&lt;/body&gt;</pre>
 
 </details>
 
@@ -17888,7 +17837,7 @@ browser how to render them.</p>
 
 <h4>Basic usage:</h4>
 
-<pre>1. customElements.define(&#39;my-widget&#39;, MyWidget);</pre>
+<pre>customElements.define(&#39;my-widget&#39;, MyWidget);</pre>
 
 <h4>This is done using JavaScript and there are some constraints:</h4>
 
@@ -17916,12 +17865,12 @@ shadow DOM:</p>
 
 <h4>HTML code for the use of the custom element:</h4>
 
-<pre>1.  &lt;body&gt;
-2.  &lt;my-widget&gt;
-3.     &lt;span slot=&quot;my-title&quot;&gt;Title injected&lt;/span&gt;
-4.     &lt;span slot=&quot;my-paragraph&quot;&gt;Paragraph injected&lt;/span&gt;
-5.  &lt;/my-widget&gt;
-6.  &lt;/body&gt;</pre>
+<pre>&lt;body&gt;
+&lt;my-widget&gt;
+   &lt;span slot=&quot;my-title&quot;&gt;Title injected&lt;/span&gt;
+   &lt;span slot=&quot;my-paragraph&quot;&gt;Paragraph injected&lt;/span&gt;
+&lt;/my-widget&gt;
+&lt;/body&gt;</pre>
 
 <h4>Look at <i>lines 2 </i>and<i> 5</i></h4>
 
@@ -17930,20 +17879,20 @@ shadow DOM:</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;template id=&quot;mytemplate&quot;&gt;
-2.    &lt;style&gt;
-3.      h1 {
-4.        color:white;
-5.        background:red;
-6.      }
-7.    &lt;/style&gt;
-8.    &lt;h1&gt;
-9.      &lt;slot name=&quot;my-title&quot;&gt;My default text&lt;/slot&gt;
-10.   &lt;/h1&gt;
-11.   &lt;p&gt;
-12.     &lt;slot name=&quot;my-paragraph&quot;&gt;My default text&lt;/slot
-13.   &lt;/p&gt;
-14. &lt;/template&gt;</pre>
+<pre>&lt;template id=&quot;mytemplate&quot;&gt;
+  &lt;style&gt;
+    h1 {
+      color:white;
+      background:red;
+    }
+  &lt;/style&gt;
+  &lt;h1&gt;
+    &lt;slot name=&quot;my-title&quot;&gt;My default text&lt;/slot&gt;
+  &lt;/h1&gt;
+  &lt;p&gt;
+    &lt;slot name=&quot;my-paragraph&quot;&gt;My default text&lt;/slot
+  &lt;/p&gt;
+&lt;/template&gt;</pre>
 
 </details>
 
@@ -18146,18 +18095,18 @@ Components):</h4>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.    &lt;meta charset=&quot;UTF-8&quot;&gt;
-5.    &lt;title&gt;WebComponent as aJavaScript module&lt;/title&gt;
-6.    &lt;script type=&quot;module&quot; src=&quot;./mycomponent/index.js&quot;&gt;&lt;/script&gt;
-7.  &lt;/head&gt;
-8.  &lt;body&gt;
-9.    &lt;my-component name=&quot;Michel Buffa&quot;&gt;&lt;/my-component&gt;
-10.   &lt;my-component name=&quot;Marie-Claire Forgue&quot;&gt;&lt;/my-component&gt;
-11. &lt;/body&gt;
-12. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;WebComponent as aJavaScript module&lt;/title&gt;
+  &lt;script type=&quot;module&quot; src=&quot;./mycomponent/index.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;my-component name=&quot;Michel Buffa&quot;&gt;&lt;/my-component&gt;
+  &lt;my-component name=&quot;Marie-Claire Forgue&quot;&gt;&lt;/my-component&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -18438,14 +18387,12 @@ href="https://en.wikipedia.org/wiki/Serialization" target="_blank" rel="noopener
 </ol>
 </blockquote>
 
-<pre>1.  var worker = new Worker(&quot;worker0.js&quot;);
-2.  
-3.  // String message example
-4.  worker.postMessage(&quot;Hello&quot;);
-5.  
-6.  // Object message example
-7.  var personObject = {&#39;firstName&#39;: &#39;Michel&#39;, &#39;lastName&#39;:&#39;Buffa&#39;};
-8.  worker.postMessage(personObject );</pre>
+<pre>var worker = new Worker(&quot;worker0.js&quot;);
+// String message example
+worker.postMessage(&quot;Hello&quot;);
+// Object message example
+var personObject = {&#39;firstName&#39;: &#39;Michel&#39;, &#39;lastName&#39;:&#39;Buffa&#39;};
+worker.postMessage(personObject );</pre>
 
 <blockquote>
 <ol start="2" type="1">
@@ -18453,10 +18400,10 @@ href="https://en.wikipedia.org/wiki/Serialization" target="_blank" rel="noopener
 </ol>
 </blockquote>
 
-<pre>1.  onmessage = function (event) {
-2.     // do something with event.data
-3.    alert(&#39;received &#39; + event.data.firstName);
-4.  };</pre>
+<pre>onmessage = function (event) {
+  // do something with event.data
+  alert(&#39;received &#39; + event.data.firstName);
+};</pre>
 
 <blockquote>
 <ol start="3" type="1">
@@ -18464,7 +18411,7 @@ href="https://en.wikipedia.org/wiki/Serialization" target="_blank" rel="noopener
 </ol>
 </blockquote>
 
-<pre>1.  postMessage(&quot;Message from a worker !&quot;);</pre>
+<pre>postMessage(&quot;Message from a worker !&quot;);</pre>
 
 <blockquote>
 <ol start="4" type="1">
@@ -18472,9 +18419,9 @@ href="https://en.wikipedia.org/wiki/Serialization" target="_blank" rel="noopener
 </ol>
 </blockquote>
 
-<pre>1.  worker.onmessage = function(event){
-2.      // do something with event.data
-3.  };</pre>
+<pre>worker.onmessage = function(event){
+  // do something with event.data
+};</pre>
 
 <h4>Use case #3: a complete example</h4>
 
@@ -18590,21 +18537,21 @@ defined in a separate JavaScript file.</p>
 <details>
   <summary>HTML code!</summary>
   
-<pre>1.  &lt;!DOCTYPE HTML&gt;
-2.  &lt;html&gt;
-3.  &lt;head&gt;
-4.    &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
-5.  &lt;/head&gt;
-6.  &lt;body&gt;
-7.    &lt;p&gt;The highest prime number discovered so far is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
-8.    &lt;script&gt;
-9.      &lt;b&gt;var worker = new Worker(&#39;worker.js&#39;);
-10.     &lt;b&gt;worker.onmessage = function (event) {
-11.       document.getElementById(&#39;result&#39;).textContent = event.data;
-12.     };
-13.   &lt;/script&gt;
-14. &lt;/body&gt;
-15. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;The highest prime number discovered so far is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
+  &lt;script&gt;
+    &lt;b&gt;var worker = new Worker(&#39;worker.js&#39;);
+    &lt;b&gt;worker.onmessage = function (event) {
+      document.getElementById(&#39;result&#39;).textContent = event.data;
+    };
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -18626,15 +18573,15 @@ sent.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var n = 1;
-2.  search: while (true) {
-3.      n += 1;
-4.      for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
-5.      if (n % i == 0)
-6.      continue search;
-7.      // found a prime!
-8.     &lt;b&gt; postMessage(n);
-9.  }</pre>
+<pre>var n = 1;
+search: while (true) {
+  n += 1;
+  for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
+  if (n % i == 0)
+  continue search;
+  // found a prime!
+  &lt;b&gt; postMessage(n);
+}</pre>
 
 </details>
 
@@ -18685,29 +18632,28 @@ href="https://courses.edx.org/assets/courseware/v1/4af4dd2326f40b5d5d55aa15bbb12
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;!DOCTYPE HTML&gt;
-2.  &lt;html&gt;
-3.  &lt;head&gt;
-4.  &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
-5.  &lt;/head&gt;
-6.  &lt;body&gt;
-7.  &lt;p&gt;The highest prime number discovered so far
-    is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
-8.  &lt;script&gt;
-9.      if(window.Worker){
-10.        // web workers supported by the browser
-11.        var worker=new Worker(&quot;worker1.js&quot;);
-12.        worker.onmessage=function(event){
-13.          
-    document.getElementById(&#39;result&#39;).textContent = event.data;
-14.        };
-15.     }else{
-16.        // the browser does not support web workers
-17.        alert(&quot;Sorry, your browser does not support Web Workers&quot;);
-18.     }
-19. &lt;/script&gt;
-20. &lt;/body&gt;
-21. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Worker example: One-core computation&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;The highest prime number discovered so far
+is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
+&lt;script&gt;
+  if(window.Worker){
+    // web workers supported by the browser
+    var worker=new Worker(&quot;worker1.js&quot;);
+    worker.onmessage=function(event){
+      document.getElementById(&#39;result&#39;).textContent = event.data;
+    };
+  }else{
+    // the browser does not support web workers
+    alert(&quot;Sorry, your browser does not support Web Workers&quot;);
+  }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -18718,23 +18664,21 @@ href="https://courses.edx.org/assets/courseware/v1/4af4dd2326f40b5d5d55aa15bbb12
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>
-1.  postMessage(&quot;Hey, in 3s, I&#39;ll start to compute prime numbers...&quot;);
-2.  
-3.  setTimeout(function() {
-4.    // The setTimeout is just useful for displaying the message in
-      line 1 for 3 seconds and
-5.      // making it visible
-6.      var n = 1;
-7.      search: while (true) {
-8.        n += 1;
-9.        for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
-10.         if (n % i == 0)
-11.           continue search;
-12.           // found a prime!
-13.         postMessage(n);
-14.     }
-15. }, 3000);</pre>
+<pre>postMessage(&quot;Hey, in 3s, I&#39;ll start to compute prime numbers...&quot;);
+setTimeout(function() {
+  // The setTimeout is just useful for displaying the message in
+  line 1 for 3 seconds and
+  // making it visible
+  var n = 1;
+  search: while (true) {
+    n += 1;
+    for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
+      if (n % i == 0)
+        continue search;
+        // found a prime!
+      postMessage(n);
+  }
+}, 3000);</pre>
 
 </details>
 
@@ -18768,36 +18712,34 @@ worker.</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;!DOCTYPE HTML/image0&gt;
-2.  &lt;html&gt;
-3.  &lt;head&gt;
-4.    &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
-5.  &lt;/head&gt;
-6.  &lt;body&gt;
-7.    &lt;p&gt;The highest prime number discovered so far
-        is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
-8.    &lt;script&gt;
-9.      if(window.Worker){
-10.        // web workers supported by the browser
-11.        var worker=new Worker(&quot;worker2.js&quot;);
-12.        worker.onmessage=function(event){
-13.           document.getElementById(&#39;result&#39;).textContent = event.data;
-14.        };
-15.     }else{
-16.        // the browser does not support web workers
-17.        alert(&quot;Sorry, your browser does not support Web Workers&quot;);
-18.     }
-19. 
-20.     setTimeout(function(){
-21.        // After 10 seconds, we kill the worker
-22.       &lt;b&gt; worker.terminate();
-23. 
-24.     document.body.appendChild(document.createTextNode(&quot;Worker killed, 
-          10 seconds elapsed !&quot;)
-25.     );}, 10000);
-26.   &lt;/script&gt;
-27. &lt;/body&gt;
-28. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE HTML/image0&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;The highest prime number discovered so far
+    is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
+  &lt;script&gt;
+    if(window.Worker){
+       // web workers supported by the browser
+       var worker=new Worker(&quot;worker2.js&quot;);
+       worker.onmessage=function(event){
+          document.getElementById(&#39;result&#39;).textContent = event.data;
+       };
+    }else{
+       // the browser does not support web workers
+       alert(&quot;Sorry, your browser does not support Web Workers&quot;);
+    }
+    setTimeout(function(){
+       // After 10 seconds, we kill the worker
+      &lt;b&gt; worker.terminate();
+    document.body.appendChild(document.createTextNode(&quot;Worker killed, 
+      10 seconds elapsed !&quot;)
+    );}, 10000);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -18808,8 +18750,7 @@ worker.</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>
-postMessage(&quot;Hey, in 3s, I&#39;ll start to compute prime numbers...&quot;);
+<pre>postMessage(&quot;Hey, in 3s, I&#39;ll start to compute prime numbers...&quot;);
 setTimeout(function() {
   // The setTimeout is just useful for displaying the message in
       line 1 for 3 seconds and
@@ -19295,39 +19236,38 @@ This is why, in the example, we round the returned values with Math.round() at
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  ...
-2.  &lt;h2&gt;Device Orientation with HTML5&lt;/h2&gt;
-3.  You need to be on a mobile device or use a laptop with
-    accelerometer/orientation
-4.  device.
-5.  &lt;p&gt;
-6.  &lt;div id=&quot;LR&quot;&gt;&lt;/div&gt;
-7.  &lt;div id=&quot;FB&quot;&gt;&lt;/div&gt;
-8.  &lt;div id=&quot;DIR&quot;&gt;&lt;/div&gt;
-9.  &lt;script type=&quot;text/javascript&quot;&gt;
-10.    if (window.DeviceOrientationEvent) {
-11.       console.log(&quot;DeviceOrientation is supported&quot;);
-12.       &lt;b&gt;window.addEventListener(&#39;deviceorientation&#39;, function(eventData) {
-13.          // gamme is for left/right inclination
-14.          var LR =&lt;b&gt; eventData.gamma;
-15.          // beta is for front/back inclination
-16.          var FB =&lt;b&gt; eventData.beta;
-17.          // alpha is for orientation
-18.          var DIR =&lt;b&gt; eventData.alpha;
-19.          // display values on screen
-20.          deviceOrientationHandler(LR, FB, DIR);
-21.       }, false);
-22.    } else {
-23.       alert(&quot;Device orientation not supported on your device or browser. Sorry.&quot;);
-24.    }
-25. 
-26. function deviceOrientationHandler(LR, FB, DIR) {
-27.    document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
-28.    document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
-29.    document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
-30. }
-31. &lt;/script&gt;
-32.  ...</pre>
+<pre>...
+&lt;h2&gt;Device Orientation with HTML5&lt;/h2&gt;
+You need to be on a mobile device or use a laptop with
+accelerometer/orientation
+device.
+&lt;p&gt;
+&lt;div id=&quot;LR&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;FB&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;DIR&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+   if (window.DeviceOrientationEvent) {
+      console.log(&quot;DeviceOrientation is supported&quot;);
+      &lt;b&gt;window.addEventListener(&#39;deviceorientation&#39;, function(eventData) {
+         // gamme is for left/right inclination
+         var LR =&lt;b&gt; eventData.gamma;
+         // beta is for front/back inclination
+         var FB =&lt;b&gt; eventData.beta;
+         // alpha is for orientation
+         var DIR =&lt;b&gt; eventData.alpha;
+         // display values on screen
+         deviceOrientationHandler(LR, FB, DIR);
+      }, false);
+   } else {
+      alert(&quot;Device orientation not supported on your device or browser. Sorry.&quot;);
+   }
+function deviceOrientationHandler(LR, FB, DIR) {
+   document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
+   document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
+   document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
+}
+&lt;/script&gt;
+...</pre>
 
 </details>
 
@@ -19381,48 +19321,44 @@ href="https://www.youtube.com/watch?v=OrNLhOAGSdE" target="_blank" rel="noopener
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  ...
-2.  &lt;h2&gt;Device Orientation with HTML5&lt;/h2&gt;
-3.  You need to be on a mobile device or use a laptop with
-    accelerometer/orientation
-4.  device.
-5.  &lt;p&gt;
-6.  &lt;div id=&quot;LR&quot;&gt;&lt;/div&gt;
-7.  &lt;div id=&quot;FB&quot;&gt;&lt;/div&gt;
-8.  &lt;div id=&quot;DIR&quot;&gt;&lt;/div&gt;
-9.  &lt;img src=&quot;https://www.html5
-10. rocks.com/en/tutorials/device/orientation/html5_logo.png&quot; id=&quot;imgLogo&quot;
-11. class=&quot;logo&quot;&gt;
-12. &lt;script type=&quot;text/javascript&quot;&gt;
-13.    if (window.DeviceOrientationEvent) {
-14.       console.log(&quot;DeviceOrientation is supported&quot;);
-15.      
+<pre>...
+&lt;h2&gt;Device Orientation with HTML5&lt;/h2&gt;
+You need to be on a mobile device or use a laptop with
+accelerometer/orientation
+device.
+&lt;p&gt;
+&lt;div id=&quot;LR&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;FB&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;DIR&quot;&gt;&lt;/div&gt;
+&lt;img src=&quot;https://www.html5
+rocks.com/en/tutorials/device/orientation/html5_logo.png&quot; id=&quot;imgLogo&quot;
+class=&quot;logo&quot;&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+   if (window.DeviceOrientationEvent) {
+      console.log(&quot;DeviceOrientation is supported&quot;);
     window.addEventListener(&#39;deviceorientation&#39;, function(eventData) {
-16.           var LR = eventData.gamma;
-17.           var FB = eventData.beta;
-18.           var DIR = eventData.alpha;
-19.           deviceOrientationHandler(LR, FB, DIR);
-20.       }, false);
-21.    } else {
-22.       alert(&quot;Not supported on your device or browser. Sorry.&quot;);
-23.    }
-24. 
-25.    function deviceOrientationHandler(LR, FB, DIR) {
-26.       // USE CSS3 rotations for rotating the HTML5 logo
-27.       //for webkit browser
-28.       document.getElementById(&quot;imgLogo&quot;).style.webkitTransform =
-29.       &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
-30. 
-31.       //for HTML5 standard-compliance
-32.       document.getElementById(&quot;imgLogo&quot;).style.transform =
-33.       &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
-34. 
-35.       document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
-36.       document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
-37.       document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
-38. }
-39. &lt;/script&gt;
-40.  ...</pre>
+          var LR = eventData.gamma;
+          var FB = eventData.beta;
+          var DIR = eventData.alpha;
+          deviceOrientationHandler(LR, FB, DIR);
+      }, false);
+   } else {
+      alert(&quot;Not supported on your device or browser. Sorry.&quot;);
+   }
+   function deviceOrientationHandler(LR, FB, DIR) {
+      // USE CSS3 rotations for rotating the HTML5 logo
+      //for webkit browser
+      document.getElementById(&quot;imgLogo&quot;).style.webkitTransform =
+      &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
+      //for HTML5 standard-compliance
+      document.getElementById(&quot;imgLogo&quot;).style.transform =
+      &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
+      document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
+      document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
+      document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
+}
+&lt;/script&gt;
+...</pre>
 
 </details>
 
@@ -19597,11 +19533,11 @@ facing up, otherwise it is facing down. This would be useful if you wanted to
 play <a href="https://en.wikipedia.org/wiki/Coin_flipping" target="_blank" 
 rel="noopener noreferrer">heads or tails</a> with your phone ;-)</p>
 
-<pre>1. // For example, if acceleration.z is &gt; 0 then the phone is facing up
-2. var facingUp = -1;
-3. if (acceleration.z &gt; 0) {
-4.     facingUp = +1;
-5. }</pre>
+<pre>// For example, if acceleration.z is &gt; 0 then the phone is facing up
+var facingUp = -1;
+if (acceleration.z &gt; 0) {
+  facingUp = +1;
+}</pre>
 
 <p>Compute the angle corresponding to the Left / Right and Front / Back tilts. 
 This example uses the accelerationIncludingGravity property of the event.</p>
@@ -19662,77 +19598,66 @@ ball.y += acceleration.y;
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;!doctype html&gt;
-2.  &lt;html&gt;
-3.  
-4.     &lt;head&gt;&lt;/head&gt;
-5.  
-6.     &lt;body&gt;
-7.        &lt;h2&gt;Device Orientation with HTML5&lt;/h2&gt;
-8.        You need to be on a mobile device or use a laptop with accelerometer/orientation
-9.        device.
-10.       &lt;p&gt;
-11.       &lt;div id=&quot;rawAccel&quot;&gt;&lt;/div&gt;
-12.       &lt;div id=&quot;tiltFB&quot;&gt;&lt;/div&gt;
-13.       &lt;div id=&quot;tiltLR&quot;&gt;&lt;/div&gt;
-14.       &lt;div id=&quot;upDown&quot;&gt;&lt;/div&gt;
-15.       &lt;img src=&quot;https://www.html5rocks.com/en/tutorials/device/orientation/html5_logo.png&quot; id=&quot;imgLogo&quot; class=&quot;logo&quot;&gt;
-16.       &lt;script type=&quot;text/javascript&quot;&gt;
-17.          if (window.DeviceMotionEvent != undefined) {
-18.          console.log(&quot;DeviceMotion is supported&quot;);
-19. 
-20.          window.addEventListener(&#39;devicemotion&#39;, function(eventData) {
-21.             // Grab the acceleration including gravity from the results
-22.             var acceleration = eventData.accelerationIncludingGravity;
-23.             // Display the raw acceleration data
-24.             var rawAcceleration = &quot;[&quot; + Math.round(acceleration.x) + &quot;, &quot; + Math.round(acceleration.y) 
-25.             + &quot;, &quot; + Math.round(acceleration.z) + &quot;]&quot;;
-26. 
-27.             // Z is the acceleration in the Z axis, and if the device
-28.             // is facing up or down
-29.             var facingUp = -1;
-30.             if (acceleration.z &gt; 0) {
-31.                facingUp = +1;
-32.             }
-33. 
-34.             // Convert the value from acceleration to degrees
-35.             // acceleration.x|y is the acceleration according to gravity,
-36.             //  we&#39;ll assume we&#39;re on Earth and divide
-37.             // by 9.81 (earth gravity) to get a percentage value,  
-38.             // and then multiply that by 90 to convert to degrees.
-39.             var tiltLR = Math.round(((acceleration.x) / 9.81) * -90);
-40.             var tiltFB = Math.round(((acceleration.y + 9.81) / 9.81) * 90 * facingUp);
-41. 
-42.             document.querySelector(&quot;#rawAccel&quot;).innerHTML =
-43.                                &quot;Raw acceleration&quot; + rawAcceleration;
-44.             document.querySelector(&quot;#tiltFB&quot;).innerHTML =
-45.                                &quot;Tilt front/back : &quot; + tiltFB;
-46.             document.querySelector(&quot;#tiltLR&quot;).innerHTML =
-47.                                &quot;Tilt left/right : &quot; + tiltLR;
-48.             document.querySelector(&quot;#upDown&quot;).innerHTML =
-49.                                &quot;Face Up:Down : &quot; + facingUp;
-50. 
-51. 
-52.             updateLogoOrientation(tiltLR, tiltFB);
-53.          }, false);
-54.       } else {
-55.         alert(&quot;Not supported on your device or browser. Sorry.&quot;);
-56.       }
-57. 
-58.       function updateLogoOrientation(tiltLR, tiltFB) {
-59.          // USE CSS3 rotations for rotating the HTML5 logo
-60.          //for webkit browser
-61.          document.getElementById(&quot;imgLogo&quot;).style.webkitTransform =
-62.          &quot;rotate(&quot; + tiltLR + &quot;deg) rotate3d(1,0,0, &quot; + (tiltFB * -1) + &quot;deg)&quot;;
-63. 
-64.          //for HTML5 standard-compliance
-65.          document.getElementById(&quot;imgLogo&quot;).style.transform =
-66.          &quot;rotate(&quot; + tiltLR + &quot;deg) rotate3d(1,0,0, &quot; + (tiltFB * -1) + &quot;deg)&quot;;
-67.       }
-68.    &lt;/script&gt;
-69.   &lt;/body&gt;
-70. 
-71. &lt;/html&gt;</pre>
+<pre>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h2&gt;Device Orientation with HTML5&lt;/h2&gt;
+      You need to be on a mobile device or use a laptop with accelerometer/orientation
+      device.
+    &lt;p&gt;
+    &lt;div id=&quot;rawAccel&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;tiltFB&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;tiltLR&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;upDown&quot;&gt;&lt;/div&gt;
+  &lt;img src=&quot;https://www.html5rocks.com/en/tutorials/device/orientation/html5_logo.png&quot; id=&quot;imgLogo&quot; class=&quot;logo&quot;&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt;
+         if (window.DeviceMotionEvent != undefined) {
+         console.log(&quot;DeviceMotion is supported&quot;);
+         window.addEventListener(&#39;devicemotion&#39;, function(eventData) {
+            // Grab the acceleration including gravity from the results
+            var acceleration = eventData.accelerationIncludingGravity;
+            // Display the raw acceleration data
+            var rawAcceleration = &quot;[&quot; + Math.round(acceleration.x) + &quot;, &quot; + Math.round(acceleration.y) 
+            + &quot;, &quot; + Math.round(acceleration.z) + &quot;]&quot;;
+            // Z is the acceleration in the Z axis, and if the device
+            // is facing up or down
+            var facingUp = -1;
+            if (acceleration.z &gt; 0) {
+               facingUp = +1;
+            }
+            // Convert the value from acceleration to degrees
+            // acceleration.x|y is the acceleration according to gravity,
+            //  we&#39;ll assume we&#39;re on Earth and divide
+            // by 9.81 (earth gravity) to get a percentage value,  
+            // and then multiply that by 90 to convert to degrees.
+            var tiltLR = Math.round(((acceleration.x) / 9.81) * -90);
+            var tiltFB = Math.round(((acceleration.y + 9.81) / 9.81) * 90 * facingUp);
+            document.querySelector(&quot;#rawAccel&quot;).innerHTML =
+                               &quot;Raw acceleration&quot; + rawAcceleration;
+            document.querySelector(&quot;#tiltFB&quot;).innerHTML =
+                               &quot;Tilt front/back : &quot; + tiltFB;
+            document.querySelector(&quot;#tiltLR&quot;).innerHTML =
+                               &quot;Tilt left/right : &quot; + tiltLR;
+            document.querySelector(&quot;#upDown&quot;).innerHTML =
+                               &quot;Face Up:Down : &quot; + facingUp;
+            updateLogoOrientation(tiltLR, tiltFB);
+         }, false);
+      } else {
+        alert(&quot;Not supported on your device or browser. Sorry.&quot;);
+      }
+      function updateLogoOrientation(tiltLR, tiltFB) {
+         // USE CSS3 rotations for rotating the HTML5 logo
+         //for webkit browser
+         document.getElementById(&quot;imgLogo&quot;).style.webkitTransform =
+         &quot;rotate(&quot; + tiltLR + &quot;deg) rotate3d(1,0,0, &quot; + (tiltFB * -1) + &quot;deg)&quot;;
+         //for HTML5 standard-compliance
+         document.getElementById(&quot;imgLogo&quot;).style.transform =
+         &quot;rotate(&quot; + tiltLR + &quot;deg) rotate3d(1,0,0, &quot; + (tiltFB * -1) + &quot;deg)&quot;;
+      }
+   &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -19758,81 +19683,66 @@ it: <a href="https://jsbin.com/uyuqek/4/edit" target="_blank" rel="noopener nor
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;html&gt;
-2.     &lt;head&gt;
-3.  
-4.       &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-5.       &lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width&quot; /&gt;
-6.  
-7.       &lt;link rel=&quot;stylesheet&quot;
-8.           href=&quot;https://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css&quot; /&gt;
-9.  
-10.      &lt;script type=&quot;text/javascript&quot;
-11.              src = &quot;https://code.jquery.com/jquery-1.6.2.min.js&quot;&gt;
-12.      &lt;/script&gt;
-13.      &lt;script type=&quot;text/javascript&quot;
-14.              src = &quot;https://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js&quot;&gt;
-15.      &lt;/script&gt;
-16. 
-17.      script type=&quot;text/javascript&quot;&gt;
-18.         $(document).ready(function(){
-19.            window.addEventListener(&quot;devicemotion&quot;,onDeviceMotion,false);
-20.         });
-21. 
-22.         function onDeviceMotion(event){
-23.             var ctx = document.getElementById(&quot;c&quot;).getContext(&quot;2d&quot;);
-24.             var accel = event.accelerationIncludingGravity;
-25.            $(&quot;#sliderX&quot;).val(Math.round(accel.x)).slider(&quot;refresh&quot;);
-26.            $(&quot;#sliderY&quot;).val(Math.round(accel.y)).slider(&quot;refresh&quot;);
-27.            $(&quot;#sliderZ&quot;).val(Math.round(accel.z)).slider(&quot;refresh&quot;);
-28.             // sky direction
-29.             var angle = Math.atan2(accel.y,accel.x)
-30.             ctx.clearRect(0,0,100,100);
-31.             ctx.beginPath();
-32.             ctx.arc(50,50,5,0,2*Math.PI,false);
-33.             ctx.moveTo(50,50);
-34.             // Draw sky direction
-35.             ctx.lineTo(50-50*Math.cos(angle),50+50*Math.sin(angle));
-36.             ctx.stroke();
-37.         }
-38.      &lt;/script&gt;
-39. 
-40.    &lt;/head&gt;
-41.    &lt;body&gt;
-42. 
-43.       &lt;div data-role=&quot;page&quot; id = &quot;intropage&quot;&gt;
-44. 
-45.         &lt;div data-role=&quot;header&quot;&gt;
-46.            &lt;h1&gt;Accelerometer&lt;/h1&gt;
-47.         &lt;/div&gt;
-48. 
-49.         &lt;div data-role=&quot;content&quot;&gt;
-50.            &lt;label for=&quot;sliderX&quot;&gt;X Acceleration (Roll)&lt;/label&gt;
-51.            &lt;input type=&quot;range&quot; name=&quot;sliderX&quot; id=&quot;sliderX&quot;
-52.                   value=&quot;0&quot; min=&quot;-10&quot; max=&quot;10&quot; data-theme=&quot;a&quot; /&gt;
-53. 
-54.            &lt;label for=&quot;sliderY&quot;&gt;Y Acceleration (Pitch)&lt;/label&gt;
-55.            &lt;input type=&quot;range&quot; name=&quot;sliderY&quot; id=&quot;sliderY&quot;
-56.                   value=&quot;0&quot; min=&quot;-10&quot; max=&quot;10&quot; data-theme=&quot;b&quot; /&gt;
-57. 
-58.            &lt;label for=&quot;sliderZ&quot;&gt;Z Acceleration (&lt;strike&gt;Yaw&lt;/strike&gt;
-59.               Face up/down)
-60.            &lt;/label&gt;
-61.            &lt;input type=&quot;range&quot; name=&quot;sliderZ&quot; id=&quot;sliderZ&quot;
-62.                   value=&quot;0&quot; min=&quot;-10&quot; max=&quot;10&quot; data-theme=&quot;c&quot; /&gt;
-63.         &lt;/div&gt;
-64. 
-65.         &lt;p style = &quot;text-align:center&quot;&gt;SKY direction:
-66.                                       follow this line:&lt;/p&gt;
-67.         &lt;div style = &quot;text-align:center;margin-top:10px;&quot;&gt;
-68. 
-69.            &lt;canvas id=&quot;c&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;/canvas&gt;
-70.         &lt;/div&gt;
-71. 
-72.      &lt;/div&gt;
-73. 
-74.    &lt;/body&gt;
-75. &lt;/html&gt;</pre>
+<pre>&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot;
+      href=&quot;https://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css&quot; /&gt;
+    &lt;script type=&quot;text/javascript&quot;
+      src = &quot;https://code.jquery.com/jquery-1.6.2.min.js&quot;&gt;
+    &lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;
+      src = &quot;https://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js&quot;&gt;
+    &lt;/script&gt;
+    script type=&quot;text/javascript&quot;&gt;
+      $(document).ready(function(){
+        window.addEventListener(&quot;devicemotion&quot;,onDeviceMotion,false);
+      });
+      function onDeviceMotion(event){
+        var ctx = document.getElementById(&quot;c&quot;).getContext(&quot;2d&quot;);
+        var accel = event.accelerationIncludingGravity;
+        $(&quot;#sliderX&quot;).val(Math.round(accel.x)).slider(&quot;refresh&quot;);
+        $(&quot;#sliderY&quot;).val(Math.round(accel.y)).slider(&quot;refresh&quot;);
+        $(&quot;#sliderZ&quot;).val(Math.round(accel.z)).slider(&quot;refresh&quot;);
+        // sky direction
+        var angle = Math.atan2(accel.y,accel.x)
+        ctx.clearRect(0,0,100,100);
+        ctx.beginPath();
+        ctx.arc(50,50,5,0,2*Math.PI,false);
+        ctx.moveTo(50,50);
+        // Draw sky direction
+        ctx.lineTo(50-50*Math.cos(angle),50+50*Math.sin(angle));
+        ctx.stroke();
+      }
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div data-role=&quot;page&quot; id = &quot;intropage&quot;&gt;
+      &lt;div data-role=&quot;header&quot;&gt;
+        &lt;h1&gt;Accelerometer&lt;/h1&gt;
+      &lt;/div&gt;
+      &lt;div data-role=&quot;content&quot;&gt;
+        &lt;label for=&quot;sliderX&quot;&gt;X Acceleration (Roll)&lt;/label&gt;
+        &lt;input type=&quot;range&quot; name=&quot;sliderX&quot; id=&quot;sliderX&quot;
+          value=&quot;0&quot; min=&quot;-10&quot; max=&quot;10&quot; data-theme=&quot;a&quot; /&gt;
+        &lt;label for=&quot;sliderY&quot;&gt;Y Acceleration (Pitch)&lt;/label&gt;
+        &lt;input type=&quot;range&quot; name=&quot;sliderY&quot; id=&quot;sliderY&quot;
+          value=&quot;0&quot; min=&quot;-10&quot; max=&quot;10&quot; data-theme=&quot;b&quot; /&gt;
+        &lt;label for=&quot;sliderZ&quot;&gt;Z Acceleration (&lt;strike&gt;Yaw&lt;/strike&gt;
+          Face up/down)
+        &lt;/label&gt;
+        &lt;input type=&quot;range&quot; name=&quot;sliderZ&quot; id=&quot;sliderZ&quot;
+          value=&quot;0&quot; min=&quot;-10&quot; max=&quot;10&quot; data-theme=&quot;c&quot; /&gt;
+        &lt;/div&gt;
+        &lt;p style = &quot;text-align:center&quot;&gt;SKY direction:
+          follow this line:&lt;/p&gt;
+        &lt;div style = &quot;text-align:center;margin-top:10px;&quot;&gt;
+        &lt;canvas id=&quot;c&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;/canvas&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 

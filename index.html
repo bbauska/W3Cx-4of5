@@ -656,10 +656,10 @@ ensure that it’s always there.</p>
 <p><b><i>Check #1</i>: There is a character encoding declaration near the start of 
 your source code, and its value is UTF-8.</b></p>
 
-<pre>1. &lt;head&gt;
-2. &lt;meta charset=&quot;utf-8&quot;/&gt;
-3. ...
-4. &lt;/head&gt;</pre>
+<pre>&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+...
+&lt;/head&gt;</pre>
 
 <h4>Example #2: primary language declaration</h4>
 
@@ -820,22 +820,18 @@ with WebVTT files? As a quick reminder, let’s look at a WebVTT file:</p>
 <details>
   <summary>WEBVTT code!</summary>
 
-<pre>1. 
-2.  1
-3.  00:00:15.000 --&gt; 00:00:18.000 align:start
-4.  &lt;v Proog&gt;On the left we can see...&lt;/v&gt;
-5. 
-6.  2
-7.  00:00:18.167 --&gt; 00:00:20.083 align:middle
-8.  &lt;v Proog&gt;On the right we can see the...&lt;/v&gt;
-9. 
-10. 3
-11. 00:00:20.083 --&gt; 00:00:22.000
-12. &lt;v Proog&gt;...the &lt;c.highlight&gt;head-snarlers&lt;/c&gt;&lt;/v&gt;
-13. 
-14. 4
-15. 00:00:22.000 --&gt; 00:00:24.417 align:end
-16. &lt;v Proog&gt;Everything is safe. Perfectly safe.&lt;/v&gt;</pre>
+<pre>1
+00:00:15.000 --&gt; 00:00:18.000 align:start
+&lt;v Proog&gt;On the left we can see...&lt;/v&gt;
+2
+00:00:18.167 --&gt; 00:00:20.083 align:middle
+&lt;v Proog&gt;On the right we can see the...&lt;/v&gt;
+3
+00:00:20.083 --&gt; 00:00:22.000
+&lt;v Proog&gt;...the &lt;c.highlight&gt;head-snarlers&lt;/c&gt;&lt;/v&gt;
+4
+00:00:22.000 --&gt; 00:00:24.417 align:end
+&lt;v Proog&gt;Everything is safe. Perfectly safe.&lt;/v&gt;</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -1069,19 +1065,15 @@ WebVTT files? As a quick reminder, let’s look at a WebVTT file:</p>
   <summary>WEBVTT code!</summary>
 
 <pre>WEBVTT
-  
 1
 00:00:15.000 --&gt; 00:00:18.000 align:start
 &lt;v Proog&gt;On the left we can see...&lt;/v&gt;
- 
 2
 00:00:18.167 --&gt; 00:00:20.083 align:middle
 &lt;v Proog&gt;On the right we can see the...&lt;/v&gt;
- 
 3
 00:00:20.083 --&gt; 00:00:22.000
 &lt;v Proog&gt;...the &lt;c.highlight&gt;head-snarlers&lt;/c&gt;&lt;/v&gt;
- 
 4
 00:00:22.000 --&gt; 00:00:24.417 align:end
 &lt;v Proog&gt;Everything is safe. Perfectly safe.&lt;/v&gt;</pre>
@@ -1491,14 +1483,14 @@ video as soon as the track has finished loading.</p>
   <summary>HTML code!</summary>
   
 <pre>&lt;button id=&quot;buttonLoadFirstTrack&quot;
-        onclick=&quot;forceLoadTrack(0);&quot;
-        disabled&gt;
-   Force load track 0
+  onclick=&quot;forceLoadTrack(0);&quot;
+  disabled&gt;
+  Force load track 0
 &lt;/button&gt;
 &lt;button id=&quot;buttonLoadThirdTrack&quot;
-        onclick=&quot;forceLoadTrack(2);&quot;
-        disabled&gt;
-   Force load track 2
+  onclick=&quot;forceLoadTrack(2);&quot;
+  disabled&gt;
+  Force load track 2
 &lt;/button&gt;</pre>
 
 </details>
@@ -2139,37 +2131,37 @@ location.</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;section id=&quot;all&quot;&gt;
-2.  &lt;button disabled id=&quot;buttonEnglish&quot;
-3.           onclick=&quot;loadTranscript(&#39;en&#39;);&quot;&gt;
-4.      Display English transcript
-5.  &lt;/button&gt;
-6.  &lt;button disabled id=&quot;buttonDeutsch&quot;
-7.           onclick=&quot;loadTranscript(&#39;de&#39;);&quot;&gt;
-8.      Display Deutsch transcript
-9.  &lt;/button&gt;
-10. &lt;/p&gt;
-11. &lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot; controls crossOrigin=&quot;anonymous&quot;&gt;
-12.      &lt;source src=&quot;https://...../elephants-dream-medium.mp4&quot;
-13.              type=&quot;video/mp4&quot;&gt;
-14.      &lt;source src=&quot;https://...../elephants-dream-medium.webm&quot;
-15.              type=&quot;video/webm&quot;&gt;
-16.      &lt;track label=&quot;English subtitles&quot;
-17.             kind=&quot;subtitles&quot;
-18.             srclang=&quot;en&quot;
-19.             src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot; &gt;
-20.      &lt;track label=&quot;Deutsch subtitles&quot;
-21.             kind=&quot;subtitles&quot;
-22.             srclang=&quot;de&quot;
-23.             src=&quot;https://...../elephants-dream-subtitles-de.vtt&quot;
-24.             default&lt;/b&gt;&gt;
-25.      &lt;track label=&quot;English chapters&quot;
-26.             kind=&quot;chapters&quot;
-27.             srclang=&quot;en&quot;
-28.             src=&quot;https://...../elephants-dream-chapters-en.vtt&quot;&gt;
-29. &lt;/video&gt;
-30. &lt;div id=&quot;transcript&quot;&gt;&lt;/div&gt;
-31. &lt;/section&gt;</pre>
+<pre>&lt;section id=&quot;all&quot;&gt;
+&lt;button disabled id=&quot;buttonEnglish&quot;
+         onclick=&quot;loadTranscript(&#39;en&#39;);&quot;&gt;
+    Display English transcript
+&lt;/button&gt;
+&lt;button disabled id=&quot;buttonDeutsch&quot;
+         onclick=&quot;loadTranscript(&#39;de&#39;);&quot;&gt;
+    Display Deutsch transcript
+&lt;/button&gt;
+&lt;/p&gt;
+&lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot; controls crossOrigin=&quot;anonymous&quot;&gt;
+     &lt;source src=&quot;https://...../elephants-dream-medium.mp4&quot;
+             type=&quot;video/mp4&quot;&gt;
+      &lt;source src=&quot;https://...../elephants-dream-medium.webm&quot;
+             type=&quot;video/webm&quot;&gt;
+     &lt;track label=&quot;English subtitles&quot;
+            kind=&quot;subtitles&quot;
+            srclang=&quot;en&quot;
+            src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot; &gt;
+     &lt;track label=&quot;Deutsch subtitles&quot;
+            kind=&quot;subtitles&quot;
+            srclang=&quot;de&quot;
+            src=&quot;https://...../elephants-dream-subtitles-de.vtt&quot;
+            default&lt;/b&gt;&gt;
+     &lt;track label=&quot;English chapters&quot;
+            kind=&quot;chapters&quot;
+            srclang=&quot;en&quot;
+            src=&quot;https://...../elephants-dream-chapters-en.vtt&quot;&gt;
+&lt;/video&gt;
+&lt;div id=&quot;transcript&quot;&gt;&lt;/div&gt;
+&lt;/section&gt;</pre>
 
 </details>
 
@@ -2178,49 +2170,44 @@ location.</p>
 <details>
   <summary>CSS code!</summary>
 
-<pre>1.  #all {
-2.     background-color: lightgrey;
-3.     border-radius:10px;
-4.     padding: 20px;
-5.     border:1px solid;
-6.     display:inline-block;
-7.     margin:30px;
-8.     width:90%;
-9.  }
-10.  
-11. .cues {
-12.    color:blue;
-13. }
-14.  
-15. .cues:hover {
-16.    text-decoration: underline;
-17. }
-18.  
-19. .cues.current {
-20.    color:black;
-21.    font-weight: bold;
-22. }
-23.  
-24. #myVideo {
-25.    display: block;
-26.    float : left;
-27.    margin-right: 3%;
-28.    width: 66%;
-29.    background-color: black;
-30.    position: relative;
-31. }
-32.  
-33. #transcript {
-34.    padding: 10px;
-35.    border:1px solid;
-36.    float: left;
-37.    max-height: 225px;
-38.    overflow: auto;
-39.    width: 25%;
-40.    margin: 0;
-41.    font-size: 14px;
-42.    list-style: none;
-43. }</pre>
+<pre>#all {
+   background-color: lightgrey;
+   border-radius:10px;
+   padding: 20px;
+   border:1px solid;
+   display:inline-block;
+   margin:30px;
+   width:90%;
+}
+.cues {
+   color:blue;
+}
+.cues:hover {
+   text-decoration: underline;
+}
+.cues.current {
+   color:black;
+   font-weight: bold;
+}
+#myVideo {
+   display: block;
+   float : left;
+   margin-right: 3%;
+   width: 66%;
+   background-color: black;
+   position: relative;
+}
+#transcript {
+   padding: 10px;
+   border:1px solid;
+   float: left;
+   max-height: 225px;
+   overflow: auto;
+   width: 25%;
+   margin: 0;
+   font-size: 14px;
+   list-style: none;
+}</pre>
 
 </details>
 
@@ -2229,179 +2216,151 @@ location.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var video, transcriptDiv;
-2.  // TextTracks, html tracks, urls of tracks
-3.  var tracks, trackElems, tracksURLs = []; 
-4.  var buttonEnglish, buttonDeutsch;
-5.   
-6.  window.onload = function() {
-7.     console.log(&quot;init&quot;);
-8.     // when the page is loaded, get the different DOM nodes
-9.     // we&#39;re going to work with
-10.    video = document.querySelector(&quot;#myVideo&quot;);
-11.    transcriptDiv = document.querySelector(&quot;#transcript&quot;);
-12. 
-13.    // The tracks as HTML elements
-14.    trackElems = document.querySelectorAll(&quot;track&quot;);
-15. 
-16.    // Get the URLs of the vtt files
-17.    for(var i = 0; i &lt; trackElems.length; i++) {
-18.       var currentTrackElem = trackElems[i];
-19.       tracksURLs[i] = currentTrackElem.src;
-20.    }
-21. 
-22.    buttonEnglish = document.querySelector(&quot;#buttonEnglish&quot;);
-23.    buttonDeutsch = document.querySelector(&quot;#buttonDeutsch&quot;);
-24. 
-25.    // we enable the buttons only in this load callback,
-26.    // we cannot click before the video is in the DOM
-27.    buttonEnglish.disabled = false;
-28.    buttonDeutsch.disabled = false;
-29. 
-30.    // The tracks as TextTrack JS objects
-31.    tracks = video.textTracks;
-32. };
-33.  
-34. function loadTranscript(lang) {
-35.   // Called when a button is clicked
-36. 
-37.   // clear current transcript
-38.   clearTranscriptDiv();
-39. 
-40.   // set all track modes to disabled. We will only activate the
-41.   // one whose content will be displayed as transcript
-42.   disableAllTracks();
-43. 
-44.   // Locate the track with language = lang
-45.   for(var i = 0; i &lt; tracks.length; i++) {
-46.     // current track
-47.     var track = tracks[i];
-48.     var trackAsHtmlElem = trackElems[i];
-49. 
-50.     // Only subtitles/captions are ok for this example...
-51.     if((track.language === lang) &amp;&amp; (track.kind !== &quot;chapters&quot;)) {
-52.        track.mode=&quot;showing&quot;;
-53.  
-54.        if(trackAsHtmlElem.readyState === 2) {
-55.           // the track has already been loaded
-56.           displayCues(track);
-57.        } else {
-58.           displayCuesAfterTrackLoaded(trackAsHtmlElem, track);
-59.        }
-60. 
-61.        /&lt;i&gt; Fallback for FireFox that still does not implement cue enter and exit events
-62.          track.addEventListener(&quot;cuechange&quot;, function(e) {
-63.              var cue = this.activeCues[0];
-64.              console.log(&quot;cue change&quot;);
-65.              var transcriptText = document.getElementById(cue.id);
-66.              transcriptText.classList.add(&quot;current&quot;);
-67.          });
-68.       &lt;/i&gt;/
-69.     }
-70.   }
-71. }
-72. 
-73. function displayCuesAfterTrackLoaded(trackElem, track) {
-74.   // Create a listener that will only be called once the track has
-75.   // been loaded. We cannot display the transcript before
-76.   // the track is loaded
-77.    trackElem.addEventListener(&#39;load&#39;, function(e) {
-78.       console.log(&quot;track loaded&quot;);
-79.       displayCues(track);
-80.    });
-81. }
-82. 
-83. function disableAllTracks() {
-84.   for(var i = 0; i &lt; tracks.length; i++)
-85.      // the track mode is important: disabled tracks do not fire events
-86.      tracks[i].mode = &quot;disabled&quot;; 
-87. }
-88.  
-89. function displayCues(track) { 
-90.    // displays the transcript of a TextTrack
-91.    var cues = track.cues;
-92. 
-93.    // iterate on all cues of the current track
-94.    for(var i=0, len = cues.length; i &lt; len; i++) {
-95.       // current cue, also add enter and exit listeners to it
-96.       var cue = cues[i];
-97.       addCueListeners(cue);
-98.  
-99.       // Test if the cue content is a voice &lt;v speaker&gt;....&lt;/v&gt;
-100.       var voices = getVoices(cue.text);
-101.       var transText=&quot;&quot;;
-102.       if (voices.length &gt; 0) {
-103.          for (var j = 0; j &lt; voices.length; j++) { // how many voices?
-104.             transText += voices[j].voice + &#39;: &#39; + removeHTML(voices[j].text);
-105.          }
-106.       } else
-107.          transText = cue.text; // not a voice text
-108. 
-109.       var clickableTransText = &quot;&lt;li class=&#39;cues&#39; id=&quot; + cue.id
-110.                                + &quot; onclick=&#39;jumpTo(&quot;
-111.                                + cue.startTime + &quot;);&#39;&quot; + &quot;&gt;&quot;
-112.                                + transText + &quot;&lt;/li&gt;&quot;;
-113.  
-114.       addToTranscriptDiv(clickableTransText);
-115.    }
-116. }
-117.  
-118. function getVoices(speech) { 
-119.    // takes a text content and check if there are voices
-120.    var voices = []; // inside
-121.    var pos = speech.indexOf(&#39;&lt;v&#39;); // voices are like &lt;v Michel&gt; ....
-122.    while (pos != -1) {
-123.       endVoice = speech.indexOf(&#39;&gt;&#39;);
-124.       var voice = speech.substring(pos + 2, endVoice).trim();
-125.       var endSpeech = speech.indexOf(&#39;&lt;/v&gt;&#39;);
-126.       var text = speech.substring(endVoice + 1, endSpeech);
-127.       voices.push({
-128.           &#39;voice&#39;: voice,
-129.           &#39;text&#39;: text
-130.       });
-131.       speech = speech.substring(endSpeech + 4);
-132.       pos = speech.indexOf(&#39;&lt;v&#39;);
-133.   }
-134.   return voices;
-135. }
-136.  
-137. function removeHTML(text) {
-138.   var div = document.createElement(&#39;div&#39;);
-139.   div.innerHTML = text;
-140.   return div.textContent || div.innerText || &#39;&#39;;
-141. }
-142. 
-143. function jumpTo(time) {
-144.   // Make the video jump at the time position + force play
-145.   // if it was not playing
-146.   video.currentTime = time;
-147.   video.play();
-148. }
-149.  
-150. function clearTranscriptDiv() {
-151.   transcriptDiv.innerHTML = &quot;&quot;;
-152. }
-153.  
-154. function addToTranscriptDiv(htmlText) {
-155.   transcriptDiv.innerHTML += htmlText;
-156. }
-157.  
-158. function addCueListeners(cue) {
-159.   cue.onenter = function(){
-160.      // Highlight current cue transcript by adding the
-161.      // cue.current CSS class
-162.      console.log(&#39;enter id=&#39; + this.id);
-163.      var transcriptText = document.getElementById(this.id);
-164.      transcriptText.classList.add(&quot;current&quot;);
-165. };
-166.  
-167. cue.onexit = function(){
-168.    console.log(&#39;exit id=&#39; + cue.id);
-169.    var transcriptText = document.getElementById(this.id);
-170.    transcriptText.classList.remove(&quot;current&quot;);
-171. };
-172. 
-173. } // end of addCueListeners...</pre>
+<pre>var video, transcriptDiv;
+// TextTracks, html tracks, urls of tracks
+var tracks, trackElems, tracksURLs = []; 
+var buttonEnglish, buttonDeutsch;
+window.onload = function() {
+   console.log(&quot;init&quot;);
+   // when the page is loaded, get the different DOM nodes
+   // we&#39;re going to work with
+   video = document.querySelector(&quot;#myVideo&quot;);
+   transcriptDiv = document.querySelector(&quot;#transcript&quot;);
+   // The tracks as HTML elements
+   trackElems = document.querySelectorAll(&quot;track&quot;);
+   // Get the URLs of the vtt files
+   for(var i = 0; i &lt; trackElems.length; i++) {
+      var currentTrackElem = trackElems[i];
+      tracksURLs[i] = currentTrackElem.src;
+   }
+   buttonEnglish = document.querySelector(&quot;#buttonEnglish&quot;);
+   buttonDeutsch = document.querySelector(&quot;#buttonDeutsch&quot;);
+   // we enable the buttons only in this load callback,
+   // we cannot click before the video is in the DOM
+   buttonEnglish.disabled = false;
+   buttonDeutsch.disabled = false;
+   // The tracks as TextTrack JS objects
+   tracks = video.textTracks;
+};
+function loadTranscript(lang) {
+  // Called when a button is clicked
+  // clear current transcript
+  clearTranscriptDiv();
+  // set all track modes to disabled. We will only activate the
+  // one whose content will be displayed as transcript
+  disableAllTracks();
+  // Locate the track with language = lang
+  for(var i = 0; i &lt; tracks.length; i++) {
+    // current track
+    var track = tracks[i];
+    var trackAsHtmlElem = trackElems[i];
+    // Only subtitles/captions are ok for this example...
+    if((track.language === lang) &amp;&amp; (track.kind !== &quot;chapters&quot;)) {
+       track.mode=&quot;showing&quot;;
+       if(trackAsHtmlElem.readyState === 2) {
+          // the track has already been loaded
+          displayCues(track);
+       } else {
+          displayCuesAfterTrackLoaded(trackAsHtmlElem, track);
+       }
+       /&lt;i&gt; Fallback for FireFox that still does not implement cue enter and exit events
+         track.addEventListener(&quot;cuechange&quot;, function(e) {
+             var cue = this.activeCues[0];
+             console.log(&quot;cue change&quot;);
+             var transcriptText = document.getElementById(cue.id);
+             transcriptText.classList.add(&quot;current&quot;);
+         });
+      &lt;/i&gt;/
+    }
+  }
+}
+function displayCuesAfterTrackLoaded(trackElem, track) {
+  // Create a listener that will only be called once the track has
+  // been loaded. We cannot display the transcript before
+  // the track is loaded
+   trackElem.addEventListener(&#39;load&#39;, function(e) {
+      console.log(&quot;track loaded&quot;);
+      displayCues(track);
+   });
+}
+function disableAllTracks() {
+  for(var i = 0; i &lt; tracks.length; i++)
+     // the track mode is important: disabled tracks do not fire events
+     tracks[i].mode = &quot;disabled&quot;; 
+}
+function displayCues(track) { 
+  // displays the transcript of a TextTrack
+  var cues = track.cues;
+  // iterate on all cues of the current track
+  for(var i=0, len = cues.length; i &lt; len; i++) {
+     // current cue, also add enter and exit listeners to it
+     var cue = cues[i];
+     addCueListeners(cue);
+     // Test if the cue content is a voice &lt;v speaker&gt;....&lt;/v&gt;
+      var voices = getVoices(cue.text);
+      var transText=&quot;&quot;;
+      if (voices.length &gt; 0) {
+         for (var j = 0; j &lt; voices.length; j++) { // how many voices?
+            transText += voices[j].voice + &#39;: &#39; + removeHTML(voices[j].text);
+         }
+      } else
+         transText = cue.text; // not a voice text
+      var clickableTransText = &quot;&lt;li class=&#39;cues&#39; id=&quot; + cue.id
+                               + &quot; onclick=&#39;jumpTo(&quot;
+                               + cue.startTime + &quot;);&#39;&quot; + &quot;&gt;&quot;
+                               + transText + &quot;&lt;/li&gt;&quot;;
+      addToTranscriptDiv(clickableTransText);
+   }
+}
+function getVoices(speech) { 
+   // takes a text content and check if there are voices
+   var voices = []; // inside
+   var pos = speech.indexOf(&#39;&lt;v&#39;); // voices are like &lt;v Michel&gt; ....
+   while (pos != -1) {
+      endVoice = speech.indexOf(&#39;&gt;&#39;);
+      var voice = speech.substring(pos + 2, endVoice).trim();
+      var endSpeech = speech.indexOf(&#39;&lt;/v&gt;&#39;);
+      var text = speech.substring(endVoice + 1, endSpeech);
+      voices.push({
+          &#39;voice&#39;: voice,
+          &#39;text&#39;: text
+      });
+      speech = speech.substring(endSpeech + 4);
+      pos = speech.indexOf(&#39;&lt;v&#39;);
+  }
+  return voices;
+}
+function removeHTML(text) {
+  var div = document.createElement(&#39;div&#39;);
+  div.innerHTML = text;
+  return div.textContent || div.innerText || &#39;&#39;;
+}
+function jumpTo(time) {
+  // Make the video jump at the time position + force play
+  // if it was not playing
+  video.currentTime = time;
+  video.play();
+}
+function clearTranscriptDiv() {
+  transcriptDiv.innerHTML = &quot;&quot;;
+}
+function addToTranscriptDiv(htmlText) {
+  transcriptDiv.innerHTML += htmlText;
+}
+function addCueListeners(cue) {
+  cue.onenter = function(){
+     // Highlight current cue transcript by adding the
+     // cue.current CSS class
+     console.log(&#39;enter id=&#39; + this.id);
+     var transcriptText = document.getElementById(this.id);
+     transcriptText.classList.add(&quot;current&quot;);
+};
+cue.onexit = function(){
+   console.log(&#39;exit id=&#39; + cue.id);
+   var transcriptText = document.getElementById(this.id);
+   transcriptText.classList.remove(&quot;current&quot;);
+};
+} // end of addCueListeners...</pre>
 
 </details>
 
@@ -2437,24 +2396,24 @@ on screen, in an element with an id of transcript.</p>
 <details>
   <summary>Video code!</summary>
 
-<pre>1.  ...
-2.  &lt;video preload=&quot;metadata&quot; controls &gt;
-3.   &lt;source src=&quot;https://..../elephants-dream-medium.mp4&quot; type=&quot;video/mp4&quot;&gt;
-4.   &lt;source src=&quot;https://..../elephants-dream-medium.webm&quot; type=&quot;video/webm&quot;&gt;
-5.      &lt;track label=&quot;English subtitles&quot; kind=&quot;subtitles&quot; srclang=&quot;en&quot;
-6.           src=&quot;https://..../elephants-dream-subtitles-en.vtt&quot; default&gt;
-7.      &lt;track label=&quot;Deutsch subtitles&quot; kind=&quot;subtitles&quot; srclang=&quot;de&quot;
-8.             src=&quot;https://..../elephants-dream-subtitles-de.vtt&quot;&gt;
-9.      &lt;track label=&quot;English chapters&quot; kind=&quot;chapters&quot; srclang=&quot;en&quot;
-10.            src=&quot;https://..../elephants-dream-chapters-en.vtt&quot;&gt;
-11. &lt;/video&gt;
-12.  ...
-13.    &lt;h3&gt;Video Transcript&lt;/h3&gt;
-14.    &lt;button onclick=&quot;loadTranscript(&#39;en&#39;);&quot;&gt;English&lt;/button&gt;
-15.    &lt;button onclick=&quot;loadTranscript(&#39;de&#39;);&quot;&gt;Deutsch&lt;/button&gt;
-16.     &lt;/div&gt;
-17.     &lt;div id=&quot;transcript&quot;&gt;&lt;/div&gt;
-18. ...</pre>
+<pre>...
+&lt;video preload=&quot;metadata&quot; controls &gt;
+ &lt;source src=&quot;https://..../elephants-dream-medium.mp4&quot; type=&quot;video/mp4&quot;&gt;
+ &lt;source src=&quot;https://..../elephants-dream-medium.webm&quot; type=&quot;video/webm&quot;&gt;
+    &lt;track label=&quot;English subtitles&quot; kind=&quot;subtitles&quot; srclang=&quot;en&quot;
+         src=&quot;https://..../elephants-dream-subtitles-en.vtt&quot; default&gt;
+    &lt;track label=&quot;Deutsch subtitles&quot; kind=&quot;subtitles&quot; srclang=&quot;de&quot;
+           src=&quot;https://..../elephants-dream-subtitles-de.vtt&quot;&gt;
+    &lt;track label=&quot;English chapters&quot; kind=&quot;chapters&quot; srclang=&quot;en&quot;
+           src=&quot;https://..../elephants-dream-chapters-en.vtt&quot;&gt;
+&lt;/video&gt;
+ ...
+   &lt;h3&gt;Video Transcript&lt;/h3&gt;
+   &lt;button onclick=&quot;loadTranscript(&#39;en&#39;);&quot;&gt;English&lt;/button&gt;
+   &lt;button onclick=&quot;loadTranscript(&#39;de&#39;);&quot;&gt;Deutsch&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;transcript&quot;&gt;&lt;/div&gt;
+...</pre>
 
 </details>
 
@@ -2463,101 +2422,87 @@ on screen, in an element with an id of transcript.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  // Transcript.js, by dev.opera.com
-2.  function loadTranscript(lang) {
-3.     var url = &quot;https://mainline.i3s.unice.fr/mooc/&quot; +
-4.         &#39;elephants-dream-subtitles-&#39; + lang + &#39;.vtt&#39;;
-5.  
-6.     // Will download using Ajax + extract subtitles/captions   
-7.     loadTranscriptFile(url); 
-8.  }
-9.   
-10. function loadTranscriptFile(webvttFileUrl) {
-11.    // Using Ajax/XHR2 (explained in detail in Module 3)
-12.    var reqTrans = new XMLHttpRequest();
-13. 
-14.    reqTrans.open(&#39;GET&#39;, webvttFileUrl);
-15. 
-16.    // callback, called only once the response is ready
-17.    reqTrans.onload = function(e) { 
-18. 
-19.        var pattern = /^([0-9]+)$/;
-20.      var patternTimecode = /^([0-9]{2}:[0-9]{2}:[0-9]{2}[,.]{1}[0-9]{3})    --&gt; ([0-9]
-21.                             {2}:[0-9]{2}:[0-9]{2}[,.]{1}[0-9]{3})(.&lt;/i&gt;)$/;
-22. 
-23.        var content = this.response; // content of the webVTT file
-24. 
-25.        var lines = content.split(/r?n/); // Get an array of text lines
-26.        var transcript = &#39;&#39;;
-27.        for (i = 0; i &lt; lines.length; i++) {
-28.          var identifier = pattern.exec(lines[i]);
-29. 
-30.          // is there an id for this line, if it is, go to next line
-31.          if (identifier) { 
-32.            i++;
-33.            var timecode = patternTimecode.exec(lines[i]); 
-34.            // is the current line a timecode?
-35.            if (timecode &amp;&amp; i &lt; lines.length) {      
-36.               // if it is go to next line     
-37.               i++;
-38.               // it can only be a text line now
-39.               var text = lines[i];  
-40.                         
-41.               // is the text multiline?
-42.               while (lines[i] !== &#39;&#39; &amp;&amp; i &lt; lines.length) {   
-43.                  text = text + &#39;n&#39; + lines[i];
-44.                  i++;
-45.               }
-46. 
-47.               var transText = &#39;&#39;;
-48.               var voices = getVoices(text);
-49.               // is the extracted text multi voices ? 
-50.               if (voices.length &gt; 0) {
-51.                  // how many voices ?
-52.                  for (var j = 0; j &lt; voices.length; j++) { 
-53.                  transText += voices[j].voice + &#39;: &#39;
-54.                            + removeHTML(voices[j].text)
-55.                            + &#39;&lt;br /&gt;&#39;;
-56.               }
-57.           } else 
-58.              // not a voice text
-59.              transText = removeHTML(text) + &#39;&lt;br /&gt;&#39;; 
-60. 
-61.          transcript += transText;
-62.        }
-63.      }
-64. 
-65.      var oTrans = document.getElementById(&#39;transcript&#39;);
-66.      oTrans.innerHTML = transcript;
-67.    }
-68. };
-69.  reqTrans.send(); // send the Ajax request
-70. }
-71.  
-72. function getVoices(speech) {  // takes a text content and check if there are voices 
-73.   var voices = [];            // inside
-74.   var pos = speech.indexOf(&#39;&lt;v&#39;); // voices are like &lt;v Michel&gt; ....
-75. 
-76.   while (pos != -1) {
-77.     endVoice = speech.indexOf(&#39;&gt;&#39;);
-78.     var voice = speech.substring(pos + 2, endVoice).trim();
-79.     var endSpeech = speech.indexOf(&#39;&lt;/v&gt;&#39;);
-80.     var text = speech.substring(endVoice + 1, endSpeech);
-81.     voices.push({
-82.        &#39;voice&#39;: voice,
-83.        &#39;text&#39;: text
-84.     });
-85.     speech = speech.substring(endSpeech + 4);
-86.     pos = speech.indexOf(&#39;&lt;v&#39;);
-87.   }
-88.   return voices;
-89. }
-90.  
-91. function removeHTML(text) {
-92.   var div = document.createElement(&#39;div&#39;);
-93.   div.innerHTML = text;
-94.   return div.textContent || div.innerText || &#39;&#39;;
-95. }</pre>
+<pre>// Transcript.js, by dev.opera.com
+function loadTranscript(lang) {
+   var url = &quot;https://mainline.i3s.unice.fr/mooc/&quot; +
+       &#39;elephants-dream-subtitles-&#39; + lang + &#39;.vtt&#39;;
+   // Will download using Ajax + extract subtitles/captions   
+   loadTranscriptFile(url); 
+}
+function loadTranscriptFile(webvttFileUrl) {
+   // Using Ajax/XHR2 (explained in detail in Module 3)
+   var reqTrans = new XMLHttpRequest();
+   reqTrans.open(&#39;GET&#39;, webvttFileUrl);
+   // callback, called only once the response is ready
+   reqTrans.onload = function(e) { 
+       var pattern = /^([0-9]+)$/;
+     var patternTimecode = /^([0-9]{2}:[0-9]{2}:[0-9]{2}[,.]{1}[0-9]{3})    --&gt; ([0-9]
+                            {2}:[0-9]{2}:[0-9]{2}[,.]{1}[0-9]{3})(.&lt;/i&gt;)$/;
+       var content = this.response; // content of the webVTT file
+       var lines = content.split(/r?n/); // Get an array of text lines
+       var transcript = &#39;&#39;;
+       for (i = 0; i &lt; lines.length; i++) {
+         var identifier = pattern.exec(lines[i]);
+
+         // is there an id for this line, if it is, go to next line
+         if (identifier) { 
+           i++;
+           var timecode = patternTimecode.exec(lines[i]); 
+           // is the current line a timecode?
+           if (timecode &amp;&amp; i &lt; lines.length) {      
+              // if it is go to next line     
+              i++;
+              // it can only be a text line now
+              var text = lines[i];  
+              // is the text multiline?
+              while (lines[i] !== &#39;&#39; &amp;&amp; i &lt; lines.length) {   
+                 text = text + &#39;n&#39; + lines[i];
+                 i++;
+              }
+              var transText = &#39;&#39;;
+              var voices = getVoices(text);
+              // is the extracted text multi voices ? 
+              if (voices.length &gt; 0) {
+                 // how many voices ?
+                 for (var j = 0; j &lt; voices.length; j++) { 
+                 transText += voices[j].voice + &#39;: &#39;
+                           + removeHTML(voices[j].text)
+                           + &#39;&lt;br /&gt;&#39;;
+              }
+          } else 
+             // not a voice text
+             transText = removeHTML(text) + &#39;&lt;br /&gt;&#39;; 
+         transcript += transText;
+       }
+     }
+     var oTrans = document.getElementById(&#39;transcript&#39;);
+     oTrans.innerHTML = transcript;
+   }
+};
+ reqTrans.send(); // send the Ajax request
+}
+function getVoices(speech) {  // takes a text content and check if there are voices 
+  var voices = [];            // inside
+  var pos = speech.indexOf(&#39;&lt;v&#39;); // voices are like &lt;v Michel&gt; ....
+  while (pos != -1) {
+    endVoice = speech.indexOf(&#39;&gt;&#39;);
+    var voice = speech.substring(pos + 2, endVoice).trim();
+    var endSpeech = speech.indexOf(&#39;&lt;/v&gt;&#39;);
+    var text = speech.substring(endVoice + 1, endSpeech);
+    voices.push({
+       &#39;voice&#39;: voice,
+       &#39;text&#39;: text
+    });
+    speech = speech.substring(endSpeech + 4);
+    pos = speech.indexOf(&#39;&lt;v&#39;);
+  }
+  return voices;
+}
+function removeHTML(text) {
+  var div = document.createElement(&#39;div&#39;);
+  div.innerHTML = text;
+  return div.textContent || div.innerText || &#39;&#39;;
+}</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -2598,69 +2543,64 @@ scene’s captions and descriptions.</p>
 <details>
   <summary>Video code!</summary>
 
-<pre>1.  &lt;html lang=&quot;en&quot;&gt;
-2.  ...
-3.  &lt;body onload=&quot;init();&quot;&gt;
-4.    ...
-5.    &lt;p&gt;
-6.    &lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot;
-7.      poster =&quot;https://...../sintel.jpg&quot;
-8.      crossorigin=&quot;anonymous&quot;
-9.      controls=&quot;controls&quot;
-10.     width=&quot;640&quot; height=&quot;272&quot;&gt;
-11. 
-12.     &lt;source src=&quot;https://...../sintel.mp4&quot;
-13.       type=&quot;video/mp4&quot; /&gt;
-14.     &lt;source src=&quot;https://...../sintel.webm&quot;
-15.       type=&quot;video/webm&quot; /&gt;
-16.     &lt;track src=&quot;https://...../sintel-captions.vtt&quot;
-17.       kind=&quot;captions&quot;
-18.       label=&quot;English Captions&quot;
-19.       default&lt;/b&gt;/&gt;
-20.     &lt;track src=&quot;https://...../sintel-descriptions.vtt&quot;
-21.       kind=&quot;descriptions&quot;
-22.       label=&quot;Audio Descriptions&quot; /&gt;
-23.     &lt;track src=&quot;https://...../sintel-chapters.vtt&quot;
-24.       kind=&quot;chapters&quot;
-25.       label=&quot;Chapter Markers&quot; /&gt;
-26.     &lt;track src=&quot;https://...../sintel-thumbs.vtt&quot;
-27.       kind=&quot;metadata&quot;
-28.       label=&quot;Preview Thumbs&quot; /&gt;
-29.   &lt;/video&gt;
-30.   &lt;/p&gt;
-31. 
-32.   &lt;p&gt;
-33.   &lt;div id=&quot;currentTrackStatuses&quot;&gt;&lt;/div&gt;
-34.   &lt;p&gt;
-35.   &lt;p&gt;
-36.   &lt;div id=&quot;subtitlesCaptions&quot;&gt;&lt;/div&gt;
-37.   &lt;/p&gt;
-38. 
-39.   &lt;p&gt;
-40.     &lt;button onclick=&quot;clearSubtitlesCaptions();&quot;&gt;
-41.       Clear subtitles/captions log
-42.     &lt;/button&gt;
-43.   &lt;/p&gt;
-44. 
-45.   &lt;p&gt;Click one of these buttons to toggle the mode of each track:&lt;/p&gt;
-46.   &lt;button onclick=&quot;toggleTrack(0);&quot;&gt;
-47.     Toggle english caption track mode
-48.   &lt;/button&gt;
-49.   &lt;br&gt;
-50.   &lt;button onclick=&quot;toggleTrack(1);&quot;&gt;
-51.     Toggle audio description track mode
-52.   &lt;/button&gt;
-53.   &lt;br&gt;
-54.   &lt;button onclick=&quot;toggleTrack(2);&quot;&gt;
-55.     Toggle chapter track mode
-56.   &lt;/button&gt;
-57.   &lt;br&gt;
-58.   &lt;button onclick=&quot;toggleTrack(3);&quot;&gt;
-59.     Toggle preview thumbnail track modes
-60.   &lt;/button&gt;
-61. 
-62. &lt;/body&gt;
-63. &lt;/html&gt;</pre>
+<pre>&lt;html lang=&quot;en&quot;&gt;
+...
+&lt;body onload=&quot;init();&quot;&gt;
+  ...
+  &lt;p&gt;
+  &lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot;
+    poster =&quot;https://...../sintel.jpg&quot;
+    crossorigin=&quot;anonymous&quot;
+    controls=&quot;controls&quot;
+    width=&quot;640&quot; height=&quot;272&quot;&gt;
+    &lt;source src=&quot;https://...../sintel.mp4&quot;
+      type=&quot;video/mp4&quot; /&gt;
+    &lt;source src=&quot;https://...../sintel.webm&quot;
+      type=&quot;video/webm&quot; /&gt;
+    &lt;track src=&quot;https://...../sintel-captions.vtt&quot;
+      kind=&quot;captions&quot;
+      label=&quot;English Captions&quot;
+      default&lt;/b&gt;/&gt;
+    &lt;track src=&quot;https://...../sintel-descriptions.vtt&quot;
+      kind=&quot;descriptions&quot;
+      label=&quot;Audio Descriptions&quot; /&gt;
+    &lt;track src=&quot;https://...../sintel-chapters.vtt&quot;
+      kind=&quot;chapters&quot;
+      label=&quot;Chapter Markers&quot; /&gt;
+    &lt;track src=&quot;https://...../sintel-thumbs.vtt&quot;
+      kind=&quot;metadata&quot;
+      label=&quot;Preview Thumbs&quot; /&gt;
+  &lt;/video&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+  &lt;div id=&quot;currentTrackStatuses&quot;&gt;&lt;/div&gt;
+  &lt;p&gt;
+  &lt;p&gt;
+  &lt;div id=&quot;subtitlesCaptions&quot;&gt;&lt;/div&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;button onclick=&quot;clearSubtitlesCaptions();&quot;&gt;
+      Clear subtitles/captions log
+    &lt;/button&gt;
+  &lt;/p&gt;
+  &lt;p&gt;Click one of these buttons to toggle the mode of each track:&lt;/p&gt;
+  &lt;button onclick=&quot;toggleTrack(0);&quot;&gt;
+    Toggle english caption track mode
+  &lt;/button&gt;
+  &lt;br&gt;
+  &lt;button onclick=&quot;toggleTrack(1);&quot;&gt;
+    Toggle audio description track mode
+  &lt;/button&gt;
+  &lt;br&gt;
+  &lt;button onclick=&quot;toggleTrack(2);&quot;&gt;
+    Toggle chapter track mode
+  &lt;/button&gt;
+  &lt;br&gt;
+  &lt;button onclick=&quot;toggleTrack(3);&quot;&gt;
+    Toggle preview thumbnail track modes
+  &lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -2669,100 +2609,91 @@ scene’s captions and descriptions.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var tracks, video, statusDiv, subtitlesCaptionsDiv;
-2.  
-3.  function init() {
-4.     video = document.querySelector(&quot;#myVideo&quot;);
-5.     statusDiv = document.querySelector(&quot;#currentTrackStatuses&quot;);
-6.        subtitlesCaptionsDiv = document.querySelector(&quot;#subtitlesCaptions&quot;);
-7.     tracks = document.querySelectorAll(&quot;track&quot;);
-8. 
-9.     video.addEventListener(&#39;loadedmetadata&#39;, function() {
-10.       console.log(&quot;metadata loaded&quot;);
-11. 
-12.       // defines cue listeners for the active track; we can do this only after the video metadata have been loaded
-13.       for(var i=0; i&lt;tracks.length; i++) {
-14.          var t = tracks[i].track;
-15.          if(t.mode === &quot;showing&quot;) {
-16.             t.addEventListener(&#39;cuechange&#39;, logCue, false);
-17.          }
-18.        }
-19.        // display in a div the list of tracks and their status/mode value
-20.        displayTrackStatus();  
-21.     });
-22. }
-23.  
-24. function displayTrackStatus() {
-25.     // display the status / mode value of each track.
-26.     // In red if disabled, in green if showing
-27.     for(var i=0; i&lt;tracks.length; i++) {
-28.        var t = tracks[i].track;
-29.        var mode = t.mode;
-30. 
-31.        if(mode === &quot;disabled&quot;) {
-32.           mode = &quot;&lt;span style=&#39;color:red&#39;&gt;&quot; + t.mode + &quot;&lt;/span&gt;&quot;;
-33.        } else if(mode === &quot;showing&quot;) {
-34.           mode = &quot;&lt;span style=&#39;color:green&#39;&gt;&quot; + t.mode + &quot;&lt;/span&gt;&quot;;
-35.        }
-36.        appendToScrollableDiv(statusDiv, &quot;track &quot; + i + &quot;:&quot; + t.label
-37.                                         + &quot; &quot; + t.kind+&quot; in &quot;
-38.                                         + mode + &quot; mode&quot;);
-39.     }
-40. }
-41. function appendToScrollableDiv(div, text) {
-42.    // we&#39;ve got two scrollable divs. This function
-43.    // appends text to the div passed as a parameter
-44.    // The div is scrollable (thanks to CSS overflow:auto)
-45.    var inner = div.innerHTML;
-46.    div.innerHTML = inner + text + &quot;&lt;br/&gt;&quot;;
-47.    // Make it display the last line appended
-48.    div.scrollTop = div.scrollHeight;
-49. }
-50.  
-51. function clearDiv(div) {
-52.    div.innerHTML = &#39;&#39;;
-53. }
-54.  
-55. function clearSubtitlesCaptions() {
-56.    clearDiv(subtitlesCaptionsDiv);
-57. }
-58.  
-59. function toggleTrack(i) {
-60.    // toggles the mode of track i, removes the cue listener
-61.    // if its mode becomes &quot;disabled&quot;
-62.    // adds a cue listener if its mode was &quot;disabled&quot;
-63.    // and becomes &quot;hidden&quot;
-64.    var t = tracks[i].track;
-65.    switch (t.mode) {
-66.       case &quot;disabled&quot;:
-67.          t.addEventListener(&#39;cuechange&#39;, logCue, false);
-68.          t.mode = &quot;hidden&quot;;
-69.          break;
-70.       case &quot;hidden&quot;:
-71.          t.mode = &quot;showing&quot;;
-72.          break;
-73.       case &quot;showing&quot;:
-74.          t.removeEventListener(&#39;cuechange&#39;, logCue, false);
-75.          t.mode = &quot;disabled&quot;;
-76.          break;
-77.     }
-78.     // updates the status
-79.     clearDiv(statusDiv);
-80.     displayTrackStatus();
-81.     appendToScrollableDiv(statusDiv,&quot;&lt;br&gt;&quot; + t.label+&quot; are now &quot; +t.mode);
-82. }
-83.  
-84. function logCue() {
-85.    // callback for the cue event
-86.    if(this.activeCues &amp;&amp; this.activeCues.length) {
-87.       var t = this.activeCues[0].text; // text of current cue
-88.       appendToScrollableDiv(subtitlesCaptionsDiv, &quot;Active &quot;
-89.                                        + this.kind + &quot; changed to: &quot; + t);
-90.    }
-91. }</pre>
+<pre>var tracks, video, statusDiv, subtitlesCaptionsDiv;
+function init() {
+   video = document.querySelector(&quot;#myVideo&quot;);
+   statusDiv = document.querySelector(&quot;#currentTrackStatuses&quot;);
+      subtitlesCaptionsDiv = document.querySelector(&quot;#subtitlesCaptions&quot;);
+   tracks = document.querySelectorAll(&quot;track&quot;);
+   video.addEventListener(&#39;loadedmetadata&#39;, function() {
+      console.log(&quot;metadata loaded&quot;);
+      // defines cue listeners for the active track; we can do this only after the video metadata have been ed
+      for(var i=0; i&lt;tracks.length; i++) {
+         var t = tracks[i].track;
+         if(t.mode === &quot;showing&quot;) {
+            t.addEventListener(&#39;cuechange&#39;, logCue, false);
+         }
+       }
+       // display in a div the list of tracks and their status/mode value
+       displayTrackStatus();  
+    });
+}
+function displayTrackStatus() {
+    // display the status / mode value of each track.
+    // In red if disabled, in green if showing
+    for(var i=0; i&lt;tracks.length; i++) {
+       var t = tracks[i].track;
+       var mode = t.mode;
+
+       if(mode === &quot;disabled&quot;) {
+          mode = &quot;&lt;span style=&#39;color:red&#39;&gt;&quot; + t.mode + &quot;&lt;/span&gt;&quot;;
+       } else if(mode === &quot;showing&quot;) {
+          mode = &quot;&lt;span style=&#39;color:green&#39;&gt;&quot; + t.mode + &quot;&lt;/span&gt;&quot;;
+       }
+       appendToScrollableDiv(statusDiv, &quot;track &quot; + i + &quot;:&quot; + t.label
+                                        + &quot; &quot; + t.kind+&quot; in &quot;
+                                        + mode + &quot; mode&quot;);
+    }
+}
+function appendToScrollableDiv(div, text) {
+   // we&#39;ve got two scrollable divs. This function
+   // appends text to the div passed as a parameter
+   // The div is scrollable (thanks to CSS overflow:auto)
+   var inner = div.innerHTML;
+   div.innerHTML = inner + text + &quot;&lt;br/&gt;&quot;;
+   // Make it display the last line appended
+   div.scrollTop = div.scrollHeight;
+}
+function clearDiv(div) {
+   div.innerHTML = &#39;&#39;;
+}
+function clearSubtitlesCaptions() {
+   clearDiv(subtitlesCaptionsDiv);
+}
+function toggleTrack(i) {
+   // toggles the mode of track i, removes the cue listener
+   // if its mode becomes &quot;disabled&quot;
+   // adds a cue listener if its mode was &quot;disabled&quot;
+   // and becomes &quot;hidden&quot;
+   var t = tracks[i].track;
+   switch (t.mode) {
+      case &quot;disabled&quot;:
+         t.addEventListener(&#39;cuechange&#39;, logCue, false);
+         t.mode = &quot;hidden&quot;;
+         break;
+      case &quot;hidden&quot;:
+         t.mode = &quot;showing&quot;;
+         break;
+      case &quot;showing&quot;:
+         t.removeEventListener(&#39;cuechange&#39;, logCue, false);
+         t.mode = &quot;disabled&quot;;
+         break;
+    }
+    // updates the status
+    clearDiv(statusDiv);
+    displayTrackStatus();
+    appendToScrollableDiv(statusDiv,&quot;&lt;br&gt;&quot; + t.label+&quot; are now &quot; +t.mode);
+}
+function logCue() {
+   // callback for the cue event
+   if(this.activeCues &amp;&amp; this.activeCues.length) {
+      var t = this.activeCues[0].text; // text of current cue
+      appendToScrollableDiv(subtitlesCaptionsDiv, &quot;Active &quot;
+                                       + this.kind + &quot; changed to: &quot; + t);
+   }
+}</pre>
 
 </details>
-
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch1-3-3">1.3.3 With Buttons for Choosing the Subtitle Language</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -2786,32 +2717,32 @@ scene’s captions and descriptions.</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  ...
-2.  &lt;body onload=&quot;init()&quot;&gt;
-3.   ...
-4.  &lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot; controls crossOrigin=&quot;anonymous&quot; &gt;
-5.       &lt;source src=&quot;https://...../elephants-dream-medium.mp4&quot;
-6.               type=&quot;video/mp4&quot;&gt;
-7.       &lt;source src=&quot;https://...../elephants-dream-medium.webm&quot;
-8.               type=&quot;video/webm&quot;&gt;
-9.       &lt;track  label=&quot;English subtitles&quot;
-10.              kind=&quot;subtitles&quot;
-11.              srclang=&quot;en&quot;
-12.              src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot;
-13.              default&lt;/b&gt;&gt;
-14.      &lt;track  label=&quot;Deutsch subtitles&quot;
-15.              kind=&quot;subtitles&quot;
-16.              srclang=&quot;de&quot;
-17.              src=&quot;https://...../elephants-dream-subtitles-de.vtt&quot;&gt;
-18.      &lt;track  label=&quot;English chapters&quot;
-19.              kind=&quot;chapters&quot;
-20.              srclang=&quot;en&quot;
-21.              src=&quot;https://...../elephants-dream-chapters-en.vtt&quot;&gt;
-22. &lt;/video&gt;
-23. &lt;h3&gt;Current track: &lt;span id=&quot;currentLang&quot;&gt;&lt;/span&gt;&lt;/h3&gt;
-24. &lt;div id=&quot;langButtonDiv&quot;&gt;&lt;/div&gt;
-25. &lt;/section&gt;
-26. ...</pre>
+<pre>...
+&lt;body onload=&quot;init()&quot;&gt;
+ ...
+&lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot; controls crossOrigin=&quot;anonymous&quot; &gt;
+     &lt;source src=&quot;https://...../elephants-dream-medium.mp4&quot;
+             type=&quot;video/mp4&quot;&gt;
+     &lt;source src=&quot;https://...../elephants-dream-medium.webm&quot;
+             type=&quot;video/webm&quot;&gt;
+     &lt;track  label=&quot;English subtitles&quot;
+             kind=&quot;subtitles&quot;
+             srclang=&quot;en&quot;
+             src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot;
+             default&lt;/b&gt;&gt;
+     &lt;track  label=&quot;Deutsch subtitles&quot;
+             kind=&quot;subtitles&quot;
+             srclang=&quot;de&quot;
+             src=&quot;https://...../elephants-dream-subtitles-de.vtt&quot;&gt;
+     &lt;track  label=&quot;English chapters&quot;
+             kind=&quot;chapters&quot;
+             srclang=&quot;en&quot;
+             src=&quot;https://...../elephants-dream-chapters-en.vtt&quot;&gt;
+&lt;/video&gt;
+&lt;h3&gt;Current track: &lt;span id=&quot;currentLang&quot;&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;div id=&quot;langButtonDiv&quot;&gt;&lt;/div&gt;
+&lt;/section&gt;
+...</pre>
 
 </details>
 
@@ -2820,74 +2751,73 @@ scene’s captions and descriptions.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var langButtonDiv, currentLangSpan, video;
-2.   
-3.  function init() {
-4.     langButtonDiv = document.querySelector(&quot;#langButtonDiv&quot;);
-5.     currentLangSpan = document.querySelector(&quot;#currentLang&quot;);
-6.     video = document.querySelector(&quot;#myVideo&quot;);
-7.  
-8.     console.log(&quot;Number of tracks = &quot;
-9.                 + video.textTracks.length);
-10.    // Updates the display of the current track activated
-11.    currentLangSpan.innerHTML = activeTrack();
-12.    // Build the buttons for choosing a track
-13.    buildButtons();
-14. }
-15.  
-16. function activeTrack() {
-17.    for (var i = 0; i &lt; video.textTracks.length; i++) {
-18.       if(video.textTracks[i].mode === &#39;showing&#39;) {
-19.          return video.textTracks[i].label + &quot; (&quot;
-20.                 + video.textTracks[i].language + &quot;)&quot;;
-21.       }
-22.    }
-23.    return &quot;no subtitles/caption selected&quot;;
-24. }
-25.  
-26. function buildButtons() {
-27.    if (video.textTracks) { // if the video contains track elements
-28.       // For each track, create a button
-29.       for (var i = 0; i &lt; video.textTracks.length; i++) {
-30.          // We create buttons only for the caption and subtitle tracks
-31.          var track = video.textTracks[i];
-32.         if((track.kind !== &quot;subtitles&quot;) &amp;&amp; (track.kind !== &quot;captions&quot;))
-33.             continue;
-34. 
-35.          // create a button for track number i         
-36.          createButton(video.textTracks[i]); 
-37.       }
-38.    }
-39. }
-40. 
-41. function createButton(track) {
-42.    // Create a button
-43.    var b = document.createElement(&quot;button&quot;);
-44.    b.value=track.label;
-45.    // use the lang attribute of the button to keep trace of the
-46.    // associated track language. Will be useful in the click listener
-47.    b.setAttribute(&quot;lang&quot;, track.language); 
-48.    b.addEventListener(&#39;click&#39;, function(e) {
-49.      // Check which track is the track with the language we&#39;re looking for
-50.      // Get the value of the lang attribute of the clicked button
-51.      var lang = this.getAttribute(&#39;lang&#39;); 
-52. 
-53.      for (var i = 0; i &lt; video.textTracks.length; i++) {
-54.        if (video.textTracks[i].language == lang) {
-55.           video.textTracks[i].mode = &#39;showing&#39;;
-56.        } else {
-57.           video.textTracks[i].mode = &#39;hidden&#39;;
-58.        }
-59.      }
-60.      // Updates the span so that it displays the new active track
-61.     currentLangSpan.innerHTML = activeTrack();
-62.   });
-63.   // Creates a label inside the button
-64.   b.appendChild(document.createTextNode(track.label));
-65.   // Add the button to a div at the end of the HTML document
-66.   langButtonDiv.appendChild(b);
-67. }
-68. </pre>
+<pre>var langButtonDiv, currentLangSpan, video;
+ 
+function init() {
+   langButtonDiv = document.querySelector(&quot;#langButtonDiv&quot;);
+   currentLangSpan = document.querySelector(&quot;#currentLang&quot;);
+   video = document.querySelector(&quot;#myVideo&quot;);
+
+   console.log(&quot;Number of tracks = &quot;
+               + video.textTracks.length);
+   // Updates the display of the current track activated
+   currentLangSpan.innerHTML = activeTrack();
+   // Build the buttons for choosing a track
+   buildButtons();
+}
+ 
+function activeTrack() {
+   for (var i = 0; i &lt; video.textTracks.length; i++) {
+      if(video.textTracks[i].mode === &#39;showing&#39;) {
+         return video.textTracks[i].label + &quot; (&quot;
+                + video.textTracks[i].language + &quot;)&quot;;
+      }
+   }
+   return &quot;no subtitles/caption selected&quot;;
+}
+ 
+function buildButtons() {
+   if (video.textTracks) { // if the video contains track elements
+      // For each track, create a button
+      for (var i = 0; i &lt; video.textTracks.length; i++) {
+         // We create buttons only for the caption and subtitle tracks
+         var track = video.textTracks[i];
+        if((track.kind !== &quot;subtitles&quot;) &amp;&amp; (track.kind !== &quot;captions&quot;))
+            continue;
+
+         // create a button for track number i         
+         createButton(video.textTracks[i]); 
+      }
+   }
+}
+
+function createButton(track) {
+   // Create a button
+   var b = document.createElement(&quot;button&quot;);
+   b.value=track.label;
+   // use the lang attribute of the button to keep trace of the
+   // associated track language. Will be useful in the click listener
+   b.setAttribute(&quot;lang&quot;, track.language); 
+   b.addEventListener(&#39;click&#39;, function(e) {
+     // Check which track is the track with the language we&#39;re looking for
+     // Get the value of the lang attribute of the clicked button
+     var lang = this.getAttribute(&#39;lang&#39;); 
+
+     for (var i = 0; i &lt; video.textTracks.length; i++) {
+       if (video.textTracks[i].language == lang) {
+          video.textTracks[i].mode = &#39;showing&#39;;
+       } else {
+          video.textTracks[i].mode = &#39;hidden&#39;;
+       }
+     }
+     // Updates the span so that it displays the new active track
+    currentLangSpan.innerHTML = activeTrack();
+  });
+  // Creates a label inside the button
+  b.appendChild(document.createTextNode(track.label));
+  // Add the button to a div at the end of the HTML document
+  langButtonDiv.appendChild(b);
+}</pre>
 
 </details>
 
@@ -2918,25 +2848,25 @@ declaration of the track. Here is how we declared a chapter track in one of the 
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot; controls crossOrigin=&quot;anonymous&quot;&gt;
-2.    &lt;source src=&lt;https://...../elephants-dream-medium.mp4&gt;
-3.      type=&quot;video/mp4&quot;&gt;
-4.    &lt;source src=&lt;https://...../elephants-dream-medium.webm&gt;
-5.      type=&quot;video/webm&quot;&gt;
-6.    &lt;track label=&quot;English subtitles&quot;
-7.      kind=&quot;subtitles&quot;
-8.      srclang=&quot;en&quot;
-9.      src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot; &gt;
-10.   &lt;track label=&quot;Deutsch subtitles&quot;
-11.     kind=&quot;subtitles&quot;
-12.     srclang=&quot;de&quot;
-13.     src=&lt;https://...../elephants-dream-subtitles-de.vtt&gt;
-14.     default&gt;
-15.   &lt;track label=&quot;English chapters&quot;
-16.     kind=&quot;chapters&quot;
-17.     srclang=&quot;en&quot;
-18.     src=&quot;https://...../elephants-dream-chapters-en.vtt&quot;&gt;
-19. &lt;/video&gt;</pre>
+<pre>&lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot; controls crossOrigin=&quot;anonymous&quot;&gt;
+  &lt;source src=&lt;https://...../elephants-dream-medium.mp4&gt;
+    type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&lt;https://...../elephants-dream-medium.webm&gt;
+    type=&quot;video/webm&quot;&gt;
+  &lt;track label=&quot;English subtitles&quot;
+    kind=&quot;subtitles&quot;
+    srclang=&quot;en&quot;
+    src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot; &gt;
+  &lt;track label=&quot;Deutsch subtitles&quot;
+    kind=&quot;subtitles&quot;
+    srclang=&quot;de&quot;
+    src=&lt;https://...../elephants-dream-subtitles-de.vtt&gt;
+    default&gt;
+  &lt;track label=&quot;English chapters&quot;
+    kind=&quot;chapters&quot;
+    srclang=&quot;en&quot;
+    src=&quot;https://...../elephants-dream-chapters-en.vtt&quot;&gt;
+&lt;/video&gt;</pre>
 
 </details>
 
@@ -2947,35 +2877,28 @@ declaration of the track. Here is how we declared a chapter track in one of the 
 <details>
   <summary>WEBVTT code!</summary>
 
-<pre>1.  WEBVTT
-2.  
-3.  chapter-1
-4.  00:00:00.000 --&gt; 00:00:26.000
-5.  Introduction
-6.  
-7.  chapter-2
-8.  00:00:28.206 --&gt; 00:01:02.000
-9.  Watch out!
-10. 
-11. chapter-3
-12. 00:01:02.034 --&gt; 00:03:10.000
-13. Let&#39;s go
-14. 
-15. chapter-4
-16. 00:03:10.014 --&gt; 00:05:40.000
-17. The machine
-18. 
-19. chapter-5
-20. 00:05:41.208 --&gt; 00:07:26.000
-21. Close your eyes
-22. 
-23. chapter-6
-24. 00:07:27.125 --&gt; 00:08:12.000
-25. There&#39;s nothing there
-26. 
-27. chapter-7
-28. 00:08:13.000 --&gt; 00:09:07.500
-29. The Colossus of Rhodes</pre>
+<pre>WEBVTT
+chapter-1
+00:00:00.000 --&gt; 00:00:26.000
+Introduction
+chapter-2
+00:00:28.206 --&gt; 00:01:02.000
+Watch out!
+chapter-3
+00:01:02.034 --&gt; 00:03:10.000
+Let&#39;s go
+chapter-4
+00:03:10.014 --&gt; 00:05:40.000
+The machine
+chapter-5
+00:05:41.208 --&gt; 00:07:26.000
+Close your eyes
+chapter-6
+00:07:27.125 --&gt; 00:08:12.000
+There&#39;s nothing there
+chapter-7
+00:08:13.000 --&gt; 00:09:07.500
+The Colossus of Rhodes</pre>
 
 </details>
 
@@ -3104,11 +3027,9 @@ video</a>.</p>
   <summary>WEBVTT code!</summary>
 
 <pre>WEBVTT
-
 chapter-1
 00:00:00.000 --&gt; 00:00:26.000
 Introduction
-
 chapter-2
 00:00:28.206 --&gt; 00:01:02.000
 Watch out!
@@ -3190,25 +3111,25 @@ example at JSBin that uses this new .vtt file</a>:</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  ...
-2.  &lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot; controls crossOrigin=&quot;anonymous&quot;&gt;
-3.    &lt;source src=&quot;https://...../elephants-dream-medium.mp4&quot;
-4.      type=&quot;video/mp4&quot;&gt;
-5.    &lt;source src=&quot;https://...../elephants-dream-medium.webm&quot;
-6.      type=&quot;video/webm&quot;&gt;
-7.    &lt;track label=&quot;English subtitles&quot;
-8.      kind=&quot;subtitles&quot;
-9.    srclang=&quot;en&quot; src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot; &gt;
-10.   &lt;track label=&quot;Deutsch subtitles&quot;
-11.     kind=&quot;subtitles&quot;
-12.   srclang=&quot;de&quot; src=&quot;https://...../elephants-dream-subtitles-de.vtt&quot; default&gt;
-13.   &lt;track label=&quot;English chapters&quot;
-14.     kind=&quot;chapters&quot;
-15.   srclang=&quot;en&quot; src=&quot;https://...../elephants-dream-chapters-en-JSON.vtt&quot;&gt;
-16. &lt;/video&gt;
-17. &lt;h2&gt;Chapter menu&lt;/h2&gt;
-18. &lt;div id=&quot;chapterMenu&quot;&gt;&lt;/div&gt;
-19.  ...</pre>
+<pre>...
+&lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot; controls crossOrigin=&quot;anonymous&quot;&gt;
+  &lt;source src=&quot;https://...../elephants-dream-medium.mp4&quot;
+    type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;https://...../elephants-dream-medium.webm&quot;
+    type=&quot;video/webm&quot;&gt;
+  &lt;track label=&quot;English subtitles&quot;
+    kind=&quot;subtitles&quot;
+  srclang=&quot;en&quot; src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot; &gt;
+  &lt;track label=&quot;Deutsch subtitles&quot;
+    kind=&quot;subtitles&quot;
+  srclang=&quot;de&quot; src=&quot;https://...../elephants-dream-subtitles-de.vtt&quot; default&gt;
+  &lt;track label=&quot;English chapters&quot;
+    kind=&quot;chapters&quot;
+  srclang=&quot;en&quot; src=&quot;https://...../elephants-dream-chapters-en-JSON.vtt&quot;&gt;
+&lt;/video&gt;
+&lt;h2&gt;Chapter menu&lt;/h2&gt;
+&lt;div id=&quot;chapterMenu&quot;&gt;&lt;/div&gt;
+...</pre>
 
 </details>
 
@@ -3223,94 +3144,79 @@ right of the video.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var video, chapterMenuDiv;
-2.  var tracks, trackElems, tracksURLs = [];
-3.   
-4.  window.onload = function() {
-5.     console.log(&quot;init&quot;);
-6.     // When the page is loaded
-7.     video = document.querySelector(&quot;#myVideo&quot;);
-8.     chapterMenuDiv = document.querySelector(&quot;#chapterMenu&quot;);
-9.  
-10.    // Get the tracks as HTML elements
-11.    trackElems = document.querySelectorAll(&quot;track&quot;);
-12.    for(var i = 0; i &lt; trackElems.length; i++) {
-13.       var currentTrackElem = trackElems[i];
-14.       tracksURLs[i] = currentTrackElem.src;
-15.    }
-16. 
-17.    // Get the tracks as JS TextTrack objects
-18.    tracks = video.textTracks;
-19. 
-20.    // Build the chapter navigation menu for the given lang and kind&lt;/b&gt;
-21.    buildChapterMenu(&#39;en&#39;, &#39;chapters&#39;);&lt;/b&gt;
-22. };
-23.  
-24. function buildChapterMenu(lang, kind) {
-25.   // Locate the track with language = lang and kind=&quot;chapters&quot;
-26.   for(var i = 0; i &lt; tracks.length; i++) {
-27.      // current track
-28.      var track = tracks[i];
-29.      var trackAsHtmlElem = trackElems[i];
-30. 
-31.      if((track.language === lang) &amp;&amp; (track.kind === kind)) {
-32.         // the track must be active, otherwise it will not load
-33.         track.mode=&quot;showing&quot;; // &quot;hidden&quot; would work too
-34.  
-35.         if(trackAsHtmlElem.readyState === 2) {
-36.            // the track has already been loaded
-37.            displayChapterMarkers(track);
-38.         } else {
-39.          displayChapterMarkersAfterTrackLoaded(trackAsHtmlElem, track);
-40.         }
-41.      }
-42.    }
-43. }
-44.  
-45. function displayChapterMarkers(track) {
-46.    var cues = track.cues;
-47. 
-48.    // We must not see the cues on the video
-49.    track.mode = &quot;hidden&quot;;
-50. 
-51.    // Iterate on cues
-52.    for(var i=0, len = cues.length; i &lt; len; i++) {
-53.       var cue = cues[i];
-54.  
-55.       var cueObject = JSON.parse(cue.text);&lt;/b&gt;
-56.       var description = cueObject.description;&lt;/b&gt;
-57.       var imageFileName = cueObject.image;&lt;/b&gt;
-58.    var imageURL = &quot;https://mainline.i3s.unice.fr/mooc/&quot; + imageFileName;
-59. 
-60.       // Build the marker. It&#39;s a figure with an img and a figcaption inside.
-61.       // The img has an onclick listener that will make the video jump
-62.       // to the start time of the current cue/chapter
-63.       var figure = document.createElement(&#39;figure&#39;);
-64.       figure.classList.add(&quot;img&quot;);
-65. 
-66.       figure.innerHTML = &quot;&lt;img onclick=&#39;jumpTo(&quot;
-67.                          + cue.startTime + &quot;);&#39; class=&#39;thumb&#39; src=&#39;&quot;
-68.                          + imageURL + &quot;&#39;&gt;&lt;figcaption class=&#39;desc&#39;&gt;&quot;
-69.                          + description + &quot;&lt;/figcaption&gt;&lt;/figure&gt;&quot;;
-70.       // Add the figure to the chapterMenuDiv
-71.       chapterMenuDiv.insertBefore(figure, null);
-72.     }
-73. }
-74.  
-75. function displayChapterMarkersAfterTrackLoaded(trackElem, track) {
-76.   // Create a listener that will only be called when the track has
-77.   // been loaded
-78.   trackElem.addEventListener(&#39;load&#39;, function(e) {
-79.      console.log(&quot;chapter track loaded&quot;);
-80.      displayChapterMarkers(track);
-81.   });
-82. }
-83.  
-84. function jumpTo(time) {
-85.   video.currentTime = time;
-86.   video.play();
-87. }
-88.  </pre>
+<pre>var video, chapterMenuDiv;
+var tracks, trackElems, tracksURLs = [];
+window.onload = function() {
+   console.log(&quot;init&quot;);
+   // When the page is loaded
+   video = document.querySelector(&quot;#myVideo&quot;);
+   chapterMenuDiv = document.querySelector(&quot;#chapterMenu&quot;);
+   // Get the tracks as HTML elements
+   trackElems = document.querySelectorAll(&quot;track&quot;);
+   for(var i = 0; i &lt; trackElems.length; i++) {
+      var currentTrackElem = trackElems[i];
+      tracksURLs[i] = currentTrackElem.src;
+   }
+   // Get the tracks as JS TextTrack objects
+   tracks = video.textTracks;
+   // Build the chapter navigation menu for the given lang and kind&lt;/b&gt;
+   buildChapterMenu(&#39;en&#39;, &#39;chapters&#39;);&lt;/b&gt;
+};
+function buildChapterMenu(lang, kind) {
+  // Locate the track with language = lang and kind=&quot;chapters&quot;
+  for(var i = 0; i &lt; tracks.length; i++) {
+     // current track
+     var track = tracks[i];
+     var trackAsHtmlElem = trackElems[i];
+     if((track.language === lang) &amp;&amp; (track.kind === kind)) {
+        // the track must be active, otherwise it will not load
+        track.mode=&quot;showing&quot;; // &quot;hidden&quot; would work too
+        if(trackAsHtmlElem.readyState === 2) {
+           // the track has already been loaded
+           displayChapterMarkers(track);
+        } else {
+         displayChapterMarkersAfterTrackLoaded(trackAsHtmlElem, track);
+        }
+     }
+   }
+}
+function displayChapterMarkers(track) {
+   var cues = track.cues;
+   // We must not see the cues on the video
+   track.mode = &quot;hidden&quot;;
+   // Iterate on cues
+   for(var i=0, len = cues.length; i &lt; len; i++) {
+      var cue = cues[i];
+      var cueObject = JSON.parse(cue.text);&lt;/b&gt;
+      var description = cueObject.description;&lt;/b&gt;
+      var imageFileName = cueObject.image;&lt;/b&gt;
+   var imageURL = &quot;https://mainline.i3s.unice.fr/mooc/&quot; + imageFileName;
+      // Build the marker. It&#39;s a figure with an img and a figcaption inside.
+      // The img has an onclick listener that will make the video jump
+      // to the start time of the current cue/chapter
+      var figure = document.createElement(&#39;figure&#39;);
+      figure.classList.add(&quot;img&quot;);
+      figure.innerHTML = &quot;&lt;img onclick=&#39;jumpTo(&quot;
+                         + cue.startTime + &quot;);&#39; class=&#39;thumb&#39; src=&#39;&quot;
+                         + imageURL + &quot;&#39;&gt;&lt;figcaption class=&#39;desc&#39;&gt;&quot;
+                         + description + &quot;&lt;/figcaption&gt;&lt;/figure&gt;&quot;;
+      // Add the figure to the chapterMenuDiv
+      chapterMenuDiv.insertBefore(figure, null);
+    }
+}
+function displayChapterMarkersAfterTrackLoaded(trackElem, track) {
+  // Create a listener that will only be called when the track has
+  // been loaded
+  trackElem.addEventListener(&#39;load&#39;, function(e) {
+     console.log(&quot;chapter track loaded&quot;);
+     displayChapterMarkers(track);
+  });
+}
+function jumpTo(time) {
+  video.currentTime = time;
+  video.play();
+}
+</pre>
 
 </details>
 

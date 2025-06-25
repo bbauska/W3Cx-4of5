@@ -3458,91 +3458,85 @@ instance</i> - as above. Note that the track <b>must</b> be a
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1. ...
-2. &lt;h1&gt;Playing audio sprites with the track element&lt;/h1&gt;
-3.  &lt;p&gt;A demo by Sam Dutton, adapted for JsBin by M.Buffa&lt;/p&gt;
-4.  
-5. &lt;div id=&quot;soundButtons&quot; class=&quot;isSupported&quot;&gt;&lt;/div&gt;
-6. ...
-7.  window.onload = function() {
-8.     // Create an audio element programmatically
-9.  var audio = newAudio(&quot;https://mainline.i3s.unice.fr/mooc/animalSounds.mp3&quot;);
-10.  
-11.     audio.addEventListener(&quot;loadedmetadata&quot;, function() {
-12.        // When the audio file has its metadata loaded, we can add
-13.        // a new track to it, with mode = hidden. It will fire events
-14.        // even if it is hidden
-15.        var track = audio.addTextTrack(&quot;metadata&quot;, &quot;sprite track&quot;, &quot;en&quot;);&lt;/b&gt;
-16.        track.mode = &quot;hidden&quot;;&lt;/b&gt;
-17.  
-18.       // for browsers that do not implement the getCueById() method
-19.       if (typeof track.getCueById !== &quot;function&quot;) {
-20.          track.getCueById = function(id) {
-21.             var cues = track.cues;
-22.             for (var i = 0; i != track.cues.length; ++i) {
-23.                if (cues[i].id === id) {
-24.                return cues[i];
-25.             }
-26.          }
-27.       };
-28.    }
-29.  
-30.    var sounds = [
-31.       {
-32.         id: &quot;purr&quot;,
-33.         startTime: 0.200,
-34.         endTime: 1.800
-35.       },
-36.       {
-37.         id: &quot;meow&quot;,
-38.         startTime: 2.300,
-39.         endTime: 3.300
-40.       },
-41.       ...
-42.    ];
-43.  
-44.    for (var i = 0; i !== sounds.length; ++i) {
-45.       // for each animal sound, create a cue with id, start and end time
-46.       var sound = sounds[i];
-47.    var cue = new VTTCue(sound.startTime, sound.endTime, sound.id); &lt;/b&gt;
-48.       cue.id = sound.id;
-49.       // add it to the track
-50.       track.addCue(cue);
-51.       // create a button and add it to the HTML document
-52.       document.querySelector(&quot;#soundButtons&quot;).innerHTML += 
-53.                        &quot;&lt;button class=&#39;playSound&#39; id=&quot; 
-54.                        + sound.id + &quot;&gt;&quot; +sound.id 
-55.                        + &quot;&lt;/button&gt;&quot;;  }
-56.  
-57.    var endTime;
-58.    audio.addEventListener(&quot;timeupdate&quot;, function(event) {
-59.       // When we play a sound, we set the endtime var.
-60.       // We need to listen when the audio file is being played, 
-61.       // in order to pause it when endTime is reached.
-62.       if (event.target.currentTime &gt; endTime)
-63.          event.target.pause();
-64.    });
-65.  
-66.    function playSound(id) {
-67.      // Plays the sound corresponding to the cue with id equal
-68.      // to the one passed as a parameter. We set the endTime var
-69.      // and position the audio currentTime at the start time
-70.      // of the sound
-71.      var cue = track.getCueById(id);
-72.      audio.currentTime = cue.startTime;
-73.      endTime = cue.endTime;
-74.      audio.play();
-75.   };
-76.   // create listeners for all buttons
-77.   var buttons = document.querySelectorAll(&quot;button.playSound&quot;);
-78.   for(var i=; i &lt; buttons.length; i++) {    
-79.      buttons[i].addEventListener(&quot;click&quot;, function(e) {
-80.         playSound(this.id);
-81.      });
-82.   }
-83.  });
-84. };
-85. </pre>
+<pre>...
+&lt;h1&gt;Playing audio sprites with the track element&lt;/h1&gt;
+  &lt;p&gt;A demo by Sam Dutton, adapted for JsBin by M.Buffa&lt;/p&gt;
+&lt;div id=&quot;soundButtons&quot; class=&quot;isSupported&quot;&gt;&lt;/div&gt;
+...
+window.onload = function() {
+  // Create an audio element programmatically
+  var audio = newAudio(&quot;https://mainline.i3s.unice.fr/mooc/animalSounds.mp3&quot;);
+  audio.addEventListener(&quot;loadedmetadata&quot;, function() {
+    // When the audio file has its metadata loaded, we can add
+    // a new track to it, with mode = hidden. It will fire events
+    // even if it is hidden
+    var track = audio.addTextTrack(&quot;metadata&quot;, &quot;sprite track&quot;, &quot;en&quot;);&lt;/b&gt;
+    track.mode = &quot;hidden&quot;;&lt;/b&gt;
+    // for browsers that do not implement the getCueById() method
+    if (typeof track.getCueById !== &quot;function&quot;) {
+      track.getCueById = function(id) {
+        var cues = track.cues;
+        for (var i = 0; i != track.cues.length; ++i) {
+          if (cues[i].id === id) {
+            return cues[i];
+          }
+        }
+      };
+    }
+    var sounds = [
+      {
+        id: &quot;purr&quot;,
+        startTime: 0.200,
+        endTime: 1.800
+      },
+      {
+        id: &quot;meow&quot;,
+        startTime: 2.300,
+        endTime: 3.300
+      },
+    ...
+    ];
+    for (var i = 0; i !== sounds.length; ++i) {
+      // for each animal sound, create a cue with id, start and end time
+      var sound = sounds[i];
+      var cue = new VTTCue(sound.startTime, sound.endTime, sound.id); &lt;/b&gt;
+      cue.id = sound.id;
+      // add it to the track
+      track.addCue(cue);
+      // create a button and add it to the HTML document
+      document.querySelector(&quot;#soundButtons&quot;).innerHTML += 
+        &quot;&lt;button class=&#39;playSound&#39; id=&quot; 
+          + sound.id + &quot;&gt;&quot; +sound.id 
+          + &quot;&lt;/button&gt;&quot;;  
+    }
+    var endTime;
+    audio.addEventListener(&quot;timeupdate&quot;, function(event) {
+      // When we play a sound, we set the endtime var.
+      // We need to listen when the audio file is being played, 
+      // in order to pause it when endTime is reached.
+      if (event.target.currentTime &gt; endTime)
+        event.target.pause();
+    });
+    function playSound(id) {
+      // Plays the sound corresponding to the cue with id equal
+      // to the one passed as a parameter. We set the endTime var
+      // and position the audio currentTime at the start time
+      // of the sound
+      var cue = track.getCueById(id);
+      audio.currentTime = cue.startTime;
+      endTime = cue.endTime;
+      audio.play();
+    };
+    // create listeners for all buttons
+    var buttons = document.querySelectorAll(&quot;button.playSound&quot;);
+    for(var i=; i &lt; buttons.length; i++) { 
+      buttons[i].addEventListener(&quot;click&quot;, function(e) {
+        playSound(this.id);
+      });
+    }
+  });
+};
+</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -3591,28 +3585,27 @@ of this demo. You’ll need a valid Google API key in order to remove these mess
 
 <h4>Example of a cue content from this demonstration:</h4>
 
-<pre>1. {&quot;lat&quot;:37.4219276, &quot;lng&quot;:-122.088218, &quot;t&quot;:1331363000}</pre>
+<pre>{&quot;lat&quot;:37.4219276, &quot;lng&quot;:-122.088218, &quot;t&quot;:1331363000}</pre>
 
 <h4>Cue events and cue content:</h4>
 
 <p>We can acquire a cue DOM object using the techniques we have seen
 previously, or by using the new HTML5 TextTrack getCueById() method.</p>
 
-<pre>1. var videoElement = document.querySelector(&quot;#myvideo&quot;);
-2. var textTracks = videoElement.textTracks; // one for each track element
-3. var textTrack = textTracks[0]; // corresponds to the first track element
-4. // Get a cue with ID=&quot;wikipedia&quot;
-5. var cue = textTrack.getCueById(&quot;Wikipedia&quot;);</pre>
+<pre>var videoElement = document.querySelector(&quot;#myvideo&quot;);
+var textTracks = videoElement.textTracks; // one for each track element
+var textTrack = textTracks[0]; // corresponds to the first track element
+// Get a cue with ID=&quot;wikipedia&quot;
+var cue = textTrack.getCueById(&quot;Wikipedia&quot;);</pre>
 
 <h4>And once we have a cue object, it is possible to add event listeners to it:</h4>
 
-<pre>1. cue.onenter = function(){
-2.    // display something, play a sound, update any DOM element...
-3. };
-4.
-5. cue.onexit = function(){
-6.    // do something else
-7. };</pre>
+<pre>cue.onenter = function(){
+  // display something, play a sound, update any DOM element...
+};
+cue.onexit = function(){
+  // do something else
+};</pre>
 
 <p>If the getCueById method is not implemented (this is the case in some
 browsers), we use the @<span class="citation"
@@ -3654,23 +3647,23 @@ example at JSBin</a></p>
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;title&gt;Example syncing element of the document with video metadata in webVTT file&lt;/title&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;Example syncing element of the document with video metadata in webVTT file&lt;/title&gt;
 &lt;/head&gt;
 &lt;body &gt;
-&lt;main&gt;
-  &lt;video id=&quot;myVideo&quot; controls crossorigin=&quot;anonymous&quot; &gt;
-    &lt;source src=&quot;https://mainline.i3s.unice.fr/mooc/samuraiPizzacat.mp4&quot;
-      type=&quot;video/mp4&quot;&gt;
-      ...
-    &lt;/source&gt;
-    &lt;track label=&quot;urls track&quot;
-      src=&quot;https://...../SamuraiPizzaCat-metadata.vtt&quot;
-      kind=&quot;metadata&quot; &gt;
-    &lt;/track&gt;
-  &lt;/video&gt;
-  &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
-&lt;/main&gt;
+  &lt;main&gt;
+    &lt;video id=&quot;myVideo&quot; controls crossorigin=&quot;anonymous&quot; &gt;
+      &lt;source src=&quot;https://mainline.i3s.unice.fr/mooc/samuraiPizzacat.mp4&quot;
+        type=&quot;video/mp4&quot;&gt;
+        ...
+      &lt;/source&gt;
+      &lt;track label=&quot;urls track&quot;
+        src=&quot;https://...../SamuraiPizzaCat-metadata.vtt&quot;
+        kind=&quot;metadata&quot; &gt;
+      &lt;/track&gt;
+    &lt;/video&gt;
+    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+  &lt;/main&gt;
 &lt;aside&gt;
   &lt;iframe sandbox=&quot;allow-same-origin&quot; id=&quot;myIframe&quot; &gt; &lt;/iframe&gt;
 &lt;/aside&gt;
@@ -3686,81 +3679,68 @@ example at JSBin</a></p>
   <summary>JavaScript code!</summary>
 
 <pre>window.onload = function() {
-    var videoElement = document.querySelector(&quot;#myVideo&quot;);
-    var myIFrame = document.querySelector(&quot;#myIframe&quot;);
-    var currentURLSpan = document.querySelector(&quot;#currentURL&quot;);
-
-    var textTracks = videoElement.textTracks; // one for each track element
-    var textTrack = textTracks[0]; // corresponds to the first track element
-   
-    // change mode so we can use the track
-    textTrack.mode = &quot;hidden&quot;;
-    // Default position on the google map
-    var centerpos = new google.maps.LatLng(48.579400,7.7519);
- 
-    // default options for the google map
-    var optionsGmaps = {
-       center:centerpos,
-       navigationControlOptions: {style:
-                 google.maps.NavigationControlStyle.SMALL},
-       mapTypeId: google.maps.MapTypeId.ROADMAP,
-       zoom: 15
-    };
- 
-    // Init map object
-    var map = new google.maps.Map(document.getElementById(&quot;map&quot;),
-                                  optionsGmaps);
- 
-    // cue change listener, this is where the synchronization between
-    // the HTML document and the video is done
-    textTrack.oncuechange = function (){
-       // we assume that we have no overlapping cues
-       var cue = this.activeCues[0];
-       if(cue === undefined) return;
-
-       // get cue content as a JavaScript object
-       var cueContentJSON = JSON.parse(cue.text);
-
-       // do different things depending on the type of sync (wikipedia, gmap)
-       switch(cueContentJSON.type) {
-         case&#39;WikipediaPage&#39;:
-            var myURL = cueContentJSON.url;
-            var myLink = &quot;&lt;a href=&quot;&quot; + myURL + &quot;&quot;&gt;&quot; + myURL + &quot;&lt;/a&gt;&quot;;
-            currentURLSpan.innerHTML = myLink;
-
-            myIFrame.src = myURL; // assign url to src property
-            break;
-         case &#39;LongLat&#39;:
-            drawPosition(cueContentJSON.long, cueContentJSON.lat);
-            break;
-       }
-   };
- 
-   function drawPosition(long, lat) {
-      // Make new object LatLng for Google Maps
-      var latlng = new google.maps.LatLng(lat, long);
- 
-      // Add a marker at position
-      var marker = new google.maps.Marker({
-          position: latlng,
-          map: map,
-          title:&quot;You are here&quot;
-      });
-
-      // center map on longitude and latitude
-      map.panTo(latlng);
-   }
+  var videoElement = document.querySelector(&quot;#myVideo&quot;);
+  var myIFrame = document.querySelector(&quot;#myIframe&quot;);
+  var currentURLSpan = document.querySelector(&quot;#currentURL&quot;);
+  var textTracks = videoElement.textTracks; // one for each track element
+  var textTrack = textTracks[0]; // corresponds to the first track element
+  // change mode so we can use the track
+  textTrack.mode = &quot;hidden&quot;;
+  // Default position on the google map
+  var centerpos = new google.maps.LatLng(48.579400,7.7519);
+  // default options for the google map
+  var optionsGmaps = {
+    center:centerpos,
+    navigationControlOptions: {style:
+      google.maps.NavigationControlStyle.SMALL},
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    zoom: 15
+  };
+  // Init map object
+  var map = new google.maps.Map(document.getElementById(&quot;map&quot;),
+    optionsGmaps);
+  // cue change listener, this is where the synchronization between
+  // the HTML document and the video is done
+  textTrack.oncuechange = function (){
+    // we assume that we have no overlapping cues
+    var cue = this.activeCues[0];
+    if(cue === undefined) return;
+    // get cue content as a JavaScript object
+    var cueContentJSON = JSON.parse(cue.text);
+    // do different things depending on the type of sync (wikipedia, gmap)
+    switch(cueContentJSON.type) {
+      case&#39;WikipediaPage&#39;:
+        var myURL = cueContentJSON.url;
+        var myLink = &quot;&lt;a href=&quot;&quot; + myURL + &quot;&quot;&gt;&quot; + myURL + &quot;&lt;/a&gt;&quot;;
+        currentURLSpan.innerHTML = myLink;
+        myIFrame.src = myURL; // assign url to src property
+        break;
+      case &#39;LongLat&#39;:
+        drawPosition(cueContentJSON.long, cueContentJSON.lat);
+        break;
+    }
+  };
+  function drawPosition(long, lat) {
+    // Make new object LatLng for Google Maps
+    var latlng = new google.maps.LatLng(lat, long);
+    // Add a marker at position
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title:&quot;You are here&quot;
+    });
+    // center map on longitude and latitude
+    map.panTo(latlng);
+  }
 };</pre>
 
 </details>
 
-<p>All the critical work is done by the cuechange event
-listener, <i>lines 27-50</i>. We have only the one track, so we set its
-mode to “hidden” (<i>line 10</i>)  in order to be sure that it will be
-loaded, and that playing the video will fire cuechange events on it. The
-rest is just Google map code and classic DOM manipulation for updating
-HTML content (a span that will display the current URL, <i>line
-42</i>).</p>
+<p>All the critical work is done by the cuechange event listener, <i>lines 27-50</i>. We 
+have only the one track, so we set its mode to “hidden” (<i>line 10</i>)  in order to be 
+sure that it will be loaded, and that playing the video will fire cuechange events on it. 
+The rest is just Google map code and classic DOM manipulation for updating HTML content 
+(a span that will display the current URL, <i>line 42</i>).</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch1-5">1.5 The Web Audio API</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -3876,7 +3856,7 @@ add an audio or video player to an HTML document, using the
 
 <h4>For example:</h4>
 
-<pre>1. &lt;audio src=&quot;https://mainline.i3s.unice.fr/mooc/LaSueur.mp3&quot; controls&gt;</pre>
+<pre>&lt;audio src=&quot;https://mainline.i3s.unice.fr/mooc/LaSueur.mp3&quot; controls&gt;</pre>
 
 <p>… render like this in your document:</p>
 
@@ -3885,7 +3865,7 @@ add an audio or video player to an HTML document, using the
 <ol type="1">
   <li>initiates a network request to stream the content,</li>
   <li>deals with decoding/streaming/buffering the incoming data,</li>
-  <li>renders audio controls,</li>
+  <li>renders audio controls, and finally,</li>
   <li>updates the progress indicator, time, etc.</li>
 </ol>
 
@@ -4191,19 +4171,18 @@ JSBin</a></p>
 
 <h4>HTML:</h4>
 
-<pre>1. &lt;audio id=&quot;player&quot; controls crossorigin=&quot;anonymous&quot; loop&gt;
-2.    &lt;source src=&quot;https://mainline.i3s.unice.fr/mooc/guitarRiff1.mp3&quot;&gt;
-3.    Your browser does not support the audio tag.
-4. &lt;/audio&gt;</pre>
+<pre>&lt;audio id=&quot;player&quot; controls crossorigin=&quot;anonymous&quot; loop&gt;
+  &lt;source src=&quot;https://mainline.i3s.unice.fr/mooc/guitarRiff1.mp3&quot;&gt;
+    Your browser does not support the audio tag.
+&lt;/audio&gt;</pre>
 
 <h4>JavaScript:</h4>
 
-<pre>1. var ctx = window.AudioContext || window.webkitAudioContext;
-2. var context = new ctx();
-3.  
-4. var mediaElement = document.querySelector(&#39;#player&#39;);
-5. var sourceNode = context.createMediaElementSource(mediaElement);
-6. sourceNode.connect(context.destination); // connect to the speakers</pre>
+<pre>var ctx = window.AudioContext || window.webkitAudioContext;
+var context = new ctx();
+var mediaElement = document.querySelector(&#39;#player&#39;);
+var sourceNode = context.createMediaElementSource(mediaElement);
+sourceNode.connect(context.destination); // connect to the speakers</pre>
 
 <p><b>The MediaElementSource node is built</b>
 using context.createMediaElementSource(elem), where elem is
@@ -4254,13 +4233,10 @@ JSBin</a>, or try it in your browser:</p>
 <pre>/* Gain Node */
 var gainExample = document.querySelector(&#39;#gainExample&#39;);
 var gainSlider = document.querySelector(&#39;#gainSlider&#39;);
- 
 var gainMediaElementSource = audioContext.createMediaElementSource(gainExample);
 var gainNode = audioContext.createGain();
- 
 gainMediaElementSource.connect(gainNode);
 gainNode.connect(audioContext.destination);
-  
 gainSlider.oninput = function(evt){
 gainNode.gain.value = evt.target.value;
 };</pre>
@@ -4299,15 +4275,12 @@ JSBin,</a> or try it in your browser:</p>
 <pre>// the audio element
 playerPanner = document.querySelector(&#39;#pannerPlayer&#39;);
 pannerSlider = document.querySelector(&#39;#pannerSlider&#39;);
- 
 // create nodes
 var source = audioContext.createMediaElementSource(playerPanner);
 pannerNode = audioContext.createStereoPanner();
-
 // connect nodes together
 source.connect(pannerNode);
 pannerNode.connect(audioContext.destination);
- 
 // input listener on the gain slider
 pannerSlider.oninput = function(evt) {
   pannerNode.pan.value = evt.target.value;
@@ -4470,24 +4443,24 @@ loadImpulse(impulseURL, function() {
 });
 ...
 function loadImpulse(url, callback) {
-   ajaxRequest = new XMLHttpRequest();
-   ajaxRequest.open(&#39;GET&#39;, url, true);
-   ajaxRequest.responseType = &#39;arraybuffer&#39;; // for binary transfer
-   ajaxRequest.onload = function() {
-    // The impulse has been loaded
-    var impulseData = ajaxRequest.response;
-    // let&#39;s decode it.
-    audioContext.decodeAudioData(impulseData, function(buffer) {
-      // The impulse has been decoded
-      decodedImpulse = buffer;
-      // Let&#39;s call the callback function, we&#39;re done!
-      callback();
-    });
-  };
-  ajaxRequest.onerror = function(e) {
-    console.log(&quot;Error with loading audio data&quot; + e.err);
-  };
-  ajaxRequest.send();
+  ajaxRequest = new XMLHttpRequest();
+  ajaxRequest.open(&#39;GET&#39;, url, true);
+  ajaxRequest.responseType = &#39;arraybuffer&#39;; // for binary transfer
+  ajaxRequest.onload = function() {
+    // The impulse has been loaded
+    var impulseData = ajaxRequest.response;
+    // let&#39;s decode it.
+    audioContext.decodeAudioData(impulseData, function(buffer) {
+      // The impulse has been decoded
+      decodedImpulse = buffer;
+      // Let&#39;s call the callback function, we&#39;re done!
+      callback();
+    });
+  };
+  ajaxRequest.onerror = function(e) {
+    console.log(&quot;Error with loading audio data&quot; + e.err);
+  };
+  ajaxRequest.send();
 }</pre>
 
 </details>
@@ -4591,14 +4564,14 @@ with the Chrome WebAudio Inspector extension):</p>
 <details>
   <summary>HTML Code!</summary>
 
-<pre>1. &lt;audio src=&quot;https://mainline.i3s.unice.fr/mooc/guitarRiff1.mp3&quot;
-2.   id=&quot;compressorExample&quot; controls loop
-3.   crossorigin=&quot;anonymous&quot;&gt;&lt;/audio&gt;
-4. &lt;br&gt;
-5. &lt;label for=&quot;gainSlider1&quot;&gt;Gain&lt;/label&gt;
-6. &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;10&quot; step=&quot;0.01&quot;
-7.   value=&quot;8&quot; id=&quot;gainSlider1&quot; /&gt;
-8. &lt;button id=&quot;compressorButton&quot;&gt;Turn compressor On&lt;/button&gt;</pre>
+<pre>&lt;audio src=&quot;https://mainline.i3s.unice.fr/mooc/guitarRiff1.mp3&quot;
+  id=&quot;compressorExample&quot; controls loop
+  crossorigin=&quot;anonymous&quot;&gt;&lt;/audio&gt;
+&lt;br&gt;
+&lt;label for=&quot;gainSlider1&quot;&gt;Gain&lt;/label&gt;
+&lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;10&quot; step=&quot;0.01&quot;
+  value=&quot;8&quot; id=&quot;gainSlider1&quot; /&gt;
+&lt;button id=&quot;compressorButton&quot;&gt;Turn compressor On&lt;/button&gt;</pre>
 
 </details>
 
@@ -4628,35 +4601,34 @@ window.onload = function() {
     gainNode1.gain.value = evt.target.value;
   };
   compressorButton.onclick = function(evt) {
-     if(compressorOn) {
-        // disconnect the compressor and make a
-        // direct route from gain to destination
-        compressorNode.disconnect(audioContext.destination);
-        gainNode1.disconnect(compressorNode);
-        gainNode1.connect(audioContext.destination);
-        compressorButton.innerHTML=&quot;Turn compressor: On&quot;;
-     } else {
-        // compressor was off, we connect the gain to the compressor
-        // and the compressor to the destination
-        gainNode1.disconnect(audioContext.destination);
-        gainNode1.connect(compressorNode);
-        compressorNode.connect(audioContext.destination);
-        compressorButton.innerHTML=&quot;Turn compressor: Off&quot;;
-     }
-     compressorOn = !compressorOn;
-   };
+    if(compressorOn) {
+      // disconnect the compressor and make a
+      // direct route from gain to destination
+      compressorNode.disconnect(audioContext.destination);
+      gainNode1.disconnect(compressorNode);
+      gainNode1.connect(audioContext.destination);
+      compressorButton.innerHTML=&quot;Turn compressor: On&quot;;
+    } else {
+      // compressor was off, we connect the gain to the compressor
+      // and the compressor to the destination
+      gainNode1.disconnect(audioContext.destination);
+      gainNode1.connect(compressorNode);
+      compressorNode.connect(audioContext.destination);
+      compressorButton.innerHTML=&quot;Turn compressor: Off&quot;;
+    }
+    compressorOn = !compressorOn;
+  };
 };
 function buildAudioGraph() {
-   // create source and gain node
-   var gainMediaElementSource =
-      audioContext.createMediaElementSource(compressorExemple);
-   gainNode1 = audioContext.createGain();
-   gainNode1.gain.value = parseFloat(gainSlider1.value);
-
-   // do not connect it yet
-   compressorNode = audioContext.createDynamicsCompressor(); //  connect nodes together
-   gainMediaElementSource.connect(gainNode1);
-   gainNode1.connect(audioContext.destination);
+  // create source and gain node
+  var gainMediaElementSource =
+    audioContext.createMediaElementSource(compressorExemple);
+  gainNode1 = audioContext.createGain();
+  gainNode1.gain.value = parseFloat(gainSlider1.value);
+  // do not connect it yet
+  compressorNode = audioContext.createDynamicsCompressor(); //  connect nodes together
+  gainMediaElementSource.connect(gainNode1);
+  gainNode1.connect(audioContext.destination);
 }</pre>
 
 </details>
@@ -4712,34 +4684,34 @@ range of frequency values.</p>
 <pre>&lt;h2&gt;Equalizer made with the Web Audio API&lt;/h2&gt;
 &lt;div class=&quot;eq&quot;&gt;
   &lt;audio id=&quot;player&quot; controls crossorigin=&quot;anonymous&quot; loop&gt;
-     &lt;source src=&quot;https://mainline.i3s.unice.fr/mooc/drums.mp3&quot;&gt;
-     Your browser does not support the audio tag.
+    &lt;source src=&quot;https://mainline.i3s.unice.fr/mooc/drums.mp3&quot;&gt;
+      Your browser does not support the audio tag.
   &lt;/audio&gt;
   &lt;div class=&quot;controls&quot;&gt;
     &lt;label&gt;60Hz&lt;/label&gt;
     &lt;input type=&quot;range&quot;
-           value=&quot;0&quot; step=&quot;1&quot; min=&quot;-30&quot; max=&quot;30&quot;
-           oninput=&quot;changeGain(this.value, 0);&quot;&gt;
+      value=&quot;0&quot; step=&quot;1&quot; min=&quot;-30&quot; max=&quot;30&quot;
+      oninput=&quot;changeGain(this.value, 0);&quot;&gt;
     &lt;/input&gt;
     &lt;output id=&quot;gain0&quot;&gt;0 dB&lt;/output&gt;
   &lt;/div&gt;
   &lt;div class=&quot;controls&quot;&gt;
-   &lt;label&gt;170Hz&lt;/label&gt;
-   &lt;input type=&quot;range&quot;
-          value=&quot;0&quot; step=&quot;1&quot; min=&quot;-30&quot; max=&quot;30&quot;
-          oninput=&quot;changeGain(this.value, 1);&quot;&gt;
-   &lt;/input&gt;
-   &lt;output id=&quot;gain1&quot;&gt;0 dB&lt;/output&gt;
+    &lt;label&gt;170Hz&lt;/label&gt;
+    &lt;input type=&quot;range&quot;
+      value=&quot;0&quot; step=&quot;1&quot; min=&quot;-30&quot; max=&quot;30&quot;
+      oninput=&quot;changeGain(this.value, 1);&quot;&gt;
+    &lt;/input&gt;
+    &lt;output id=&quot;gain1&quot;&gt;0 dB&lt;/output&gt;
   &lt;/div&gt;
   &lt;div class=&quot;controls&quot;&gt;
     &lt;label&gt;350Hz&lt;/label&gt;
     &lt;input type=&quot;range&quot;
-           value=&quot;0&quot; step=&quot;1&quot; min=&quot;-30&quot; max=&quot;30&quot;
-           oninput=&quot;changeGain(this.value, 2);&quot;&gt;
+      value=&quot;0&quot; step=&quot;1&quot; min=&quot;-30&quot; max=&quot;30&quot;
+      oninput=&quot;changeGain(this.value, 2);&quot;&gt;
     &lt;/input&gt;
     &lt;output id=&quot;gain2&quot;&gt;0 dB&lt;/output&gt;
   &lt;/div&gt;
-...
+  ...
 &lt;/div&gt;</pre>
 
 </details>
@@ -4750,29 +4722,22 @@ range of frequency values.</p>
   <summary>JavaScript code!</summary>
 
 <pre>//Builds an equalizer with multiple biquad filters
- 
 var ctx = window.AudioContext || window.webkitAudioContext;
 var context = new ctx();
- 
 var mediaElement = document.getElementById(&#39;player&#39;);
 var sourceNode = context.createMediaElementSource(mediaElement);
- 
 // Creates the equalizer, comprised of a set of biquad filters
- 
 var filters = [];
- 
 // Set filters
 [60, 170, 350, 1000, 3500, 10000].forEach(function(freq, i) {
-   var eq = context.createBiquadFilter();
-   eq.frequency.value = freq;
-   eq.type = &quot;peaking&quot;;
-   eq.gain.value = 0;
-   filters.push(eq);
+  var eq = context.createBiquadFilter();
+  eq.frequency.value = freq;
+  eq.type = &quot;peaking&quot;;
+  eq.gain.value = 0;
+  filters.push(eq);
 });
- 
 // Connects filters in sequence
 sourceNode.connect(filters[0]);
-
 for(var i = 0; i &lt; filters.length - 1; i++) {
    filters[i].connect(filters[i+1]);
 }
@@ -4806,9 +4771,9 @@ with the Chrome WebAudio Inspector extension):</p>
 <p>We cloned the previous example and simply changed
 the &lt;audio&gt;…&lt;/audio&gt; part of the HTML code by:</p>
 
-<pre>1. &lt;video id=&quot;player&quot; width=&quot;320&quot; height=&quot;240&quot; controls crossOrigin=&quot;anonymous&quot;&gt;
-2.   &lt;source src=&quot;https://mainline.i3s.unice.fr/mooc/elephants-dream-medium.mp4&quot; &gt;
-3. &lt;/video&gt;</pre>
+<pre>&lt;video id=&quot;player&quot; width=&quot;320&quot; height=&quot;240&quot; controls crossOrigin=&quot;anonymous&quot;&gt;
+  &lt;source src=&quot;https://mainline.i3s.unice.fr/mooc/elephants-dream-medium.mp4&quot; &gt;
+&lt;/video&gt;</pre>
 
 <p>And the example works in the same way, but this time with a video.
 Try moving the sliders to change the sound!</p>
@@ -4945,17 +4910,17 @@ the audio graph, and finally run the animation loop.</p>
   <summary>JavaScript code!</summary>
 
 <pre>window.onload = function() {
-   // get the audio context
-   audioContext= ...;
-   // get the canvas, its graphic context...
-   canvas = document.querySelector(&quot;#myCanvas&quot;);
-   width = canvas.width;
-   height = canvas.height;
-   canvasContext = canvas.getContext(&#39;2d&#39;);
-   // Build the audio graph with an analyser node at the end
-   buildAudioGraph();
-   // starts the animation at 60 frames/s
-   requestAnimationFrame(visualize);
+  // get the audio context
+  audioContext= ...;
+  // get the canvas, its graphic context...
+  canvas = document.querySelector(&quot;#myCanvas&quot;);
+  width = canvas.width;
+  height = canvas.height;
+  canvasContext = canvas.getContext(&#39;2d&#39;);
+  // Build the audio graph with an analyser node at the end
+  buildAudioGraph();
+  // starts the animation at 60 frames/s
+  requestAnimationFrame(visualize);
 };</pre>
 
 </details>
@@ -4975,10 +4940,10 @@ Essentials and Best Practices course (Module 4).</p>
 
 <h4>HTML code:</h4>
 
-<pre>1. &lt;audio src=&quot;https://mainline.i3s.unice.fr/mooc/guitarRiff1.mp3&quot;
-2.           id=&quot;player&quot; controls loop crossorigin=&quot;anonymous&quot;&gt;
-3. &lt;/audio&gt;
-4. &lt;canvas id=&quot;myCanvas&quot; width=300 height=100&gt;&lt;/canvas&gt;</pre>
+<pre>&lt;audio src=&quot;https://mainline.i3s.unice.fr/mooc/guitarRiff1.mp3&quot;
+  id=&quot;player&quot; controls loop crossorigin=&quot;anonymous&quot;&gt;
+&lt;/audio&gt;
+&lt;canvas id=&quot;myCanvas&quot; width=300 height=100&gt;&lt;/canvas&gt;</pre>
 
 <h4>JavaScript code:</h4>
 
@@ -4986,17 +4951,17 @@ Essentials and Best Practices course (Module 4).</p>
   <summary>JavaScript code!</summary>
 
 <pre>function buildAudioGraph() {
-   var mediaElement = document.getElementById(&#39;player&#39;);
-   var sourceNode = audioContext.createMediaElementSource(mediaElement);
-   // Create an analyser node
-   analyser = audioContext.createAnalyser();
-   // set visualizer options, for lower precision change 1024 to 512,
-   // 256, 128, 64 etc. bufferLength will be equal to fftSize/2
-   analyser.fftSize = 1024;
-   bufferLength = analyser.frequencyBinCount;
-   dataArray = new Uint8Array(bufferLength);
-   sourceNode.connect(analyser);
-   analyser.connect(audioContext.destination);
+  var mediaElement = document.getElementById(&#39;player&#39;);
+  var sourceNode = audioContext.createMediaElementSource(mediaElement);
+  // Create an analyser node
+  analyser = audioContext.createAnalyser();
+  // set visualizer options, for lower precision change 1024 to 512,
+  // 256, 128, 64 etc. bufferLength will be equal to fftSize/2
+  analyser.fftSize = 1024;
+  bufferLength = analyser.frequencyBinCount;
+  dataArray = new Uint8Array(bufferLength);
+  sourceNode.connect(analyser);
+  analyser.connect(audioContext.destination);
 }</pre>
 
 </details>
@@ -5042,51 +5007,40 @@ constants, to control the analysis during play-back.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1. function visualize() {
-2.   // 1 - clear the canvas
-3.   // like this: canvasContext.clearRect(0, 0, width, height);
-4. 
-5.   // Or use rgba fill to give a slight blur effect
-6.   canvasContext.fillStyle = &#39;rgba(0, 0, 0, 0.5)&#39;;
-7.   canvasContext.fillRect(0, 0, width, height);
-8. 
-9.   // 2 - Get the analyser data - for waveforms we need time domain data
-10.  analyser.getByteTimeDomainData(dataArray);
-11.  
-12.  // 3 - draws the waveform
-13.  canvasContext.lineWidth = 2;
-14.  canvasContext.strokeStyle = &#39;lightBlue&#39;;
-15. 
-16.  // the waveform is in one single path, first let&#39;s
-17.  // clear any previous path that could be in the buffer
-18.  canvasContext.beginPath();
-19.
-20.  var sliceWidth = width / bufferLength;
-21.  var x = 0;
-22. 
-23.  for(var i = 0; i &lt; bufferLength; i++) {
-24.    // dataArray values are between 0 and 255,
-25.    // normalize v, now between 0 and 1
-26.    var v = dataArray[i] / 255;
-27.    // y will be in [0, canvas height], in pixels
-28.    var y = v * height;
-29. 
-30.    if(i === 0) {
-31.      canvasContext.moveTo(x, y);
-32.    } else {
-33.      canvasContext.lineTo(x, y);
-34.    }
-35. 
-36.    x += sliceWidth;
-37.  }
-38.  
-39.  canvasContext.lineTo(canvas.width, canvas.height/2);
-40. 
-41.  // draw the path at once
-42.  canvasContext.stroke();
-43.
-44.  // once again call the visualize function at 60 frames/s
-45.  requestAnimationFrame(visualize)Explanations:</pre>
+<pre>function visualize() {
+  // 1 - clear the canvas
+  // like this: canvasContext.clearRect(0, 0, width, height);
+  // Or use rgba fill to give a slight blur effect
+  canvasContext.fillStyle = &#39;rgba(0, 0, 0, 0.5)&#39;;
+  canvasContext.fillRect(0, 0, width, height); 
+  // 2 - Get the analyser data - for waveforms we need time domain data
+  analyser.getByteTimeDomainData(dataArray);
+  // 3 - draws the waveform
+  canvasContext.lineWidth = 2;
+  canvasContext.strokeStyle = &#39;lightBlue&#39;;
+  // the waveform is in one single path, first let&#39;s
+  // clear any previous path that could be in the buffer
+  canvasContext.beginPath();
+  var sliceWidth = width / bufferLength;
+  var x = 0;
+  for(var i = 0; i &lt; bufferLength; i++) {
+    // dataArray values are between 0 and 255,
+    // normalize v, now between 0 and 1
+    var v = dataArray[i] / 255;
+    // y will be in [0, canvas height], in pixels
+    var y = v * height;
+    if(i === 0) {
+      canvasContext.moveTo(x, y);
+    } else {
+      canvasContext.lineTo(x, y);
+    }
+    x += sliceWidth;
+  }
+  canvasContext.lineTo(canvas.width, canvas.height/2);
+  // draw the path at once
+  canvasContext.stroke();
+  // once again call the visualize function at 60 frames/s
+  requestAnimationFrame(visualize)Explanations:</pre>
 
 </details>
 
@@ -5293,65 +5247,55 @@ results with the Chrome WebAudio Inspector extension):</p>
   <summary>JavaScript code!</summary>
 
 <pre>function buildAudioGraph() {
-   var mediaElement = document.getElementById(&#39;player&#39;);
-      var sourceNode = audioContext.createMediaElementSource(mediaElement);
-
-   // Create an analyser node
+  var mediaElement = document.getElementById(&#39;player&#39;);
+  var sourceNode = audioContext.createMediaElementSource(mediaElement);
+  // Create an analyser node
   analyser = audioContext.createAnalyser();
-
   // Try changing for lower values: 512, 256, 128, 64...
   analyser.fftSize = 1024;
   bufferLength = analyser.frequencyBinCount;
   dataArray = new Uint8Array(bufferLength);
-
   // Create the equalizer, which comprises a set of biquad filters
   // Set filters
   [60, 170, 350, 1000, 3500, 10000].forEach(function(freq, i) {
-     var eq = audioContext.createBiquadFilter();
-     eq.frequency.value = freq;
-     eq.type = &quot;peaking&quot;;
-     eq.gain.value = 0;
-     filters.push(eq);
-   });
- 
-   // Connect filters in sequence
-   sourceNode.connect(filters[0]);
-   for(var i = 0; i &lt; filters.length - 1; i++) {
-     filters[i].connect(filters[i+1]);
-   }
-
-   // Master volume is a gain node
-   masterGain = audioContext.createGain();
-   masterGain.value = 1;
-
-   // Connect the last filter to the speakers
-   filters[filters.length - 1].connect(masterGain);
-
-   // for stereo balancing, split the signal
-   stereoPanner = audioContext.createStereoPanner();
-   // connect master volume output to the stereo panner
-   masterGain.connect(stereoPanner);
-
-   // Connect the stereo panner to analyser and analyser to    destination
-   stereoPanner.connect(analyser);
-   analyser.connect(audioContext.destination);
+    var eq = audioContext.createBiquadFilter();
+    eq.frequency.value = freq;
+    eq.type = &quot;peaking&quot;;
+    eq.gain.value = 0;
+    filters.push(eq);
+  });
+  // Connect filters in sequence
+  sourceNode.connect(filters[0]);
+  for(var i = 0; i &lt; filters.length - 1; i++) {
+    filters[i].connect(filters[i+1]);
+  }
+  // Master volume is a gain node
+  masterGain = audioContext.createGain();
+  masterGain.value = 1;
+  // Connect the last filter to the speakers
+  filters[filters.length - 1].connect(masterGain);
+  // for stereo balancing, split the signal
+  stereoPanner = audioContext.createStereoPanner();
+  // connect master volume output to the stereo panner
+  masterGain.connect(stereoPanner);
+  // Connect the stereo panner to analyser and analyser to destination
+  stereoPanner.connect(analyser);
+  analyser.connect(audioContext.destination);
 }</pre>
 
 </details>
-
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch1-5-7">1.5.7 Volume Meters</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p><b>Important note:</b> the volume meter implementations below use
-rough approximations and cannot be taken as the most accurate way to
-compute an exact volume. See at the end of the page for some extra
-explanations, as well as links to better (and more complex)
+<p><b>Important note:</b> the volume meter implementations below use rough approximations 
+and cannot be taken as the most accurate way to compute an exact volume. See at the end of 
+the page for some extra explanations, as well as links to better (and more complex)
 implementations.</p>
 
 <p>Example #1: add a single volume meter to the audio player</p>
 
-<p><a href="https://jsbin.com/kuciset/edit?html,css,js,output" target="_blank" rel="noopener noreferrer">Try it at
-JSBin</a>:</p>
+<p><a href="https://jsbin.com/kuciset/edit?html,css,js,output" target="_blank" 
+rel="noopener noreferrer">Try it at JSBin</a>:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 73. animated volume meter (125) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -5361,10 +5305,9 @@ JSBin</a>:</p>
   title="Single volume meter that dances with the music"
   alt="Single volume meter that dances with the music." />
 
-<p>In order to have a “volume meter” which traces upward/downward with
-the intensity of the music, we will compute the average intensity of our
-frequency ranges, and draw this value using a nice gradient-filled
-rectangle.</p>
+<p>In order to have a “volume meter” which traces upward/downward with the intensity of 
+the music, we will compute the average intensity of our frequency ranges, and draw this 
+value using a nice gradient-filled rectangle.</p>
 
 <h4>Here are the two functions we will call from the animation loop:</h4>
 
@@ -5498,27 +5441,21 @@ adjustment of the left/right balance with a slider.</p>
 <pre>function buildAudioGraph() {
   var mediaElement = document.getElementById(&#39;player&#39;);
   var sourceNode = audioContext.createMediaElementSource(mediaElement);
-
   // connect the source node to a stereo panner
   stereoPanner = audioContext.createStereoPanner();
   sourceNode.connect(stereoPanner);
-
   // Create an analyser node for the waveform
   analyser = audioContext.createAnalyser();
-
   // Use FFT value adapted to waveform drawing
   analyser.fftSize = 1024;
   bufferLength = analyser.frequencyBinCount;
   dataArray = new Uint8Array(bufferLength);
-
   // Connect the stereo panner to the analyser
   stereoPanner.connect(analyser);
    // and the analyser to the destination
   analyser.connect(audioContext.destination);
-
   // End of route 1.  We start another route from the
   // stereoPanner node, with two analysers for the meters
-
   // Two analysers for the stereo volume meters
   // Here we use a small FFT value as we&#39;re gonna work with
   // frequency analysis data
@@ -5526,23 +5463,18 @@ adjustment of the left/right balance with a slider.</p>
   analyserLeft.fftSize = 256;
   bufferLengthLeft = analyserLeft.frequencyBinCount;
   dataArrayLeft = new Uint8Array(bufferLengthLeft);
-
   analyserRight = audioContext.createAnalyser();
   analyserRight.fftSize = 256;
   bufferLengthRight = analyserRight.frequencyBinCount;
   dataArrayRight = new Uint8Array(bufferLengthRight);
- 
   // Split the signal
   splitter = audioContext.createChannelSplitter();
-
   // Connect the stereo panner to the splitter node
   stereoPanner.connect(splitter);
-
   // Connect each of the outputs from the splitter to
   // the analysers
   splitter.connect(analyserLeft,0,0);
   splitter.connect(analyserRight,1,0);
-
   // No need to connect these analysers to something, the sound
   // is already connected through the route that goes through
   // the analyser used for the waveform
@@ -5557,24 +5489,18 @@ adjustment of the left/right balance with a slider.</p>
   
 <pre>function drawVolumeMeters() {
   canvasContext.save();
-
   // set the fill style to a nice gradient
   canvasContext.fillStyle=gradient;
-
   // left channel
   analyserLeft.getByteFrequencyData(dataArrayLeft);
   var averageLeft = getAverageVolume(dataArrayLeft);
-
   // draw the vertical meter for left channel
   canvasContext.fillRect(0,height-averageLeft,25,height);
-
   // right channel
   analyserRight.getByteFrequencyData(dataArrayRight);
   var averageRight = getAverageVolume(dataArrayRight);
-
   // draw the vertical meter for left channel
   canvasContext.fillRect(26,height-averageRight,25,height);
-
   canvasContext.restore();
 }</pre>
 
@@ -5758,7 +5684,7 @@ the audio graph.</p>
 
 <h4>HTML code extract:</h4>
 
-<pre>1. &lt;button id=&quot;playButton&quot; disabled=true&gt;Play sound&lt;/button&gt;</pre>
+<pre>&lt;button id=&quot;playButton&quot; disabled=true&gt;Play sound&lt;/button&gt;</pre>
 
 <h4>JavaScript source code:</h4>
 
@@ -5766,65 +5692,54 @@ the audio graph.</p>
   <summary>JavaScript code!</summary>
   
 <pre>var ctx;
- 
 var soundURL =
 &#39;https://mainline.i3s.unice.fr/mooc/shoot2.mp3&#39;;
 var decodedSound;
- 
 window.onload = function init() {
    // The page has been loaded
 
    // To make it work even on browsers like Safari, that still
    // do not recognize the non prefixed version of AudioContext
  var audioContext = window.AudioContext || window.webkitAudioContext;
- 
    ctx = new audioContext();
- 
    loadSoundUsingAjax(soundURL);
-
    // By default the button is disabled, it will be
    // clickable only when the sound sample will be loaded
    playButton.onclick = function(evt) {
       playSound(decodedSound);
    };
 };
- 
 function loadSoundUsingAjax(url) {
-   var request = new XMLHttpRequest();
-
-   request.open(&#39;GET&#39;, url, true);
-   // Important: we&#39;re loading binary data
-   request.responseType = &#39;arraybuffer&#39;;
- 
-   // Decode asynchronously
-   request.onload = function() {
-      console.log(&quot;Sound loaded&quot;);
-
-      // Let&#39;s decode it. This is also asynchronous
-      ctx.decodeAudioData(request.response,
-          function(buffer) { // success
-             console.log(&quot;Sound decoded&quot;);
-             decodedSound = buffer;    
-             // we enable the button
-             playButton.disabled = false;
-          },
-          function(e) { // error
-             console.log(&quot;error&quot;);
-          }
-      ); // end of decodeAudioData callback
-    };   // end of the onload callback
-
-    // Send the request. When the file will be loaded,
-    // the request.onload callback will be called (above)
-    request.send();
+  var request = new XMLHttpRequest();
+  request.open(&#39;GET&#39;, url, true);
+  // Important: we&#39;re loading binary data
+  request.responseType = &#39;arraybuffer&#39;;
+  // Decode asynchronously
+  request.onload = function() {
+    console.log(&quot;Sound loaded&quot;);
+    // Let&#39;s decode it. This is also asynchronous
+    ctx.decodeAudioData(request.response,
+      function(buffer) { // success
+        console.log(&quot;Sound decoded&quot;);
+        decodedSound = buffer;    
+        // we enable the button
+        playButton.disabled = false;
+      },
+      function(e) { // error
+        console.log(&quot;error&quot;);
+      }
+    ); // end of decodeAudioData callback
+  };   // end of the onload callback
+  // Send the request. When the file will be loaded,
+  // the request.onload callback will be called (above)
+  request.send();
 }
- 
 function playSound(buffer) {
-    // builds the audio graph, then start playing the source
-    var bufferSource = ctx.createBufferSource();
-    bufferSource.buffer = buffer;
-    bufferSource.connect(ctx.destination);
-    bufferSource.start(); // remember, you can start() a source only once!
+  // builds the audio graph, then start playing the source
+  var bufferSource = ctx.createBufferSource();
+  bufferSource.buffer = buffer;
+  bufferSource.connect(ctx.destination);
+  bufferSource.start(); // remember, you can start() a source only once!
 }</pre>
 
 </details>
@@ -5848,10 +5763,10 @@ and we need to be sure that all of them are loaded and decoded, using
 the code we presented in the earlier example will not work as is. We
 cannot call:</p>
 
-<pre>1. loadSoundSample(urlOfSound1);
-2. loadSoundSample(urlOfSound2);
-3. loadSoundSample(urlOfSound3);
-4. etc...</pre>
+<pre>loadSoundSample(urlOfSound1);
+loadSoundSample(urlOfSound2);
+loadSoundSample(urlOfSound3);
+etc...</pre>
 
 <p>… because we will never know exactly when all the sounds have
 finished being loaded and decoded. All these calls will run operations
@@ -5879,8 +5794,8 @@ JSBin that uses the BufferLoader utility</a>:</p>
 
 <h4>HTML code:</h4>
 
-<pre>1. &lt;button id=&quot;shot1Normal&quot; disabled=true&gt;Shot 1&lt;/button&gt;
-2. &lt;button id=&quot;shot2Normal&quot; disabled=true&gt;Shot 2&lt;/button&gt;</pre>
+<pre>&lt;button id=&quot;shot1Normal&quot; disabled=true&gt;Shot 1&lt;/button&gt;
+&lt;button id=&quot;shot2Normal&quot; disabled=true&gt;Shot 2&lt;/button&gt;</pre>
 
 <h4>JavaScript code extract (does not contain the BufferLoader utilitycode):</h4>
 
@@ -5888,20 +5803,16 @@ JSBin that uses the BufferLoader utility</a>:</p>
   <summary>JavaScript code!</summary>
 
 <pre>var listOfSoundSamplesURLs = [
-&#39;https://mainline.i3s.unice.fr/mooc/shoot1.mp3&#39;,
-&#39;https://mainline.i3s.unice.fr/mooc/shoot2.mp3&#39;
+  &#39;https://mainline.i3s.unice.fr/mooc/shoot1.mp3&#39;,
+  &#39;https://mainline.i3s.unice.fr/mooc/shoot2.mp3&#39;
 ];
- 
 window.onload = function init() {
   // To make it work even on browsers like Safari, that still
   // do not recognize the non prefixed version of AudioContext
- var audioContext = window.AudioContext || window.webkitAudioContext;
- 
+  var audioContext = window.AudioContext || window.webkitAudioContext;
   ctx = new audioContext();
-
   loadAllSoundSamples();
 };
- 
 function playSampleNormal(buffer){
   // builds the audio graph and play
   var bufferSource = ctx.createBufferSource();
@@ -5909,30 +5820,24 @@ function playSampleNormal(buffer){
   bufferSource.connect(ctx.destination);
   bufferSource.start();
 }
- 
- 
 function onSamplesDecoded(buffers){
-   console.log(&quot;all samples loaded and decoded&quot;);
-   // enables the buttons
-   shot1Normal.disabled=false;
-   shot2Normal.disabled=false;
-
-   // creates the click listeners on the buttons
-   shot1Normal.onclick = function(evt) {
-      playSampleNormal(buffers[0]);
-   };
-
-   shot2Normal.onclick = function(evt) {
-      playSampleNormal(buffers[1]);
-   };
+  console.log(&quot;all samples loaded and decoded&quot;);
+  // enables the buttons
+  shot1Normal.disabled=false;
+  shot2Normal.disabled=false;
+  // creates the click listeners on the buttons
+  shot1Normal.onclick = function(evt) {
+    playSampleNormal(buffers[0]);
+  };
+  shot2Normal.onclick = function(evt) {
+    playSampleNormal(buffers[1]);
+  };
 }
- 
 function loadAllSoundSamples() {
   // onSamplesDecoded will be called when all samples
   // have been loaded and decoded, and the decoded sample will
   // be its only parameter (see function above)
   bufferLoader = new BufferLoader(ctx, listOfSoundSamplesURLs,onSamplesDecoded);
-
   // starts loading and decoding the files
   bufferLoader.load();
 }</pre>
@@ -5990,25 +5895,22 @@ article on HTML5Rocks)</a>:</p>
   <summary>JavaScript code!</summary>
   
 <pre>function makeSource(buffer) {
-   // build graph source -&gt; gain -&gt; compressor -&gt; speakers
-   // We use a compressor at the end to cut the part of the signal
-   // that would make peaks
-   // create the nodes
-   var source = ctx.createBufferSource();
-   var compressor = ctx.createDynamicsCompressor();
-   var gain = ctx.createGain();
-
-   // set their properties
-   // Not all shots will have the same volume
-   gain.gain.value = 0.2 + Math.random();
-
-   source.buffer = buffer;
-
-   // Build the graph
-   source.connect(gain);
-  gain.connect(compressor);
+  // build graph source -&gt; gain -&gt; compressor -&gt; speakers
+  // We use a compressor at the end to cut the part of the signal
+  // that would make peaks
+  // create the nodes
+  var source = ctx.createBufferSource();
+  var compressor = ctx.createDynamicsCompressor();
+  var gain = ctx.createGain();
+  // set their properties
+  // Not all shots will have the same volume
+  gain.gain.value = 0.2 + Math.random();
+  source.buffer = buffer;
+  // Build the graph
+  source.connect(gain);
+  gain.connect(compressor);
   compressor.connect(ctx.destination);
-return source;
+  return source;
 }</pre>
 
 </details>
@@ -6459,31 +6361,29 @@ code.</p>
 
 <p>Source code extract:</p>
 
-<pre>1. var addStarToTheBody = function(){
-2.    document.body.innerHTML += &quot;*&quot;;
-3. };
-4.  
-5. //this will add one star to the document each 200ms (1/5s)
-6. setInterval(addStarToTheBody, 200);</pre>
+<pre>var addStarToTheBody = function(){
+  document.body.innerHTML += &quot;*&quot;;
+};
+// this will add one star to the document each 200ms (1/5s)
+setInterval(addStarToTheBody, 200);</pre>
 
 <p>WRONG:</p>
 
-<pre>1. setInterval(‘addStarToTheBody()’, 200);
-2. setInterval(‘document.body.innerHTML += “*”;’, 200);</pre>
+<pre>setInterval(‘addStarToTheBody()’, 200);
+setInterval(‘document.body.innerHTML += “*”;’, 200);</pre>
 
 <p>GOOD:</p>
 
-<pre>1. setInterval(function(){
-2.    document.body.innerHTML += “*”;
-3. }, 200);</pre>
+<pre>setInterval(function(){
+  document.body.innerHTML += “*”;
+}, 200);</pre>
 
 <p>or like we did in the example, with an external function.</p>
 
-<p>Reminder from the HTML5 Coding Essentials course: with setInterval -
-if we set the number of milliseconds at, say, 200, it will call our game
-loop function EACH 200ms, <u>even if the previous one is not yet
-finished</u>.  Because of this disadvantage, we might prefer to use
-another function, better suited to our goals.</p>
+<p>Reminder from the HTML5 Coding Essentials course: with setInterval - if we set the 
+number of milliseconds at, say, 200, it will call our game loop function EACH 200ms, 
+<u>even if the previous one is not yet finished</u>. Because of this disadvantage, we 
+might prefer to use another function, better suited to our goals.</p>
 
 <h4>Using setTimeout() instead of setInterval()</h4>
 
@@ -6491,24 +6391,26 @@ another function, better suited to our goals.</p>
   <li>Syntax: setTimeout(function, ms);</li>
 </ul>
 
-<p>The setTimeout function works like setInterval but with one little difference: it calls your function AFTER a given amount of time.</p>
+<p>The setTimeout function works like setInterval but with one little difference: it 
+calls your function AFTER a given amount of time.</p>
 
-<p><a href="https://jsbin.com/vuvitu/edit" target="_blank" rel="noopener noreferrer">Try an example at
-JSBin</a>: open the HTML, JavaScript and output tabs to see the code. This example does the same thing as the previous example by adding a “*” to the document every 200ms.</p>
+<p><a href="https://jsbin.com/vuvitu/edit" target="_blank" rel="noopener noreferrer">
+Try an example at JSBin</a>: open the HTML, JavaScript and output tabs to see the code. 
+This example does the same thing as the previous example by adding a “*” to the document 
+every 200ms.</p>
 
 <h4>Source code extract:</h4>
 
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1. var addStarToTheBody = function(){
-2.     document.body.innerHTML += &quot;*&quot;;
-3.     // calls again itself AFTER 200ms
-4.     setTimeout(addStarToTheBody, 200);
-5. };
-6.  
-7. // calls the function AFTER 200ms
-8. setTimeout(addStarToTheBody, 200);</pre>
+<pre>var addStarToTheBody = function(){
+  document.body.innerHTML += &quot;*&quot;;
+  // calls again itself AFTER 200ms
+  setTimeout(addStarToTheBody, 200);
+};
+// calls the function AFTER 200ms
+setTimeout(addStarToTheBody, 200);</pre>
 
 </details>
 
@@ -6552,14 +6454,13 @@ JSBin</a>.</p>
   <summary>JavaScript code!</summary>
 
 <pre>window.onload = function init() {
-   // called after the page is entirely loaded
-   requestAnimationFrame(mainloop);
+  // called after the page is entirely loaded
+  requestAnimationFrame(mainloop);
 };
 function mainloop(timestamp) {
-   document.body.innerHTML += &quot;*&quot;;
-
-   // call back itself every 60th of second
-   requestAnimationFrame(mainloop);
+  document.body.innerHTML += &quot;*&quot;;
+  // call back itself every 60th of second
+  requestAnimationFrame(mainloop);
 }</pre>
 
 </details>
@@ -6601,32 +6502,28 @@ files once it becomes too large to fit within one single file.</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  var GF = function(){
-2.  
-3.    var mainLoop = function(time){
-4.      //Main function, called each frame
-5.      requestAnimationFrame(mainLoop);
-6.    };
-7.  
-8.    var start = function(){
-9.      requestAnimationFrame(mainLoop);
-10.   };
-11. 
-12.   // Our GameFramework returns a public API visible from outside its scope
-13.   // Here we only expose the start method, under the &quot;start&quot; property name.
-14.   return {
-15.     start: start
-16.   };
-17. };</pre>
+<pre>var GF = function(){
+  var mainLoop = function(time){
+    //Main function, called each frame
+    requestAnimationFrame(mainLoop);
+  };
+  var start = function(){
+    requestAnimationFrame(mainLoop);
+  };
+  // Our GameFramework returns a public API visible from outside its scope
+  // Here we only expose the start method, under the &quot;start&quot; property name.
+  return {
+    start: start
+  };
+};</pre>
 
 </details>
 
 <h4>With this skeleton, it’s very easy to create a new game instance:</h4>
 
-<pre>1. var game = new GF();
-2.  
-3. // Launch the game, start the animation loop, etc.
-4. game.start();</pre>
+<pre>var game = new GF();
+// Launch the game, start the animation loop, etc.
+game.start();</pre>
 
 <h4>Examples</h4>
 
@@ -6639,13 +6536,12 @@ files once it becomes too large to fit within one single file.</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1. var mainLoop = function(time){
-2.   // main function, called each frame
-3.   document.body.innerHTML = Math.random();
-4.  
-5.   // call the animation loop every 1/60th of second
-6.   requestAnimationFrame(mainLoop);
-7. };</pre>
+<pre>var mainLoop = function(time){
+  // main function, called each frame
+  document.body.innerHTML = Math.random();
+  // call the animation loop every 1/60th of second
+  requestAnimationFrame(mainLoop);
+};</pre>
 
 </details>
 
@@ -6709,14 +6605,13 @@ var measureFPS = function(newTime){
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1. var mainLoop = function(time){
-2.   // compute FPS, called each frame, uses the high resolution time parameter 
-3.   // given by the browser that implements the requestAnimationFrame API
-4.   measureFPS(time);
-5.  
-6.   // call the animation loop every 1/60th of second
-7.   requestAnimationFrame(mainLoop);
-8. };</pre>
+<pre>var mainLoop = function(time){
+  // compute FPS, called each frame, uses the high resolution time parameter 
+  // given by the browser that implements the requestAnimationFrame API
+  measureFPS(time);
+  // call the animation loop every 1/60th of second
+  requestAnimationFrame(mainLoop);
+};</pre>
 
 </details>
 
@@ -6725,18 +6620,17 @@ var measureFPS = function(newTime){
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1. var start = function(){
-2.   // adds a div for displaying the fps value
-3.   fpsContainer = document.createElement(div);
-4.   document.body.appendChild(fpsContainer);
-5.  
-6.   requestAnimationFrame(mainLoop);
-7. };</pre>
+<pre>var start = function(){
+  // adds a div for displaying the fps value
+  fpsContainer = document.createElement(div);
+  document.body.appendChild(fpsContainer);
+  requestAnimationFrame(mainLoop);
+};</pre>
 
 </details>
 
 
-<p>Hack:  achieving more than 60 fPS? It’s possible but to be avoided except in hackers’ circles!</p>
+<p>Hack: achieving more than 60 fPS? It’s possible but to be avoided except in hackers’ circles!</p>
 
 <p>We also know methods of implementing loops in JavaScript which achieve even more than 60fps (this is the limit using requestAnimationFrame).</p>
 
@@ -6745,12 +6639,11 @@ var measureFPS = function(newTime){
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1. function mainloop(){
-2.   var img = new Image;
-3.  
-4.   img.onerror = mainloop;
-5.   img.src = &#39;data:image/png,&#39; + Math.random();
-6. }</pre>
+<pre>function mainloop(){
+  var img = new Image;
+  img.onerror = mainloop;
+  img.src = &#39;data:image/png,&#39; + Math.random();
+}</pre>
 
 </details>
 
@@ -6775,7 +6668,7 @@ and check the number of FPS displayed with this JSBin example</a>.</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>var mainLoop = function(){
+<pre>var mainLoop = function() {
   // main function, called each frame
   measureFPS(+(new Date()));
   // call the animation loop every LOTS of seconds using previous hack method
@@ -6863,52 +6756,38 @@ described in the HTML5 Part 1 course:</p>
 
 <pre>// useful to have them as global variables
 var canvas, ctx, w, h;
- 
- 
 window.onload = function init() {
   // Called AFTER the page has been loaded
   canvas = document.querySelector(&quot;#myCanvas&quot;);
-
-  // Often useful
+  // Often useful
   w = canvas.width;
   h = canvas.height;
-
   // Important, we will draw with this object
   ctx = canvas.getContext(&#39;2d&#39;);
-
   // Ready to go!
   // Try to change the parameter values to move
   // the monster
   drawMyMonster(10, 10);
 };
- 
 function drawMyMonster(x, y) {
   // Draw a big monster!
   // Head
-
   // BEST practice: save the context, use 2D transformations
   ctx.save();
-
   // Translate the coordinate system, draw relative to it
   ctx.translate(x, y);
-
   // (0, 0) is the top left corner of the monster.
   ctx.strokeRect(0, 0, 100, 100);
-
   // Eyes
   ctx.fillRect(20, 20, 10, 10);
   ctx.fillRect(65, 20, 10, 10);
-
   // Nose
   ctx.strokeRect(45, 40, 10, 40);
-
   // Mouth
   ctx.strokeRect(35, 84, 30, 10);
-
   // Teeth
   ctx.fillRect(38, 84, 10, 10);
   ctx.fillRect(52, 84, 10, 10);
-
   // BEST practice: restore the context
   ctx.restore();
 }</pre>
@@ -7065,8 +6944,8 @@ event inline in your HTML code like this:</p>
 
 <h4>Method #1: declare an event handler in the HTML code</h4>
 
-<pre>1. &lt;div id=&quot;someDiv&quot; onclick=&quot;alert(&#39;clicked!&#39;)&quot;&gt; content of the
-2. div &lt;/div&gt;</pre>
+<pre>&lt;div id=&quot;someDiv&quot; onclick=&quot;alert(&#39;clicked!&#39;)&quot;&gt; content of the
+div &lt;/div&gt;</pre>
 
 <p>This method is very easy to use, but it is not the recommended way to handle events. 
 Indeed, It works today but is <i>deprecated</i> (will probably be abandoned in the 
@@ -7075,9 +6954,9 @@ is really bad practice and causes a host of problems during development.</p>
 
 <h4>Method #2: attach an event handler to an HTML element in JavaScript</h4>
 
-<pre>1. document.getElementById(&#39;someDiv&#39;).onclick = function() {
-2.    alert(&#39;clicked!&#39;);
-3. }</pre>
+<pre>document.getElementById(&#39;someDiv&#39;).onclick = function() {
+  alert(&#39;clicked!&#39;);
+}</pre>
 
 <p>This method is fine, but  you will not be able to attach multiple <i>listener</i> 
 functions. If you need to do this, use the version shown below.</p>
@@ -7085,9 +6964,9 @@ functions. If you need to do this, use the version shown below.</p>
 <p>Method #3: register a callback to the event listener with the addEventListener 
 method (preferred  method)</p>
 
-<pre>1. document.getElementById(&#39;someDiv&#39;).addEventListener(&#39;click&#39;, function() {
-2.    alert(&#39;clicked!&#39;);
-3. }, false);</pre>
+<pre>document.getElementById(&#39;someDiv&#39;).addEventListener(&#39;click&#39;, function() {
+  alert(&#39;clicked!&#39;);
+}, false);</pre>
 
 <p>Note that the third parameter describes whether
 the <i>callback</i> has to be called during the captured phase. This is not important 
@@ -7100,9 +6979,9 @@ the listener will create an <i>event object</i> to describe what
 happened. This object is provided as a parameter of the callback
 function:</p>
 
-<pre>1. element.addEventListener(&#39;click&#39;, function(event) {
-2.    / now you can use event object inside the callback /
-3. }, false);</pre>
+<pre>element.addEventListener(&#39;click&#39;, function(event) {
+  / now you can use event object inside the callback /
+}, false);</pre>
 
 <p>Depending on the type of event you are listening to, you will consult
 different properties from the event object in order to obtain useful
@@ -7149,11 +7028,11 @@ possible to test which key has been pressed or released, like this:</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1. window.addEventListener(&#39;keydown&#39;, function(event) {
-2.    if (event.keyCode === 37) {
-3.      // Left arrow was pressed
-4.    }
-5. }, false);</pre>
+<pre>window.addEventListener(&#39;keydown&#39;, function(event) {
+  if (event.keyCode === 37) {
+    // Left arrow was pressed
+  }
+}, false);</pre>
 
 </details>
 
@@ -7238,31 +7117,29 @@ window.onload = function init() {
   var game = new GF();
   game.start();
 };
-
-
 // GAME FRAMEWORK STARTS HERE
 var GF = function(){
-   ... 
-   // vars for handling inputs
-   var inputStates = {};
-   var measureFPS = function(newTime){
+  ... 
+  // vars for handling inputs
+  var inputStates = {};
+  var measureFPS = function(newTime){
+    ...
+  };
+  // Clears the canvas content
+  function clearCanvas() {
+    ctx.clearRect(0, 0, w, h);
+  }
+  // Functions for drawing the monster and perhaps other objects
+  function drawMyMonster(x, y) {
     ...
-   };
-   // Clears the canvas content
-   function clearCanvas() {
-     ctx.clearRect(0, 0, w, h);
-   }
-   // Functions for drawing the monster and perhaps other objects
-   function drawMyMonster(x, y) {
-      ...
-   }
-   var mainLoop = function(time){
-     // Main function, called each frame
-     measureFPS(time);
-     // Clears the canvas
-     clearCanvas();
-     // Draws the monster
-     drawMyMonster(10+Math.random()*10, 10+Math.random()*10);
+  }
+  var mainLoop = function(time){
+    // Main function, called each frame
+    measureFPS(time);
+    // Clears the canvas
+    clearCanvas();
+    // Draws the monster
+    drawMyMonster(10+Math.random()*10, 10+Math.random()*10);
     // check inputStates
     if (inputStates.left) {
       ctx.fillText(&quot;left&quot;, 150, 20);
@@ -7270,19 +7147,19 @@ var GF = function(){
     if (inputStates.up) {
       ctx.fillText(&quot;up&quot;, 150, 50);
     }
-   if (inputStates.right) {
+    if (inputStates.right) {
       ctx.fillText(&quot;right&quot;, 150, 80);
-   }
-   if (inputStates.down) {
-     ctx.fillText(&quot;down&quot;, 150, 120);
-   }
-   if (inputStates.space) {
-     ctx.fillText(&quot;space bar&quot;, 140, 150);
-   }
-   // Calls the animation loop every 1/60th of second
-   requestAnimationFrame(mainLoop);
-};
-var start = function(){
+    }
+    if (inputStates.down) {
+      ctx.fillText(&quot;down&quot;, 150, 120);
+    }
+    if (inputStates.space) {
+      ctx.fillText(&quot;space bar&quot;, 140, 150);
+    }
+    // Calls the animation loop every 1/60th of second
+    requestAnimationFrame(mainLoop);
+  };
+  var start = function(){
     ...
     // Important, we will draw with this object
     ctx = canvas.getContext(&#39;2d&#39;);
@@ -7316,10 +7193,10 @@ var start = function(){
         inputStates.space = false;
       }
     }, false);
-   // Starts the animation
-   requestAnimationFrame(mainLoop);
-  };
-   // our GameFramework returns a public API visible from outside its scope
+    // Starts the animation
+    requestAnimationFrame(mainLoop);
+  };
+  // our GameFramework returns a public API visible from outside its scope
   return {
     start: start
   };
@@ -7385,35 +7262,30 @@ down) as part of the inputStates object, just as we do with the keyboard
 
 <pre>var canvas, ctx;
 var inputStates = {};
-
 window.onload = function init() {
-   canvas = document.getElementById(&#39;myCanvas&#39;);
-   ctx = canvas.getContext(&#39;2d&#39;);
-
-   canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
-      inputStates.mousePos = getMousePos(canvas, evt);
-      var message = &#39;Mouse position:
-&#39; + inputStates.mousePos.x + &#39;,&#39; +                                 
-      inputStates.mousePos.y;
-      writeMessage(canvas, message);
-   }, false);
-
-   canvas.addEventListener(&#39;mousedown&#39;, function (evt) {
-      inputStates.mousedown = true;
-      inputStates.mouseButton = evt.button;
-      var message = &quot;Mouse button &quot; + evt.button + &quot; down at position: &quot; + 
-                    inputStates.mousePos.x + &#39;,&#39; + inputStates.mousePos.y;
-      writeMessage(canvas, message);
-   }, false);
-
-   canvas.addEventListener(&#39;mouseup&#39;, function (evt) {
-      inputStates.mousedown = false;
-      var message = &quot;Mouse up at position: &quot; + inputStates.mousePos.x + &#39;,&#39; +     
-                    inputStates.mousePos.y;
-      writeMessage(canvas, message);
-   }, false);
+  canvas = document.getElementById(&#39;myCanvas&#39;);
+  ctx = canvas.getContext(&#39;2d&#39;);
+  canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
+    inputStates.mousePos = getMousePos(canvas, evt);
+    var message = &#39;Mouse position:
+      &#39; + inputStates.mousePos.x + &#39;,&#39; +                                 
+    inputStates.mousePos.y;
+    writeMessage(canvas, message);
+  }, false);
+  canvas.addEventListener(&#39;mousedown&#39;, function (evt) {
+    inputStates.mousedown = true;
+    inputStates.mouseButton = evt.button;
+    var message = &quot;Mouse button &quot; + evt.button + &quot; down at position: &quot; + 
+      inputStates.mousePos.x + &#39;,&#39; + inputStates.mousePos.y;
+    writeMessage(canvas, message);
+  }, false);
+  canvas.addEventListener(&#39;mouseup&#39;, function (evt) {
+    inputStates.mousedown = false;
+    var message = &quot;Mouse up at position: &quot; + inputStates.mousePos.x + &#39;,&#39; +     
+      inputStates.mousePos.y;
+    writeMessage(canvas, message);
+  }, false);
 };
-
 function writeMessage(canvas, message) {
   var ctx = canvas.getContext(&#39;2d&#39;);
   ctx.save();
@@ -7423,13 +7295,12 @@ function writeMessage(canvas, message) {
   ctx.fillText(message, 10, 25);
   ctx.restore();
 }
-
 function getMousePos(canvas, evt) {
   // necessary to take into account CSS boudaries
   var rect = canvas.getBoundingClientRect();
   return {
-     x: evt.clientX - rect.left,
-     y: evt.clientY - rect.top
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
   };
 }</pre>
 
@@ -7456,42 +7327,32 @@ JsBin</a></p>
 <pre>var canvas, ctx, width, height;
 var rect = {x:40, y:40, rayon: 30, width:80, height:80, v:1};
 var mousepos = {x:0, y:0};
- 
 function init() {
     canvas = document.querySelector(&quot;#myCanvas&quot;);
     ctx = canvas.getContext(&#39;2d&#39;);
     width = canvas.width;
     height = canvas.height;
-
     canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
        mousepos = getMousePos(canvas, evt);
     }, false);
-
     mainloop();
 }
- 
 function mainloop() {
    // 1) clear screen
    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
    // 2) move object
     var dx = rect.x - mousepos.x;
     var dy = rect.y - mousepos.y;
     var angle = Math.atan2(dy, dx);
-
     rect.x -= rect.v*Math.cos(angle);
     rect.y -= rect.v*Math.sin(angle);
-
     // 3) draw object
     drawRectangle(angle);
-
     // request new frame
     window.requestAnimationFrame(mainloop);
 }
-
 function drawRectangle(angle) {
    ctx.save();
-
    // These two lines move the coordinate system
    ctx.translate(rect.x, rect.y);
    ctx.rotate(angle);
@@ -7499,11 +7360,9 @@ function drawRectangle(angle) {
    // the rectangle. Like that it will rotate around
    // this point instead of top left corner
    ctx.translate(-rect.width/2, -rect.height/2);
-
    ctx.fillRect(0, 0, rect.width, rect.height);
    ctx.restore();
 }
- 
 function getMousePos(canvas, evt) {
    // necessary to take into account CSS boudaries
    var rect = canvas.getBoundingClientRect();
@@ -7519,8 +7378,10 @@ function getMousePos(canvas, evt) {
 
 <ul>
   <li><p><i>Line 25</i> calculates the <i>angle</i> between mouse cursor and the rectangle,</p></li>
-  <li><p><i>Lines 27-28</i> <i>move</i> the rectangle v pixels along a line between the rectangle’s current position and the mouse cursor,</p></li>
-  <li><p><i>Lines 41-46</i> <i>translate</i> the rectangle, <i>rotate</i> it, and recenter the <i>rotational point</i> to the center of the rectangle (in its new position).</p></li>
+  <li><p><i>Lines 27-28</i> <i>move</i> the rectangle v pixels along a line between the 
+    rectangle’s current position and the mouse cursor,</p></li>
+  <li><p><i>Lines 41-46</i> <i>translate</i> the rectangle, <i>rotate</i> it, and recenter 
+    the <i>rotational point</i> to the center of the rectangle (in its new position).</p></li>
 </ul>
 
 <h4>Adding mouse listeners to the game framework</h4>
@@ -7529,8 +7390,8 @@ function getMousePos(canvas, evt) {
 that we changed some parameters (no need to pass the canvas as a
 parameter of the getMousePos() function, for example).</p>
 
-<p><a href="https://jsbin.com/rizuyah/edit" target="_blank" rel="noopener noreferrer">The new online version of
-the game engine can be tried at JSBin</a>:</p>
+<p><a href="https://jsbin.com/rizuyah/edit" target="_blank" rel="noopener noreferrer">
+The new online version of the game engine can be tried at JSBin</a>:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~ 106. message on mouse event listener (171) ~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -7556,36 +7417,27 @@ window.onload = function init() {
   var game = new GF();
   game.start();
 };
-
-
 // GAME FRAMEWORK STARTS HERE
-var GF = function(){
+var GF = function() {
   ...
-
   // Vars for handling inputs
   var inputStates = {};
-
   var measureFPS = function(newTime){
      ...
   };
-
   // Clears the canvas content
   function clearCanvas() {
     ctx.clearRect(0, 0, w, h);
   }
-
   // Functions for drawing the monster and perhaps other objects
   function drawMyMonster(x, y) {
     ...
   }
-
   var mainLoop = function(time){
    // Main function, called each frame
    measureFPS(time);
-
    // Clears the canvas
    clearCanvas();
-
    // Draws the monster
    drawMyMonster(10+Math.random()*10, 10+Math.random()*10);
    // Checks inputStates
@@ -7611,12 +7463,9 @@ var GF = function(){
    if (inputStates.mousedown) {
      ctx.fillText(&quot;mousedown b&quot; + inputStates.mouseButton, 5, 180);
    }
-
    // Calls the animation loop every 1/60th of second
    requestAnimationFrame(mainLoop);
   };
-
-
   function getMousePos(evt) {
     // Necessary to take into account CSS boudaries
     var rect = canvas.getBoundingClientRect();
@@ -7625,7 +7474,6 @@ var GF = function(){
       y: evt.clientY - rect.top
     };
   }
-
   var start = function(){
     ...
     // Adds the listener to the main window object, and updates the states
@@ -7642,9 +7490,8 @@ var GF = function(){
         inputStates.space = true;
       }
     }, false);
-
     // If the key is released, changes the states object
-   window.addEventListener(&#39;keyup&#39;, function(event){
+    window.addEventListener(&#39;keyup&#39;, function(event){
       if (event.keyCode === 37) {
         inputStates.left = false;
       } else if (event.keyCode === 38) {
@@ -7657,31 +7504,25 @@ var GF = function(){
          inputStates.space = false;
        }
     }, false);
- 
     // Mouse event listeners
     canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
       inputStates.mousePos = getMousePos(evt);
     }, false);
- 
-    canvas.addEventListener(&#39;mousedown&#39;, function (evt) {
+    canvas.addEventListener(&#39;mousedown&#39;, function (evt) {
       inputStates.mousedown = true;
       inputStates.mouseButton = evt.button;
-    }, false);
- 
+    }, false);
     canvas.addEventListener(&#39;mouseup&#39;, function (evt) {
-      inputStates.mousedown = false;
-    }, false);
- 
- 
+     inputStates.mousedown = false;
+    }, false);
     // Starts the animation
     requestAnimationFrame(mainLoop);
-   };
- 
-   // Our GameFramework returns a public API visible from outside its scope
-   return {
-     start: start
-   };
- };</pre>
+  };
+  // Our GameFramework returns a public API visible from outside its scope
+  return {
+    start: start
+  };
+};</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

@@ -16217,25 +16217,24 @@ code):</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function searchACustomerShort() {
-2.     if(db === null) {
-3.        alert(&#39;Database must be opened first, please click the Create
-4.               CustomerDB Database first&#39;);
-5.        return;
-6.     }
-7.  
-8.     db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;)
-9.       .get(document.querySelector(&quot;#ssn&quot;).value)
-10.      .onsuccess = 
-11.        function(event) {
-12.           document.querySelector(&quot;#name&quot;).value =
-13.                                      event.target.result.name;
-14.           document.querySelector(&quot;#age&quot;).value =
-15.                                      event.target.result.age;
-16.           document.querySelector(&quot;#email&quot;).value =
-17.                                      event.target.result.email;
-18.        };
-19. }</pre>
+<pre>function searchACustomerShort() {
+  if(db === null) {
+    alert(&#39;Database must be opened first, please click the Create
+      CustomerDB Database first&#39;);
+    return;
+  }
+  db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;)
+    .get(document.querySelector(&quot;#ssn&quot;).value)
+    .onsuccess = 
+      function(event) {
+        document.querySelector(&quot;#name&quot;).value =
+          event.target.result.name;
+        document.querySelector(&quot;#age&quot;).value =
+          event.target.result.age;
+        document.querySelector(&quot;#email&quot;).value =
+          event.target.result.email;
+      };
+}</pre>
 
 </details>
 
@@ -16266,27 +16265,24 @@ between those in a certain range, then you must use <i>a cursor</i>.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function listAllCustomers() {
-2.     var objectStore =   
-3.       db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;);
-4.  
-5.     &lt;b&gt;objectStore.openCursor().onsuccess = function(event) {
-6.       // we enter this callback for each object in the store
-7.  
-8.       &lt;b&gt;// The result is the cursor itself
-9.       &lt;b&gt;var cursor = event.target.result;
-10. 
-11.      if (cursor) {
-12.        alert(&quot;Name for SSN &quot; +&lt;b&gt; cursor.key + &quot; is &quot; +
-13.               &lt;b&gt;cursor.value.name);
-14.        // Calling continue on the cursor will result in this callback
-15.        // being called again if there are other objects in the store
-16.        &lt;b&gt;cursor.continue();
-17.      } else {
-18.        alert(&quot;No more entries!&quot;);
-19.      }
-20.   }; // end of onsuccess...
-21. } // end of listAllCustomers()</pre>
+<pre>function listAllCustomers() {
+  var objectStore =   
+    db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;);
+  &lt;b&gt;objectStore.openCursor().onsuccess = function(event) {
+    // we enter this callback for each object in the store
+    &lt;b&gt;// The result is the cursor itself
+    &lt;b&gt;var cursor = event.target.result;
+    if (cursor) {
+      alert(&quot;Name for SSN &quot; +&lt;b&gt; cursor.key + &quot; is &quot; +
+        &lt;b&gt;cursor.value.name);
+      // Calling continue on the cursor will result in this callback
+      // being called again if there are other objects in the store
+      &lt;b&gt;cursor.continue();
+    } else {
+       alert(&quot;No more entries!&quot;);
+    }
+  }; // end of onsuccess...
+} // end of listAllCustomers()</pre>
 
 </details>
 
@@ -16330,25 +16326,22 @@ and add them to an array, like this:</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  function listAllCustomersArray() {
-2.    var objectStore =   
-3.        db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;);
-4.  
-5.    var customers = []; // the array of customers that will hold
-6.                        // results
-7.  
-8.    objectStore.openCursor().onsuccess = function(event) {
-9.      var cursor = event.target.result;
-10. 
-11.     if (cursor) {
-12.       customers.push(cursor.value); // add a customer in the
-13.                                     // array
-14.       cursor.continue();
-15.     } else {
-16.       alert(&quot;Got all customers: &quot; + customers);
-17.     }
-18.  }; // end of onsuccess
-19. } // end of listAllCustomersArray()</pre>
+<pre>function listAllCustomersArray() {
+  var objectStore =   
+    db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;);
+  var customers = []; // the array of customers that will hold
+                      // results
+  objectStore.openCursor().onsuccess = function(event) {
+    var cursor = event.target.result;
+    if (cursor) {
+      customers.push(cursor.value); // add a customer in the
+                                    // array
+      cursor.continue();
+    } else {
+      alert(&quot;Got all customers: &quot; + customers);
+    }
+  }; // end of onsuccess
+} // end of listAllCustomersArray()</pre>
 
 </details>
 
@@ -16376,23 +16369,20 @@ and returns the first one it finds with a name equal to “Bill”:</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function getCustomerByName() {
-2.    if(db === null) {
-3.      alert(&#39;Database must be opened first, please click the Create
-4.              CustomerDB Database first&#39;);
-5.      return;
-6.    }
-7.  
-8.    var objectStore =   
-9.      db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;);
-10. 
-11.   &lt;b&gt;var index = objectStore.index(&quot;name&quot;);
-12. 
-13.   &lt;b&gt;index.get(&quot;Bill&quot;).onsuccess = function(event) {
-14.     alert(&quot;Bill&#39;s SSN is &quot; + &lt;b&gt;event.target.result.ssn +
-15.     &quot; his email is &quot; + &lt;b&gt;event.target.result.email);
-16.   };
-17. }</pre>
+<pre>function getCustomerByName() {
+  if(db === null) {
+    alert(&#39;Database must be opened first, please click the Create
+      CustomerDB Database first&#39;);
+    return;
+  }
+  var objectStore =   
+    db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;);
+  &lt;b&gt;var index = objectStore.index(&quot;name&quot;);
+  &lt;b&gt;index.get(&quot;Bill&quot;).onsuccess = function(event) {
+    alert(&quot;Bill&#39;s SSN is &quot; + &lt;b&gt;event.target.result.ssn +
+    &quot; his email is &quot; + &lt;b&gt;event.target.result.email);
+  };
+}</pre>
 
 </details>
 
@@ -16439,16 +16429,16 @@ on indexes:</p>
 <details>
   <summary>Normal cursor code!</summary>
   
-<pre>1.  &lt;b&gt;index.openCursor().onsuccess = function(event) {
-2.    &lt;b&gt;var cursor = event.target.result;
-3.    if (cursor) {
-4.      // cursor.key is a name, like &quot;Bill&quot;, and &lt;b&gt;cursor.value is  the
-5.      // &lt;b&gt;whole object.
-6.      alert(&quot;Name: &quot; +&lt;b&gt; cursor.key + &quot;, SSN: &quot; +&lt;b&gt; cursor.value.ssn + &quot;,
-7.             email: &quot; +&lt;b&gt; cursor.value.email);
-8.      &lt;b&gt;cursor.continue();
-9.  }
-10. };</pre>
+<pre>&lt;b&gt;index.openCursor().onsuccess = function(event) {
+  &lt;b&gt;var cursor = event.target.result;
+  if (cursor) {
+    // cursor.key is a name, like &quot;Bill&quot;, and &lt;b&gt;cursor.value is  the
+    // &lt;b&gt;whole object.
+    alert(&quot;Name: &quot; +&lt;b&gt; cursor.key + &quot;, SSN: &quot; +&lt;b&gt; cursor.value.ssn + &quot;,
+      email: &quot; +&lt;b&gt; cursor.value.email);
+    &lt;b&gt;cursor.continue();
+  }
+};</pre>
 
 </details>
 
@@ -16457,16 +16447,16 @@ on indexes:</p>
 <details>
   <summary>Key cursor code!</summary>
   
-<pre>1.  &lt;b&gt;index.openKeyCursor().onsuccess = function(event) {
-2.     var cursor = event.target.result;
-3.     if (cursor) {
-4.       // cursor.key is a name, like &quot;Bill&quot;,&lt;b&gt; and cursor.value is the
-5.  &lt;b&gt;     //&lt;b&gt; SSN (the key).
-6.       // No way to directly get the rest of the stored object.
-7.       alert(&quot;Name: &quot; + cursor.key + &quot;, &quot;SSN: &quot; + &lt;b&gt;cursor.value);
-8.       cursor.continue();
-9.     }
-10. };</pre>
+<pre>&lt;b&gt;index.openKeyCursor().onsuccess = function(event) {
+  var cursor = event.target.result;
+  if (cursor) {
+    // cursor.key is a name, like &quot;Bill&quot;,&lt;b&gt; and cursor.value is the
+    &lt;b&gt;     //&lt;b&gt; SSN (the key).
+    // No way to directly get the rest of the stored object.
+    alert(&quot;Name: &quot; + cursor.key + &quot;, &quot;SSN: &quot; + &lt;b&gt;cursor.value);
+    cursor.continue();
+  }
+};</pre>
 
 </details>
 
@@ -16498,34 +16488,28 @@ an online example at JSBin that uses the above methods</a>:</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function getAllCustomersByName() {
-2.    if(db === null) {
-3.      alert(&#39;Database must be opened first, please click the Create
-4.             CustomerDB Database first&#39;);
-5.      return;
-6.    }
-7.  
-8.    var objectStore =
-9.       db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;);
-10. 
-11.   &lt;b&gt;var index = objectStore.index(&quot;name&quot;);
-12. 
-13.   // Only match &quot;Bill&quot;
-14.   &lt;b&gt;var singleKeyRange = IDBKeyRange.only(&quot;Bill&quot;);
-15. 
-16.   &lt;b&gt;index.openCursor(singleKeyRange).onsuccess = function(event) {
-17. 
-18.     var cursor = event.target.result;
-19. 
-20.     if (cursor) {
-21.       // cursor.key is a name, like &quot;Bill&quot;, and cursor.value is the
-22.       // whole object.
-23.       alert(&quot;Name: &quot; + cursor.key + &quot;, SSN: &quot; + cursor.value.ssn &quot;,
-24.              + email: &quot; + cursor.value.email);
-25.       cursor.continue();
-26.    }
-27. };
-28. }</pre>
+<pre>function getAllCustomersByName() {
+  if(db === null) {
+    alert(&#39;Database must be opened first, please click the Create
+           CustomerDB Database first&#39;);
+    return;
+  }
+  var objectStore =
+     db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;);
+  &lt;b&gt;var index = objectStore.index(&quot;name&quot;);
+  // Only match &quot;Bill&quot;
+  &lt;b&gt;var singleKeyRange = IDBKeyRange.only(&quot;Bill&quot;);
+  &lt;b&gt;index.openCursor(singleKeyRange).onsuccess = function(event) {
+    var cursor = event.target.result;
+    if (cursor) {
+      // cursor.key is a name, like &quot;Bill&quot;, and cursor.value is the
+      // whole object.
+      alert(&quot;Name: &quot; + cursor.key + &quot;, SSN: &quot; + cursor.value.ssn &quot;,
+        + email: &quot; + cursor.value.email);
+      cursor.continue();
+    }
+  };
+}</pre>
 
 </details>
 
@@ -16561,11 +16545,11 @@ var upperBoundOpenKeyRange = IDBKeyRange.upperBound(&quot;Donna&quot;, true)
 var boundKeyRange = IDBKeyRange.bound(&quot;Bill&quot;, &quot;Donna&quot;, false, true);
 // To use one of the key ranges, pass it in as the first argument of openCursor()/openKeyCursor()
 index.openCursor(boundKeyRange).onsuccess = function(event) {
-    var cursor = event.target.result;
-    if (cursor) {
-        // Do something with the matches.
-        cursor.continue();
-    }
+  var cursor = event.target.result;
+  if (cursor) {
+    // Do something with the matches.
+    cursor.continue();
+  }
 }</pre>
 
 </details>
@@ -17041,8 +17025,8 @@ not be played, etc.) until the template is used.</p>
 <p>Here is an example of code that defines a template:</p>
 
 <pre>&lt;template id=&quot;mytemplate&quot;&gt;
-   &lt;img src=&quot;&quot; alt=&quot;great image&quot;&gt;
-   &lt;div class=&quot;comment&quot;&gt;&lt;/div&gt;
+  &lt;img src=&quot;&quot; alt=&quot;great image&quot;&gt;
+  &lt;div class=&quot;comment&quot;&gt;&lt;/div&gt;
 &lt;/template&gt;</pre>
 
 <p>Note that it’s ok to have the <b>src</b> attribute empty here, we
@@ -17062,13 +17046,12 @@ the template’s content and true means “deep copy” the content.</p>
 
 <p>A template is typically used like this:</p>
 
-<pre>1. var t = document.querySelector(&#39;#mytemplate&#39;);
-2. // Populate the src at runtime.
-3. t.content.querySelector(&#39;img&#39;).src = &#39;https://webcomponents.github.io/img/logo.svg&#39;;
-4.  
-5. // Clone the template, sort of &quot;instantiation&quot;!
-6. var clone = document.importNode(t.content, true);
-7. document.body.appendChild(clone);</pre>
+<pre>var t = document.querySelector(&#39;#mytemplate&#39;);
+// Populate the src at runtime.
+t.content.querySelector(&#39;img&#39;).src = &#39;https://webcomponents.github.io/img/logo.svg&#39;;
+// Clone the template, sort of &quot;instantiation&quot;!
+var clone = document.importNode(t.content, true);
+document.body.appendChild(clone);</pre>
 
 <h4>Explanations</h4>
 
@@ -17102,26 +17085,24 @@ JSBin</a> that uses exactly the code presented:</p>
 
 <h4>The HTML part:</h4>
 
-<pre>1. &lt;template id=&quot;mytemplate&quot;&gt;
-2.   &lt;img src=&quot;&quot; alt=&quot;great image&quot;&gt;
-3.   &lt;div class=&quot;comment&quot;&gt;hello&lt;/div&gt;
-4. &lt;/template&gt;
-5. 
-6. &lt;body&gt;
-7.   &lt;button onclick=&quot;instantiate()&quot;&gt;Instantiate the template&lt;/button&gt;&lt;br&gt;
-8. &lt;/body&gt;</pre>
+<pre>&lt;template id=&quot;mytemplate&quot;&gt;
+  &lt;img src=&quot;&quot; alt=&quot;great image&quot;&gt;
+  &lt;div class=&quot;comment&quot;&gt;hello&lt;/div&gt;
+&lt;/template&gt;
+&lt;body&gt;
+  &lt;button onclick=&quot;instantiate()&quot;&gt;Instantiate the template&lt;/button&gt;&lt;br&gt;
+&lt;/body&gt;</pre>
 
 <h4>The JavaScript part:</h4>
 
-<pre>1.  function instantiate() {
-2.     var t = document.querySelector(&#39;#mytemplate&#39;);
-3.     // Populate the src at runtime.
-4.     t.content.querySelector(&#39;img&#39;).src =
-5.                  &#39;https://webcomponents.github.io/img/logo.svg&#39;;
-6.  
-7.     var clone = document.importNode(t.content, true);
-8.     document.body.appendChild(clone);
-9.  }</pre>
+<pre>function instantiate() {
+  var t = document.querySelector(&#39;#mytemplate&#39;);
+  // Populate the src at runtime.
+  t.content.querySelector(&#39;img&#39;).src =
+    &#39;https://webcomponents.github.io/img/logo.svg&#39;;
+  var clone = document.importNode(t.content, true);
+  document.body.appendChild(clone);
+}</pre>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-2-4">4.2.4 Shadow DOM</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -17342,19 +17323,17 @@ of sandboxing</a>.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  &lt;div&gt;Hello this is not rendered!&lt;/div&gt;
-2.  &lt;script&gt;
-3.      // the div is the Shadow Host. Its content will not be rendered
-4.      var host = document.querySelector(&#39;div&#39;);
-5.  
-6.      // Create the shadow ROOT, the root node of the shadow DOM
-7.      // using mode:open makes it available, mode:close would return null
-8.      const shadowRoot = host.attachShadow({mode: &#39;open&#39;});
-9.  
-10.     // insert something into the shadow DOM, this will be rendered
-11.     shadowRoot.innerHTML = &#39;&lt;h1&gt;Hello Shadow DOM&lt;/h1&gt;&#39;; // Could
-    also use appendChild().
-12. &lt;/script&gt;</pre>
+<pre>&lt;div&gt;Hello this is not rendered!&lt;/div&gt;
+&lt;script&gt;
+  // the div is the Shadow Host. Its content will not be rendered
+  var host = document.querySelector(&#39;div&#39;);
+  // Create the shadow ROOT, the root node of the shadow DOM
+  // using mode:open makes it available, mode:close would return null
+  const shadowRoot = host.attachShadow({mode: &#39;open&#39;});
+  // insert something into the shadow DOM, this will be rendered
+  shadowRoot.innerHTML = &#39;&lt;h1&gt;Hello Shadow DOM&lt;/h1&gt;&#39;; 
+  // Could also use appendChild().
+&lt;/script&gt;</pre>
 
 </details>
 
@@ -17413,10 +17392,10 @@ etc.</p>
 <h4>HTML part:</h4>
 
 <pre>&lt;template id=&quot;mytemplate&quot;&gt;
-   &lt;style&gt;
-     h1 {color:white; background:red}
-   &lt;/style&gt;
-   &lt;h1&gt;This is a shadowed H1&lt;/h1&gt;
+  &lt;style&gt;
+    h1 {color:white; background:red}
+  &lt;/style&gt;
+  &lt;h1&gt;This is a shadowed H1&lt;/h1&gt;
 &lt;/template&gt;</pre>
 
 <p>The JavaScript part:</p>
@@ -17476,14 +17455,14 @@ Component.</p>
   <summary>HTML code!</summary>
 
 <pre>&lt;template id=&quot;mytemplate&quot;&gt;
-   &lt;style&gt;
-     h1 {color:white; background:red}
-   &lt;/style&gt;
-   &lt;h1&gt;This is a shadowed H1&lt;/h1&gt;
+  &lt;style&gt;
+    h1 {color:white; background:red}
+  &lt;/style&gt;
+  &lt;h1&gt;This is a shadowed H1&lt;/h1&gt;
 &lt;/template&gt;
 &lt;body&gt;
-   &lt;h1 id=&quot;withShadowDom&quot;&gt;This is a text header&lt;/h1&gt;
-   &lt;h1&gt;Normal header with no shadow DOM associated.&lt;/h1&gt;
+  &lt;h1 id=&quot;withShadowDom&quot;&gt;This is a text header&lt;/h1&gt;
+  &lt;h1&gt;Normal header with no shadow DOM associated.&lt;/h1&gt;
 &lt;/body&gt;</pre>
 
 </details>
@@ -17536,15 +17515,15 @@ the &lt;slot&gt;…&lt;/slot&gt; element, as shown below:</p>
   <summary>HTML code!</summary>
 
 <pre>&lt;template id=&quot;mytemplate&quot;&gt;
-    &lt;h1 part=&#39;heading&#39;&gt;This is a shadowed H1&lt;/h1&gt;
-    &lt;p part=&quot;paragraph&quot;&gt;
-        &lt;slot name=&quot;my-text&quot;&gt;My default text&lt;/slot&gt;
-    &lt;/p&gt;
+  &lt;h1 part=&#39;heading&#39;&gt;This is a shadowed H1&lt;/h1&gt;
+  &lt;p part=&quot;paragraph&quot;&gt;
+    &lt;slot name=&quot;my-text&quot;&gt;My default text&lt;/slot&gt;
+  &lt;/p&gt;
 &lt;/template&gt;
 &lt;body&gt;
-&lt;h1 id=&quot;myWidget&quot;&gt;
+  &lt;h1 id=&quot;myWidget&quot;&gt;
     &lt;span slot=&quot;my-text&quot;&gt;Injected content using slot elem&lt;/span&gt;
-&lt;/h1&gt;
+  &lt;/h1&gt;
 &lt;/body&gt;</pre>
 
 </details>
@@ -17613,10 +17592,10 @@ shadow DOM:</p>
 <h4>HTML code for the use of the custom element:</h4>
 
 <pre>&lt;body&gt;
-&lt;my-widget&gt;
-   &lt;span slot=&quot;my-title&quot;&gt;Title injected&lt;/span&gt;
-   &lt;span slot=&quot;my-paragraph&quot;&gt;Paragraph injected&lt;/span&gt;
-&lt;/my-widget&gt;
+  &lt;my-widget&gt;
+    &lt;span slot=&quot;my-title&quot;&gt;Title injected&lt;/span&gt;
+    &lt;span slot=&quot;my-paragraph&quot;&gt;Paragraph injected&lt;/span&gt;
+  &lt;/my-widget&gt;
 &lt;/body&gt;</pre>
 
 <h4>Look at <i>lines 2 </i>and<i> 5</i></h4>
@@ -17648,32 +17627,28 @@ shadow DOM:</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  // TIP : use &quot;document.currentScript&quot; here to select
-2.  // the &quot;local document&quot;, the one corresponding to this page.
-3.  // this may avoid problems when multiple WebComponents files
-4.  // are inserted in the same document. See below...
-5.  var localDoc = document.currentScript.ownerDocument;
-6.   
-7.  class MyWidget extends HTMLElement {
-8.    constructor() {
-9.      super(); // mandatory
-10.     const shadowRoot = this.attachShadow({mode: &#39;open&#39;});
-11. 
-12.     // instanciate template
-13.     let t = localDoc.querySelector(&#39;#mytemplate&#39;);
-14.     // add it to the shadow DOM
-15. 
-16.     shadowRoot.appendChild(document.importNode(t.content, true));
-17.   }
-18. }
-19.  
-20. try {
-21.   // Define the custom element to the browser
-22.   customElements.define(&#39;my-widget&#39;, MyWidget);
-23.   console.log(&quot;Element defined&quot;);
-24. } catch (error) {
-25.   console.log(error);
-26. }</pre>
+<pre>// TIP : use &quot;document.currentScript&quot; here to select
+// the &quot;local document&quot;, the one corresponding to this page.
+// this may avoid problems when multiple WebComponents files
+// are inserted in the same document. See below...
+var localDoc = document.currentScript.ownerDocument;
+class MyWidget extends HTMLElement {
+  constructor() {
+    super(); // mandatory
+    const shadowRoot = this.attachShadow({mode: &#39;open&#39;});
+    // instanciate template
+    let t = localDoc.querySelector(&#39;#mytemplate&#39;);
+    // add it to the shadow DOM
+    shadowRoot.appendChild(document.importNode(t.content, true));
+  }
+}
+try {
+  // Define the custom element to the browser
+  customElements.define(&#39;my-widget&#39;, MyWidget);
+  console.log(&quot;Element defined&quot;);
+} catch (error) {
+  console.log(error);
+}</pre>
 
 </details>
 
@@ -17791,15 +17766,15 @@ imported:</p>
 
 <h4>It is as simple as:</h4>
 
-<pre>1.  &lt;head&gt;
-2.    &lt;link rel=&quot;import&quot; href=&quot;components/myComponents.html&quot;&gt;
-3.  &lt;/head&gt;
-4.  &lt;body&gt;
-5.    &lt;my-widget&gt;
-6.      &lt;span slot=&quot;my-title&quot;&gt;Title injected&lt;/span&gt;
-7.      &lt;span slot=&quot;my-paragraph&quot;&gt;Paragraph injected&lt;/span&gt;
-8.    &lt;/my-widget&gt;
-9.  &lt;/body&gt;</pre>
+<pre>&lt;head&gt;
+  &lt;link rel=&quot;import&quot; href=&quot;components/myComponents.html&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;my-widget&gt;
+    &lt;span slot=&quot;my-title&quot;&gt;Title injected&lt;/span&gt;
+    &lt;span slot=&quot;my-paragraph&quot;&gt;Paragraph injected&lt;/span&gt;
+  &lt;/my-widget&gt;
+&lt;/body&gt;</pre>
 
 <p>Look at <i>line 2</i>: this is where the importation of the HTML, CSS
 and JS code of new “components” is done. The HTML+JS+CSS code that
@@ -17871,35 +17846,34 @@ Components):</h4>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  customElements.define(
-2.  &quot;my-component&quot;,
-3.  class extends HTMLElement {
-4.    constructor() {
-5.      super();
-6.      this.root = this.attachShadow({ mode:  });
-7.      this.name = this.getAttribute(); // get the &quot;name&quot; attribute value
-8.    }
-9.   
-10.   connectedCallback() {
-11.     // called when the component is added to the DOM of its host
-12.     // css+html
-13.     this.css = `
-14.       #div_menu {
-15.         border : 1px solid black;
-16.       }
-17.         h1 {
-18.           color: red;
-19.         }
-20.         ;
-21.         this.html = `
-22.             &lt;div id=&#39;div_menu&#39;&gt;
-23.                 &lt;h1&gt;${this.name}
-24.             &lt;/div&gt;
-25.         ;
-26.         this.root.innerHTML = &quot;&lt;style&gt;${this.css}&lt;/style&gt;&lt;div 
-              id=&#39;wrapper&#39;&gt;${this.html}&lt;/div&gt;&quot;;
-27.   }
-28. });</pre>
+<pre>customElements.define(
+&quot;my-component&quot;,
+class extends HTMLElement {
+  constructor() {
+    super();
+    this.root = this.attachShadow({ mode:  });
+    this.name = this.getAttribute(); // get the &quot;name&quot; attribute value
+  }
+  connectedCallback() {
+    // called when the component is added to the DOM of its host
+    // css+html
+    this.css = `
+      #div_menu {
+        border : 1px solid black;
+      }
+      h1 {
+        color: red;
+      }
+      ;
+      this.html = `
+        &lt;div id=&#39;div_menu&#39;&gt;
+          &lt;h1&gt;${this.name}
+        &lt;/div&gt;
+      ;
+      this.root.innerHTML = &quot;&lt;style&gt;${this.css}&lt;/style&gt;&lt;div 
+        id=&#39;wrapper&#39;&gt;${this.html}&lt;/div&gt;&quot;;
+  }
+});</pre>
 
 </details>
 
@@ -18024,33 +17998,33 @@ completely blocking the user interface:</p>
 <details>
   <summary>HTML code!</summary>
   
-<pre>1.  &lt;!DOCTYPE HTML&gt;
-2.  &lt;html&gt;
-3.  &lt;head&gt;
-4.    &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
-5.  &lt;/head&gt;
-6.  &lt;body&gt;
-7.    &lt;button id=&quot;startButton&quot;&gt;Click to start discovering prime
-        numbers&lt;/button&gt;&lt;p&gt; Note that this will make the page
-        unresponsive, you will have to close the tab in order to get back your CPU!
-8.    &lt;p&gt;The highest prime number discovered so 
-        far is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
-9.    &lt;script&gt;
-10.     function computePrime() {
-11.       var n = 1;
-12.       search: &lt;b&gt;while (true) {
-13.         n += 1;
-14.         for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
-15.           if (n % i == 0)
-16.             continue search;
-17.             // found a prime!
-18.             document.getElementById(&#39;result&#39;).textContent = n;
-19.       }
-20.     }
-21.     document.querySelector(&quot;#startButton&quot;).addEventListener(&#39;click&#39;, computePrime);
-22.   &lt;/script&gt;
-23. &lt;/body&gt;
-24. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id=&quot;startButton&quot;&gt;Click to start discovering prime
+    numbers&lt;/button&gt;&lt;p&gt; Note that this will make the page
+    unresponsive, you will have to close the tab in order to get back your CPU!
+  &lt;p&gt;The highest prime number discovered so 
+    far is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
+  &lt;script&gt;
+    function computePrime() {
+      var n = 1;
+      search: &lt;b&gt;while (true) {
+        n += 1;
+        for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
+          if (n % i == 0)
+            continue search;
+            // found a prime!
+            document.getElementById(&#39;result&#39;).textContent = n;
+      }
+    }
+    document.querySelector(&quot;#startButton&quot;).addEventListener(&#39;click&#39;, computePrime);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -18177,28 +18151,26 @@ worker.postMessage(personObject );</pre>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;!DOCTYPE HTML&gt;
-2.  &lt;html&gt;
-3.  &lt;head&gt;
-4.    &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
-5.  &lt;/head&gt;
-6.  &lt;body&gt;
-7.    &lt;p&gt;The most simple example of Web Workers&lt;/p&gt;
-8.    &lt;script&gt;
-9.      // create a new worker (a thread that will be run in the background)
-10.     var worker = new Worker(&quot;worker0.js&quot;);
-11. 
-12.     // Watch for messages from the worker
-13.     worker.onmessage = function(e){
-14.     // Do something with the message from the client: e.data
-15.      alert(&quot;Got message that the background work is finished...&quot;)
-16.     };
-17. 
-18.     // Send a message to the worker
-19.     worker.postMessage(&quot;start&quot;);
-20.   &lt;/script&gt;
-21. &lt;/body&gt;
-22. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;The most simple example of Web Workers&lt;/p&gt;
+  &lt;script&gt;
+    // create a new worker (a thread that will be run in the background)
+    var worker = new Worker(&quot;worker0.js&quot;);
+    // Watch for messages from the worker
+    worker.onmessage = function(e){
+    // Do something with the message from the client: e.data
+     alert(&quot;Got message that the background work is finished...&quot;)
+    };
+    // Send a message to the worker
+    worker.postMessage(&quot;start&quot;);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -18207,18 +18179,17 @@ worker.postMessage(personObject );</pre>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  onmessage = function(e){
-2.     if ( e.data === &quot;start&quot; ) {
-3.        // Do some computation that can last a few seconds...
-4.        // alert the creator of the thread that the job is finished
-5.        done();
-6.      }
-7.  };
-8.  
-9.  function done(){
-10.     // Send back the results to the parent page
-11.     postMessage(&quot;done&quot;);
-12. }</pre>
+<pre>onmessage = function(e){
+  if ( e.data === &quot;start&quot; ) {
+    // Do some computation that can last a few seconds...
+    // alert the creator of the thread that the job is finished
+    done();
+  }
+};
+function done(){
+  // Send back the results to the parent page
+  postMessage(&quot;done&quot;);
+}</pre>
 
 </details>
 
@@ -18230,15 +18201,14 @@ by listening for an onError event from a worker object:</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var worker = new Worker(&#39;worker.js&#39;);
-2.  worker.onmessage = function (event) {
-3.      // do something with event.data
-4.  };
-5.  
-6.  worker.onerror = function (event) {
-7.      console.log(event.message, event);
-8.  };
-9.  }</pre>
+<pre>var worker = new Worker(&#39;worker.js&#39;);
+worker.onmessage = function (event) {
+  // do something with event.data
+};
+  worker.onerror = function (event) {
+    console.log(event.message, event);
+  };
+}</pre>
 
 </details>
 
@@ -18325,7 +18295,7 @@ search: while (true) {
   n += 1;
   for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
   if (n % i == 0)
-  continue search;
+    continue search;
   // found a prime!
   &lt;b&gt; postMessage(n);
 }</pre>
@@ -18382,23 +18352,23 @@ href="https://courses.edx.org/assets/courseware/v1/4af4dd2326f40b5d5d55aa15bbb12
 <pre>&lt;!DOCTYPE HTML&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;title&gt;Worker example: One-core computation&lt;/title&gt;
+  &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;p&gt;The highest prime number discovered so far
-is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
-&lt;script&gt;
-  if(window.Worker){
-    // web workers supported by the browser
-    var worker=new Worker(&quot;worker1.js&quot;);
-    worker.onmessage=function(event){
-      document.getElementById(&#39;result&#39;).textContent = event.data;
-    };
-  }else{
+  &lt;p&gt;The highest prime number discovered so far
+  is: &lt;output id=&quot;result&quot;&gt;&lt;/output&gt;&lt;/p&gt;
+  &lt;script&gt;
+    if(window.Worker){
+      // web workers supported by the browser
+      var worker=new Worker(&quot;worker1.js&quot;);
+      worker.onmessage=function(event){
+        document.getElementById(&#39;result&#39;).textContent = event.data;
+      };
+    } else {
     // the browser does not support web workers
     alert(&quot;Sorry, your browser does not support Web Workers&quot;);
-  }
-&lt;/script&gt;
+    }
+  &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 
@@ -18993,26 +18963,26 @@ device.
 &lt;div id=&quot;FB&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;DIR&quot;&gt;&lt;/div&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
-   if (window.DeviceOrientationEvent) {
-      console.log(&quot;DeviceOrientation is supported&quot;);
-      &lt;b&gt;window.addEventListener(&#39;deviceorientation&#39;, function(eventData) {
-         // gamme is for left/right inclination
-         var LR =&lt;b&gt; eventData.gamma;
-         // beta is for front/back inclination
-         var FB =&lt;b&gt; eventData.beta;
-         // alpha is for orientation
-         var DIR =&lt;b&gt; eventData.alpha;
-         // display values on screen
-         deviceOrientationHandler(LR, FB, DIR);
-      }, false);
-   } else {
-      alert(&quot;Device orientation not supported on your device or browser. Sorry.&quot;);
-   }
-function deviceOrientationHandler(LR, FB, DIR) {
-   document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
-   document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
-   document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
-}
+  if (window.DeviceOrientationEvent) {
+    console.log(&quot;DeviceOrientation is supported&quot;);
+    &lt;b&gt;window.addEventListener(&#39;deviceorientation&#39;, function(eventData) {
+      // gamme is for left/right inclination
+      var LR =&lt;b&gt; eventData.gamma;
+      // beta is for front/back inclination
+      var FB =&lt;b&gt; eventData.beta;
+      // alpha is for orientation
+      var DIR =&lt;b&gt; eventData.alpha;
+      // display values on screen
+      deviceOrientationHandler(LR, FB, DIR);
+    }, false);
+  } else {
+    alert(&quot;Device orientation not supported on your device or browser. Sorry.&quot;);
+  }
+  function deviceOrientationHandler(LR, FB, DIR) {
+    document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
+    document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
+    document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
+  }
 &lt;/script&gt;
 ...</pre>
 
@@ -19081,29 +19051,29 @@ device.
 rocks.com/en/tutorials/device/orientation/html5_logo.png&quot; id=&quot;imgLogo&quot;
 class=&quot;logo&quot;&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
-   if (window.DeviceOrientationEvent) {
-      console.log(&quot;DeviceOrientation is supported&quot;);
+  if (window.DeviceOrientationEvent) {
+    console.log(&quot;DeviceOrientation is supported&quot;);
     window.addEventListener(&#39;deviceorientation&#39;, function(eventData) {
-          var LR = eventData.gamma;
-          var FB = eventData.beta;
-          var DIR = eventData.alpha;
-          deviceOrientationHandler(LR, FB, DIR);
-      }, false);
-   } else {
-      alert(&quot;Not supported on your device or browser. Sorry.&quot;);
-   }
-   function deviceOrientationHandler(LR, FB, DIR) {
-      // USE CSS3 rotations for rotating the HTML5 logo
-      //for webkit browser
-      document.getElementById(&quot;imgLogo&quot;).style.webkitTransform =
-      &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
-      //for HTML5 standard-compliance
-      document.getElementById(&quot;imgLogo&quot;).style.transform =
-      &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
-      document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
-      document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
-      document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
-}
+      var LR = eventData.gamma;
+      var FB = eventData.beta;
+      var DIR = eventData.alpha;
+      deviceOrientationHandler(LR, FB, DIR);
+    }, false);
+  } else {
+    alert(&quot;Not supported on your device or browser. Sorry.&quot;);
+  }
+  function deviceOrientationHandler(LR, FB, DIR) {
+    // USE CSS3 rotations for rotating the HTML5 logo
+    //for webkit browser
+    document.getElementById(&quot;imgLogo&quot;).style.webkitTransform =
+    &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
+    //for HTML5 standard-compliance
+    document.getElementById(&quot;imgLogo&quot;).style.transform =
+    &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
+    document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
+    document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
+    document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
+  }
 &lt;/script&gt;
 ...</pre>
 
@@ -19689,8 +19659,9 @@ comments/observations/questions and share your creations.</p>
   Prior Updated: 4-14-2024 Sun 5:36pm<br>
   Last Updated: 4-15-2024 Mon 12:24pm<br>
   Last Updated: 5-13-2024 Mon 5:12pm<br>
-  Last Updated: 5-24-2025 Sat 9:22pm</h6>
-  Last Updated: 5-27-2025 Tue 11:22pm</h6>
+  Last Updated: 5-24-2025 Sat 9:22pm<br>
+  Last Updated: 5-27-2025 Tue 11:22pm</br>
+  Last Updated: 6-25-2025 Tue 7:38pm</h6>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <script src="./js/scripts.js"></script>
 </body>

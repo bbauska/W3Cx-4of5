@@ -13698,10 +13698,10 @@ in a new tab/window. This is not what we would like in an application
 using the drag and drop process. These two lines are necessary to
 prevent the default behavior of the browser:</p>
 
-<pre>1. // Do not propagate the event
-2. event.stopPropagation();
-3. // Prevent default behavior, in particular when we drop images or links
-4. event.preventDefault();</pre>
+<pre>// Do not propagate the event
+event.stopPropagation();
+// Prevent default behavior, in particular when we drop images or links
+event.preventDefault();</pre>
 
 <blockquote>
 <p><b>Best practice</b>: add these lines to the drop handler AND
@@ -13713,23 +13713,21 @@ to the dragOver handler attached to the drop zone!</p>
 <details>
   <summary>JavaScript Extract!</summary>
   
-<pre>1.  function dragOverHandler(event) {
-2.     // Do not propagate the event
-3.     event.stopPropagation();
-4.  
-5.     // Prevent default behavior, in particular when we drop images or links
-6.     event.preventDefault();
-7.     ...
-8.  }
-9.  
-10. function dropHandler(event) {
-11.    // Do not propagate the event
-12.    event.stopPropagation();
-13. 
-14.    // Prevent default behavior, in particular when we drop images or links
-15.    event.preventDefault();
-16.    ...
-17. }</pre>
+<pre>function dragOverHandler(event) {
+   // Do not propagate the event
+   event.stopPropagation();
+   // Prevent default behavior, in particular when we drop images or links
+   event.preventDefault();
+   ...
+}
+function dropHandler(event) {
+   // Do not propagate the event
+   event.stopPropagation();
+
+   // Prevent default behavior, in particular when we drop images or links
+   event.preventDefault();
+   ...
+}</pre>
 
 </details>
 
@@ -13810,94 +13808,94 @@ it at CodePen</a>:</p>
 <details>
   <summary>HTML code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.     &lt;style&gt;
-5.        div {
-6.           height: 150px;
-7.           width: 350px;
-8.           float: left;
-9.           border: 2px solid #666666;
-10.          background-color: #ccc;
-11.          margin-right: 5px;
-12.          border-radius: 10px;
-13.          box-shadow: inset 0 0 3px #000;
-14.          text-align: center;
-15.          cursor: move;
-16.       }
-17. 
-18.       .dragged {
-19.          border: 2px dashed #000;
-20.          background-color: green;
-21.       }
-22. 
-23.       .draggedOver {
-24.          border: 2px dashed #000;
-25.          background-color: green;
-26.       }
-27.  
-28.     &lt;/style&gt;
-29.     &lt;script&gt;
-30.       function dragLeaveHandler(event) {
-31.           console.log(&quot;drag leave&quot;);
-32.           // Set style of drop zone to default
-33.           event.target.classList.remove(&#39;draggedOver&#39;);
-34.       }
-35. 
-36.       function dragEnterHandler(event) {
-37.           console.log(&quot;Drag enter&quot;);
-38.           // Show some visual feedback
-39.           event.target.classList.add(&#39;draggedOver&#39;);
-40.       }
-41. 
-42.       function dragOverHandler(event) {
-43.           //console.log(&quot;Drag over a droppable zone&quot;);
-44.           // Do not propagate the event
-45.           event.stopPropagation();
-46.           // Prevent default behavior, in particular when we drop images or links
-47.           event.preventDefault();
-48.       }
-49. 
-50.       function dropHandler(event) {
-51.           console.log(&#39;drop event&#39;);
-52. 
-53.           // Do not propagate the event
-54.           event.stopPropagation();
-55.           // Prevent default behavior, in particular when we drop images or links
-56.           event.preventDefault();
-57. 
-58. 
-59.           // reset the visual look of the drop zone to default
-60.           event.target.classList.remove(&#39;draggedOver&#39;);
-61. 
-62. 
-63.           // get the files from the clipboard
-64.           var files = event.dataTransfer.files;
-65.           var filesLen = files.length;
-66.           var filenames = &quot;&quot;;
-67. 
-68.           // iterate on the files, get details using the file API
-69.           // Display file names in a list.
-70.           for(var i = 0 ; i &lt; filesLen ; i++) {
-71.               filenames += &#39;n&#39; + files[i].name;
-72.               // Create a li, set its value to a file name, add it to the ol
-73.               var li = document.createElement(&#39;li&#39;);
-74.                 li.textContent = files[i].name; document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
-75.           }
-76.           console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
-77.       }
-78.   &lt;/script&gt;
-79. &lt;/head&gt;
-80. &lt;body&gt;
-81.   &lt;h2&gt;Drop your files here!&lt;/h2&gt;
-82.   &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; ondrop=&quot;dropHandler(event)&quot; 
-83.                           ondragover=&quot;dragOverHandler(event)&quot;  ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
-84.      Drop zone
-85.      &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
-86.   &lt;/div&gt;
-87. &lt;body&gt;
-88. &lt;html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+   &lt;style&gt;
+      div {
+         height: 150px;
+         width: 350px;
+         float: left;
+         border: 2px solid #666666;
+         background-color: #ccc;
+         margin-right: 5px;
+         border-radius: 10px;
+         box-shadow: inset 0 0 3px #000;
+         text-align: center;
+         cursor: move;
+      }
+
+      .dragged {
+         border: 2px dashed #000;
+         background-color: green;
+      }
+
+      .draggedOver {
+         border: 2px dashed #000;
+         background-color: green;
+      }
+ 
+    &lt;/style&gt;
+    &lt;script&gt;
+      function dragLeaveHandler(event) {
+          console.log(&quot;drag leave&quot;);
+          // Set style of drop zone to default
+          event.target.classList.remove(&#39;draggedOver&#39;);
+      }
+
+      function dragEnterHandler(event) {
+          console.log(&quot;Drag enter&quot;);
+          // Show some visual feedback
+          event.target.classList.add(&#39;draggedOver&#39;);
+      }
+
+      function dragOverHandler(event) {
+          //console.log(&quot;Drag over a droppable zone&quot;);
+          // Do not propagate the event
+          event.stopPropagation();
+          // Prevent default behavior, in particular when we drop images or links
+          event.preventDefault();
+      }
+
+      function dropHandler(event) {
+          console.log(&#39;drop event&#39;);
+
+          // Do not propagate the event
+          event.stopPropagation();
+          // Prevent default behavior, in particular when we drop images or links
+          event.preventDefault();
+
+
+          // reset the visual look of the drop zone to default
+          event.target.classList.remove(&#39;draggedOver&#39;);
+
+
+          // get the files from the clipboard
+          var files = event.dataTransfer.files;
+          var filesLen = files.length;
+          var filenames = &quot;&quot;;
+
+          // iterate on the files, get details using the file API
+          // Display file names in a list.
+          for(var i = 0 ; i &lt; filesLen ; i++) {
+              filenames += &#39;n&#39; + files[i].name;
+              // Create a li, set its value to a file name, add it to the ol
+              var li = document.createElement(&#39;li&#39;);
+                li.textContent = files[i].name; document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
+          }
+          console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
+      }
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Drop your files here!&lt;/h2&gt;
+  &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; ondrop=&quot;dropHandler(event)&quot; 
+    ondragover=&quot;dragOverHandler(event)&quot;  ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
+    Drop zone
+    &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
+  &lt;/div&gt;
+&lt;body&gt;
+&lt;html&gt;</pre>
 
 </details>
 
@@ -13938,33 +13936,29 @@ image thumbnails displayed in the open space beneath it:</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  function readFilesAndDisplayPreview(files) {
-2.     // Loop through the FileList and render image files
-3.     // as thumbnails.
-4.     for (var i = 0, f; f = files[i]; i++) {
-5.  
-6.       // Only process image files.
-7.       if (!f.type.match(&#39;image.*&#39;)) {
-8.          continue;
-9.       }
-10. 
-11.      var reader = new FileReader();
-12. 
-13.      //capture the file information.
-14.      reader.onload = function(e) {
-15.          // Render thumbnail.
-16.          var span = document.createElement(&#39;span&#39;);
-17.          span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; src=&#39;&quot; +
-18.                            e.target.result + &quot;&#39;/&gt;&quot;;
-19.          document.getElementById(&#39;list&#39;).insertBefore(span, null);
-20.      };
-21. 
-22.      // Read the image file as a data URL. Will trigger
-23.      // a call to the onload callback above
-24.      // only once the image is completely loaded
-25.      reader.readAsDataURL(f);
-26.    }
-27. }</pre>
+<pre>function readFilesAndDisplayPreview(files) {
+   // Loop through the FileList and render image files
+   // as thumbnails.
+   for (var i = 0, f; f = files[i]; i++) {
+     // Only process image files.
+     if (!f.type.match(&#39;image.*&#39;)) {
+        continue;
+     }
+     var reader = new FileReader();
+     //capture the file information.
+     reader.onload = function(e) {
+         // Render thumbnail.
+         var span = document.createElement(&#39;span&#39;);
+         span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; src=&#39;&quot; +
+                           e.target.result + &quot;&#39;/&gt;&quot;;
+         document.getElementById(&#39;list&#39;).insertBefore(span, null);
+     };
+     // Read the image file as a data URL. Will trigger
+     // a call to the onload callback above
+     // only once the image is completely loaded
+     reader.readAsDataURL(f);
+   }
+}</pre>
 
 </details>
 
@@ -14001,122 +13995,108 @@ zone) or play with it at CodePen:</p>
 <details>
   <summary>HTML source code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.      &lt;style&gt;
-5.         div {
-6.            height: 150px;
-7.            width: 350px;
-8.            border: 2px solid #666666;
-9.            background-color: #ccc;
-10.           margin-right: 5px;
-11.           border-radius: 10px;
-12.           box-shadow: inset 0 0 3px #000;
-13.           text-align: center;
-14.           cursor: move;
-15.        }
-16. 
-17.        .dragged {
-18.           border: 2px dashed #000;
-19.           background-color: green;
-20.        }
-21. 
-22.        .draggedOver {
-23.           border: 2px dashed #000;
-24.           background-color: green;
-25.        }
-26. 
-27.      &lt;/style&gt;
-28.      &lt;script&gt;
-29.        function dragLeaveHandler(event) {
-30.           console.log(&quot;drag leave&quot;);
-31.           // Set style of drop zone to default
-32.           event.target.classList.remove(&#39;draggedOver&#39;);
-33.        }
-34. 
-35.        function dragEnterHandler(event) {
-36.           console.log(&quot;Drag enter&quot;);
-37.           // Show some visual feedback
-38.           event.target.classList.add(&#39;draggedOver&#39;);
-39.        }
-40. 
-41.        function dragOverHandler(event) {
-42.           //console.log(&quot;Drag over a droppable zone&quot;);
-43.           // Do not propagate the event
-44.           event.stopPropagation();
-45.           // Prevent default behavior, in particular when we drop images or links
-46.           event.preventDefault();
-47.        }
-48. 
-49.        function dropHandler(event) {
-50.           console.log(&#39;drop event&#39;);
-51. 
-52.           // Do not propagate the event
-53.           event.stopPropagation();
-54.           // Prevent default behavior, in particular when we drop images or links
-55.           event.preventDefault();
-56. 
-57.           // reset the visual look of the drop zone to default
-58.           event.target.classList.remove(&#39;draggedOver&#39;);
-59. 
-60. 
-61.           // get the files from the clipboard
-62.           var files = event.dataTransfer.files;
-63.           var filesLen = files.length;
-64.           var filenames = &quot;&quot;;
-65. 
-66.           // iterate on the files, get details using the file API
-67.           // Display file names in a list.
-68.           for(var i = 0 ; i &lt; filesLen ; i++) {
-69.              filenames += &#39;n&#39; + files[i].name;
-70.              // Create a li, set its value to a file name, add it to the ol
-71.              var li = document.createElement(&#39;li&#39;);
-72.              li.textContent = files[i].name;
-73.                 document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
-74.           }
-75.           console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
-76. 
-77.           readFilesAndDisplayPreview(files);
-78.        }
-79. 
-80.        function readFilesAndDisplayPreview(files) {
-81.           // Loop through the FileList and render image files as  thumbnails.
-82.           for (var i = 0, f; f = files[i]; i++) {
-83. 
-84.           // Only process image files.
-85.           if (!f.type.match(&#39;image.*&#39;)) {
-86.              continue;
-87.           }
-88. 
-89.           var reader = new FileReader();
-90. 
-91.           //capture the file information.
-92.           reader.onload = function(e) {
-93.              // Render thumbnail.
-94.              var span = document.createElement(&#39;span&#39;);
-95.              span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; width=&#39;100&#39;    src=&#39;&quot; + e.target.result + &quot;&#39;/&gt;&quot;;
-96.                 document.getElementById(&#39;list&#39;).insertBefore(span, null);
-97.           };
-98. 
-99.           // Read the image file as a data URL. Will trigger the    call to the above callback when
-100.           // the image file is completely loaded
-101.           reader.readAsDataURL(f);
-102.        }
-103.     }
-104.   &lt;/script&gt;
-105. &lt;/head&gt;
-106. &lt;body&gt;
-107. &lt;h2&gt;Drop your files here!&lt;/h2&gt;
-108. &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; ondrop=&quot;dropHandler(event)&quot;
-109.                          ondragover=&quot;dragOverHandler(event)&quot;       ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
-110.     Drop zone
-111.     &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
-112. &lt;/div&gt;
-113. &lt;br/&gt;
-114. &lt;output id=&quot;list&quot;&gt;&lt;/output&gt;
-115. &lt;body&gt;
-116. &lt;html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;style&gt;
+       div {
+          height: 150px;
+          width: 350px;
+          border: 2px solid #666666;
+          background-color: #ccc;
+          margin-right: 5px;
+          border-radius: 10px;
+          box-shadow: inset 0 0 3px #000;
+          text-align: center;
+          cursor: move;
+       }
+       .dragged {
+          border: 2px dashed #000;
+          background-color: green;
+       }
+       .draggedOver {
+          border: 2px dashed #000;
+          background-color: green;
+       }
+     &lt;/style&gt;
+     &lt;script&gt;
+       function dragLeaveHandler(event) {
+          console.log(&quot;drag leave&quot;);
+          // Set style of drop zone to default
+          event.target.classList.remove(&#39;draggedOver&#39;);
+       }
+       function dragEnterHandler(event) {
+          console.log(&quot;Drag enter&quot;);
+          // Show some visual feedback
+          event.target.classList.add(&#39;draggedOver&#39;);
+       }
+       function dragOverHandler(event) {
+          //console.log(&quot;Drag over a droppable zone&quot;);
+          // Do not propagate the event
+          event.stopPropagation();
+          // Prevent default behavior, in particular when we drop images or links
+          event.preventDefault();
+       }
+       function dropHandler(event) {
+          console.log(&#39;drop event&#39;);
+          // Do not propagate the event
+          event.stopPropagation();
+          // Prevent default behavior, in particular when we drop images or links
+          event.preventDefault();
+          // reset the visual look of the drop zone to default
+          event.target.classList.remove(&#39;draggedOver&#39;);
+          // get the files from the clipboard
+          var files = event.dataTransfer.files;
+          var filesLen = files.length;
+          var filenames = &quot;&quot;;
+          // iterate on the files, get details using the file API
+          // Display file names in a list.
+          for(var i = 0 ; i &lt; filesLen ; i++) {
+             filenames += &#39;n&#39; + files[i].name;
+             // Create a li, set its value to a file name, add it to the ol
+             var li = document.createElement(&#39;li&#39;);
+             li.textContent = files[i].name;
+                document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
+          }
+          console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
+          readFilesAndDisplayPreview(files);
+       }
+       function readFilesAndDisplayPreview(files) {
+          // Loop through the FileList and render image files as  thumbnails.
+          for (var i = 0, f; f = files[i]; i++) {
+
+          // Only process image files.
+          if (!f.type.match(&#39;image.*&#39;)) {
+             continue;
+          }
+          var reader = new FileReader();
+          //capture the file information.
+          reader.onload = function(e) {
+             // Render thumbnail.
+             var span = document.createElement(&#39;span&#39;);
+             span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; width=&#39;100&#39;   
+               src=&#39;&quot; + e.target.result + &quot;&#39;/&gt;&quot;;
+               document.getElementById(&#39;list&#39;).insertBefore(span, null);
+          };
+
+          // Read the image file as a data URL. Will trigger the    call to the above callback when
+           // the image file is completely loaded
+           reader.readAsDataURL(f);
+        }
+     }
+   &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h2&gt;Drop your files here!&lt;/h2&gt;
+&lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; ondrop=&quot;dropHandler(event)&quot;
+         ondragover=&quot;dragOverHandler(event)&quot;       ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
+    Drop zone
+    &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;output id=&quot;list&quot;&gt;&lt;/output&gt;
+&lt;body&gt;
+&lt;html&gt;</pre>
 
 </details>
 
@@ -14159,21 +14139,21 @@ using &lt;input type=“file”/&gt; looks like this:</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  &lt;script&gt;
-2.     function handleFileSelect(evt) {
-3.       var files = evt.target.files; // FileList object
-4.       // do something with files... why not call    readFilesAndDisplayPreview!
-5.       readFilesAndDisplayPreview(files);&lt;/b&gt;
-6.     }
-7.  
-8.       document.getElementById(&#39;files&#39;).addEventListener(&#39;change&#39;,
-           handleFileSelect, false);
-9.  &lt;/script&gt;
-10. ...
-11. &lt;body&gt;
-12.   Choose multiple files    :&lt;input type=&quot;file&quot; 
-        id=&quot;files&quot; multiple /&gt;&lt;br/&gt;
-13. &lt;/body&gt;</pre>
+<pre>&lt;script&gt;
+   function handleFileSelect(evt) {
+     var files = evt.target.files; // FileList object
+     // do something with files... why not call    readFilesAndDisplayPreview!
+     readFilesAndDisplayPreview(files);&lt;/b&gt;
+   }
+
+     document.getElementById(&#39;files&#39;).addEventListener(&#39;change&#39;,
+       handleFileSelect, false);
+&lt;/script&gt;
+...
+&lt;body&gt;
+  Choose multiple files    :&lt;input type=&quot;file&quot; 
+    id=&quot;files&quot; multiple /&gt;&lt;br/&gt;
+&lt;/body&gt;</pre>
 
 </details>
 
@@ -14352,103 +14332,89 @@ try to connect):</p>
 <details>
   <summary>HTML source code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html&gt;
-3.  &lt;head&gt;
-4.     &lt;style&gt;
-5.       ...
-6.     &lt;/style&gt;
-7.     &lt;script&gt;
-8.       function dragLeaveHandler(event) {
-9.         console.log(&quot;drag leave&quot;);
-10.        // Set style of drop zone to default
-11.        event.target.classList.remove(&#39;draggedOver&#39;);
-12.      }
-13. 
-14.      function dragEnterHandler(event) {
-15.        console.log(&quot;Drag enter&quot;);
-16.        // Show some visual feedback
-17.        event.target.classList.add(&#39;draggedOver&#39;);
-18.      }
-19. 
-20.      function dragOverHandler(event) {
-21.        //console.log(&quot;Drag over a droppable zone&quot;);
-22.        // Do not propagate the event
-23.        event.stopPropagation();
-24.        // Prevent default behavior, in particular when we drop images
-25.        // or links
-26.        event.preventDefault();
-27.      }
-28. 
-29.      function dropHandler(event) {
-30.        console.log(&#39;drop event&#39;);
-31. 
-32.        // Do not propagate the event
-33.        event.stopPropagation();
-34.        // Prevent default behavior, in particular when we drop images
-35.        // or links
-36.        event.preventDefault();
-37. 
-38.        // reset the visual look of the drop zone to default
-39.        event.target.classList.remove(&#39;draggedOver&#39;);
-40. 
-41. 
-42.        // get the files from the clipboard
-43.        var files = event.dataTransfer.files;
-44.        var filesLen = files.length;
-45.        var filenames = &quot;&quot;;
-46. 
-47.        // iterate on the files, get details using the file API
-48.        // Display file names in a list.
-49.        for(var i = 0 ; i &lt; filesLen ; i++) {
-50.           filenames += &#39;n&#39; + files[i].name;
-51.           // Create a li, set its value to a file name, add it to the ol
-52.           var li = document.createElement(&#39;li&#39;);
-53.           li.textContent = files[i].name;
-54.           document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
-55.        }
-56.        console.log(files.length + &#39; file(s) have been dropped:n&#39;
-57.                                 + filenames);
-58. 
-59.        uploadAllFilesUsingAjax(files);
-60.      }
-61. 
-62.      function uploadAllFilesUsingAjax(files) {
-63.        var xhr = new XMLHttpRequest();
-64.        xhr.open(&#39;POST&#39;, &#39;upload.html&#39;);
-65. 
-66.        xhr.upload.onprogress = function(e) {
-67.           progress.value = e.loaded;
-68.           progress.max = e.total;
-69.        };
-70. 
-71.        xhr.onload = function() {
-72.          alert(&#39;Upload complete!&#39;);
-73.        };
-74. 
-75.        var form = new FormData();
-76.        for(var i = 0 ; i &lt; files.length ; i++) {
-77.           form.append(&#39;file&#39;, files[i]);
-78.        }
-79.  
-80.        // Send the Ajax request
-81.        xhr.send(form);
-82.      }
-83.   &lt;/script&gt;
-84. &lt;/head&gt;
-85. &lt;body&gt;
-86. &lt;h2&gt;Drop your files here!&lt;/h2&gt;
-87. &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot;
-88.                          ondrop=&quot;dropHandler(event)&quot;
-89.                          ondragover=&quot;dragOverHandler(event)&quot;     
-90.                          ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
-91.      Drop zone
-92.      &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
-93. &lt;/div&gt;
-94. &lt;br/&gt;
-95.  Uploading progress: &lt;progress id=&quot;progress&quot;&gt;&lt;/progress&gt;
-96. &lt;body&gt;
-97. &lt;html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+   &lt;style&gt;
+     ...
+   &lt;/style&gt;
+   &lt;script&gt;
+     function dragLeaveHandler(event) {
+       console.log(&quot;drag leave&quot;);
+       // Set style of drop zone to default
+       event.target.classList.remove(&#39;draggedOver&#39;);
+     }
+     function dragEnterHandler(event) {
+       console.log(&quot;Drag enter&quot;);
+       // Show some visual feedback
+       event.target.classList.add(&#39;draggedOver&#39;);
+     }
+     function dragOverHandler(event) {
+       //console.log(&quot;Drag over a droppable zone&quot;);
+       // Do not propagate the event
+       event.stopPropagation();
+       // Prevent default behavior, in particular when we drop images
+       // or links
+       event.preventDefault();
+     }
+     function dropHandler(event) {
+       console.log(&#39;drop event&#39;);
+       // Do not propagate the event
+       event.stopPropagation();
+       // Prevent default behavior, in particular when we drop images
+       // or links
+       event.preventDefault();
+       // reset the visual look of the drop zone to default
+       event.target.classList.remove(&#39;draggedOver&#39;);
+       // get the files from the clipboard
+       var files = event.dataTransfer.files;
+       var filesLen = files.length;
+       var filenames = &quot;&quot;;
+       // iterate on the files, get details using the file API
+       // Display file names in a list.
+       for(var i = 0 ; i &lt; filesLen ; i++) {
+          filenames += &#39;n&#39; + files[i].name;
+          // Create a li, set its value to a file name, add it to the ol
+          var li = document.createElement(&#39;li&#39;);
+          li.textContent = files[i].name;
+          document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
+       }
+       console.log(files.length + &#39; file(s) have been dropped:n&#39;
+                                + filenames);
+       uploadAllFilesUsingAjax(files);
+     }
+     function uploadAllFilesUsingAjax(files) {
+       var xhr = new XMLHttpRequest();
+       xhr.open(&#39;POST&#39;, &#39;upload.html&#39;);
+       xhr.upload.onprogress = function(e) {
+          progress.value = e.loaded;
+          progress.max = e.total;
+       };
+       xhr.onload = function() {
+         alert(&#39;Upload complete!&#39;);
+       };
+       var form = new FormData();
+       for(var i = 0 ; i &lt; files.length ; i++) {
+          form.append(&#39;file&#39;, files[i]);
+       }
+       // Send the Ajax request
+       xhr.send(form);
+     }
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h2&gt;Drop your files here!&lt;/h2&gt;
+&lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot;
+                         ondrop=&quot;dropHandler(event)&quot;
+                         ondragover=&quot;dragOverHandler(event)&quot;     
+                         ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
+     Drop zone
+     &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+ Uploading progress: &lt;progress id=&quot;progress&quot;&gt;&lt;/progress&gt;
+&lt;body&gt;
+&lt;html&gt;</pre>
 
 </details>
 
@@ -14652,40 +14618,34 @@ JSBin</a> and look at the source code - there are plenty of comments.</p>
 <details>
   <summary>PHP ‘as is’ code!</summary>
 
-<pre>1.  &lt;?php
-2.  
-3.  if (isset($_POST[&#39;givenname&#39;]) &amp;&amp; isset($_POST[&#39;familyname&#39;])) {
-4.     echo $_POST[&#39;givenname&#39;].&#39; &#39;.$_POST[&#39;familyname&#39;].&#39; uploaded file(s).&lt;br /&gt;&#39;;
-5.  }
-6.  
-7.  if (isset($_POST[&#39;namesAllFiles&#39;]) &amp;&amp; $_POST[&#39;namesAllFiles&#39;] != &quot;&quot;) {
-8.    $folderName = date(&quot;m.d.Y&quot;);
-9.    if (!is_dir(&#39;upload/&#39;.$folderName)) {
-10.      mkdir(&#39;upload/&#39;.$folderName);
-11. }
-12. 
-13. $filesName = explode(&quot;::&quot;, $_POST[&#39;namesAllFiles&#39;]);
-14.   for ($i=0; $i &lt; count($filesName); $i++) {
-15.     copy(&#39;upload/RecycleBin/&#39;.$filesName[$i],
-16.          &#39;upload/&#39;.$folderName.&#39;/&#39;.$filesName[$i]);
-17.     unlink(&#39;upload/RecycleBin/&#39;.$filesName[$i]);
-18.     echo &quot;$filesName[$i] uploaded&lt;br /&gt;&quot;;
-19.   }
-20. }
-21. 
-22. $fn = (isset($_SERVER[&#39;HTTP_X_FILENAME&#39;]) ?
-23.              $_SERVER[&#39;HTTP_X_FILENAME&#39;] : false);
-24. 
-25. if ($fn) {
-26.   if (!is_dir(&#39;upload/RecycleBin&#39;)) {
-27.     mkdir(&#39;upload/RecycleBin&#39;);
-28.   }
-29.   file_put_contents(&#39;upload/RecycleBin/&#39;.$fn,     
-30.                     file_get_contents(&#39;php://input&#39;));
-31.   exit();
-32. }
-33. 
-34. ?&gt;</pre>
+<pre>&lt;?php
+if (isset($_POST[&#39;givenname&#39;]) &amp;&amp; isset($_POST[&#39;familyname&#39;])) {
+   echo $_POST[&#39;givenname&#39;].&#39; &#39;.$_POST[&#39;familyname&#39;].&#39; uploaded file(s).&lt;br /&gt;&#39;;
+}
+if (isset($_POST[&#39;namesAllFiles&#39;]) &amp;&amp; $_POST[&#39;namesAllFiles&#39;] != &quot;&quot;) {
+  $folderName = date(&quot;m.d.Y&quot;);
+  if (!is_dir(&#39;upload/&#39;.$folderName)) {
+     mkdir(&#39;upload/&#39;.$folderName);
+}
+$filesName = explode(&quot;::&quot;, $_POST[&#39;namesAllFiles&#39;]);
+  for ($i=0; $i &lt; count($filesName); $i++) {
+    copy(&#39;upload/RecycleBin/&#39;.$filesName[$i],
+         &#39;upload/&#39;.$folderName.&#39;/&#39;.$filesName[$i]);
+    unlink(&#39;upload/RecycleBin/&#39;.$filesName[$i]);
+    echo &quot;$filesName[$i] uploaded&lt;br /&gt;&quot;;
+  }
+}
+$fn = (isset($_SERVER[&#39;HTTP_X_FILENAME&#39;]) ?
+             $_SERVER[&#39;HTTP_X_FILENAME&#39;] : false);
+if ($fn) {
+  if (!is_dir(&#39;upload/RecycleBin&#39;)) {
+    mkdir(&#39;upload/RecycleBin&#39;);
+  }
+  file_put_contents(&#39;upload/RecycleBin/&#39;.$fn,     
+                    file_get_contents(&#39;php://input&#39;));
+  exit();
+}
+?&gt;</pre>
 
 </details>
 
@@ -14746,51 +14706,46 @@ have to deal with a temporary “RecycleBin” directory.</p>
 <details>
   <summary>PHP ‘as is’ code!</summary>
 
-<pre>1.  &lt;?php
-2.  
-3.  if (isset($_POST[&#39;givenname&#39;]) &amp;&amp; isset($_POST[&#39;familyname&#39;])) {
-4.      echo $_POST[&#39;givenname&#39;] . &#39; &#39; . $_POST[&#39;familyname&#39;] . &#39; try to upload
-5.           file(s).&#39;;
-6.  }
-7.  
-8.  $folderName = date(&quot;m.d.Y&quot;);
-9.  if (!is_dir(&#39;upload/&#39;.$folderName)) {
-10.     mkdir(&#39;upload/&#39;.$folderName);
-11. }
-12. 
-13. $fn = (isset($_SERVER[&#39;HTTP_X_FILENAME&#39;]) ? $_SERVER[&#39;HTTP_X_FILENAME&#39;] :
-14.                                             false);
-15. if ($fn)
-16. {
-17.     file_put_contents(&#39;upload/&#39; . $folderName . &#39;/&#39; . $fn,     
-18.                       file_get_contents(&#39;php://input&#39;));
-19.     echo &quot;$fn uploaded&quot;;
-20.     exit();
-21. }
-22. else {
-23. if (isset($_FILES) &amp;&amp; is_array($_FILES) &amp;&amp; array_key_exists(&#39;formFiles&#39;,
-24.                                               $_FILES)) {
-25.       $number_files_send = count($_FILES[&#39;formFiles&#39;][&#39;name&#39;]);
-26.       $dir = realpath(&#39;.&#39;) . &#39;/upload/&#39; . $folderName . &#39;/&#39;;
-27. 
-28.       if ($number_files_send &gt; 0) {
-29.          for ($i = 0; $i &lt; $number_files_send; $i++) {
-30.             echo &#39;&lt;br/&gt;Reception of : &#39; . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i];
-31.            $copy = move_uploaded_file($_FILES[&#39;formFiles&#39;][&#39;tmp_name&#39;]
-32.                    [$i], $dir . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i]);
-33.             if ($copy) {
-34.               echo &#39;&lt;br /&gt;File &#39; . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i] .
-35.                    &#39; copy&#39;;
-36.             }
-37.             else {
-38.               echo &#39;&lt;br /&gt;No file to upload&#39;;
-39.             }
-40.         }
-41.      }
-42.    }
-43. }
-44. 
-45. ?&gt;</pre>
+<pre>&lt;?php
+if (isset($_POST[&#39;givenname&#39;]) &amp;&amp; isset($_POST[&#39;familyname&#39;])) {
+    echo $_POST[&#39;givenname&#39;] . &#39; &#39; . $_POST[&#39;familyname&#39;] . &#39; try to upload
+         file(s).&#39;;
+}
+$folderName = date(&quot;m.d.Y&quot;);
+if (!is_dir(&#39;upload/&#39;.$folderName)) {
+    mkdir(&#39;upload/&#39;.$folderName);
+}
+$fn = (isset($_SERVER[&#39;HTTP_X_FILENAME&#39;]) ? $_SERVER[&#39;HTTP_X_FILENAME&#39;] :
+                                            false);
+if ($fn)
+{
+    file_put_contents(&#39;upload/&#39; . $folderName . &#39;/&#39; . $fn,     
+                      file_get_contents(&#39;php://input&#39;));
+    echo &quot;$fn uploaded&quot;;
+    exit();
+}
+else {
+if (isset($_FILES) &amp;&amp; is_array($_FILES) &amp;&amp; array_key_exists(&#39;formFiles&#39;,
+                                              $_FILES)) {
+      $number_files_send = count($_FILES[&#39;formFiles&#39;][&#39;name&#39;]);
+      $dir = realpath(&#39;.&#39;) . &#39;/upload/&#39; . $folderName . &#39;/&#39;;
+      if ($number_files_send &gt; 0) {
+         for ($i = 0; $i &lt; $number_files_send; $i++) {
+            echo &#39;&lt;br/&gt;Reception of : &#39; . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i];
+           $copy = move_uploaded_file($_FILES[&#39;formFiles&#39;][&#39;tmp_name&#39;]
+                   [$i], $dir . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i]);
+            if ($copy) {
+              echo &#39;&lt;br /&gt;File &#39; . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i] .
+                   &#39; copy&#39;;
+            }
+            else {
+              echo &#39;&lt;br /&gt;No file to upload&#39;;
+            }
+        }
+     }
+   }
+}
+?&gt;</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -15055,28 +15010,23 @@ an age and an email address.</p>
 <details>
   <summary>Transaction code!</summary>
 
-<pre>1.  // Open a transaction for reading and writing on the DB &quot;customer&quot;
-2.  var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-3.  
-4.  // Do something when all the data is added to the database.
-5.  transaction.oncomplete = function(event) {
-6.     alert(&quot;All done!&quot;);
-7.  };
-8.  
-9.  transaction.onerror = function(event) {
-10.    // Don&#39;t forget to handle errors!
-11. };
-12. 
-13. // Use the transaction to add data...
-14. var objectStore = transaction.objectStore(&quot;customers&quot;);
-15.  
-16. for (var i in customerData) {
-17.    var request = objectStore.add(customerData[i]);
-18. 
-19.    request.onsuccess = function(event) {
-20.       // event.target.result == customerData[i].ssn
-21. };
-22. }</pre>
+<pre>// Open a transaction for reading and writing on the DB &quot;customer&quot;
+var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+// Do something when all the data is added to the database.
+transaction.oncomplete = function(event) {
+  alert(&quot;All done!&quot;);
+};
+transaction.onerror = function(event) {
+  // Don&#39;t forget to handle errors!
+};
+// Use the transaction to add data...
+var objectStore = transaction.objectStore(&quot;customers&quot;);
+for (var i in customerData) {
+  var request = objectStore.add(customerData[i]);
+  request.onsuccess = function(event) {
+    // event.target.result == customerData[i].ssn
+  };
+}</pre>
 
 </details>
 
@@ -15174,14 +15124,14 @@ href="https://www.w3.org/TR/IndexedDB/#dfn-transaction-create" target="_blank" r
 
 <p>The operation by which reading and writing on a database is done.  Every request represents one read or one write operation. Requests are always run within a transaction. The example below adds a customer to the object store named “customers”.</p>
 
-<pre>1.  // Use the transaction to add data...
-2.  var objectStore = transaction.objectStore(&quot;customers&quot;);
-3.  for (var i in customerData) {
-4.      var request = objectStore.add(customerData[i]);
-5.      request.onsuccess = function(event) {
-6.          // event.target.result == customerData[i].ssn
-7.  };
-8.  }</pre>
+<pre>// Use the transaction to add data...
+var objectStore = transaction.objectStore(&quot;customers&quot;);
+for (var i in customerData) {
+  var request = objectStore.add(customerData[i]);
+  request.onsuccess = function(event) {
+    // event.target.result == customerData[i].ssn
+  };
+}</pre>
 
 <h4>Index</h4>
 
@@ -15474,7 +15424,7 @@ show this message:</p>
 
 <p>This message comes from the JavaScript request.onupgradeneeded callback. Indeed, the first time we open the database we ask for a specific version (in this example: version 2) with:</p>
 
-<pre>1. var request = indexedDB.open(dbName, 2);</pre>
+<pre>var request = indexedDB.open(dbName, 2);</pre>
 
 <p>…and if there is no version “2” of the database, then we enter the onupgradeneeded callback where we actually create the database.</p>
 
@@ -15487,68 +15437,56 @@ show this message:</p>
 <details>
   <summary>function createDatabase!</summary>
 
-<pre>1.  var db; // the database connection we need to initialize
-2.   
-3.  function createDatabase() {
-4.  
-5.    if(!window.indexedDB) {
-6.       window.alert(&quot;Your browser does not support a stable version
-7.                     of IndexedDB&quot;);
-8.    }
-9.  
-10.   // This is what our customer data looks like.
-11.   var customerData = [
-12.     { ssn: &quot;444-44-4444&quot;, name: &quot;Bill&quot;, age: 35, email:
-13.                                            &quot;bill@company.com&quot; },
-14.     { ssn: &quot;555-55-5555&quot;, name: &quot;Donna&quot;, age: 32, email:
-15.                                            &quot;donna@home.org&quot; }
-16.   ];
-17.   var dbName = &quot;CustomerDB&quot;;
-18. 
-19.   // version must be an integer, not 1.1, 1.2 etc...
-20.   var request = indexedDB.open(dbName, 2);
-21. 
-22.   request.onerror = function(event) {
-23.      // Handle errors.
-24.      console.log(&quot;request.onerror
-    errcode=&quot; + event.target.error.name);
-25.   };
-26.   request.onupgradeneeded = function(event) {
-27.       console.log(&quot;request.onupgradeneeded, we are creating a
-28.                    new version of the dataBase&quot;);
-29. 
-30.       db = event.target.result;
-31. 
-32.       // Create an objectStore to hold information about our
-33.       // customers. We&#39;re going to use &quot;ssn&quot; as our key path because
-34.       //  it&#39;s guaranteed to be unique
-35.       var objectStore = db.createObjectStore(&quot;customers&quot;,
-36.                                                { keyPath: &quot;ssn&quot; });
-37. 
-38.       // Create an index to search customers by name. We may have  
-39.       // duplicates so we can&#39;t use a unique index.
-40.       objectStore.createIndex(&quot;name&quot;, &quot;name&quot;, { unique: false });
-41. 
-42.       // Create an index to search customers by email. We want to
-43.       // ensure that no two customers have the same email, so use a
-44.       // unique index.
-45.       objectStore.createIndex(&quot;email&quot;, &quot;email&quot;, { unique: true });
-46. 
-47.       // Store values in the newly created objectStore.
-48.       for (var i in customerData) {
-49.           objectStore.add(customerData[i]);
-50.       }
-51.   }; // end of request.onupgradeneeded
-52. 
-53.   request.onsuccess = function(event) {
-54.      // Handle errors.
-55.      console.log(&quot;request.onsuccess, database opened, now we can add
-56.                   / remove / look for data in it!&quot;);
-57. 
-58.      // The result is the database itself
-59.      db = event.target.result;
-60.   };
-61. } // end of function createDatabase</pre>
+<pre>var db; // the database connection we need to initialize
+function createDatabase() {
+  if(!window.indexedDB) {
+     window.alert(&quot;Your browser does not support a stable version
+                   of IndexedDB&quot;);
+  }
+  // This is what our customer data looks like.
+  var customerData = [
+    { ssn: &quot;444-44-4444&quot;, name: &quot;Bill&quot;, age: 35, email:
+                                           &quot;bill@company.com&quot; },
+    { ssn: &quot;555-55-5555&quot;, name: &quot;Donna&quot;, age: 32, email:
+                                           &quot;donna@home.org&quot; }
+  ];
+  var dbName = &quot;CustomerDB&quot;;
+  // version must be an integer, not 1.1, 1.2 etc...
+  var request = indexedDB.open(dbName, 2);
+  request.onerror = function(event) {
+     // Handle errors.
+     console.log(&quot;request.onerror
+errcode=&quot; + event.target.error.name);
+  };
+  request.onupgradeneeded = function(event) {
+      console.log(&quot;request.onupgradeneeded, we are creating a
+                   new version of the dataBase&quot;);
+      db = event.target.result;
+      // Create an objectStore to hold information about our
+      // customers. We&#39;re going to use &quot;ssn&quot; as our key path because
+      //  it&#39;s guaranteed to be unique
+      var objectStore = db.createObjectStore(&quot;customers&quot;,
+                                               { keyPath: &quot;ssn&quot; });
+      // Create an index to search customers by name. We may have  
+      // duplicates so we can&#39;t use a unique index.
+      objectStore.createIndex(&quot;name&quot;, &quot;name&quot;, { unique: false });
+      // Create an index to search customers by email. We want to
+      // ensure that no two customers have the same email, so use a
+      // unique index.
+      objectStore.createIndex(&quot;email&quot;, &quot;email&quot;, { unique: true });
+      // Store values in the newly created objectStore.
+      for (var i in customerData) {
+          objectStore.add(customerData[i]);
+      }
+  }; // end of request.onupgradeneeded
+  request.onsuccess = function(event) {
+     // Handle errors.
+     console.log(&quot;request.onsuccess, database opened, now we can add
+                  / remove / look for data in it!&quot;);
+     // The result is the database itself
+     db = event.target.result;
+  };
+} // end of function createDatabase</pre>
 
 </details>
 
@@ -15747,44 +15685,38 @@ section - the function AddACustomer() that adds one customer:</p>
   <summary>JavaScript code!</summary>
   
 <pre>function addACustomer() {
-   // 1 - get a transaction on the &quot;customers&quot; object store
-   // in readwrite, as we are going to insert a new object
-   var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-
-   // Do something when all the data is added to the database.
-   // This callback is called after transaction has been completely
-   // executed (committed)
-   transaction.oncomplete = function(event) {
-       alert(&quot;All done!&quot;);
-   };
-
-   // This callback is called in case of error (rollback)
-   transaction.onerror = function(event) {
-      console.log(&quot;transaction.onerror
-errcode=&quot; + event.target.error.name);
-   };
-
-   // 2 - Init the transaction on the objectStore
-   var objectStore = transaction.objectStore(&quot;customers&quot;);
-
-   // 3 - Get a request from the transaction for adding a new object
-   var request = objectStore.add({ ssn: &quot;123-45-6789&quot;,
-                                   name: &quot;Michel Buffa&quot;,
-                                   age: 47,
-                                   email: &quot;buffa@i3s.unice.fr&quot; });
-
-   // The insertion was ok
-   request.onsuccess = function(event) {
-       console.log(&quot;Customer with ssn= &quot; + event.target.result + &quot;
-                    added.&quot;);
-   };
-
-   // the insertion led to an error (object already in the store,
-   // for example)
-   request.onerror = function(event) {
-       console.log(&quot;request.onerror, could not insert customer,
-                     errcode = &quot; + event.target.error.name);
-   };
+  // 1 - get a transaction on the &quot;customers&quot; object store
+  // in readwrite, as we are going to insert a new object
+  var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+  // Do something when all the data is added to the database.
+  // This callback is called after transaction has been completely
+  // executed (committed)
+  transaction.oncomplete = function(event) {
+    alert(&quot;All done!&quot;);
+  };
+  // This callback is called in case of error (rollback)
+  transaction.onerror = function(event) {
+    console.log(&quot;transaction.onerror
+    errcode=&quot; + event.target.error.name);
+  };
+  // 2 - Init the transaction on the objectStore
+  var objectStore = transaction.objectStore(&quot;customers&quot;);
+  // 3 - Get a request from the transaction for adding a new object
+  var request = objectStore.add({ ssn: &quot;123-45-6789&quot;,
+    name: &quot;Michel Buffa&quot;,
+    age: 47,
+    email: &quot;buffa@i3s.unice.fr&quot; });
+  // The insertion was ok
+  request.onsuccess = function(event) {
+    console.log(&quot;Customer with ssn= &quot; + event.target.result + &quot;
+      added.&quot;);
+  };
+  // the insertion led to an error (object already in the store,
+  // for example)
+  request.onerror = function(event) {
+    console.log(&quot;request.onerror, could not insert customer,
+      errcode = &quot; + event.target.error.name);
+  };
 }</pre>
 
 </details>
@@ -15864,11 +15796,11 @@ entering a new customer.</p>
 
 <pre>&lt;fieldset&gt;
   SSN: &lt;input type=&quot;text&quot; id=&quot;ssn&quot; placeholder=&quot;444-44-4444&quot;
-              required/&gt;&lt;br&gt;
+    required/&gt;&lt;br&gt;
   Name: &lt;input type=&quot;text&quot; id=&quot;name&quot;/&gt;&lt;br&gt;
   Age: &lt;input type=&quot;number&quot; id=&quot;age&quot; min=&quot;1&quot; max=&quot;100&quot;/&gt;&lt;br&gt;
   Email:&lt;input type=&quot;email&quot; id=&quot;email&quot;/&gt; reminder, email must be
-               unique (we declared it as a &quot;unique&quot; index)&lt;br&gt;
+    unique (we declared it as a &quot;unique&quot; index)&lt;br&gt;
 &lt;/fieldset&gt;
 &lt;button onclick=&quot;addACustomer();&quot;&gt;Add a new Customer&lt;/button&gt;</pre>
 
@@ -15878,38 +15810,38 @@ entering a new customer.</p>
   <summary>JavaScript code!</summary>
 
 <pre>function addACustomer() {
-   if(db === null) {
-      alert(&#39;Database must be opened, please click the Create
-             CustomerDB Database first&#39;);
-      return;
-   }
-   var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-   // Do something when all the data is added to the database.
-   transaction.oncomplete = function(event) {
-     console.log(&quot;All done!&quot;);
-   };
-   transaction.onerror = function(event) {
-     console.log(&quot;transaction.onerror
+  if(db === null) {
+    alert(&#39;Database must be opened, please click the Create
+      CustomerDB Database first&#39;);
+    return;
+  }
+  var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+  // Do something when all the data is added to the database.
+  transaction.oncomplete = function(event) {
+    console.log(&quot;All done!&quot;);
+  };
+  transaction.onerror = function(event) {
+    console.log(&quot;transaction.onerror
     errcode=&quot; + event.target.error.name);
-   };
-   var objectStore = transaction.objectStore(&quot;customers&quot;);
-   // adds the customer data
-   var newCustomer={};
-   newCustomer.ssn = document.querySelector(&quot;#ssn&quot;).value;
-   newCustomer.name = document.querySelector(&quot;#name&quot;).value;
-   newCustomer.age = document.querySelector(&quot;#age&quot;).value;
-   newCustomer.email = document.querySelector(&quot;#email&quot;).value;
-   alert(&#39;adding customer ssn=&#39; + newCustomer.ssn);
-   var request = objectStore.add(newCustomer);
-   request.onsuccess = function(event) {
-     console.log(&quot;Customer with ssn= &quot; + event.target.result + &quot;
-                  added.&quot;);
-     };
-   request.onerror = function(event) {
-     alert(&quot;request.onerror, could not insert customer, errcode = &quot;
-           + event.target.error.name +
-           &quot;. Certainly either the ssn or the email is already
-           present in the Database&quot;);
+  };
+  var objectStore = transaction.objectStore(&quot;customers&quot;);
+  // adds the customer data
+  var newCustomer={};
+  newCustomer.ssn = document.querySelector(&quot;#ssn&quot;).value;
+  newCustomer.name = document.querySelector(&quot;#name&quot;).value;
+  newCustomer.age = document.querySelector(&quot;#age&quot;).value;
+  newCustomer.email = document.querySelector(&quot;#email&quot;).value;
+  alert(&#39;adding customer ssn=&#39; + newCustomer.ssn);
+  var request = objectStore.add(newCustomer);
+  request.onsuccess = function(event) {
+    console.log(&quot;Customer with ssn= &quot; + event.target.result + &quot;
+      added.&quot;);
+  };
+  request.onerror = function(event) {
+    alert(&quot;request.onerror, could not insert customer, errcode = &quot;
+      + event.target.error.name +
+      &quot;. Certainly either the ssn or the email is already
+      present in the Database&quot;);
   };
 }</pre>
 
@@ -16055,45 +15987,37 @@ this screenshot:</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function updateACustomer() {
-2.     if(db === null) {
-3.       alert(&#39;Database must be opened first, please click the Create
-4.              CustomerDB Database first&#39;);
-5.       return;
-6.     }
-7.  
-8.     var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-9.  
-10.    // Do something when all the data is added to the database.
-11.    transaction.oncomplete = function(event) {
-12.      console.log(&quot;All done!&quot;);
-13.    };
-14. 
-15.    transaction.onerror = function(event) {
-16.      console.log(&quot;transaction.onerror errcode=&quot; + event.target.error.name);
-17.    };
-18. 
-19.    var objectStore = transaction.objectStore(&quot;customers&quot;);
-20. 
-21.    var customerToUpdate={};
-22.    customerToUpdate.ssn = document.querySelector(&quot;#ssn&quot;).value;
-23.    customerToUpdate.name = document.querySelector(&quot;#name&quot;).value;
-24.    customerToUpdate.age = document.querySelector(&quot;#age&quot;).value;
-25.    customerToUpdate.email = document.querySelector(&quot;#email&quot;).value;
-26.  
-27.    alert(&#39;updating customer ssn=&#39; + customerToUpdate.ssn);
-28.    var request = objectStore.put(customerToUpdate);
-29. 
-30.    request.onsuccess = function(event) {
-31.      console.log(&quot;Customer updated.&quot;);
-32.    };
-33.  
-34.    request.onerror = function(event) {
-35.      alert(&quot;request.onerror, could not update customer, errcode= &quot; +
-36.         event.target.error.name + &quot;. The ssn is not in the
-37.         Database&quot;);
-38.   };
-39. }</pre>
+<pre>function updateACustomer() {
+  if(db === null) {
+    alert(&#39;Database must be opened first, please click the Create
+      CustomerDB Database first&#39;);
+    return;
+  }
+  var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+  // Do something when all the data is added to the database.
+  transaction.oncomplete = function(event) {
+    console.log(&quot;All done!&quot;);
+  };
+  transaction.onerror = function(event) {
+    console.log(&quot;transaction.onerror errcode=&quot; + event.target.error.name);
+  };
+  var objectStore = transaction.objectStore(&quot;customers&quot;);
+  var customerToUpdate={};
+  customerToUpdate.ssn = document.querySelector(&quot;#ssn&quot;).value;
+  customerToUpdate.name = document.querySelector(&quot;#name&quot;).value;
+  customerToUpdate.age = document.querySelector(&quot;#age&quot;).value;
+  customerToUpdate.email = document.querySelector(&quot;#email&quot;).value;
+  alert(&#39;updating customer ssn=&#39; + customerToUpdate.ssn);
+  var request = objectStore.put(customerToUpdate);
+  request.onsuccess = function(event) {
+    console.log(&quot;Customer updated.&quot;);
+  };
+  request.onerror = function(event) {
+    alert(&quot;request.onerror, could not update customer, errcode= &quot; +
+      event.target.error.name + &quot;. The ssn is not in the
+      Database&quot;);
+  };
+}</pre>
 
 </details>
 
@@ -16135,51 +16059,42 @@ form is in the request.onsuccess callback).</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function searchACustomer() {
-2.     if(db === null) {
-3.       alert(&#39;Database must be opened first, please click the Create
-4.              CustomerDB Database first&#39;);
-5.       return;
-6.     }
-7.  
-8.     var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-9.  
-10.    // Do something when all the data is added to the database.
-11.    transaction.oncomplete = function(event) {
-12.      console.log(&quot;All done!&quot;);
-13.    };
-14. 
-15.    transaction.onerror = function(event) {
-16.      console.log(&quot;transaction.onerror errcode=&quot; + event.target.error.name);
-17.    };
-18. 
-19.    var objectStore = transaction.objectStore(&quot;customers&quot;);
-20. 
-21.    // Init a customer object with just the ssn property initialized
-22.    // from the form
-23.    var customerToSearch={};
-24.    customerToSearch.ssn = document.querySelector(&quot;#ssn&quot;).value;
-25. 
-26.    alert(&#39;Looking for customer ssn=&#39; + customerToSearch.ssn);
-27. 
-28.    // Look for the customer corresponding to the ssn in the object
-29.    // store
-30.    var request = objectStore.get(customerToSearch.ssn);
-31. 
-32.    request.onsuccess = function(event) {
-33.      console.log(&quot;Customer found&quot; + event.target.result.name);
-34.      document.querySelector(&quot;#name&quot;).value=event.target.result.name;
-35.      document.querySelector(&quot;#age&quot;).value = event.target.result.age;
-36.      document.querySelector(&quot;#email&quot;).value
-37.                                         =event.target.result.email;
-38.    };
-39.  
-40.    request.onerror = function(event) {
-41.      alert(&quot;request.onerror, could not find customer, errcode = &quot; + 
-                event.target.error.name + &quot;.
-42.             The ssn is not in the Database&quot;);
-43.   };
-44. }</pre>
+<pre>function searchACustomer() {
+  if(db === null) {
+    alert(&#39;Database must be opened first, please click the Create
+      CustomerDB Database first&#39;);
+    return;
+  }
+  var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+  // Do something when all the data is added to the database.
+  transaction.oncomplete = function(event) {
+    console.log(&quot;All done!&quot;);
+  };
+  transaction.onerror = function(event) {
+    console.log(&quot;transaction.onerror errcode=&quot; + event.target.error.name);
+  };
+  var objectStore = transaction.objectStore(&quot;customers&quot;);
+  // Init a customer object with just the ssn property initialized
+  // from the form
+  var customerToSearch={};
+  customerToSearch.ssn = document.querySelector(&quot;#ssn&quot;).value;
+  alert(&#39;Looking for customer ssn=&#39; + customerToSearch.ssn);
+  // Look for the customer corresponding to the ssn in the object
+  // store
+  var request = objectStore.get(customerToSearch.ssn);
+  request.onsuccess = function(event) {
+     console.log(&quot;Customer found&quot; + event.target.result.name);
+     document.querySelector(&quot;#name&quot;).value=event.target.result.name;
+     document.querySelector(&quot;#age&quot;).value = event.target.result.age;
+     document.querySelector(&quot;#email&quot;).value
+                                        =event.target.result.email;
+  };
+  request.onerror = function(event) {
+    alert(&quot;request.onerror, could not find customer, errcode = &quot; + 
+      event.target.error.name + &quot;.
+      The ssn is not in the Database&quot;);
+  };
+}</pre>
 
 </details>
 
@@ -16187,25 +16102,25 @@ form is in the request.onsuccess callback).</p>
 case of success is request.onsuccess, <i>lines 32-38</i>. event.target
 with result as the retrieved object (<i>lines 33 to 36</i>).</p>
 
-<p>Well, this is a lot of code, isn’t it? We can considerably abbreviate
-this function (though, admittedly it won’t take care of all possible
-errors). Here is the shortened version:</p>
+<p>Well, this is a lot of code, isn’t it? We can considerably abbreviate this function 
+(though, admittedly it won’t take care of all possible errors). Here is the shortened 
+version:</p>
 
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function searchACustomerShort() {
-2.    db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;)
-3.  .get(document.querySelector(&quot;#ssn&quot;).value).onsuccess =   
-4.     function(event) {
-5.        document.querySelector(&quot;#name&quot;).value =
-6.                                            event.target.result.name;
-7.        document.querySelector(&quot;#age&quot;).value =
-8.                                            event.target.result.age;
-9.        document.querySelector(&quot;#email&quot;).value =
-10.                                           event.target.result.email;
-11.   }; // end of onsuccess callback
-12. }</pre>
+<pre>function searchACustomerShort() {
+  db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;)
+.get(document.querySelector(&quot;#ssn&quot;).value).onsuccess =   
+   function(event) {
+      document.querySelector(&quot;#name&quot;).value =
+                                          event.target.result.name;
+      document.querySelector(&quot;#age&quot;).value =
+                                          event.target.result.age;
+      document.querySelector(&quot;#email&quot;).value =
+                                          event.target.result.email;
+  }; // end of onsuccess callback
+}</pre>
 
 </details>
 

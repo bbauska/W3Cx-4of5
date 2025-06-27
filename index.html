@@ -12385,10 +12385,10 @@ similar to that used for monitoring file downloads:</p>
 
 <p>Here is the code of such an event listener:</p>
 
-<pre>1. xhr.upload.onprogress = function(e) {
-2.   progress.value = e.loaded; // number of bytes uploaded
-3.   progress.max = e.total;    // total number of bytes in the file
-4. };</pre>
+<pre>xhr.upload.onprogress = function(e) {
+  progress.value = e.loaded; // number of bytes uploaded
+  progress.max = e.total;    // total number of bytes in the file
+};</pre>
 
 <p><a href="https://jsbin.com/qedaja/edit?html,css,output" target="_blank" rel="noopener noreferrer">Try the
 example on JSBin</a>:</p>
@@ -12398,47 +12398,40 @@ example on JSBin</a>:</p>
 <details>
   <summary>HTML code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.     &lt;meta charset=&quot;utf-8&quot; /&gt;
-5.     &lt;title&gt;HTML5 file upload with monitoring&lt;/title&gt;
-6.  &lt;/head&gt;
-7.   
-8.  &lt;body&gt;
-9.  &lt;h1&gt;Example of XHR2 file upload, with progress bar&lt;/h1&gt;
-10. Choose a file and wait a little until it is uploaded (on a fake
-    server).
-11. &lt;p&gt;
-12. &lt;input id=&quot;file&quot; type=&quot;file&quot; /&gt;
-13. &lt;br/&gt;&lt;br/&gt;
-14. &lt;progress id=&quot;progress&quot; value=0&gt;&lt;/progress&gt;
-15.  
-16. &lt;script&gt;
-17.    var fileInput = document.querySelector(&#39;#file&#39;),
-18.    progress = document.querySelector(&#39;#progress&#39;);
-19.  
-20.    fileInput.onchange = function() {
-21.      var xhr = new XMLHttpRequest();
-22.      xhr.open(&#39;POST&#39;, &#39;upload.html&#39;);
-23.  
-24.      xhr.upload.onprogress = function(e) {
-25.        progress.value = e.loaded;
-26.        progress.max = e.total;
-27.      };
-28. 
-29.      xhr.onload = function() {
-30.      alert(&#39;Upload complete!&#39;);
-31.    };
-32.  
-33.    var form = new FormData();
-34.    form.append(&#39;file&#39;, fileInput.files[0]);
-35.  
-36.    xhr.send(form);
-37. };
-38. &lt;/script&gt;
-39. &lt;/body&gt;
-40. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;title&gt;HTML5 file upload with monitoring&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Example of XHR2 file upload, with progress bar&lt;/h1&gt;
+Choose a file and wait a little until it is uploaded (on a fake
+server).
+&lt;p&gt;
+&lt;input id=&quot;file&quot; type=&quot;file&quot; /&gt;
+&lt;br/&gt;&lt;br/&gt;
+&lt;progress id=&quot;progress&quot; value=0&gt;&lt;/progress&gt;
+&lt;script&gt;
+  var fileInput = document.querySelector(&#39;#file&#39;),
+  progress = document.querySelector(&#39;#progress&#39;);
+  fileInput.onchange = function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open(&#39;POST&#39;, &#39;upload.html&#39;);
+    xhr.upload.onprogress = function(e) {
+      progress.value = e.loaded;
+      progress.max = e.total;
+    };
+    xhr.onload = function() {
+     alert(&#39;Upload complete!&#39;);
+  };
+  var form = new FormData();
+  form.append(&#39;file&#39;, fileInput.files[0]);
+  xhr.send(form);
+};
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -12579,11 +12572,11 @@ as &lt;img&gt; elements.
 In order to detect a drag, add an event listener for
 the dragstart event:</p>
 
-<pre>1. &lt;ol ondragstart=&quot;dragStartHandler(event)&quot;&gt;
-2.   &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
-3.   &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
-4.   &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
-5. &lt;/ol&gt;</pre>
+<pre>&lt;ol ondragstart=&quot;dragStartHandler(event)&quot;&gt;
+  &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
+  &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
+  &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
+&lt;/ol&gt;</pre>
 
 <p>In the above code, we made all of the &lt;li&gt; elements draggable,
 and we detect a dragstart event occurring to any item within the ordered
@@ -12617,26 +12610,26 @@ CodePen</a>.</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.    &lt;script&gt;
-5.      function dragStartHandler(event) {
-6.        alert(&#39;dragstart event, target:
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;script&gt;
+    function dragStartHandler(event) {
+      alert(&#39;dragstart event, target:
             &#39; + event.target.innerHTML);
-7.      }
-8.    &lt;/script&gt;
-9.  &lt;/head&gt;
-10. &lt;body&gt;
-11.   &lt;p&gt;What fruits do you like? Try to drag an element!&lt;/p&gt;
-12.   &lt;ol ondragstart=&quot;dragStartHandler(event)&quot;&gt;
-13.     &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
-14.     &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
-15.     &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
-16.   &lt;/ol&gt;
-17.   &lt;p&gt;Drop your favorite fruits below:&lt;/p&gt;
-18. &lt;body&gt;
-19. &lt;html&gt;</pre>
+    }
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;What fruits do you like? Try to drag an element!&lt;/p&gt;
+  &lt;ol ondragstart=&quot;dragStartHandler(event)&quot;&gt;
+    &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
+    &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
+    &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;p&gt;Drop your favorite fruits below:&lt;/p&gt;
+&lt;body&gt;
+&lt;html&gt;</pre>
 
 </details>
 
@@ -12664,15 +12657,14 @@ the &lt;li&gt; element that has been dragged, and
 event.target.dataset.value is the value of its data-value attribute (in
 our case “apples”, “oranges” or “pears”):</p>
 
-<pre>1. function dragStartHandler(event) {
-2.   console.log(&#39;dragstart event, target:
-     &#39; + event.target.innerHTML);
-3.  
-4.   // Copy to the drag&#39;n&#39;drop clipboard the value of the
-5.   // data* attribute of the target,
-6.   // with a type &quot;Fruit&quot;.
-7.   event.dataTransfer.setData(&quot;Fruit&quot;, event.target.dataset.value);
-8. }</pre>
+<pre>function dragStartHandler(event) {
+  console.log(&#39;dragstart event, target:
+  &#39; + event.target.innerHTML);
+  // Copy to the drag&#39;n&#39;drop clipboard the value of the
+  // data* attribute of the target,
+  // with a type &quot;Fruit&quot;.
+  event.dataTransfer.setData(&quot;Fruit&quot;, event.target.dataset.value);
+}</pre>
 
 <h4>Step #2: define a “drop zone”</h4>
 
@@ -12681,10 +12673,10 @@ event listener for the drop event. Note that most of the time, as events
 may be propagated, we will also listen for dragover or dragend events
 and stop their propagation. More on this later…</p>
 
-<pre>1. &lt;div ondragover=&quot;return false&quot; ondrop=&quot;dropHandler(event);&quot;&gt;
-2.   Drop your favorite fruits below:
-3.   &lt;ol id=&quot;droppedFruits&quot;&gt;&lt;/ol&gt;
-4. &lt;/div&gt;</pre>
+<pre>&lt;div ondragover=&quot;return false&quot; ondrop=&quot;dropHandler(event);&quot;&gt;
+  Drop your favorite fruits below:
+  &lt;ol id=&quot;droppedFruits&quot;&gt;&lt;/ol&gt;
+&lt;/div&gt;</pre>
 
 <p>Whenever the mouse is moving above a (any) drop zone, dragover events
 will fire. Accordingly, a large number of dragover events may need to be
@@ -12698,18 +12690,15 @@ the false value at <i>line 1</i>.</p>
 <details>
   <summary>JavaScript</summary>
   
-<pre>1. function dropHandler(event) {
-2.   console.log(&#39;drop event, target: &#39; + event.target.innerHTML);
-3.  
-4.   ...
-5.  
-6.   // get the data from the drag&#39;n&#39;drop clipboard,GET
-7.   // with a type=&quot;Fruit&quot;
-8.   var data = event.dataTransfer.getData(&quot;Fruit&quot;);
-9.  
-10.  // do something with the data
-11.  ...
-12. }</pre>
+<pre>function dropHandler(event) {
+  console.log(&#39;drop event, target: &#39; + event.target.innerHTML);
+  ...
+  // get the data from the drag&#39;n&#39;drop clipboard,GET
+  // with a type=&quot;Fruit&quot;
+  var data = event.dataTransfer.getData(&quot;Fruit&quot;);
+  // do something with the data
+  ...
+}</pre>
 
 </details>
 
@@ -12737,55 +12726,53 @@ it at CodePen</a>:</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html&gt;
-3.  &lt;head&gt;
-4.     &lt;script&gt;
-5.        function dragStartHandler(event) {
-6.            console.log(&#39;dragstart event, target: &#39; +
-7.                         event.target.innerHTML);
-8.            // Copy to the drag&#39;n&#39;drop clipboard the value
-9.            // of the data* attribute of
-10.           // the target, with a type &quot;Fruits&quot;.
-11.           event.dataTransfer.setData(&quot;Fruit&quot;,
-12.                                 event.target.dataset.value);
-13.       }
-14. 
-15.       function dropHandler(event) {
-16.          console.log(&#39;drop event, target: &#39; +
-17.                                 event.target.innerHTML);
-18.          var li = document.createElement(&#39;li&#39;);
-19.          // get the data from the drag&#39;n&#39;drop clipboard,
-20.          // with a type=&quot;Fruit&quot;
-21.          var data = event.dataTransfer.getData(&quot;Fruit&quot;);
-22. 
-23.          if (data == &#39;fruit-apple&#39;) {
-24.             li.textContent = &#39;Apples&#39;;
-25.          } else if (data == &#39;fruit-orange&#39;) {
-26.             li.textContent = &#39;Oranges&#39;;
-27.          } else if (data == &#39;fruit-pear&#39;) {
-28.             li.textContent = &#39;Pears&#39;;
-29.          } else {
-30.             li.textContent = &#39;Unknown Fruit&#39;;
-31.          }
-32.          // add the dropped data as a child of the list.
-33.          document.querySelector(&quot;#droppedFruits&quot;).appendChild(li);
-34.       }
-35.   &lt;/script&gt;
-36. &lt;/head&gt;
-37. &lt;body&gt;
-38.    &lt;p&gt;What fruits do you like? Try to drag an element!&lt;/p&gt;
-39.    &lt;ol ondragstart=&quot;dragStartHandler(event)&quot;&gt;
-40.       &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
-41.       &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
-42.       &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
-43.    &lt;/ol&gt;
-44.    &lt;div ondragover=&quot;return false&quot; ondrop=&quot;dropHandler(event);&quot;&gt;
-45.        Drop your favorite fruits below:
-46.        &lt;ol id=&quot;droppedFruits&quot;&gt;&lt;/ol&gt;
-47.    &lt;/div&gt;
-48. &lt;body&gt;
-49. &lt;html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+   &lt;script&gt;
+      function dragStartHandler(event) {
+          console.log(&#39;dragstart event, target: &#39; +
+                       event.target.innerHTML);
+          // Copy to the drag&#39;n&#39;drop clipboard the value
+          // of the data* attribute of
+          // the target, with a type &quot;Fruits&quot;.
+          event.dataTransfer.setData(&quot;Fruit&quot;,
+                                event.target.dataset.value);
+      }
+      function dropHandler(event) {
+         console.log(&#39;drop event, target: &#39; +
+                                event.target.innerHTML);
+         var li = document.createElement(&#39;li&#39;);
+         // get the data from the drag&#39;n&#39;drop clipboard,
+         // with a type=&quot;Fruit&quot;
+         var data = event.dataTransfer.getData(&quot;Fruit&quot;);
+         if (data == &#39;fruit-apple&#39;) {
+            li.textContent = &#39;Apples&#39;;
+         } else if (data == &#39;fruit-orange&#39;) {
+            li.textContent = &#39;Oranges&#39;;
+         } else if (data == &#39;fruit-pear&#39;) {
+            li.textContent = &#39;Pears&#39;;
+         } else {
+            li.textContent = &#39;Unknown Fruit&#39;;
+         }
+         // add the dropped data as a child of the list.
+         document.querySelector(&quot;#droppedFruits&quot;).appendChild(li);
+      }
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;What fruits do you like? Try to drag an element!&lt;/p&gt;
+  &lt;ol ondragstart=&quot;dragStartHandler(event)&quot;&gt;
+    &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
+    &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
+    &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;div ondragover=&quot;return false&quot; ondrop=&quot;dropHandler(event);&quot;&gt;
+    Drop your favorite fruits below:
+    &lt;ol id=&quot;droppedFruits&quot;&gt;&lt;/ol&gt;
+  &lt;/div&gt;
+&lt;body&gt;
+&lt;html&gt;</pre>
 
 </details>
 
@@ -12817,22 +12804,22 @@ online example):</p>
 <details>
   <summary>CSS code!</summary>
 
-<pre>1.  div {
-2.     height: 150px;
-3.     width: 150px;
-4.     float: left;
-5.     border: 2px solid #666666;
-6.     background-color: #ccc;
-7.     margin-right: 5px;
-8.     border-radius: 10px;
-9.     box-shadow: inset 0 0 3px #000;
-10.    text-align: center;
-11.    cursor: move;
-12. }
-13. 
-14. li:hover {
-15.    border: 2px dashed #000;
-16. }</pre>
+<pre>div {
+  height: 150px;
+  width: 150px;
+  float: left;
+  border: 2px solid #666666;
+  background-color: #ccc;
+  margin-right: 5px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 3px #000;
+  text-align: center;
+  cursor: move;
+}
+
+li:hover {
+  border: 2px dashed #000;
+}</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -12890,10 +12877,10 @@ are taken from data­-* attributes of the &lt;li&gt; element.</p>
 
 <h4>HTML code from the example:</h4>
 
-<pre>1. &lt;li class=&quot;user&quot; data-name=&quot;John Resig&quot; data-city=&quot;Boston&quot;
-2.     data-lang=&quot;js&quot; data-food=&quot;Bacon&quot;&gt;
-3. John says: &lt;span&gt;Hello, how are you?&lt;/span&gt;
-4. &lt;/li&gt;</pre>
+<pre>&lt;li class=&quot;user&quot; data-name=&quot;John Resig&quot; data-city=&quot;Boston&quot;
+  data-lang=&quot;js&quot; data-food=&quot;Bacon&quot;&gt;
+  John says: &lt;span&gt;Hello, how are you?&lt;/span&gt;
+&lt;/li&gt;</pre>
 
 <p>We just defined four data attributes.</p>
 
@@ -12902,26 +12889,26 @@ are taken from data­-* attributes of the &lt;li&gt; element.</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  &lt;script&gt;
-2.    var user = document.getElementsByTagName(&quot;li&quot;)[0];
-3.    var pos = 0, span = user.getElementsByTagName(&quot;span&quot;)[0];
-4.    var phrases = [
-5.      {name: &quot;city&quot;, prefix: &quot;I am from &quot;},
-6.      {name: &quot;food&quot;, prefix: &quot;I like to eat &quot;},
-7.      {name: &quot;lang&quot;, prefix: &quot;I like to program in &quot;}
-8.    ];
-9.    user.addEventListener( &quot;click&quot;, function(){
-10.     // Pick the first, second or third phrase
-11.     var phrase = phrases[ pos++ % 3 ];
-12. 
-13.     // Use the .dataset property depending on the value of phrase.name
-14.     // phrase.name is &quot;city&quot;, &quot;food&quot; or &quot;lang&quot;
-15.     span.innerHTML = phrase.prefix + user.dataset[ phrase.name ];
-16. 
-17.     // could be replaces by old way..
-18.     // span.innerHTML = phrase.prefix + user.getAttribute(&quot;data-&quot; + phrase.name );
-19.   }, false);
-20. &lt;/script&gt;</pre>
+<pre>&lt;script&gt;
+  var user = document.getElementsByTagName(&quot;li&quot;)[0];
+  var pos = 0, span = user.getElementsByTagName(&quot;span&quot;)[0];
+  var phrases = [
+    {name: &quot;city&quot;, prefix: &quot;I am from &quot;},
+    {name: &quot;food&quot;, prefix: &quot;I like to eat &quot;},
+    {name: &quot;lang&quot;, prefix: &quot;I like to program in &quot;}
+  ];
+  user.addEventListener( &quot;click&quot;, function(){
+    // Pick the first, second or third phrase
+    var phrase = phrases[ pos++ % 3 ];
+
+    // Use the .dataset property depending on the value of phrase.name
+    // phrase.name is &quot;city&quot;, &quot;food&quot; or &quot;lang&quot;
+    span.innerHTML = phrase.prefix + user.dataset[ phrase.name ];
+
+    // could be replaces by old way..
+    // span.innerHTML = phrase.prefix + user.getAttribute(&quot;data-&quot; + phrase.name );
+  }, false);
+&lt;/script&gt;</pre>
 
 </details>
 
@@ -12948,32 +12935,30 @@ JsBin</a>.</p>
 
 <h4>HTML code from this example:</h4>
 
-<pre>1. &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;25&quot;&gt;</pre>
+<pre>&lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;25&quot;&gt;</pre>
 
 <p>This is just one of the new input types introduced by HTML5.</p>
 
 <h4>JavaScript code from this example:</h4>
 
-<pre>1. &lt;script&gt;
-2. var input = document.querySelector(&#39;input&#39;);
-3.   
-4. input.dataset.myvaluename = input.value; // Set an initial value.
-5.   
-6. input.addEventListener(&#39;change&#39;, function(e) {
-7.     this.dataset.myvaluename = this.value;
-8. });
-9. &lt;/script&gt;</pre>
+<pre>&lt;script&gt;
+var input = document.querySelector(&#39;input&#39;);
+input.dataset.myvaluename = input.value; // Set an initial value.
+input.addEventListener(&#39;change&#39;, function(e) {
+  this.dataset.myvaluename = this.value;
+});
+&lt;/script&gt;</pre>
 
 <h4>CSS code from this example:</h4>
 
-<pre>1. &lt;style&gt;
-2. input::after {
-3.     color:red;
-4.     content: attr(data-myvaluename) &#39;/&#39; attr(max);
-5.     position: relative;
-6.     left: 100px; top: -15px;
-7. }
-8. &lt;/style&gt;</pre>
+<pre>&lt;style&gt;
+input::after {
+  color:red;
+  content: attr(data-myvaluename) &#39;/&#39; attr(max);
+  position: relative;
+  left: 100px; top: -15px;
+}
+&lt;/style&gt;</pre>
 
 <p>The attr() function takes an attribute name as a parameter and
 returns its value. Here we used the name of the attribute we added on
@@ -13069,38 +13054,36 @@ drop zone):</p>
 <details>
   <summary>CSS code!</summary>
 
-<pre>1.  ...
-2.  &lt;style&gt;
-3.    .dragged {
-4.      border: 2px dashed #000;
-5.      background-color: green;
-6.    }
-7.  &lt;/style&gt;
-8.  &lt;script&gt;
-9.    function dragStartHandler(event) {
-10.     // Change CSS class for visual feedback
-11.     event.target.style.opacity = &#39;0.4&#39;;
-12.     event.target.classList.add(&#39;dragged&#39;);
-13. 
-14.     console.log(&#39;dragstart event, target: &#39; + event.target);
-15.     // Copy to the drag&#39;n&#39;drop clipboard the value of the data* attribute of the target,
-16.     // with a type &quot;Fruits&quot;.
-17.     event.dataTransfer.setData(&quot;Fruit&quot;, event.target.dataset.value);
-18.   }
-19. 
-20.   function dragEndHandler(event) {
-21.     console.log(&quot;drag end&quot;);
-22.     // Set draggable object to default style
-23.     event.target.style.opacity = &#39;1&#39;;
-24.     event.target.classList.remove(&#39;dragged&#39;);
-25.   }
-26. &lt;/script&gt;
-27. ...
-28. &lt;ol ondragstart=&quot;dragStartHandler(event)&quot; ondragend=&quot;dragEndHandler(event)&quot; &gt;
-29.   &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
-30.   &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
-31.   &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
-32. &lt;/ol&gt;</pre>
+<pre>...
+&lt;style&gt;
+  .dragged {
+    border: 2px dashed #000;
+    background-color: green;
+  }
+&lt;/style&gt;
+&lt;script&gt;
+  function dragStartHandler(event) {
+    // Change CSS class for visual feedback
+    event.target.style.opacity = &#39;0.4&#39;;
+    event.target.classList.add(&#39;dragged&#39;);
+    console.log(&#39;dragstart event, target: &#39; + event.target);
+    // Copy to the drag&#39;n&#39;drop clipboard the value of the data* attribute of the target,
+    // with a type &quot;Fruits&quot;.
+    event.dataTransfer.setData(&quot;Fruit&quot;, event.target.dataset.value);
+  }
+  function dragEndHandler(event) {
+    console.log(&quot;drag end&quot;);
+    // Set draggable object to default style
+    event.target.style.opacity = &#39;1&#39;;
+    event.target.classList.remove(&#39;dragged&#39;);
+  }
+&lt;/script&gt;
+...
+&lt;ol ondragstart=&quot;dragStartHandler(event)&quot; ondragend=&quot;dragEndHandler(event)&quot; &gt;
+  &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
+  &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
+  &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
+&lt;/ol&gt;</pre>
 
 </details>
 
@@ -13129,103 +13112,102 @@ JavaScript into a single HTML page):</p>
 <details>
   <summary>HTML code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html&gt;
-3.  &lt;head&gt;
-4.    &lt;style&gt;
-5.      div {
-6.        height: 150px;
-7.        width: 150px;
-8.        float: left;
-9.        border: 2px solid #666666;
-10.       background-color: #ccc;
-11.       margin-right: 5px;
-12.       border-radius: 10px;
-13.       box-shadow: inset 0 0 3px #000;
-14.       text-align: center;
-15.       cursor: move;
-16.     }
-17. 
-18.     .dragged {
-19.       border: 2px dashed #000;
-20.       background-color: green;
-21.     }
-22. 
-23.     .draggedOver {
-24.       border: 2px dashed #000;
-25.       background-color: green;
-26.     }
-27. &lt;/style&gt;
-28. &lt;script&gt;
-29.     function dragStartHandler(event) {
-30.       // Change css class for visual feedback
-31.       event.target.style.opacity = &#39;0.4&#39;;
-32.       event.target.classList.add(&#39;dragged&#39;);
-33. 
-34.       console.log(&#39;dragstart event, target: &#39; + event.target.innerHTML);
-35.       // Copy in the drag&#39;n&#39;drop clipboard the value of the data* attribute of the target,
-36.       // with a type &quot;Fruits&quot;.
-37.          event.dataTransfer.setData(&quot;Fruit&quot;, event.target.dataset.value);
-38.     }
-39. 
-40.     function dragEndHandler(event) {
-41.       console.log(&quot;drag end&quot;);
-42.       event.target.style.opacity = &#39;1&#39;;
-43.       event.target.classList.remove(&#39;dragged&#39;);
-44.     }
-45. 
-46.     function dragLeaveHandler(event) {
-47.       console.log(&quot;drag leave&quot;);
-48.       event.target.classList.remove(&#39;draggedOver&#39;);
-49.     }
-50. 
-51.     function dragEnterHandler(event) {
-52.       console.log(&quot;Drag enter&quot;);
-53.       event.target.classList.add(&#39;draggedOver&#39;);
-54.     }
-55. 
-56.     function dragOverHandler(event) {
-57.       //console.log(&quot;Drag over a droppable zone&quot;);
-58.       event.preventDefault(); // Necessary. Allows us to drop.
-59.     }
-60. 
-61.     function dropHandler(event) {
-62.       console.log(&#39;drop event, target: &#39; + event.target);
-63.       // reset the visual look of the drop zone to default
-64.       event.target.classList.remove(&#39;draggedOver&#39;);
-65. 
-66.       var li = document.createElement(&#39;li&#39;);
-67.       // get the data from the drag&#39;n&#39;drop clipboard, with a type=&quot;Fruit&quot;
-68.       var data = event.dataTransfer.getData(&quot;Fruit&quot;);
-69. 
-70.       if (data == &#39;fruit-apple&#39;) {
-71.           li.textContent = &#39;Apples&#39;;
-72.       } else if (data == &#39;fruit-orange&#39;) {
-73.           li.textContent = &#39;Oranges&#39;;
-74.       } else if (data == &#39;fruit-pear&#39;) {
-75.           li.textContent = &#39;Pears&#39;;
-76.       } else {
-77.           li.textContent = &#39;Unknown Fruit&#39;;
-78.     }
-79.     // add the dropped data as a child of the list.
-80.     document.querySelector(&quot;#droppedFruits&quot;).appendChild(li);
-81.   }
-82.   &lt;/script&gt;
-83. &lt;/head&gt;
-84. &lt;body&gt;
-85.   &lt;p&gt;What fruits do you like? Try to drag an element!&lt;/p&gt;
-86.   &lt;ol ondragstart=&quot;dragStartHandler(event)&quot; ondragend=&quot;dragEndHandler(event)&quot; &gt;
-87.     &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
-88.     &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
-89.     &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
-90.   &lt;/ol&gt;
-91.     &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; ondrop=&quot;dropHandler(event)&quot;
-92.       ondragover=&quot;dragOverHandler(event)&quot; ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
-93.       Drop your favorite fruits below:
-94.       &lt;ol id=&quot;droppedFruits&quot;&gt;&lt;/ol&gt;
-95.     &lt;/div&gt;
-96. &lt;/body&gt;
-97. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    div {
+      height: 150px;
+      width: 150px;
+      float: left;
+      border: 2px solid #666666;
+      background-color: #ccc;
+      margin-right: 5px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 3px #000;
+      text-align: center;
+      cursor: move;
+    }
+    .dragged {
+      border: 2px dashed #000;
+      background-color: green;
+    }
+    .draggedOver {
+      border: 2px dashed #000;
+      background-color: green;
+    }
+&lt;/style&gt;
+&lt;script&gt;
+    function dragStartHandler(event) {
+      // Change css class for visual feedback
+      event.target.style.opacity = &#39;0.4&#39;;
+      event.target.classList.add(&#39;dragged&#39;);
+
+      console.log(&#39;dragstart event, target: &#39; + event.target.innerHTML);
+      // Copy in the drag&#39;n&#39;drop clipboard the value of the data* attribute of the target,
+      // with a type &quot;Fruits&quot;.
+         event.dataTransfer.setData(&quot;Fruit&quot;, event.target.dataset.value);
+    }
+
+    function dragEndHandler(event) {
+      console.log(&quot;drag end&quot;);
+      event.target.style.opacity = &#39;1&#39;;
+      event.target.classList.remove(&#39;dragged&#39;);
+    }
+
+    function dragLeaveHandler(event) {
+      console.log(&quot;drag leave&quot;);
+      event.target.classList.remove(&#39;draggedOver&#39;);
+    }
+
+    function dragEnterHandler(event) {
+      console.log(&quot;Drag enter&quot;);
+      event.target.classList.add(&#39;draggedOver&#39;);
+    }
+
+    function dragOverHandler(event) {
+      //console.log(&quot;Drag over a droppable zone&quot;);
+      event.preventDefault(); // Necessary. Allows us to drop.
+    }
+
+    function dropHandler(event) {
+      console.log(&#39;drop event, target: &#39; + event.target);
+      // reset the visual look of the drop zone to default
+      event.target.classList.remove(&#39;draggedOver&#39;);
+
+      var li = document.createElement(&#39;li&#39;);
+      // get the data from the drag&#39;n&#39;drop clipboard, with a type=&quot;Fruit&quot;
+      var data = event.dataTransfer.getData(&quot;Fruit&quot;);
+
+      if (data == &#39;fruit-apple&#39;) {
+          li.textContent = &#39;Apples&#39;;
+      } else if (data == &#39;fruit-orange&#39;) {
+          li.textContent = &#39;Oranges&#39;;
+      } else if (data == &#39;fruit-pear&#39;) {
+          li.textContent = &#39;Pears&#39;;
+      } else {
+          li.textContent = &#39;Unknown Fruit&#39;;
+    }
+    // add the dropped data as a child of the list.
+    document.querySelector(&quot;#droppedFruits&quot;).appendChild(li);
+  }
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;What fruits do you like? Try to drag an element!&lt;/p&gt;
+  &lt;ol ondragstart=&quot;dragStartHandler(event)&quot; ondragend=&quot;dragEndHandler(event)&quot; &gt;
+    &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
+    &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-orange&quot;&gt;Oranges&lt;/li&gt;
+    &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-pear&quot;&gt;Pears&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; 
+    ondrop=&quot;dropHandler(event)&quot;
+    ondragover=&quot;dragOverHandler(event)&quot; ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
+      Drop your favorite fruits below:
+      &lt;ol id=&quot;droppedFruits&quot;&gt;&lt;/ol&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -13282,19 +13264,19 @@ appropriate:</p>
 the dragstart handler, and we set the effect (to “move”, “copy”, etc.) in the dragEnter or dragOver handler.</p>
 <p>Here is an extract of the code we can add to the example we saw earlier:</p>
 
-<pre>1. function dragStartHandler(event) {
-2.     // Allow a &quot;copy&quot; cursor effect
-3.     event.dataTransfer.effectAllowed = &#39;copy&#39;;
-4.     ...
-5. }</pre>
+<pre>function dragStartHandler(event) {
+  // Allow a &quot;copy&quot; cursor effect
+  event.dataTransfer.effectAllowed = &#39;copy&#39;;
+  ...
+}</pre>
 
 <p>And here is where we can set the cursor to a permitted value:</p>
 
-<pre>1. function dragEnterHandler(event) {
-2.    // change the cursor shape to a &quot;+&quot;
-3.    event.dataTransfer.dropEffect = &#39;copy&#39;;
-4.    ...
-5. }</pre>
+<pre>function dragEnterHandler(event) {
+  // change the cursor shape to a &quot;+&quot;
+  event.dataTransfer.dropEffect = &#39;copy&#39;;
+  ...
+}</pre>
 
 <p>To set a custom image, we also do the following in
 the dragstart handler:</p>
@@ -13302,19 +13284,19 @@ the dragstart handler:</p>
 <details>
   <summary>JavaScript Extract!</summary>
   
-<pre>1.  function dragStartHandler(event) {
-2.     // allowed cursor effects
-3.     event.dataTransfer.effectAllowed = &#39;copy&#39;;
-4.  
-5.     // Load and create an image
-6.     var dragIcon = document.createElement(&#39;img&#39;);
-7.     dragIcon.src = &#39;anImage.png&#39;;
-8.     dragIcon.width = 100;
-9.  
-10.    // set the cursor to this image, with an offset in X, Y
-11.    event.dataTransfer.setDragImage(dragIcon, -10, -10);
-12.    ...
-13. }</pre>
+<pre>function dragStartHandler(event) {
+   // allowed cursor effects
+   event.dataTransfer.effectAllowed = &#39;copy&#39;;
+
+   // Load and create an image
+   var dragIcon = document.createElement(&#39;img&#39;);
+   dragIcon.src = &#39;anImage.png&#39;;
+   dragIcon.width = 100;
+
+   // set the cursor to this image, with an offset in X, Y
+   event.dataTransfer.setDragImage(dragIcon, -10, -10);
+   ...
+}</pre>
 
 </details>
 
@@ -13348,9 +13330,9 @@ sections. There are other interesting uses that differ in the way we
 copy and paste things to/from the clipboard. The clipboard is accessed
 through the dataTransfer property of the different events:</p>
 
-<pre>1. event.dataTransfer.setData(&quot;Fruit&quot;, event.target.dataset.value);
-2. ...
-3. var data = event.dataTransfer.getData(&quot;Fruit&quot;);</pre>
+<pre>event.dataTransfer.setData(&quot;Fruit&quot;, event.target.dataset.value);
+...
+var data = event.dataTransfer.getData(&quot;Fruit&quot;);</pre>
 
 <p>&lt;img&gt; elements are all draggable by default!</p>
 <p>Normally, to make an element draggable, you must add
@@ -13369,51 +13351,52 @@ CodePen</a>:</p>
 <details>
   <summary>HTML code!</summary>
   
-<pre>1.  &lt;html lang=&quot;en&quot;&gt;
-2.  &lt;head&gt;
-3.  &lt;style&gt;
-4.     .box {
-5.        border: silver solid;
-6.        width: 256px;
-7.        height: 128px;
-8.        margin: 10px;
-9.        padding: 5px;
-10.       float: left;
-11.    }
-12. &lt;/style&gt;
-13. &lt;script&gt;
-14.     function drag(target, evt) {
-15.         evt.dataTransfer.setData(&quot;Text&quot;, target.id);
-16.     }
-17.     function drop(target, evt) {
-18.         var id = evt.dataTransfer.getData(&quot;Text&quot;);
-19.         target.appendChild(document.getElementById(id));
-20.         // prevent default behavior
-21.         evt.preventDefault();
-22.     }
-23. &lt;/script&gt;
-24. &lt;/head&gt;
-25. &lt;body&gt;
-26. Drag and drop browser images in a zone:&lt;br/&gt;
-27.   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/ABiBCwZ.png&quot; id=&quot;cr&quot; 
-28.         ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Chrome&quot;&gt;
-29.   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/n7xo93U.png&quot; id=&quot;ff&quot;
-30.         ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Firefox&quot;&gt;
-31.   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/ugUmuGQ.png&quot; id=&quot;ie&quot;
-32.         ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo IE&quot;&gt;
-33.   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/jfrNErz.png&quot; id=&quot;op&quot;
-34.         ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Opera&quot;&gt;
-35.   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/gDJCG0l.png&quot; id=&quot;sf&quot;
-36.         ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Safari&quot;&gt;&lt;br/&gt;
-37. 
-38.  &lt;div class=&quot;box&quot; ondragover=&quot;return false&quot; ondrop=&quot;drop(this, event)&quot;&gt;
-39.         &lt;p&gt;Good web browsers&lt;/p&gt;
-40.    &lt;/div&gt;
-41.   &lt;div class=&quot;box&quot; ondragover=&quot;return false&quot; ondrop=&quot;drop(this, event)&quot;&gt;
-42.         &lt;p&gt;Bad web browsers&lt;/p&gt;
-43.    &lt;/div&gt;
-44. &lt;/body&gt;
-45. &lt;/html&gt;</pre>
+<pre>&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;style&gt;
+   .box {
+      border: silver solid;
+      width: 256px;
+      height: 128px;
+      margin: 10px;
+      padding: 5px;
+      float: left;
+   }
+&lt;/style&gt;
+&lt;script&gt;
+    function drag(target, evt) {
+        evt.dataTransfer.setData(&quot;Text&quot;, target.id);
+    }
+    function drop(target, evt) {
+        var id = evt.dataTransfer.getData(&quot;Text&quot;);
+        target.appendChild(document.getElementById(id));
+        // prevent default behavior
+        evt.preventDefault();
+    }
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Drag and drop browser images in a zone:&lt;br/&gt;
+  &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/ABiBCwZ.png&quot; id=&quot;cr&quot; 
+        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Chrome&quot;&gt;
+  &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/n7xo93U.png&quot; id=&quot;ff&quot;
+        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Firefox&quot;&gt;
+  &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/ugUmuGQ.png&quot; id=&quot;ie&quot;
+        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo IE&quot;&gt;
+  &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/jfrNErz.png&quot; id=&quot;op&quot;
+        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Opera&quot;&gt;
+  &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/gDJCG0l.png&quot; id=&quot;sf&quot;
+        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Safari&quot;&gt;&lt;br/&gt;
+  &lt;div class=&quot;box&quot; ondragover=&quot;return 
+    false&quot; ondrop=&quot;drop(this, event)&quot;&gt;
+      &lt;p&gt;Good web browsers&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;box&quot; ondragover=&quot;return false&quot; 
+    ondrop=&quot;drop(this, event)&quot;&gt;
+    &lt;p&gt;Bad web browsers&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -13447,10 +13430,10 @@ clipboard with a name/key equal to “text/plain”. Just add a drop event
 handler on the drop zone and fetch the data from the clipboard using
 “text/plain” as the access key:</p>
 
-<pre>1.  function drop(target, event) {
-2.     event.preventDefault();
-3.     target.innerHTML = event.dataTransfer.getData(&#39;text/plain&#39;);
-4.  };</pre>
+<pre>function drop(target, event) {
+  event.preventDefault();
+  target.innerHTML = event.dataTransfer.getData(&#39;text/plain&#39;);
+};</pre>
 
 <p>Example: select some text and drag and drop the selection in the drop
 zone</p>
@@ -13464,50 +13447,48 @@ CodePen</a>:</p>
 <details>
   <summary>HTML code!</summary>
   
-<pre>1.  &lt;html lang=&quot;en&quot;&gt;
-2.  &lt;head&gt;
-3.  &lt;style&gt;
-4.     .box {
-5.        border: silver solid;
-6.        width: 256px;
-7.        height: 128px;
-8.        margin: 10px;
-9.        padding: 5px;
-10.       float: left;
-11.    }
-12. 
-13.    .notDraggable {
-14.       user-select: none;
-15.    }
-16. &lt;/style&gt;
-17. &lt;script&gt;
-18.     function drop(target, event) {
-19.        event.preventDefault();
-20.        target.innerHTML = event.dataTransfer.getData(&#39;text/plain&#39;);
-21.     };
-22. &lt;/script&gt;
-23. &lt;/head&gt;
-24. &lt;body&gt;
-25. &lt;p id=&quot;text&quot;&gt;
-26.     Drag and drop a text selection from this paragraph&lt;/b&gt;. Drag and drop any
-27.     part of this text to
-28.     the drop zone. Notice in the code: there is no need for a dragstart handler in case of
-29.     text selection:
-30.     the text is added to the clipboard when dragged with a key/name equal to &quot;text/plain&quot;.
-31.     Just write a
-32.     drop handler that will do an event.dataTransfer.getData(&quot;text/plain&quot;) and you are
-33.     done!
-34.  &lt;/p&gt;
-35. 
-36. &lt;p class=&quot;notDraggable&quot;&gt;
-37.      This paragraph is not selectable however. Look at the CSS in the source code.
-38. &lt;/p&gt;
-39. 
-40. &lt;div class=&quot;box&quot; ondragover=&quot;return false&quot; ondrop=&quot;drop(this, event)&quot;&gt;
-41.      &lt;p&gt;Drop some text selection here.&lt;/p&gt;
-42. &lt;/div&gt;
-43. &lt;/body&gt;
-44. &lt;/html&gt;</pre>
+<pre>&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .box {
+    border: silver solid;
+    width: 256px;
+    height: 128px;
+    margin: 10px;
+    padding: 5px;
+    float: left;
+  }
+  .notDraggable {
+    user-select: none;
+  }
+&lt;/style&gt;
+&lt;script&gt;
+  function drop(target, event) {
+    event.preventDefault();
+    target.innerHTML = event.dataTransfer.getData(&#39;text/plain&#39;);
+  };
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id=&quot;text&quot;&gt;
+    Drag and drop a text selection from this paragraph&lt;/b&gt;. Drag and drop any
+    part of this text to
+    the drop zone. Notice in the code: there is no need for a dragstart handler in case of
+    text selection:
+    the text is added to the clipboard when dragged with a key/name equal to &quot;text/plain&quot;.
+    Just write a
+    drop handler that will do an event.dataTransfer.getData(&quot;text/plain&quot;) and you are
+    done!
+  &lt;/p&gt;
+  &lt;p class=&quot;notDraggable&quot;&gt;
+    This paragraph is not selectable however. Look at the CSS in the source code.
+  &lt;/p&gt;
+  &lt;div class=&quot;box&quot; ondragover=&quot;return false&quot; 
+    ondrop=&quot;drop(this, event)&quot;&gt;
+    &lt;p&gt;Drop some text selection here.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -13912,105 +13893,105 @@ zone) or play with it at CodePen:</p>
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-    &lt;style&gt;
-       div {
-          height: 150px;
-          width: 350px;
-          border: 2px solid #666666;
-          background-color: #ccc;
-          margin-right: 5px;
-          border-radius: 10px;
-          box-shadow: inset 0 0 3px #000;
-          text-align: center;
-          cursor: move;
-       }
-       .dragged {
-          border: 2px dashed #000;
-          background-color: green;
-       }
-       .draggedOver {
-          border: 2px dashed #000;
-          background-color: green;
-       }
-     &lt;/style&gt;
-     &lt;script&gt;
-       function dragLeaveHandler(event) {
-          console.log(&quot;drag leave&quot;);
-          // Set style of drop zone to default
-          event.target.classList.remove(&#39;draggedOver&#39;);
-       }
-       function dragEnterHandler(event) {
-          console.log(&quot;Drag enter&quot;);
-          // Show some visual feedback
-          event.target.classList.add(&#39;draggedOver&#39;);
-       }
-       function dragOverHandler(event) {
-          //console.log(&quot;Drag over a droppable zone&quot;);
-          // Do not propagate the event
-          event.stopPropagation();
-          // Prevent default behavior, in particular when we drop images or links
-          event.preventDefault();
-       }
-       function dropHandler(event) {
-          console.log(&#39;drop event&#39;);
-          // Do not propagate the event
-          event.stopPropagation();
-          // Prevent default behavior, in particular when we drop images or links
-          event.preventDefault();
-          // reset the visual look of the drop zone to default
-          event.target.classList.remove(&#39;draggedOver&#39;);
-          // get the files from the clipboard
-          var files = event.dataTransfer.files;
-          var filesLen = files.length;
-          var filenames = &quot;&quot;;
-          // iterate on the files, get details using the file API
-          // Display file names in a list.
-          for(var i = 0 ; i &lt; filesLen ; i++) {
-             filenames += &#39;n&#39; + files[i].name;
-             // Create a li, set its value to a file name, add it to the ol
-             var li = document.createElement(&#39;li&#39;);
-             li.textContent = files[i].name;
-                document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
-          }
-          console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
-          readFilesAndDisplayPreview(files);
-       }
-       function readFilesAndDisplayPreview(files) {
-          // Loop through the FileList and render image files as  thumbnails.
-          for (var i = 0, f; f = files[i]; i++) {
-
-          // Only process image files.
+  &lt;style&gt;
+    div {
+      height: 150px;
+      width: 350px;
+      border: 2px solid #666666;
+      background-color: #ccc;
+      margin-right: 5px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 3px #000;
+      text-align: center;
+      cursor: move;
+    }
+    .dragged {
+      border: 2px dashed #000;
+      background-color: green;
+    }
+    .draggedOver {
+      border: 2px dashed #000;
+      background-color: green;
+    }
+    &lt;/style&gt;
+    &lt;script&gt;
+      function dragLeaveHandler(event) {
+        console.log(&quot;drag leave&quot;);
+        // Set style of drop zone to default
+        event.target.classList.remove(&#39;draggedOver&#39;);
+      }
+      function dragEnterHandler(event) {
+        console.log(&quot;Drag enter&quot;);
+        // Show some visual feedback
+        event.target.classList.add(&#39;draggedOver&#39;);
+      }
+      function dragOverHandler(event) {
+        //console.log(&quot;Drag over a droppable zone&quot;);
+        // Do not propagate the event
+        event.stopPropagation();
+        // Prevent default behavior, in particular when we drop images or links
+        event.preventDefault();
+      }
+      function dropHandler(event) {
+        console.log(&#39;drop event&#39;);
+        // Do not propagate the event
+        event.stopPropagation();
+        // Prevent default behavior, in particular when we drop images or links
+        event.preventDefault();
+        // reset the visual look of the drop zone to default
+        event.target.classList.remove(&#39;draggedOver&#39;);
+        // get the files from the clipboard
+        var files = event.dataTransfer.files;
+        var filesLen = files.length;
+        var filenames = &quot;&quot;;
+        // iterate on the files, get details using the file API
+        // Display file names in a list.
+        for(var i = 0 ; i &lt; filesLen ; i++) {
+          filenames += &#39;n&#39; + files[i].name;
+          // Create a li, set its value to a file name, add it to the ol
+          var li = document.createElement(&#39;li&#39;);
+            li.textContent = files[i].name;
+            document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
+        }
+        console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
+        readFilesAndDisplayPreview(files);
+      }
+      function readFilesAndDisplayPreview(files) {
+        // Loop through the FileList and render image files as  thumbnails.
+        for (var i = 0, f; f = files[i]; i++) {
+          // Only process image files.
           if (!f.type.match(&#39;image.*&#39;)) {
-             continue;
+            continue;
           }
           var reader = new FileReader();
           //capture the file information.
           reader.onload = function(e) {
-             // Render thumbnail.
-             var span = document.createElement(&#39;span&#39;);
-             span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; width=&#39;100&#39;   
-               src=&#39;&quot; + e.target.result + &quot;&#39;/&gt;&quot;;
-               document.getElementById(&#39;list&#39;).insertBefore(span, null);
+            // Render thumbnail.
+            var span = document.createElement(&#39;span&#39;);
+            span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; width=&#39;100&#39;   
+              src=&#39;&quot; + e.target.result + &quot;&#39;/&gt;&quot;;
+              document.getElementById(&#39;list&#39;).insertBefore(span, null);
           };
-
           // Read the image file as a data URL. Will trigger the    call to the above callback when
-           // the image file is completely loaded
-           reader.readAsDataURL(f);
+          // the image file is completely loaded
+          reader.readAsDataURL(f);
         }
-     }
-   &lt;/script&gt;
+      }
+  &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h2&gt;Drop your files here!&lt;/h2&gt;
-&lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; ondrop=&quot;dropHandler(event)&quot;
-         ondragover=&quot;dragOverHandler(event)&quot;       ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
-    Drop zone
+  &lt;h2&gt;Drop your files here!&lt;/h2&gt;
+  &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; 
+    ondrop=&quot;dropHandler(event)&quot;
+    ondragover=&quot;dragOverHandler(event)&quot;
+    ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
+      Drop zone
     &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
-&lt;/div&gt;
-&lt;br/&gt;
-&lt;output id=&quot;list&quot;&gt;&lt;/output&gt;
-&lt;body&gt;
-&lt;html&gt;</pre>
+  &lt;/div&gt;
+  &lt;br/&gt;
+  &lt;output id=&quot;list&quot;&gt;&lt;/output&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -14056,13 +14037,13 @@ notice that the event handler we used to track the selected files using 
   <summary>JavaScript code!</summary>
   
 <pre>&lt;script&gt;
-   function handleFileSelect(evt) {
-     var files = evt.target.files; // FileList object
-     // do something with files... why not call    readFilesAndDisplayPreview!
-     readFilesAndDisplayPreview(files);&lt;/b&gt;
-   }
-     document.getElementById(&#39;files&#39;).addEventListener(&#39;change&#39;,
-       handleFileSelect, false);
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+    // do something with files... why not call    readFilesAndDisplayPreview!
+    readFilesAndDisplayPreview(files);&lt;/b&gt;
+  }
+  document.getElementById(&#39;files&#39;).addEventListener(&#39;change&#39;,
+    handleFileSelect, false);
 &lt;/script&gt;
 ...
 &lt;body&gt;
@@ -14095,119 +14076,117 @@ CodePen</a>:</p>
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-   &lt;style&gt;
-      div {
-          height: 150px;
-          width: 350px;
-          border: 2px solid #666666;
-          background-color: #ccc;
-          margin-right: 5px;
-          border-radius: 10px;
-          box-shadow: inset 0 0 3px #000;
-          text-align: center;
-          cursor: move;
-      }
-      .dragged {
-          border: 2px dashed #000;
-          background-color: green;
-      }
-      .draggedOver {
-          border: 2px dashed #000;
-          background-color: green;
-      }
-   &lt;/style&gt;
-   &lt;script&gt;
-      function dragLeaveHandler(event) {
-         console.log(&quot;drag leave&quot;);
-         // Set style of drop zone to default
-         event.target.classList.remove(&#39;draggedOver&#39;);
-      }
-      function dragEnterHandler(event) {
-         console.log(&quot;Drag enter&quot;);
-         // Show some visual feedback
-         event.target.classList.add(&#39;draggedOver&#39;);
-      }
-      function dragOverHandler(event) {
-         //console.log(&quot;Drag over a droppable zone&quot;);
-         // Do not propagate the event
-         event.stopPropagation();
-         // Prevent default behavior, in particular when we drop
-         // images or links
-         event.preventDefault();
-      }
-      function dropHandler(event) {
-         console.log(&#39;drop event&#39;);
-
-         // Do not propagate the event
-         event.stopPropagation();
-         // Prevent default behavior, in particular when we drop
-         // images or links
-         event.preventDefault();
-         // reset the visual look of the drop zone to default
-         event.target.classList.remove(&#39;draggedOver&#39;);
-         // get the files from the clipboard
-         var files = event.dataTransfer.files;
-         var filesLen = files.length;
-         var filenames = &quot;&quot;;
-         // iterate on the files, get details using the file API
-         // Display file names in a list.
-         for(var i = 0 ; i &lt; filesLen ; i++) {
-            filenames += &#39;n&#39; + files[i].name;
-            // Create a li, set its value to a file name, add it to the ol
-            var li = document.createElement(&#39;li&#39;);
-            li.textContent = files[i].name;
-            document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
-         }
-         console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
-         readFilesAndDisplayPreview(files);
-      }
-      function readFilesAndDisplayPreview(files) {
-         // Loop through the FileList and render image files as
-         // thumbnails.
-         for (var i = 0, f; f = files[i]; i++) {
-
-            // Only process image files.
-            if (!f.type.match(&#39;image.*&#39;)) {
-               continue;
-            }
-            var reader = new FileReader();
-            //capture the file information.
-            reader.onload = function(e) {
-               // Render thumbnail.
-               var span = document.createElement(&#39;span&#39;);
-               span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; width=&#39;100&#39; src=&#39;&quot; +
-                                 e.target.result + &quot;&#39;/&gt;&quot;;
-              document.getElementById(&#39;list&#39;).insertBefore(span, null);
-             };            
-            // Read the image file as a data URL.
-            reader.readAsDataURL(f);
-         }
+  &lt;style&gt;
+    div {
+      height: 150px;
+      width: 350px;
+      border: 2px solid #666666;
+      background-color: #ccc;
+      margin-right: 5px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 3px #000;
+      text-align: center;
+      cursor: move;
+    }
+    .dragged {
+      border: 2px dashed #000;
+      background-color: green;
+    }
+    .draggedOver {
+      border: 2px dashed #000;
+      background-color: green;
+    }
+  &lt;/style&gt;
+  &lt;script&gt;
+    function dragLeaveHandler(event) {
+      console.log(&quot;drag leave&quot;);
+      // Set style of drop zone to default
+      event.target.classList.remove(&#39;draggedOver&#39;);
+    }
+    function dragEnterHandler(event) {
+      console.log(&quot;Drag enter&quot;);
+      // Show some visual feedback
+      event.target.classList.add(&#39;draggedOver&#39;);
+    }
+    function dragOverHandler(event) {
+      //console.log(&quot;Drag over a droppable zone&quot;);
+      // Do not propagate the event
+      event.stopPropagation();
+      // Prevent default behavior, in particular when we drop
+      // images or links
+      event.preventDefault();
+    }
+    function dropHandler(event) {
+      console.log(&#39;drop event&#39;);
+      // Do not propagate the event
+      event.stopPropagation();
+      // Prevent default behavior, in particular when we drop
+      // images or links
+      event.preventDefault();
+      // reset the visual look of the drop zone to default
+      event.target.classList.remove(&#39;draggedOver&#39;);
+      // get the files from the clipboard
+      var files = event.dataTransfer.files;
+      var filesLen = files.length;
+      var filenames = &quot;&quot;;
+      // iterate on the files, get details using the file API
+      // Display file names in a list.
+      for(var i = 0 ; i &lt; filesLen ; i++) {
+        filenames += &#39;n&#39; + files[i].name;
+        // Create a li, set its value to a file name, add it to the ol
+        var li = document.createElement(&#39;li&#39;);
+        li.textContent = files[i].name;
+        document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
+      }
+      console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
+      readFilesAndDisplayPreview(files);
+    }
+    function readFilesAndDisplayPreview(files) {
+      // Loop through the FileList and render image files as
+      // thumbnails.
+      for (var i = 0, f; f = files[i]; i++) {
+        // Only process image files.
+        if (!f.type.match(&#39;image.*&#39;)) {
+          continue;
+        }
+        var reader = new FileReader();
+        //capture the file information.
+        reader.onload = function(e) {
+          // Render thumbnail.
+          var span = document.createElement(&#39;span&#39;);
+          span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; width=&#39;100&#39; src=&#39;&quot; +
+            e.target.result + &quot;&#39;/&gt;&quot;;
+          document.getElementById(&#39;list&#39;).insertBefore(span, null);
+        };            
+        // Read the image file as a data URL.
+        reader.readAsDataURL(f);
       }
-      function handleFileSelect(evt) {
-         var files = evt.target.files; // FileList object
-         // do something with files... why not call
-         // readFilesAndDisplayPreview!
-        readFilesAndDisplayPreview(files);
-      }
-   &lt;/script&gt;
- &lt;/head&gt;
- &lt;body&gt;
-   &lt;h2&gt;Use one of these input fields for selecting files&lt;/h2&gt;
-   &lt;p&gt;Beware, the directory choser  may overload
-     your browser memory if there are too many big images in the
-     directory you choose.&lt;/p&gt;
-   Choose multiple files: &lt;input type=&quot;file&quot; id=&quot;files&quot; multiple
-                                onchange=&quot;handleFileSelect(event)&quot;/&gt;
-   &lt;/p&gt;
-   &lt;p&gt;Choose a directory (Chrome only): &lt;input type=&quot;file&quot;
-                                         id=&quot;dir&quot; webkitdirectory
-                                         onchange=&quot;handleFileSelect(event)&quot;/&gt;
-   &lt;/p&gt;
-   &lt;h2&gt;Drop your files here!&lt;/h2&gt;
-   &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot;
-                           ondrop=&quot;dropHandler(event)&quot;
-                           ondragover=&quot;dragOverHandler(event)&quot;
-                           ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
+    }
+    function handleFileSelect(evt) {
+      var files = evt.target.files; // FileList object
+      // do something with files... why not call
+      // readFilesAndDisplayPreview!
+      readFilesAndDisplayPreview(files);
+    }
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Use one of these input fields for selecting files&lt;/h2&gt;
+  &lt;p&gt;Beware, the directory choser  may overload
+    your browser memory if there are too many big images in the
+    directory you choose.&lt;/p&gt;
+    Choose multiple files: &lt;input type=&quot;file&quot; id=&quot;files&quot; multiple
+    onchange=&quot;handleFileSelect(event)&quot;/&gt;
+  &lt;/p&gt;
+  &lt;p&gt;Choose a directory (Chrome only): &lt;input type=&quot;file&quot;
+    id=&quot;dir&quot; webkitdirectory
+    onchange=&quot;handleFileSelect(event)&quot;/&gt;
+  &lt;/p&gt;
+  &lt;h2&gt;Drop your files here!&lt;/h2&gt;
+  &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot;
+    ondrop=&quot;dropHandler(event)&quot;
+    ondragover=&quot;dragOverHandler(event)&quot;
+    ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
     Drop zone
     &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
   &lt;/div&gt;
@@ -14250,71 +14229,71 @@ try to connect):</p>
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-   &lt;style&gt;
-     ...
-   &lt;/style&gt;
-   &lt;script&gt;
-     function dragLeaveHandler(event) {
-       console.log(&quot;drag leave&quot;);
-       // Set style of drop zone to default
-       event.target.classList.remove(&#39;draggedOver&#39;);
-     }
-     function dragEnterHandler(event) {
-       console.log(&quot;Drag enter&quot;);
-       // Show some visual feedback
-       event.target.classList.add(&#39;draggedOver&#39;);
-     }
-     function dragOverHandler(event) {
-       //console.log(&quot;Drag over a droppable zone&quot;);
-       // Do not propagate the event
-       event.stopPropagation();
-       // Prevent default behavior, in particular when we drop images
-       // or links
-       event.preventDefault();
-     }
-     function dropHandler(event) {
-       console.log(&#39;drop event&#39;);
-       // Do not propagate the event
-       event.stopPropagation();
-       // Prevent default behavior, in particular when we drop images
-       // or links
-       event.preventDefault();
-       // reset the visual look of the drop zone to default
-       event.target.classList.remove(&#39;draggedOver&#39;);
-       // get the files from the clipboard
-       var files = event.dataTransfer.files;
-       var filesLen = files.length;
-       var filenames = &quot;&quot;;
-       // iterate on the files, get details using the file API
-       // Display file names in a list.
-       for(var i = 0 ; i &lt; filesLen ; i++) {
-          filenames += &#39;n&#39; + files[i].name;
-          // Create a li, set its value to a file name, add it to the ol
-          var li = document.createElement(&#39;li&#39;);
-          li.textContent = files[i].name;
-          document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
-       }
-       console.log(files.length + &#39; file(s) have been dropped:n&#39;
-                                + filenames);
-       uploadAllFilesUsingAjax(files);
-     }
-     function uploadAllFilesUsingAjax(files) {
-       var xhr = new XMLHttpRequest();
-       xhr.open(&#39;POST&#39;, &#39;upload.html&#39;);
-       xhr.upload.onprogress = function(e) {
-          progress.value = e.loaded;
-          progress.max = e.total;
-       };
-       xhr.onload = function() {
-         alert(&#39;Upload complete!&#39;);
-       };
-       var form = new FormData();
-       for(var i = 0 ; i &lt; files.length ; i++) {
-          form.append(&#39;file&#39;, files[i]);
-       }
-       // Send the Ajax request
-       xhr.send(form);
-     }
+  &lt;style&gt;
+    ...
+  &lt;/style&gt;
+  &lt;script&gt;
+    function dragLeaveHandler(event) {
+      console.log(&quot;drag leave&quot;);
+      // Set style of drop zone to default
+      event.target.classList.remove(&#39;draggedOver&#39;);
+    }
+    function dragEnterHandler(event) {
+      console.log(&quot;Drag enter&quot;);
+      // Show some visual feedback
+      event.target.classList.add(&#39;draggedOver&#39;);
+    }
+    function dragOverHandler(event) {
+      //console.log(&quot;Drag over a droppable zone&quot;);
+      // Do not propagate the event
+      event.stopPropagation();
+      // Prevent default behavior, in particular when we drop images
+      // or links
+      event.preventDefault();
+    }
+    function dropHandler(event) {
+      console.log(&#39;drop event&#39;);
+      // Do not propagate the event
+      event.stopPropagation();
+      // Prevent default behavior, in particular when we drop images
+      // or links
+      event.preventDefault();
+      // reset the visual look of the drop zone to default
+      event.target.classList.remove(&#39;draggedOver&#39;);
+      // get the files from the clipboard
+      var files = event.dataTransfer.files;
+      var filesLen = files.length;
+      var filenames = &quot;&quot;;
+      // iterate on the files, get details using the file API
+      // Display file names in a list.
+      for(var i = 0 ; i &lt; filesLen ; i++) {
+        filenames += &#39;n&#39; + files[i].name;
+        // Create a li, set its value to a file name, add it to the ol
+        var li = document.createElement(&#39;li&#39;);
+        li.textContent = files[i].name;
+        document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
+      }
+      console.log(files.length + &#39; file(s) have been dropped:n&#39;
+                               + filenames);
+      uploadAllFilesUsingAjax(files);
+    }
+    function uploadAllFilesUsingAjax(files) {
+      var xhr = new XMLHttpRequest();
+      xhr.open(&#39;POST&#39;, &#39;upload.html&#39;);
+      xhr.upload.onprogress = function(e) {
+        progress.value = e.loaded;
+        progress.max = e.total;
+      };
+      xhr.onload = function() {
+        alert(&#39;Upload complete!&#39;);
+      };
+      var form = new FormData();
+      for(var i = 0 ; i &lt; files.length ; i++) {
+        form.append(&#39;file&#39;, files[i]);
+      }
+      // Send the Ajax request
+      xhr.send(form);
+    }
   &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -14535,7 +14514,7 @@ JSBin</a> and look at the source code - there are plenty of comments.</p>
 
 <pre>&lt;?php
 if (isset($_POST[&#39;givenname&#39;]) &amp;&amp; isset($_POST[&#39;familyname&#39;])) {
-   echo $_POST[&#39;givenname&#39;].&#39; &#39;.$_POST[&#39;familyname&#39;].&#39; uploaded file(s).&lt;br /&gt;&#39;;
+  echo $_POST[&#39;givenname&#39;].&#39; &#39;.$_POST[&#39;familyname&#39;].&#39; uploaded file(s).&lt;br /&gt;&#39;;
 }
 if (isset($_POST[&#39;namesAllFiles&#39;]) &amp;&amp; $_POST[&#39;namesAllFiles&#39;] != &quot;&quot;) {
   $folderName = date(&quot;m.d.Y&quot;);
@@ -14545,7 +14524,7 @@ if (isset($_POST[&#39;namesAllFiles&#39;]) &amp;&amp; $_POST[&#39;namesAllFil
 $filesName = explode(&quot;::&quot;, $_POST[&#39;namesAllFiles&#39;]);
   for ($i=0; $i &lt; count($filesName); $i++) {
     copy(&#39;upload/RecycleBin/&#39;.$filesName[$i],
-         &#39;upload/&#39;.$folderName.&#39;/&#39;.$filesName[$i]);
+         &#39;upload/&#39;.$folderName.&#39;/&#39;.$filesName[$i]);
     unlink(&#39;upload/RecycleBin/&#39;.$filesName[$i]);
     echo &quot;$filesName[$i] uploaded&lt;br /&gt;&quot;;
   }
@@ -14623,42 +14602,42 @@ have to deal with a temporary “RecycleBin” directory.</p>
 
 <pre>&lt;?php
 if (isset($_POST[&#39;givenname&#39;]) &amp;&amp; isset($_POST[&#39;familyname&#39;])) {
-    echo $_POST[&#39;givenname&#39;] . &#39; &#39; . $_POST[&#39;familyname&#39;] . &#39; try to upload
-         file(s).&#39;;
+  echo $_POST[&#39;givenname&#39;] . &#39; &#39; . $_POST[&#39;familyname&#39;] . &#39; try to upload
+    file(s).&#39;;
 }
 $folderName = date(&quot;m.d.Y&quot;);
 if (!is_dir(&#39;upload/&#39;.$folderName)) {
-    mkdir(&#39;upload/&#39;.$folderName);
+  mkdir(&#39;upload/&#39;.$folderName);
 }
 $fn = (isset($_SERVER[&#39;HTTP_X_FILENAME&#39;]) ? $_SERVER[&#39;HTTP_X_FILENAME&#39;] :
-                                            false);
+  false);
 if ($fn)
 {
     file_put_contents(&#39;upload/&#39; . $folderName . &#39;/&#39; . $fn,     
-                      file_get_contents(&#39;php://input&#39;));
+      file_get_contents(&#39;php://input&#39;));
     echo &quot;$fn uploaded&quot;;
     exit();
 }
 else {
 if (isset($_FILES) &amp;&amp; is_array($_FILES) &amp;&amp; array_key_exists(&#39;formFiles&#39;,
-                                              $_FILES)) {
-      $number_files_send = count($_FILES[&#39;formFiles&#39;][&#39;name&#39;]);
-      $dir = realpath(&#39;.&#39;) . &#39;/upload/&#39; . $folderName . &#39;/&#39;;
-      if ($number_files_send &gt; 0) {
-         for ($i = 0; $i &lt; $number_files_send; $i++) {
-            echo &#39;&lt;br/&gt;Reception of : &#39; . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i];
-           $copy = move_uploaded_file($_FILES[&#39;formFiles&#39;][&#39;tmp_name&#39;]
-                   [$i], $dir . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i]);
-            if ($copy) {
-              echo &#39;&lt;br /&gt;File &#39; . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i] .
-                   &#39; copy&#39;;
-            }
-            else {
-              echo &#39;&lt;br /&gt;No file to upload&#39;;
-            }
-        }
-     }
-   }
+  $_FILES)) {
+    $number_files_send = count($_FILES[&#39;formFiles&#39;][&#39;name&#39;]);
+    $dir = realpath(&#39;.&#39;) . &#39;/upload/&#39; . $folderName . &#39;/&#39;;
+    if ($number_files_send &gt; 0) {
+      for ($i = 0; $i &lt; $number_files_send; $i++) {
+        echo &#39;&lt;br/&gt;Reception of : &#39; . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i];
+        $copy = move_uploaded_file($_FILES[&#39;formFiles&#39;][&#39;tmp_name&#39;]
+          [$i], $dir . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i]);
+        if ($copy) {
+          echo &#39;&lt;br /&gt;File &#39; . $_FILES[&#39;formFiles&#39;][&#39;name&#39;][$i] .
+            &#39; copy&#39;;
+        }
+        else {
+          echo &#39;&lt;br /&gt;No file to upload&#39;;
+        }
+      }
+    }
+  }
 }
 ?&gt;</pre>
 
@@ -15361,15 +15340,15 @@ be rounded to “1”.</p>
 <pre>var db; // the database connection we need to initialize
 function createDatabase() {
   if(!window.indexedDB) {
-     window.alert(&quot;Your browser does not support a stable version
-                   of IndexedDB&quot;);
+    window.alert(&quot;Your browser does not support a stable version
+      of IndexedDB&quot;);
   }
   // This is what our customer data looks like.
   var customerData = [
     { ssn: &quot;444-44-4444&quot;, name: &quot;Bill&quot;, age: 35, email:
-                                           &quot;bill@company.com&quot; },
+                                          &quot;bill@company.com&quot; },
     { ssn: &quot;555-55-5555&quot;, name: &quot;Donna&quot;, age: 32, email:
-                                           &quot;donna@home.org&quot; }
+                                          &quot;donna@home.org&quot; }
   ];
   var dbName = &quot;CustomerDB&quot;;
   // version must be an integer, not 1.1, 1.2 etc...
@@ -15380,14 +15359,14 @@ function createDatabase() {
 errcode=&quot; + event.target.error.name);
   };
   request.onupgradeneeded = function(event) {
-      console.log(&quot;request.onupgradeneeded, we are creating a
-                   new version of the dataBase&quot;);
+      console.log(&quot;request.onupgradeneeded, we are creating a 
+        new version of the dataBase&quot;);
       db = event.target.result;
       // Create an objectStore to hold information about our
       // customers. We&#39;re going to use &quot;ssn&quot; as our key path because
       //  it&#39;s guaranteed to be unique
       var objectStore = db.createObjectStore(&quot;customers&quot;,
-                                               { keyPath: &quot;ssn&quot; });
+        { keyPath: &quot;ssn&quot; });
       // Create an index to search customers by name. We may have  
       // duplicates so we can&#39;t use a unique index.
       objectStore.createIndex(&quot;name&quot;, &quot;name&quot;, { unique: false });
@@ -15397,13 +15376,13 @@ errcode=&quot; + event.target.error.name);
       objectStore.createIndex(&quot;email&quot;, &quot;email&quot;, { unique: true });
       // Store values in the newly created objectStore.
       for (var i in customerData) {
-          objectStore.add(customerData[i]);
+        objectStore.add(customerData[i]);
       }
   }; // end of request.onupgradeneeded
   request.onsuccess = function(event) {
      // Handle errors.
      console.log(&quot;request.onsuccess, database opened, now we can add
-                  / remove / look for data in it!&quot;);
+        / remove / look for data in it!&quot;);
      // The result is the database itself
      db = event.target.result;
   };
@@ -15827,31 +15806,31 @@ versions of Google Chrome.</p>
   <summary>JavaScript code!</summary>
 
 <pre>function removeACustomer() {
-   if(db === null) {
-      alert(&#39;Database must be opened first, please click the
-             Create CustomerDB Database first&#39;);
-      return;
-   }
-   var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
-   // Do something when all the data is added to the database.
-   transaction.oncomplete = function(event) {
-      console.log(&quot;All done!&quot;);
-   };
-   transaction.onerror = function(event) {
-      console.log(&quot;transaction.onerror errcode=&quot; +
-                   event.target.error.name);
-   };
-   var objectStore = transaction.objectStore(&quot;customers&quot;);
-   alert(&#39;removing customer ssn=444-44-4444&#39;);
-   var request = objectStore.delete(&quot;444-44-4444&quot;);
-   request.onsuccess = function(event) {
-      console.log(&quot;Customer removed.&quot;);
-   };
-   request.onerror = function(event) {
-      alert(&quot;request.onerror, could not remove customer, errcode
-            = &quot; + event.target.error.name + &quot;. The ssn does not
-            exist in the Database&quot;);
-   };
+  if(db === null) {
+    alert(&#39;Database must be opened first, please click the
+      Create CustomerDB Database first&#39;);
+    return;
+  }
+  var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
+  // Do something when all the data is added to the database.
+  transaction.oncomplete = function(event) {
+    console.log(&quot;All done!&quot;);
+  };
+  transaction.onerror = function(event) {
+    console.log(&quot;transaction.onerror errcode=&quot; +
+      event.target.error.name);
+  };
+  var objectStore = transaction.objectStore(&quot;customers&quot;);
+  alert(&#39;removing customer ssn=444-44-4444&#39;);
+  var request = objectStore.delete(&quot;444-44-4444&quot;);
+  request.onsuccess = function(event) {
+    console.log(&quot;Customer removed.&quot;);
+  };
+  request.onerror = function(event) {
+    alert(&quot;request.onerror, could not remove customer, errcode
+      = &quot; + event.target.error.name + &quot;. The ssn does not
+      exist in the Database&quot;);
+  };
 }</pre>
 
 </details>
@@ -16032,14 +16011,14 @@ version:</p>
 
 <pre>function searchACustomerShort() {
   db.transaction(&quot;customers&quot;).objectStore(&quot;customers&quot;)
-.get(document.querySelector(&quot;#ssn&quot;).value).onsuccess =   
-   function(event) {
-      document.querySelector(&quot;#name&quot;).value =
-                                          event.target.result.name;
-      document.querySelector(&quot;#age&quot;).value =
-                                          event.target.result.age;
-      document.querySelector(&quot;#email&quot;).value =
-                                          event.target.result.email;
+.get(document.querySelector(&quot;#ssn&quot;).value).onsuccess = 
+  function(event) {
+    document.querySelector(&quot;#name&quot;).value =
+      event.target.result.name;
+    document.querySelector(&quot;#age&quot;).value =
+      event.target.result.age;
+    document.querySelector(&quot;#email&quot;).value =
+      event.target.result.email;
   }; // end of onsuccess callback
 }</pre>
 
@@ -18833,11 +18812,12 @@ device.
 
 </details>
 
-<h4>Another example that shows how to orient the HTML5 logo using the orientation API + CSS3 3D rotations</h4>
+<h4>Another example that shows how to orient the HTML5 logo using the orientation API + 
+CSS3 3D rotations</h4>
 
-<p>This is just a variation of the previous example, <a
-href="https://jsbin.com/manobezoji/edit?html,js,output" target="_blank" rel="noopener noreferrer">try it at
-JsBin</a></p>
+<p>This is just a variation of the previous example, 
+<a href="https://jsbin.com/manobezoji/edit?html,js,output" target="_blank" 
+rel="noopener noreferrer">try it at JsBin</a></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~ 252. html logo orientation api example 3 (467) ~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18847,9 +18827,8 @@ JsBin</a></p>
   alt="Orientation API example 3."
   style="width:40%;" />
 
-<p>Results on the iPad: the logo rotates when we change the iPad’s
-orientation. This is a good “visual feedback” for an orientation
-controlled game…</p>
+<p>Results on the iPad: the logo rotates when we change the iPad’s orientation. This is 
+a good “visual feedback” for an orientation controlled game…</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 253. side-by-side logo 1 (468) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18875,8 +18854,9 @@ controlled game…</p>
   alt="Logo position 3."
   style="width:30%;" />
 
-<p>This example is also on <a
-href="https://www.youtube.com/watch?v=OrNLhOAGSdE" target="_blank" rel="noopener noreferrer">video</a>.</p>
+<p>This example is also on 
+<a href="https://www.youtube.com/watch?v=OrNLhOAGSdE" target="_blank" 
+rel="noopener noreferrer">video</a>.</p>
 
 <h4>Code from the example:</h4>
 
@@ -18926,16 +18906,17 @@ class=&quot;logo&quot;&gt;
 
 <h4>A simple level tool using device orientation</h4>
 
-<p>This example works in Firefox, Chrome, and IOS Safari. Created by <a
-href="https://twitter.com/derekanderson" target="_blank" rel="noopener noreferrer">Derek Anderson</a> @<a
-href="https://imagesupstream.com/" target="_blank" rel="noopener noreferrer">Media Upstream</a>. Original source
-code available <a
-href="https://github.com/imagesupstream/levelToolJS" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+<p>This example works in Firefox, Chrome, and IOS Safari. Created by 
+<a href="https://twitter.com/derekanderson" target="_blank" rel="noopener noreferrer">
+Derek Anderson</a> @<a href="https://imagesupstream.com/" target="_blank" 
+rel="noopener noreferrer">Media Upstream</a>. Original source code available 
+<a href="https://github.com/imagesupstream/levelToolJS" target="_blank" 
+rel="noopener noreferrer">GitHub</a>.</p>
 
-<p><a href="https://jsbin.com/quboge/edit" target="_blank" rel="noopener noreferrer">We adapted the source code so
-that you can tweak it in JsBin</a>, or <a
-href="https://jsbin.com/quboge" target="_blank" rel="noopener noreferrer">test it in standalone mode</a> (using a
-mobile device).</p>
+<p><a href="https://jsbin.com/quboge/edit" target="_blank" rel="noopener noreferrer">
+We adapted the source code so that you can tweak it in JsBin</a>, 
+or <a href="https://jsbin.com/quboge" target="_blank" rel="noopener noreferrer">
+test it in standalone mode</a> (using a mobile device).</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~ 256. level tool using device orientation (470) ~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18974,7 +18955,8 @@ desktop browser:</p>
 <p>This section presents the Device Motion API which is used in a similar manner 
 to the device orientation API discussed earlier.</p>
 
-<p>The deviceMotion API deals with <i>accelerations</i> instead of <i>orientation</i> only.</p>
+<p>The <span class="var">deviceMotion</span> API deals with <i>accelerations</i> 
+instead of <i>orientation</i> only.</p>
 
 <p>Use cases proposed by the specification are:</p>
 
@@ -19001,7 +18983,7 @@ window.addEventListener(&quot;devicemotion&quot;, handleMotionEvent, true);</p
 
 <h4>Basics about acceleration</h4>
 
-<p>The deviceMotion API is rather straightforward and is very similar to the 
+<p>The <span class="var">deviceMotion</span> API is rather straightforward and is very similar to the 
 orientation API except that it returns more than just the <i>rotation</i> 
 information, it also returns <a href="https://en.wikipedia.org/wiki/Acceleration)information" 
 target="_blank" rel="noopener noreferrer">acceleration</a> reflecting the device’s 
@@ -19084,7 +19066,8 @@ normal position would return:</p>
 <ol type="1">
   <li>Test if the API is supported by the browser,</li>
   <li>Add a listener for ‘devicemotion’ events,</li>
-  <li>Get the acceleration values from the DOM event that has been passed to the listener,</li>
+  <li>Get the acceleration values from the DOM event that has been passed to the 
+    listener,</li>
   <li>Process the data.</li>
 </ol>
 
@@ -19122,7 +19105,8 @@ This example uses the accelerationIncludingGravity property of the event.</p>
 
 </details>
 
-<p>Compute the vertical (direction of the sky) - this extract comes from a complete example further down this page…</p>
+<p>Compute the vertical (direction of the sky) - this extract comes from a complete 
+example further down this page…</p>
 
 <pre>...
 var angle = Math.atan2(accel.y,accel.x);
@@ -19133,8 +19117,8 @@ ctx.moveTo(50,50);
 ctx.lineTo(50-50*Math.cos(angle),50+50*Math.sin(angle));
 ctx.stroke();</pre>
 
-<p>Use acceleration values to move a ball on the screen of a tablet when the tablet is tilted front / back or left / right (complete example
-later on)…</p>
+<p>Use acceleration values to move a ball on the screen of a tablet when the 
+tablet is tilted front / back or left / right (complete example later on)…</p>
 
 <pre>...
 ball.x += acceleration.x;
@@ -19180,8 +19164,9 @@ ball.y += acceleration.y;
             // Grab the acceleration including gravity from the results
             var acceleration = eventData.accelerationIncludingGravity;
             // Display the raw acceleration data
-            var rawAcceleration = &quot;[&quot; + Math.round(acceleration.x) + &quot;, &quot; + Math.round(acceleration.y) 
-            + &quot;, &quot; + Math.round(acceleration.z) + &quot;]&quot;;
+            var rawAcceleration = &quot;[&quot; + Math.round(acceleration.x) 
+              + &quot;, &quot; + Math.round(acceleration.y) 
+			  + &quot;, &quot; + Math.round(acceleration.z) + &quot;]&quot;;
             // Z is the acceleration in the Z axis, and if the device
             // is facing up or down
             var facingUp = -1;
@@ -19195,14 +19180,14 @@ ball.y += acceleration.y;
             // and then multiply that by 90 to convert to degrees.
             var tiltLR = Math.round(((acceleration.x) / 9.81) * -90);
             var tiltFB = Math.round(((acceleration.y + 9.81) / 9.81) * 90 * facingUp);
-            document.querySelector(&quot;#rawAccel&quot;).innerHTML =
-                               &quot;Raw acceleration&quot; + rawAcceleration;
-            document.querySelector(&quot;#tiltFB&quot;).innerHTML =
-                               &quot;Tilt front/back : &quot; + tiltFB;
-            document.querySelector(&quot;#tiltLR&quot;).innerHTML =
-                               &quot;Tilt left/right : &quot; + tiltLR;
-            document.querySelector(&quot;#upDown&quot;).innerHTML =
-                               &quot;Face Up:Down : &quot; + facingUp;
+            document.querySelector(&quot;#rawAccel&quot;).innerHTML = 
+              &quot;Raw acceleration&quot; + rawAcceleration;
+            document.querySelector(&quot;#tiltFB&quot;).innerHTML = 
+              &quot;Tilt front/back : &quot; + tiltFB;
+            document.querySelector(&quot;#tiltLR&quot;).innerHTML = 
+              &quot;Tilt left/right : &quot; + tiltLR;
+            document.querySelector(&quot;#upDown&quot;).innerHTML = 
+              &quot;Face Up:Down : &quot; + facingUp;
             updateLogoOrientation(tiltLR, tiltFB);
          }, false);
       } else {
@@ -19211,11 +19196,13 @@ ball.y += acceleration.y;
       function updateLogoOrientation(tiltLR, tiltFB) {
          // USE CSS3 rotations for rotating the HTML5 logo
          //for webkit browser
-         document.getElementById(&quot;imgLogo&quot;).style.webkitTransform =
-         &quot;rotate(&quot; + tiltLR + &quot;deg) rotate3d(1,0,0, &quot; + (tiltFB * -1) + &quot;deg)&quot;;
+         document.getElementById(&quot;imgLogo&quot;).style.webkitTransform = 
+           &quot;rotate(&quot; + tiltLR + &quot;deg) 
+           rotate3d(1,0,0, &quot; + (tiltFB * -1) + &quot;deg)&quot;;
          //for HTML5 standard-compliance
          document.getElementById(&quot;imgLogo&quot;).style.transform =
-         &quot;rotate(&quot; + tiltLR + &quot;deg) rotate3d(1,0,0, &quot; + (tiltFB * -1) + &quot;deg)&quot;;
+         &quot;rotate(&quot; + tiltLR + &quot;deg) 
+           rotate3d(1,0,0, &quot; + (tiltFB * -1) + &quot;deg)&quot;;
       }
    &lt;/script&gt;
   &lt;/body&gt;
@@ -19362,7 +19349,8 @@ target="_blank" rel="noopener noreferrer">use this URL instead</a>!</p>
       &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js&quot;&gt;
         &lt;/script&gt;
       &lt;script&gt;
-        !window.jQuery &amp;&amp; document.write(&#39;&lt;script src=&quot;./js/jquery.min.js&quot;&gt;&lt;/script&gt;&#39;)
+        !window.jQuery &amp;&amp; document.write(&#39;&lt;script
+        src=&quot;./js/jquery.min.js&quot;&gt;&lt;/script&gt;&#39;)
       &lt;/script&gt;
       &lt;script&gt;
         var offset;
@@ -19505,8 +19493,9 @@ comments/observations/questions and share your creations.</p>
   Last Updated: 4-15-2024 Mon 12:24pm<br>
   Last Updated: 5-13-2024 Mon 5:12pm<br>
   Last Updated: 5-24-2025 Sat 9:22pm<br>
-  Last Updated: 5-27-2025 Tue 11:22pm</br>
-  Last Updated: 6-25-2025 Tue 7:38pm</h6>
+  Last Updated: 5-27-2025 Tue 11:22pm<br>
+  Last Updated: 6-25-2025 Tue 7:38pm<br>
+  Last Updated: 6-27-2025 Fri 2:04pm</h6>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <script src="./js/scripts.js"></script>
 </body>

@@ -7678,7 +7678,6 @@ stick) a <a href="https://w3c.github.io/gamepad/#event-gamepadconnected" target
    var id = gamepad.id;
    var nbButtons = gamepad.buttons.length;
    var nbAxes = gamepad.axes.length;
-
    console.log(&quot;Gamepad No &quot; + index +
                &quot;, with id &quot; + id + &quot; is connected. It has &quot; +
                nbButtons + &quot; buttons and &quot; +
@@ -7698,10 +7697,9 @@ stick) a <a href="https://w3c.github.io/gamepad/#event-gamepadconnected" target
 <p>If a gamepad is disconnected (you unplug it), a <a href="https://w3c.github.io/gamepad/#event-gamepaddisconnected" target="_blank" rel="noopener noreferrer">gamepaddisconnected</a> event is fired. Any references to the gamepad object will have their connected property set to false.</p>
 
 <pre>window.addEventListener(&quot;gamepaddisconnected&quot;, function(e) {
-   var gamepad = e.gamepad;
-   var index = gamepad.index;
- 
-   console.log(&quot;Gamepad No &quot; + index + &quot; has been disconnected&quot;);
+  var gamepad = e.gamepad;
+  var index = gamepad.index;
+  console.log(&quot;Gamepad No &quot; + index + &quot; has been disconnected&quot;);
 });</pre>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 109. disconnect game pad (177) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -7729,29 +7727,25 @@ special when the system detects that a gamepad has been unplugged.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var gamepad;
-2.   
-3.  function mainloop() {
-4.     ...
-5.     scangamepads();
-6.   
-7.     // test gamepad status: buttons, joysticks etc.
-8.     ...
-9.     requestAnimationFrame(mainloop);
-10. }
-11.  
-12. function scangamepads() {
-13.   // function called 60 times/s
-14.   // the gamepad is a &quot;snapshot&quot;, so we need to set it
-15.   // 60 times / second in order to have an updated status
-16.   var gamepads = navigator.getGamepads();
-17. 
-18.   for (var i = 0; i &lt; gamepads.length; i++) {
-19.     // current gamepad is not necessarily the first
-20.     if(gamepads[i] !== undefined)
-21.        gamepad = gamepads[i];
-22.     }
-23. }</pre>
+<pre>var gamepad;
+function mainloop() {
+  ...
+  scangamepads();
+  // test gamepad status: buttons, joysticks etc.
+  ...
+  requestAnimationFrame(mainloop);
+}
+function scangamepads() {
+  // function called 60 times/s
+  // the gamepad is a &quot;snapshot&quot;, so we need to set it
+  // 60 times / second in order to have an updated status
+  var gamepads = navigator.getGamepads();
+  for (var i = 0; i &lt; gamepads.length; i++) {
+    // current gamepad is not necessarily the first
+    if(gamepads[i] !== undefined)
+      gamepad = gamepads[i];
+  }
+}</pre>
 
 </details>
 
@@ -7896,17 +7890,16 @@ the gamepad.buttons will return the same states every time.</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  // detect axis (joystick states)
-2.  function checkAxes(gamepad) {
-3.     if(gamepad === undefined) return;
-4.     if(!gamepad.connected) return;
-5.  
-6.     for (var i=0; i&lt;gamepad.axes.length; i++) {
-7.       var axisValue = gamepad.axes[i];
-8.       // do something with the value
-9.       ...
-10.    }
-11. }</pre>
+<pre>// detect axis (joystick states)
+function checkAxes(gamepad) {
+  if(gamepad === undefined) return;
+  if(!gamepad.connected) return;
+  for (var i=0; i&lt;gamepad.axes.length; i++) {
+    var axisValue = gamepad.axes[i];
+    // do something with the value
+    ...
+  }
+}</pre>
 
 </details>
 
@@ -7934,89 +7927,79 @@ example</a>:</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var inputStates = {};
-2.  ...
-3.  function mainloop() {
-4.     // clear, draw objects, etc...
-5.     // update gamepad status
-6.     scangamepads();
-7.    // Check gamepad button states
-8.    checkButtons(gamepad);
-9.    // Check joysticks states
-10.   checkAxes(gamepad);
-11. 
-12.   // Move the player, taking into account
-13.   // the gamepad left joystick state
-14.   updatePlayerPosition();
-15. 
-16.   // We could use the same technique in
-17.   // order to react when buttons are pressed
-18.   //...
-19. 
-20.   // animate at 60 frames/s
-21.   requestAnimationFrame(mainloop);
-22. }
-23.  
-24. function updatePlayerPosition() {
-25.    directionDiv.innerHTML += &quot;&quot;;
-26.    if(inputStates.left) {
-27.       directionDiv.innerHTML = &quot;Moving left&quot;;
-28.    }
-29.    if(inputStates.right) {
-30.       directionDiv.innerHTML = &quot;Moving right&quot;;
-31.    }
-32.    if(inputStates.up) {
-33.       directionDiv.innerHTML = &quot;Moving up&quot;;
-34.    }
-35.    if(inputStates.down) {
-36.       directionDiv.innerHTML = &quot;Moving down&quot;;
-37.    }
-38.    // Display the angle in degrees, in the HTML page
-39.  angleDiv.innerHTML = Math.round((inputStates.angle*180/Math.PI));
-40. }
-41.  
-42. // gamepad code below
-43. // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-44. // detect axis (joystick states)
-45. function checkAxes(gamepad) {
-46.   if(gamepad === undefined) return;
-47.   if(!gamepad.connected) return;
-48. 
-49.   ...
-50. 
-51.   // Set inputStates.left, right, up, down
-52.  inputStates.left = inputStates.right = inputStates.up = inputStates.down = false;
-53. 
-54.   // all values between [-1 and 1]
-55.   // Horizontal detection
-56.   if(gamepad.axes[0] &gt; 0.5) {
-57.      inputStates.right=true;
-58.      inputStates.left=false;
-59.   } else if(gamepad.axes[0] &lt; -0.5) {
-60.      inputStates.left=true;
-61.      inputStates.right=false;
-62.   }
-63. 
-64.   // vertical detection
-65.   if(gamepad.axes[1] &gt; 0.5) {
-66.     inputStates.down=true;
-67.     inputStates.up=false;
-68.   } else if(gamepad.axes[1] &lt; -0.5) {
-69.     inputStates.up=true;
-70.     inputStates.down=false;
-71.   }
-72.  
-73.   // compute the angle. gamepad.axes[1] is the
-74.   // sinus of the angle (values between [-1, 1]),
-75.   // gamepad.axes[0] is the cosinus of the angle.
-76.   // we display the value in degree as in a regular
-77.   // trigonometric circle, with the x axis to the right
-78.   // and the y axis that goes up.
-79.   // The angle = arcTan(sin/cos); We inverse the sign of
-80.   // the sinus in order to have the angle in standard
-81.   // x and y axis (y going up)
-82.   inputStates.angle = Math.atan2(-gamepad.axes[1], gamepad.axes[0]);
-83. }</pre>
+<pre>var inputStates = {};
+...
+function mainloop() {
+   // clear, draw objects, etc...
+   // update gamepad status
+   scangamepads();
+  // Check gamepad button states
+  checkButtons(gamepad);
+  // Check joysticks states
+  checkAxes(gamepad);
+  // Move the player, taking into account
+  // the gamepad left joystick state
+  updatePlayerPosition();
+  // We could use the same technique in
+  // order to react when buttons are pressed
+  //...
+  // animate at 60 frames/s
+  requestAnimationFrame(mainloop);
+}
+function updatePlayerPosition() {
+   directionDiv.innerHTML += &quot;&quot;;
+   if(inputStates.left) {
+      directionDiv.innerHTML = &quot;Moving left&quot;;
+   }
+   if(inputStates.right) {
+      directionDiv.innerHTML = &quot;Moving right&quot;;
+   }
+   if(inputStates.up) {
+      directionDiv.innerHTML = &quot;Moving up&quot;;
+   }
+   if(inputStates.down) {
+      directionDiv.innerHTML = &quot;Moving down&quot;;
+   }
+   // Display the angle in degrees, in the HTML page
+ angleDiv.innerHTML = Math.round((inputStates.angle*180/Math.PI));
+}
+// gamepad code below
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// detect axis (joystick states)
+function checkAxes(gamepad) {
+  if(gamepad === undefined) return;
+  if(!gamepad.connected) return;
+  ...
+  // Set inputStates.left, right, up, down
+ inputStates.left = inputStates.right = inputStates.up = inputStates.down = false;
+  // all values between [-1 and 1]
+  // Horizontal detection
+  if(gamepad.axes[0] &gt; 0.5) {
+     inputStates.right=true;
+     inputStates.left=false;
+  } else if(gamepad.axes[0] &lt; -0.5) {
+     inputStates.left=true;
+     inputStates.right=false;
+  }
+  // vertical detection
+  if(gamepad.axes[1] &gt; 0.5) {
+    inputStates.down=true;
+    inputStates.up=false;
+  } else if(gamepad.axes[1] &lt; -0.5) {
+    inputStates.up=true;
+    inputStates.down=false;
+  }
+  // compute the angle. gamepad.axes[1] is the
+  // sinus of the angle (values between [-1, 1]),
+  // gamepad.axes[0] is the cosinus of the angle.
+  // we display the value in degree as in a regular
+  // trigonometric circle, with the x axis to the right
+  // and the y axis that goes up.
+  // The angle = arcTan(sin/cos); We inverse the sign of
+  // the sinus in order to have the angle in standard
+  // x and y axis (y going up)
+  inputStates.angle = Math.atan2(-gamepad.axes[1], gamepad.axes[0]);
+}</pre>
 
 </details>
 
@@ -8883,81 +8866,65 @@ JSBin</a>:</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.  &lt;meta charset=utf-8 /&gt;
-5.  &lt;title&gt;Time based animation using the parameter of the requestAnimationFrame callback&lt;/title&gt;
-6.    &lt;script&gt;
-7.     var canvas, ctx;
-8.     var width, height;
-9.     var x, y, incX; // incX is the distance from the previously drawn rectangle
-10.                    // to the new one
-11.    var speedX;     // speedX is the target speed of the rectangle in pixels/s
-12. 
-13.    // for time based animation
-14.    var now, delta=0;
-15.    // High resolution timer
-16.    var oldTime = 0;
-17. 
-18.    // Called after the DOM is ready (page loaded)
-19.    function init() {
-20.      // init the different variables
-21.      canvas = document.querySelector(&quot;#mycanvas&quot;);
-22.      ctx = canvas.getContext(&#39;2d&#39;);
-23.      width = canvas.width;
-24.      height = canvas.height;
-25. 
-26.      x=10; y = 10;
-27.      // Target speed in pixels/second, try with high values, 1000, 2000...
-28.      speedX = 200;
-29. 
-30.      // Start animation
-31.      requestAnimationFrame(animationLoop);
-32.    }
-33. 
-34.    function animationLoop(currentTime) {
-35.      // How long between the current frame and the previous one?
-36.      delta = currentTime - oldTime;
-37. 
-38.      // Compute the displacement in x (in pixels) in function of the time elapsed and
-39.      // in function of the wanted speed
-40.      incX = calcDistanceToMove(delta, speedX);
-41. 
-42.      // clear canvas
-43.      ctx.clearRect(0, 0, width, height);
-44. 
-45.      ctx.strokeRect(x, y, 10, 10);
-46. 
-47.      // move rectangle
-48.      x += incX;
-49. 
-50.      // check collision on left or right
-51.      if(((x+10) &gt; width) || (x &lt; 0)) {
-52.        // inverse speed
-53.        x -= incX;
-54.        speedX = -speedX;
-55.      }
-56. 
-57.      // Store time
-58.      oldTime = currentTime;
-59. 
-60.      // asks for next frame
-61.      requestAnimationFrame(animationLoop);
-62.    }
-63. 
-64.    var calcDistanceToMove = function(delta, speed) {
-65.      return (speed * delta) / 1000;
-66.    }
-67. 
-68. &lt;/script&gt;
-69. &lt;/head&gt;
-70. 
-71. &lt;body onload=&quot;init();&quot;&gt;
-72. &lt;canvas id=&quot;mycanvas&quot; width=&quot;200&quot; height=&quot;50&quot; style=&quot;border: 2px solid black&quot;&gt;&lt;/canvas&gt;
-73. &lt;/body&gt;
-74. &lt;/html&gt;
-75. </pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=utf-8 /&gt;
+&lt;title&gt;Time based animation using the parameter of the requestAnimationFrame callback&lt;/title&gt;
+  &lt;script&gt;
+   var canvas, ctx;
+   var width, height;
+   var x, y, incX; // incX is the distance from the previously drawn rectangle
+                   // to the new one
+   var speedX;     // speedX is the target speed of the rectangle in pixels/s
+   // for time based animation
+   var now, delta=0;
+   // High resolution timer
+   var oldTime = 0;
+   // Called after the DOM is ready (page loaded)
+   function init() {
+     // init the different variables
+     canvas = document.querySelector(&quot;#mycanvas&quot;);
+     ctx = canvas.getContext(&#39;2d&#39;);
+     width = canvas.width;
+     height = canvas.height;
+     x=10; y = 10;
+     // Target speed in pixels/second, try with high values, 1000, 2000...
+     speedX = 200;
+     // Start animation
+     requestAnimationFrame(animationLoop);
+   }
+   function animationLoop(currentTime) {
+     // How long between the current frame and the previous one?
+     delta = currentTime - oldTime;
+     // Compute the displacement in x (in pixels) in function of the time elapsed and
+     // in function of the wanted speed
+     incX = calcDistanceToMove(delta, speedX);
+     // clear canvas
+     ctx.clearRect(0, 0, width, height);
+     ctx.strokeRect(x, y, 10, 10);
+     // move rectangle
+     x += incX;
+     // check collision on left or right
+     if(((x+10) &gt; width) || (x &lt; 0)) {
+       // inverse speed
+       x -= incX;
+       speedX = -speedX;
+     }
+     // Store time
+     oldTime = currentTime;
+     // asks for next frame
+     requestAnimationFrame(animationLoop);
+   }
+   var calcDistanceToMove = function(delta, speed) {
+     return (speed * delta) / 1000;
+   }
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+&lt;canvas id=&quot;mycanvas&quot; width=&quot;200&quot; height=&quot;50&quot; style=&quot;border: 2px solid black&quot;&gt;&lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -8994,117 +8961,97 @@ loop:</p>
 <details>
   <summary>HTML &amp; JS code!</summary>
 
-<pre>1.   &lt;!DOCTYPE html&gt;
-2.   &lt;html lang=&quot;en&quot;&gt;
-3.   &lt;head&gt;
-4.   &lt;meta charset=utf-8 /&gt;
-5.   &lt;title&gt;Set framerate using a high resolution timer&lt;/title&gt;
-6.   &lt;/head&gt;
-7.   &lt;body&gt;
-8.   &lt;p&gt;This example measures and sums deltas of time between
-9.       consecutive frames of animation. It includes
-10.      a &lt;code&gt;setFrameRateInFramesPerSecond&lt;/code&gt; function you can
-11.      use to reduce the number of frames per second of the main
-12.      animation.&lt;/p&gt;
-13.  
-14.  &lt;canvas id=&quot;myCanvas&quot; width=&quot;700&quot; height=&quot;350&quot;&gt;
-15.  &lt;/canvas&gt;
-16.  &lt;script&gt;
-17.    var canvas = document.querySelector(&quot;#myCanvas&quot;);
-18.    var ctx = canvas.getContext(&quot;2d&quot;);
-19.    var width = canvas.width, height = canvas.height;
-20.    var lastX = width * Math.random();
-21.    var lastY = height * Math.random();
-22.    var hue = 0;
-23.  
-24.    // Michel Buffa: set the target frame rate. TRY TO CHANGE THIS VALUE AND SEE
-25.    // THE RESULT. Try 2 frames/s, 10 frames/s, 60 frames/s Normally there
-26.    // should be a limit of 60 frames/s in the browser&#39;s implementations.
-27.    setFrameRateInFramesPerSecond(60);
-28.  
-29.   // for time based animation. DelayInMS corresponds to the target framerate
-30.   var now, delta, delayInMS, totalTimeSinceLastRedraw = 0;
-31.  
-32.   // High resolution timer
-33.   var then = performance.now();
-34.  
-35.   // start the animation
-36.   requestAnimationFrame(mainloop);
-37.  
-38.   function setFrameRateInFramesPerSecond(frameRate) {
-39.     delayInMs = 1000 / frameRate;
-40.   }
-41.  
-42.   // each function that is going to be run as an animation should end by
-43.   // asking again for a new frame of animation
-44.   function mainloop(time) {
-45.     // Here we will only redraw something if the time we want between frames has
-46.     // elapsed
-47.     // Measure time with high resolution timer
-48.     now = time;
-49.  
-50.     // How long between the current frame and the previous one?
-51.     delta = now - then;
-52.     // TRY TO UNCOMMENT THIS LINE AND LOOK AT THE CONSOLE
-53.     // console.log(&quot;delay = &quot; + delayInMs + &quot; delta = &quot; + delta + &quot; total time = &quot; +
-54.     // totalTimeSinceLastRedraw);
-55.  
-56.     // If the total time since the last redraw is &gt; delay corresponding to the wanted
-57.     // framerate, then redraw, else add the delta time between the last call to line()
-58.     // by requestAnimFrame to the total time..
-59.     if (totalTimeSinceLastRedraw &gt; delayInMs) {
-60.        // if the time between the last frame and now is &gt; delay then we
-61.        // clear the canvas and redraw
-62.  
-63.        ctx.save();
-64.  
-65.        // Trick to make a blur effect: instead of clearing the canvas
-66.        // we draw a rectangle with a transparent color. Changing the 0.1
-67.        // for a smaller value will increase the blur...
-68.        ctx.fillStyle = &quot;rgba(0,0,0,0.1)&quot;;
-69.        ctx.fillRect(0, 0, width, height);
-70.  
-71.        ctx.translate(width / 2, height / 2);
-72.        ctx.scale(0.9, 0.9);
-73.        ctx.translate(-width / 2, -height / 2);
-74.  
-75.        ctx.beginPath();
-76.        ctx.lineWidth = 5 + Math.random() * 10;
-77.        ctx.moveTo(lastX, lastY);
-78.        lastX = width * Math.random();
-79.        lastY = height * Math.random();
-80.  
-81.        ctx.bezierCurveTo(width * Math.random(),
-82.                          height * Math.random(),
-83.                          width * Math.random(),
-84.                          height * Math.random(),
-85.                          lastX, lastY);
-86.  
-87.        hue = hue + 10 * Math.random();
-88.        ctx.strokeStyle = &quot;hsl(&quot; + hue + &quot;, 50%, 50%)&quot;;
-89.        ctx.shadowColor = &quot;white&quot;;
-90.        ctx.shadowBlur = 10;
-91.        ctx.stroke();
-92.  
-93.        ctx.restore();
-94.  
-95.        // reset the total time since last redraw
-96.        totalTimeSinceLastRedraw = 0;
-97.     } else {
-98.        // sum the total time since last redraw
-99.        totalTimeSinceLastRedraw += delta;
-100.    }
-101. 
-102.    // Store time
-103.    then = now;
-104. 
-105.    // request new frame
-106.    requestAnimationFrame(mainloop);
-107.  }
-108. &lt;/script&gt;
-109. &lt;/body&gt;
-110. &lt;/html&gt;
-111. </pre>
+<pre>&lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+ &lt;meta charset=utf-8 /&gt;
+ &lt;title&gt;Set framerate using a high resolution timer&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ &lt;p&gt;This example measures and sums deltas of time between
+     consecutive frames of animation. It includes
+     a &lt;code&gt;setFrameRateInFramesPerSecond&lt;/code&gt; function you can
+     use to reduce the number of frames per second of the main
+     animation.&lt;/p&gt;
+ &lt;canvas id=&quot;myCanvas&quot; width=&quot;700&quot; height=&quot;350&quot;&gt;
+ &lt;/canvas&gt;
+ &lt;script&gt;
+   var canvas = document.querySelector(&quot;#myCanvas&quot;);
+   var ctx = canvas.getContext(&quot;2d&quot;);
+   var width = canvas.width, height = canvas.height;
+   var lastX = width * Math.random();
+   var lastY = height * Math.random();
+   var hue = 0;
+   // Michel Buffa: set the target frame rate. TRY TO CHANGE THIS VALUE AND SEE
+   // THE RESULT. Try 2 frames/s, 10 frames/s, 60 frames/s Normally there
+   // should be a limit of 60 frames/s in the browser&#39;s implementations.
+   setFrameRateInFramesPerSecond(60);
+  // for time based animation. DelayInMS corresponds to the target framerate
+  var now, delta, delayInMS, totalTimeSinceLastRedraw = 0;
+  // High resolution timer
+  var then = performance.now();
+  // start the animation
+  requestAnimationFrame(mainloop);
+  function setFrameRateInFramesPerSecond(frameRate) {
+    delayInMs = 1000 / frameRate;
+  }
+  // each function that is going to be run as an animation should end by
+  // asking again for a new frame of animation
+  function mainloop(time) {
+    // Here we will only redraw something if the time we want between frames has
+    // elapsed
+    // Measure time with high resolution timer
+    now = time;
+    // How long between the current frame and the previous one?
+    delta = now - then;
+    // TRY TO UNCOMMENT THIS LINE AND LOOK AT THE CONSOLE
+    // console.log(&quot;delay = &quot; + delayInMs + &quot; delta = &quot; + delta + &quot; total time = &quot; +
+    // totalTimeSinceLastRedraw);
+    // If the total time since the last redraw is &gt; delay corresponding to the wanted
+    // framerate, then redraw, else add the delta time between the last call to line()
+    // by requestAnimFrame to the total time..
+    if (totalTimeSinceLastRedraw &gt; delayInMs) {
+       // if the time between the last frame and now is &gt; delay then we
+       // clear the canvas and redraw
+       ctx.save();
+       // Trick to make a blur effect: instead of clearing the canvas
+       // we draw a rectangle with a transparent color. Changing the 0.1
+       // for a smaller value will increase the blur...
+       ctx.fillStyle = &quot;rgba(0,0,0,0.1)&quot;;
+       ctx.fillRect(0, 0, width, height);
+       ctx.translate(width / 2, height / 2);
+       ctx.scale(0.9, 0.9);
+       ctx.translate(-width / 2, -height / 2);
+       ctx.beginPath();
+       ctx.lineWidth = 5 + Math.random() * 10;
+       ctx.moveTo(lastX, lastY);
+       lastX = width * Math.random();
+       lastY = height * Math.random();
+       ctx.bezierCurveTo(width * Math.random(),
+                         height * Math.random(),
+                         width * Math.random(),
+                         height * Math.random(),
+                         lastX, lastY);
+       hue = hue + 10 * Math.random();
+       ctx.strokeStyle = &quot;hsl(&quot; + hue + &quot;, 50%, 50%)&quot;;
+       ctx.shadowColor = &quot;white&quot;;
+       ctx.shadowBlur = 10;
+       ctx.stroke();
+       ctx.restore();
+       // reset the total time since last redraw
+       totalTimeSinceLastRedraw = 0;
+    } else {
+       // sum the total time since last redraw
+       totalTimeSinceLastRedraw += delta;
+    }
+    // Store time
+    then = now;
+    // request new frame
+    requestAnimationFrame(mainloop);
+  }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -9120,106 +9067,88 @@ example with the rectangle that also uses this technique</a>.</p>
 <details>
   <summary>HTML &amp; JS code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.  &lt;meta charset=utf-8 /&gt;
-5.  &lt;title&gt;Bouncing rectangle with high resolution timer and adjustable frame rate&lt;/title&gt;
-6.   &lt;script&gt;
-7.     var canvas, ctx;
-8.     var width, height;
-9.     var x, y, incX; // incX is the distance from the previously drawn rectangle
-10.                    // to the new one
-11.    var speedX; // speedX is the target speed of the rectangle in pixels/s
-12. 
-13.    // for time based animation, DelayInMS corresponds to the target frame rate
-14.    var now, delta, delayInMS, totalTimeSinceLastRedraw=0;
-15.    // High resolution timer
-16.    var then = performance.now();
-17. 
-18.    // Michel Buffa: set the target frame rate. TRY TO CHANGE THIS VALUE AND SEE
-19.    // THE RESULT. Try 2 frames/s, 10 frames/s, 60, 100 frames/s Normally there
-20.    // should be a limit of 60 frames/s in the browser&#39;s implementations, but you can 
-21.    // try higher values
-22.    setFrameRateInFramesPerSecond(25);
-23. 
-24.    function setFrameRateInFramesPerSecond(framerate) {
-25.      delayInMs = 1000 / framerate;
-26.    }
-27. 
-28.    // Called after the DOM is ready (page loaded)
-29.    function init() {
-30.      // init the different variables
-31.      canvas = document.querySelector(&quot;#mycanvas&quot;);
-32.      ctx = canvas.getContext(&#39;2d&#39;);
-33.      width = canvas.width;
-34.      height = canvas.height;
-35. 
-36.      x=10; y = 10;
-37.      // Target speed in pixels/second, try with high values, 1000, 2000...
-38.      speedX = 2000;
-39. 
-40.      // Start animation
-41.      requestAnimationFrame(animationLoop)
-42.    }
-43. 
-44.    function animationLoop(time) {
-45.      // Measure time with high resolution timer
-46.      now = time;
-47.  
-48.      // How long between the current frame and the previous one?
-49.      delta = now - then;
-50. 
-51.      if(totalTimeSinceLastRedraw &gt; delayInMs) {
-52.        // Compute the displacement in x (in pixels) in function of the time elapsed
-53.        // since the last draw and
-54.        // in function of the wanted speed. This time, instead of delta we
-55.        // use totalTimeSinceLastRedraw as we&#39;re not always drawing at
-56.        // each execution of mainloop
-57.      incX = calcDistanceToMove(totalTimeSinceLastRedraw, speedX);
-58. 
-59.        // an animation involves: 1) clear canvas and 2) draw shapes,
-60.        // 3) move shapes, 4) recall the loop with requestAnimationFrame
-61. 
-62.        // clear canvas
-63.        ctx.clearRect(0, 0, width, height);
-64. 
-65.        ctx.strokeRect(x, y, 10, 10);
-66. 
-67.        // move rectangle
-68.        x += incX;
-69. 
-70.       // check collision on left or right
-71.       if((x+10 &gt;= width) || (x &lt;= 0)) {
-72.         // cancel move + inverse speed
-73.         x -= incX;
-74.         speedX = -speedX;
-75.       }
-76.       // reset the total time since last redraw
-77.       totalTimeSinceLastRedraw = delta;
-78.    } else {
-79.      // sum the total time since last redraw
-80.      totalTimeSinceLastRedraw += delta;
-81.    }
-82.    // Store time
-83.    then = now;
-84.  
-85. 
-86.    // animate. 
-87.    requestAnimationFrame(animationLoop);
-88.  }
-89. 
-90.  var calcDistanceToMove = function(delta, speed) {
-91.     return (speed * delta) / 1000;
-92.  }
-93. 
-94.  &lt;/script&gt;
-95. &lt;/head&gt;
-96. 
-97. &lt;body onload=&quot;init();&quot;&gt;
-98.  &lt;canvas id=&quot;mycanvas&quot; width=&quot;200&quot; height=&quot;50&quot; style=&quot;border: 2px solid black&quot;&gt;&lt;/canvas&gt;
-99. &lt;/body&gt;
-100. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=utf-8 /&gt;
+&lt;title&gt;Bouncing rectangle with high resolution timer and adjustable frame rate&lt;/title&gt;
+ &lt;script&gt;
+   var canvas, ctx;
+   var width, height;
+   var x, y, incX; // incX is the distance from the previously drawn rectangle
+                   // to the new one
+   var speedX; // speedX is the target speed of the rectangle in pixels/s
+   // for time based animation, DelayInMS corresponds to the target frame rate
+   var now, delta, delayInMS, totalTimeSinceLastRedraw=0;
+   // High resolution timer
+   var then = performance.now();
+   // Michel Buffa: set the target frame rate. TRY TO CHANGE THIS VALUE AND SEE
+   // THE RESULT. Try 2 frames/s, 10 frames/s, 60, 100 frames/s Normally there
+   // should be a limit of 60 frames/s in the browser&#39;s implementations, but you can 
+   // try higher values
+   setFrameRateInFramesPerSecond(25);
+   function setFrameRateInFramesPerSecond(framerate) {
+     delayInMs = 1000 / framerate;
+   }
+   // Called after the DOM is ready (page loaded)
+   function init() {
+     // init the different variables
+     canvas = document.querySelector(&quot;#mycanvas&quot;);
+     ctx = canvas.getContext(&#39;2d&#39;);
+     width = canvas.width;
+     height = canvas.height;
+     x=10; y = 10;
+     // Target speed in pixels/second, try with high values, 1000, 2000...
+     speedX = 2000;
+     // Start animation
+     requestAnimationFrame(animationLoop)
+   }
+   function animationLoop(time) {
+     // Measure time with high resolution timer
+     now = time;
+     // How long between the current frame and the previous one?
+     delta = now - then;
+     if(totalTimeSinceLastRedraw &gt; delayInMs) {
+       // Compute the displacement in x (in pixels) in function of the time elapsed
+       // since the last draw and
+       // in function of the wanted speed. This time, instead of delta we
+       // use totalTimeSinceLastRedraw as we&#39;re not always drawing at
+       // each execution of mainloop
+     incX = calcDistanceToMove(totalTimeSinceLastRedraw, speedX);
+       // an animation involves: 1) clear canvas and 2) draw shapes,
+       // 3) move shapes, 4) recall the loop with requestAnimationFrame
+       // clear canvas
+       ctx.clearRect(0, 0, width, height);
+       ctx.strokeRect(x, y, 10, 10);
+       // move rectangle
+       x += incX;
+      // check collision on left or right
+      if((x+10 &gt;= width) || (x &lt;= 0)) {
+        // cancel move + inverse speed
+        x -= incX;
+        speedX = -speedX;
+      }
+      // reset the total time since last redraw
+      totalTimeSinceLastRedraw = delta;
+   } else {
+     // sum the total time since last redraw
+     totalTimeSinceLastRedraw += delta;
+   }
+   // Store time
+   then = now;
+   // animate. 
+   requestAnimationFrame(animationLoop);
+ }
+ var calcDistanceToMove = function(delta, speed) {
+    return (speed * delta) / 1000;
+ }
+ &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;init();&quot;&gt;
+  &lt;canvas id=&quot;mycanvas&quot; width=&quot;200&quot; height=&quot;50&quot; 
+    style=&quot;border: 2px solid black&quot;&gt;&lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -9296,31 +9225,25 @@ var monster = {
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function timer(currentTime) {
-2.     var delta = currentTime - oldTime;
-3.     oldTime = currentTime;
-4.     return delta;
-5.  }
-6.  
-7.  var mainLoop = function(time){
-8.     //main function, called each frame
-9.     measureFPS(time);
-10. 
-11.    // number of ms since last frame draw
-12.    delta = timer(time);
-13. 
-14.    // Clear the canvas
-15.    clearCanvas();
-16. 
-17.    // draw the monster
-18.    drawMyMonster(monster.x, monster.y);
-19. 
-20.    // Check inputs and move the monster
-21.    updateMonsterPosition(delta);
-22. 
-23.    // call the animation loop every 1/60th of second
-24.    requestAnimationFrame(mainLoop);
-25. };</pre>
+<pre>function timer(currentTime) {
+  var delta = currentTime - oldTime;
+  oldTime = currentTime;
+  return delta;
+}
+var mainLoop = function(time){
+  //main function, called each frame
+  measureFPS(time);
+  // number of ms since last frame draw
+  delta = timer(time);
+  // Clear the canvas
+  clearCanvas();
+  // draw the monster
+  drawMyMonster(monster.x, monster.y);
+  // Check inputs and move the monster
+  updateMonsterPosition(delta);
+  // call the animation loop every 1/60th of second
+  requestAnimationFrame(mainLoop);
+};</pre>
 
 </details>
 
@@ -9436,29 +9359,27 @@ variable for adjusting the size of the balls: the radius.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  // Constructor function for balls
-2.  function Ball(x, y, vx, vy, diameter) {
-3.    // property of each ball: a x and y position, speeds, radius
-4.    this.x = x;
-5.    this.y = y;
-6.    this.vx = vx;
-7.    this.vy = vy;
-8.    this.radius = diameter/2;
-9.  
-10.   // methods
-11.   this.draw = function() {
-12.     ctx.beginPath();
-13.     ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
-14.     ctx.fill();
-15.   };
-16. 
-17.   this.move = function() {
-18.     // add horizontal increment to the x pos
-19.     // add vertical increment to the y pos
-20.     this.x += this.vx;
-21.     this.y += this.vy;
-22.  };
-23. }</pre>
+<pre>// Constructor function for balls
+function Ball(x, y, vx, vy, diameter) {
+  // property of each ball: a x and y position, speeds, radius
+  this.x = x;
+  this.y = y;
+  this.vx = vx;
+  this.vy = vy;
+  this.radius = diameter/2;
+  // methods
+  this.draw = function() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+    ctx.fill();
+  };
+  this.move = function() {
+    // add horizontal increment to the x pos
+    // add vertical increment to the y pos
+    this.x += this.vx;
+    this.y += this.vy;
+  };
+}</pre>
 
 </details>
 
@@ -9484,82 +9405,69 @@ easier to handle large quantities.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var canvas, ctx, width, height;
-2.  
-3.  // array of balls to animate
-4.  var ballArray = [];
-5.  
-6.  function init() {
-7.    canvas = document.querySelector(&quot;#myCanvas&quot;);
-8.    ctx = canvas.getContext(&#39;2d&#39;);
-9.    width = canvas.width;
-10.   height = canvas.height;
-11. 
-12.   // try to change this number
-13.   createBalls(16);
-14. 
-15.   requestAnimationFrame(mainLoop);
-16. }
-17. 
-18. function createBalls(numberOfBalls) {
-19.   for(var i=0; i &lt; numberOfBalls; i++) {
-20. 
-21.     // Create a ball with random position and speed.
-22.     // You can change the radius
-23.     var ball = new Ball(width*Math.random(),
-24.                         height*Math.random(),
-25.                         (10*Math.random())-5,
-26.                         (10*Math.random())-5,
-27.                         30);
-28. 
-29.     // add the ball to the array
-30.     ballArray[i] = ball;
-31.    }
-32. }
-33. 
-34. function mainLoop() {
-35.   // clear the canvas
-36.   ctx.clearRect(0, 0, width, height);
-37. 
-38.   // for each ball in the array
-39.   for(var i=0; i &lt; ballArray.length; i++) {
-40.     var ball = ballArray[i]; 
-41. 
-42.     // 1) move the ball
-43.     ball.move();
-44. 
-45.     // 2) test if the ball collides with a wall
-46.     testCollisionWithWalls(ball);
-47. 
-48.     // 3) draw the ball
-49.     ball.draw();
-50.   }
-51.   // ask for a new frame of animation at 60f/s
-52.   window.requestAnimationFrame(mainLoop);
-53. }
-54. 
-55. function testCollisionWithWalls(ball) {
-56.   // left
-57.   if (ball.x &lt; ball.radius) { // x and y of the ball are at the center of the circle
-58.     ball.x = ball.radius;     // if collision, we replace the ball at a position
-59.     ball.vx *= -1;            // where it&#39;s exactly in contact with the left border
-60.   }                           // and we reverse the horizontal speed
-61.   // right
-62.   if (ball.x &gt; width - (ball.radius)) {
-63.     ball.x = width - (ball.radius);
-64.     ball.vx *= -1;
-65.   }
-66.   // up
-67.   if (ball.y &lt; ball.radius) {
-68.     ball.y = ball.radius;
-69.     ball.vy *= -1;
-70.   }
-71.   // down
-72.   if (ball.y &gt; height - (ball.radius)) {
-73.     ball.y = height - (ball.radius);
-74.     ball.vy *= -1;
-75.   }
-76. }</pre>
+<pre>var canvas, ctx, width, height;
+// array of balls to animate
+var ballArray = [];
+function init() {
+  canvas = document.querySelector(&quot;#myCanvas&quot;);
+  ctx = canvas.getContext(&#39;2d&#39;);
+  width = canvas.width;
+  height = canvas.height;
+  // try to change this number
+  createBalls(16);
+  requestAnimationFrame(mainLoop);
+}
+function createBalls(numberOfBalls) {
+  for(var i=0; i &lt; numberOfBalls; i++) {
+    // Create a ball with random position and speed.
+    // You can change the radius
+    var ball = new Ball(width*Math.random(),
+                        height*Math.random(),
+                        (10*Math.random())-5,
+                        (10*Math.random())-5,
+                        30);
+    // add the ball to the array
+    ballArray[i] = ball;
+  }
+}
+function mainLoop() {
+  // clear the canvas
+  ctx.clearRect(0, 0, width, height);
+  // for each ball in the array
+  for(var i=0; i &lt; ballArray.length; i++) {
+    var ball = ballArray[i]; 
+    // 1) move the ball
+    ball.move();
+    // 2) test if the ball collides with a wall
+    testCollisionWithWalls(ball);
+    // 3) draw the ball
+    ball.draw();
+  }
+  // ask for a new frame of animation at 60f/s
+  window.requestAnimationFrame(mainLoop);
+}
+function testCollisionWithWalls(ball) {
+  // left
+  if (ball.x &lt; ball.radius) { // x and y of the ball are at the center of the circle
+    ball.x = ball.radius;     // if collision, we replace the ball at a position
+    ball.vx *= -1;            // where it&#39;s exactly in contact with the left border
+  }                           // and we reverse the horizontal speed
+  // right
+  if (ball.x &gt; width - (ball.radius)) {
+    ball.x = width - (ball.radius);
+    ball.vx *= -1;
+  }
+  // up
+  if (ball.y &lt; ball.radius) {
+    ball.y = ball.radius;
+    ball.vy *= -1;
+  }
+  // down
+  if (ball.y &gt; height - (ball.radius)) {
+    ball.y = height - (ball.radius);
+    ball.vy *= -1;
+  }
+}</pre>
 
 </details>
 
@@ -9584,78 +9492,69 @@ highlighted in bold:</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  var canvas, ctx, width, height;
-2.  
-3.  // Array of balls to animate
-4.  var ballArray = [];
-5.  
-6.  function init() {
-7.    ...
-8.  }
-9.  
-10. function createBalls(numberOfBalls) {
-11.   for(var i=0; i &lt; numberOfBalls; i++) {
-12. 
-13.     // Create a ball with random position and speed.
-14.     // You can change the radius
-15.     var ball = new Ball(width*Math.random(),
-16.                         height*Math.random(),
-17.               (2*Math.PI)*Math.random(), // angle
-18.               (10*Math.random())-5,      // speed
-19.                         30);
-20. 
-21.    // We add it in an array
-22.    ballArray[i] = ball;
-23.   }
-24. }
-25. 
-26. function mainLoop() {
-27.   ...
-28. }
-29. 
-30. function testCollisionWithWalls(ball) {
-31.   // left
-32.   if (ball.x &lt; ball.radius) {
-33.      ball.x = ball.radius;
-34.      ball.angle = -ball.angle + Math.PI;
-35.   }
-36.   // right
-37.   if (ball.x &gt; width - (ball.radius)) {
-38.     ball.x = width - (ball.radius);
-39.     ball.angle = -ball.angle + Math.PI;
-40.   }
-41.   // up
-42.   if (ball.y &lt; ball.radius) {
-43.     ball.y = ball.radius;
-44.     ball.angle = -ball.angle;
-45.   }
-46.   // down
-47.   if (ball.y &gt; height - (ball.radius)) {
-48.     ball.y = height - (ball.radius);
-49.     ball.angle =-ball.angle;
-50.   }
-51. }
-52. 
-53. // constructor function for balls
-54. function Ball(x, y, angle, v, diameter) {
-55.   this.x = x;
-56.   this.y = y;
-57.   this.angle = angle;
-58.   this.v = v;
-59.   this.radius = diameter/2;
-60. 
-61.   this.draw = function() {
-62.    ...
-63.   };
-64. 
-65.   this.move = function() {
-66.    // add horizontal increment to the x pos
-67.    // add vertical increment to the y pos
-68. 
-69.    this.x += this.v * Math.cos(this.angle);
-70.    this.y += this.v * Math.sin(this.angle);
-71.   };
-72. }</pre>
+<pre>var canvas, ctx, width, height;
+// Array of balls to animate
+var ballArray = [];
+function init() {
+  ...
+}
+function createBalls(numberOfBalls) {
+  for(var i=0; i &lt; numberOfBalls; i++) {
+
+    // Create a ball with random position and speed.
+    // You can change the radius
+    var ball = new Ball(width*Math.random(),
+                        height*Math.random(),
+              (2*Math.PI)*Math.random(), // angle
+              (10*Math.random())-5,      // speed
+                        30);
+
+   // We add it in an array
+   ballArray[i] = ball;
+  }
+}
+function mainLoop() {
+  ...
+}
+function testCollisionWithWalls(ball) {
+  // left
+  if (ball.x &lt; ball.radius) {
+     ball.x = ball.radius;
+     ball.angle = -ball.angle + Math.PI;
+  }
+  // right
+  if (ball.x &gt; width - (ball.radius)) {
+    ball.x = width - (ball.radius);
+    ball.angle = -ball.angle + Math.PI;
+  }
+  // up
+  if (ball.y &lt; ball.radius) {
+    ball.y = ball.radius;
+    ball.angle = -ball.angle;
+  }
+  // down
+  if (ball.y &gt; height - (ball.radius)) {
+    ball.y = height - (ball.radius);
+    ball.angle =-ball.angle;
+  }
+}
+// constructor function for balls
+function Ball(x, y, angle, v, diameter) {
+  this.x = x;
+  this.y = y;
+  this.angle = angle;
+  this.v = v;
+  this.radius = diameter/2;
+  this.draw = function() {
+   ...
+  };
+  this.move = function() {
+   // add horizontal increment to the x pos
+   // add vertical increment to the y pos
+   this.x += this.v * Math.cos(this.angle);
+   this.y += this.v * Math.sin(this.angle);
+  };
+}</pre>
 
 </details>
 
@@ -9699,28 +9598,22 @@ jsbin.com is a good playground to try-out and test things…</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var mainLoop = function(time){
-2.    //main function, called each frame
-3.    measureFPS(time);
-4.  
-5.    // number of ms since last frame draw
-6.    delta = timer(time);
-7.  
-8.    // Clear the canvas
-9.    clearCanvas();
-10. 
-11.   // Draw the monster
-12.   drawMyMonster(monster.x, monster.y);
-13. 
-14.   // Check inputs and move the monster
-15.   updateMonsterPosition(delta);
-16. 
-17.   // Update and draw balls
-18.   updateBalls(delta);
-19. 
-20.   // Call the animation loop every 1/60th of second
-21.   requestAnimationFrame(mainLoop);
-22. };</pre>
+<pre>var mainLoop = function(time){
+  //main function, called each frame
+  measureFPS(time);
+  // number of ms since last frame draw
+  delta = timer(time);
+  // Clear the canvas
+  clearCanvas();
+  // Draw the monster
+  drawMyMonster(monster.x, monster.y);
+  // Check inputs and move the monster
+  updateMonsterPosition(delta);
+  // Update and draw balls
+  updateBalls(delta);
+  // Call the animation loop every 1/60th of second
+  requestAnimationFrame(mainLoop);
+};</pre>
 
 </details>
 
@@ -9731,38 +9624,33 @@ and update their position.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function updateMonsterPosition(delta) {
-2.    monster.speedX = monster.speedY = 0;
-3.    // check inputStates
-4.    if (inputStates.left) {
-5.      monster.speedX = -monster.speed;
-6.    }
-7.    if (inputStates.up) {
-8.      monster.speedY = -monster.speed;
-9.    }
-10.   ...
-11. 
-12.   // Compute the incX and incY in pixels depending
-13.   // on the time elapsed since last redraw
-14.   monster.x += calcDistanceToMove(delta, monster.speedX);
-15.   monster.y += calcDistanceToMove(delta, monster.speedY);
-16. }
-17. 
-18. function updateBalls(delta) {
-19.   // for each ball in the array
-20.   for(var i=0; i &lt; ballArray.length; i++) {
-21.    var ball = ballArray[i];
-22. 
-23.    // 1) move the ball
-24.    ball.move();
-25. 
-26.    // 2) test if the ball collides with a wall
-27.    testCollisionWithWalls(ball);
-28. 
-29.    // 3) draw the ball
-30.    ball.draw();
-31. }
-32. }</pre>
+<pre>function updateMonsterPosition(delta) {
+  monster.speedX = monster.speedY = 0;
+  // check inputStates
+  if (inputStates.left) {
+    monster.speedX = -monster.speed;
+  }
+  if (inputStates.up) {
+    monster.speedY = -monster.speed;
+  }
+  ...
+  // Compute the incX and incY in pixels depending
+  // on the time elapsed since last redraw
+  monster.x += calcDistanceToMove(delta, monster.speedX);
+  monster.y += calcDistanceToMove(delta, monster.speedY);
+}
+function updateBalls(delta) {
+  // for each ball in the array
+  for(var i=0; i &lt; ballArray.length; i++) {
+    var ball = ballArray[i];
+    // 1) move the ball
+    ball.move();
+    // 2) test if the ball collides with a wall
+    testCollisionWithWalls(ball);
+    // 3) draw the ball
+    ball.draw();
+  }
+}</pre>
 
 </details>
 
@@ -9864,21 +9752,20 @@ objects both have a boundingCircleRadius property:</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  // The monster!
-2.  var monster = {
-3.    x:80,
-4.    y:80,
-5.    width: 100,
-6.    height : 100,
-7.    speed:1,
-8.    boundingCircleRadius: 70
-9.  };
-10. 
-11. var player = {
-12.   x:0,
-13.   y:0,
-14.   boundingCircleRadius: 20
-15. };</pre>
+<pre>// The monster!
+var monster = {
+  x:80,
+  y:80,
+  width: 100,
+  height : 100,
+  speed:1,
+  boundingCircleRadius: 70
+};
+var player = {
+  x:0,
+  y:0,
+  boundingCircleRadius: 20
+};</pre>
 
 </details>
 
@@ -9887,49 +9774,49 @@ objects both have a boundingCircleRadius property:</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var mainLoop = function(time){
-2.  //main function, called each frame
-3.  measureFPS(time);
-4.  // Clear the canvas
-5.  clearCanvas();
-6.  // Draw the monster
-7.    drawMyMonster();
-8.  // Check inputs and move the monster
-9.  updateMonsterPosition();
-10. updatePlayer();
-11. checkCollisions();
-12. // Call the animation loop every 1/60th of second
-13. requestAnimationFrame(mainLoop);
-14. };
-15. function updatePlayer() {
-16. // The player is just a circle drawn at the mouse position
-17. // Just to test circle/circle collision.
-18. if(inputStates.mousePos) {            // Move the player and draw it as a circle
-19.   player.x = inputStates.mousePos.x;  // when the mouse moves
-20.   player.y = inputStates.mousePos.y;
-21.   ctx.beginPath();
-22.   ctx.arc(player.x, player.y, player.boundingCircleRadius, 0, 2*Math.PI);
-23.   ctx.stroke();
-24.   }
-25. }
-26. function checkCollisions() {
-27. if(circleCollide(player.x, player.y, player.boundingCircleRadius,
-28.    monster.x, monster.y, monster.boundingCircleRadius)) {  
-29.    // Draw everything in red
-30.    ctx.fillText(&quot;Collision&quot;, 150, 20);
-31.    ctx.strokeStyle = ctx.fillStyle = &#39;red&#39;;
-32.   } else {  
-33. // Draw in black
-34.   ctx.fillText(&quot;No collision&quot;, 150, 20);
-35. 
-36.   ctx.strokeStyle = ctx.fillStyle = &#39;black&#39;;
-37.   }
-38. }
-39. function circleCollide(x1, y1, r1, x2, y2, r2) {
-40.    var dx = x1 - x2;
-41.    var dy = y1 - y2;
-42.    return ((dx * dx + dy * dy) &lt; (r1 + r2)*(r1+r2));
-43. }</pre>
+<pre>var mainLoop = function(time){
+//main function, called each frame
+measureFPS(time);
+// Clear the canvas
+clearCanvas();
+// Draw the monster
+  drawMyMonster();
+// Check inputs and move the monster
+updateMonsterPosition();
+updatePlayer();
+checkCollisions();
+// Call the animation loop every 1/60th of second
+requestAnimationFrame(mainLoop);
+};
+function updatePlayer() {
+// The player is just a circle drawn at the mouse position
+// Just to test circle/circle collision.
+if(inputStates.mousePos) {            // Move the player and draw it as a circle
+  player.x = inputStates.mousePos.x;  // when the mouse moves
+  player.y = inputStates.mousePos.y;
+  ctx.beginPath();
+  ctx.arc(player.x, player.y, player.boundingCircleRadius, 0, 2*Math.PI);
+  ctx.stroke();
+  }
+}
+function checkCollisions() {
+if(circleCollide(player.x, player.y, player.boundingCircleRadius,
+   monster.x, monster.y, monster.boundingCircleRadius)) {  
+   // Draw everything in red
+   ctx.fillText(&quot;Collision&quot;, 150, 20);
+   ctx.strokeStyle = ctx.fillStyle = &#39;red&#39;;
+  } else {  
+// Draw in black
+  ctx.fillText(&quot;No collision&quot;, 150, 20);
+
+  ctx.strokeStyle = ctx.fillStyle = &#39;black&#39;;
+  }
+}
+function circleCollide(x1, y1, r1, x2, y2, r2) {
+  var dx = x1 - x2;
+  var dy = y1 - y2;
+  return ((dx * dx + dy * dy) &lt; (r1 + r2)*(r1+r2));
+}</pre>
 
 </details>
 
@@ -10225,18 +10112,16 @@ Thread at StackOverflow</a>):</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  // Collisions between rectangle and circle
-2.  function circRectsOverlap(x0, y0, w0, h0, cx, cy, r) {
-3.     var testX=cx;
-4.     var testY=cy;
-5.  
-6.     if (testX &lt; x0) testX=x0;
-7.     if (testX &gt; (x0+w0)) testX=(x0+w0);
-8.     if (testY &lt; y0) testY=y0;
-9.     if (testY &gt; (y0+h0)) testY=(y0+h0);
-10. 
-11.    return (((cx-testX)*(cx-testX)+(cy-testY)*(cy-testY))&lt; r*r);
-12. }</pre>
+<pre>// Collisions between rectangle and circle
+function circRectsOverlap(x0, y0, w0, h0, cx, cy, r) {
+   var testX=cx;
+   var testY=cy;
+   if (testX &lt; x0) testX=x0;
+   if (testX &gt; (x0+w0)) testX=(x0+w0);
+   if (testY &lt; y0) testY=y0;
+   if (testY &gt; (y0+h0)) testY=(y0+h0);
+   return (((cx-testX)*(cx-testX)+(cy-testY)*(cy-testY))&lt; r*r);
+}</pre>
 
 </details>
 
@@ -10328,30 +10213,25 @@ earlier.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function updateBalls(delta) {
-2.    // for each ball in the array
-3.    for(var i=0; i &lt; ballArray.length; i++) {
-4.      var ball = ballArray[i];
-5.  
-6.      // 1) move the ball
-7.      ball.move();
-8.  
-9.      // 2) test if the ball collides with a wall
-10.     testCollisionWithWalls(ball);
-11.  
-12.     // 3) Test if the monster collides
-13.     if(circRectsOverlap(monster.x, monster.y,
-14.                         monster.width, monster.height,
-15.                         ball.x, ball.y, ball.radius)) {
-16. 
-17.     //change the color of the ball
-18.     ball.color = &#39;red&#39;;
-19.     }
-20. 
-21.     // 3) draw the ball
-22.     ball.draw();
-23.   }
-24. }</pre>
+<pre>function updateBalls(delta) {
+  // for each ball in the array
+  for(var i=0; i &lt; ballArray.length; i++) {
+    var ball = ballArray[i];
+    // 1) move the ball
+    ball.move();
+    // 2) test if the ball collides with a wall
+    testCollisionWithWalls(ball);
+    // 3) Test if the monster collides
+    if(circRectsOverlap(monster.x, monster.y,
+                        monster.width, monster.height,
+                        ball.x, ball.y, ball.radius)) {
+    //change the color of the ball
+    ball.color = &#39;red&#39;;
+    }
+    // 3) draw the ball
+    ball.draw();
+  }
+}</pre>
 
 </details>
 
@@ -10679,39 +10559,33 @@ sprite animation framework.</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  var robot;
-2.   
-3.  window.onload = function() {
-4.     canvas = document.getElementById(&quot;canvas&quot;);
-5.     ctx = canvas.getContext(&quot;2d&quot;);
-6.  
-7.    // Load the spritesheet
-8.    spritesheet = new Image();
-9.    spritesheet.src = SPRITESHEET_URL;
-10. 
-11.   // Called when the spritesheet has been loaded
-12.   spritesheet.onload = function() {
-13.     ...
-14.     robot = new Sprite();
-15.     // 1 is the posture number in the sprite sheet. We have
-16.     // only one with the robot.
-17.     robot.extractSprites(spritesheet, NB_POSTURES, 1,
-18.                          NB_FRAMES_PER_POSTURE,
-19.                          SPRITE_WIDTH, SPRITE_HEIGHT);
-20.     robot.setNbImagesPerSecond(20);
-21. 
-22.     requestAnimationFrame(mainloop);
-23.  }; // onload
-24. };
-25.  
-26. function mainloop() {
-27.   // Clear the canvas
-28.   ctx.clearRect(0, 0, canvas.width, canvas.height);
-29.   // draw sprite at 0, 0 in the small canvas
-30.   robot.draw(ctx, 0, 0, 1);
-31. 
-32.   requestAnimationFrame(mainloop);
-33. }</pre>
+<pre>var robot;
+window.onload = function() {
+   canvas = document.getElementById(&quot;canvas&quot;);
+   ctx = canvas.getContext(&quot;2d&quot;);
+  // Load the spritesheet
+  spritesheet = new Image();
+  spritesheet.src = SPRITESHEET_URL;
+  // Called when the spritesheet has been loaded
+  spritesheet.onload = function() {
+    ...
+    robot = new Sprite();
+    // 1 is the posture number in the sprite sheet. We have
+    // only one with the robot.
+    robot.extractSprites(spritesheet, NB_POSTURES, 1,
+                         NB_FRAMES_PER_POSTURE,
+                         SPRITE_WIDTH, SPRITE_HEIGHT);
+    robot.setNbImagesPerSecond(20);
+    requestAnimationFrame(mainloop);
+ }; // onload
+};
+function mainloop() {
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // draw sprite at 0, 0 in the small canvas
+  robot.draw(ctx, 0, 0, 1);
+  requestAnimationFrame(mainloop);
+}</pre>
 
 </details>
 
@@ -10739,22 +10613,21 @@ yPos position, and at anappropriate size. </p>
 <details>
   <summary>JavaScript function!</summary>
   
-<pre>1.  function SpriteImage(img, x, y, width, height) {
-2.     this.img = img; // the whole image that contains all sprites
-3.     this.x = x;     // x, y position of the sprite image in the whole
-    &gt; image
-4.     this.y = y;
-5.     this.width = width; // width and height of the sprite image
-6.     this.height = height;
-7.    
-8.     this.draw = function(ctx, xPos, yPos, scale) {
-9.        ctx.drawImage(this.img,
-10.         this.x, this.y, // x, y, width and height of img to extract
-11.         this.width, this.height,
-12.         xPos, yPos, // x, y, width and height of img to draw
-13.         this.width*scale, this.height*scale);
-14.  };
-15. }</pre>
+<pre>function SpriteImage(img, x, y, width, height) {
+   this.img = img; // the whole image that contains all sprites
+   this.x = x;     // x, y position of the sprite image in the whole
+&gt; image
+   this.y = y;
+   this.width = width; // width and height of the sprite image
+   this.height = height;
+   this.draw = function(ctx, xPos, yPos, scale) {
+      ctx.drawImage(this.img,
+        this.x, this.y, // x, y, width and height of img to extract
+        this.width, this.height,
+        xPos, yPos, // x, y, width and height of img to draw
+        this.width*scale, this.height*scale);
+ };
+}</pre>
 
 </details>
 
@@ -10773,72 +10646,61 @@ small robot in the previous example.</p>
 <details>
   <summary>JavaScript function!</summary>
   
-<pre>1.  function Sprite() {
-2.    this.spriteArray = [];
-3.    this.currentFrame = 0;
-4.    this.delayBetweenFrames = 10;
-5.  
-6.    this.extractSprites = function(spritesheet,
-7.                                   nbPostures, postureToExtract,
-8.                                   nbFramesPerPosture,
-9.                                   spriteWidth, spriteHeight) {
-10.     // number of sprites per row in the spritesheet
-11. &gt;   var nbSpritesPerRow = Math.floor(spritesheet.width / spriteWidth);
-12. 
-13.     // Extract each sprite
-14.     var startIndex = (postureToExtract -1) * nbFramesPerPosture;
-15.     var endIndex = startIndex + nbFramesPerPosture;
-16.     for(var index = startIndex; index &lt; maxIndex; index++) {
-17.     // Computation of the x and y position that corresponds to the
+<pre>function Sprite() {
+  this.spriteArray = [];
+  this.currentFrame = 0;
+  this.delayBetweenFrames = 10;
+  this.extractSprites = function(spritesheet,
+                                 nbPostures, postureToExtract,
+                                 nbFramesPerPosture,
+                                 spriteWidth, spriteHeight) {
+    // number of sprites per row in the spritesheet
+&gt;   var nbSpritesPerRow = Math.floor(spritesheet.width / spriteWidth);
+    // Extract each sprite
+    var startIndex = (postureToExtract -1) * nbFramesPerPosture;
+    var endIndex = startIndex + nbFramesPerPosture;
+    for(var index = startIndex; index &lt; maxIndex; index++) {
+    // Computation of the x and y position that corresponds to the
     &gt; sprite
-18.       // index
-19.       // x is the rest of index/nbSpritesPerRow * width of a sprite
-20.       var x = (index % nbSpritesPerRow) * spriteWidth;
-21.       // y is the divisor of index by nbSpritesPerRow * height of a
-    &gt; sprite
-22.       var y = Math.floor(index / nbSpritesPerRow) * spriteHeight;
-23. 
-24.       // build a spriteImage object
-25. &gt;   var s = new SpriteImage(spritesheet, x, y, spriteWidth, spriteHeight);
-26. 
-27.       this.spriteArray.push(s);
-28.     }
-29.   };
-30. 
-31.   this.then = performance.now();
-32.   this.totalTimeSinceLastRedraw = 0;
-33. 
-34.   this.draw = function(ctx, x, y) {
-35.     // Use time based animation to draw only a few images per second
-36.     var now = performance.now();
-37.     var delta = now - this.then;
-38. 
-39.     // Draw currentSpriteImage
-40.     var currentSpriteImage = this.spriteArray[this.currentFrame];
-41.     // x, y, scale. 1 = size unchanged
-42.     currentSpriteImage.draw(ctx, x, y, 1);
-43. 
-44.     // if the delay between images is elapsed, go to the next one
-45.     if (this.totalTimeSinceLastRedraw &gt; this.delayBetweenFrames) {
-46.     // Go to the next sprite image
-47.       this.currentFrame++;
-48.       this.currentFrame %= this.spriteArray.length;
-49. 
-50.     // reset the total time since last image has been drawn
-51.       this.totalTimeSinceLastRedraw = 0;
-52.     } else {
-53.       // sum the total time since last redraw
-54.       this. totalTimeSinceLastRedraw += delta;
-55.     }
-56. 
-57.     this.then = now;
-58.   };
-59. 
-60.   this.setNbImagesPerSecond = function(nb) {
-61.     // delay in ms between images
-62.     this.delayBetweenFrames = 1000 / nb;
-63.   };
-64. }</pre>
+      // index
+      // x is the rest of index/nbSpritesPerRow * width of a sprite
+      var x = (index % nbSpritesPerRow) * spriteWidth;
+      // y is the divisor of index by nbSpritesPerRow * height of a
+&gt; sprite
+      var y = Math.floor(index / nbSpritesPerRow) * spriteHeight;
+      // build a spriteImage object
+&gt;   var s = new SpriteImage(spritesheet, x, y, spriteWidth, spriteHeight);
+      this.spriteArray.push(s);
+    }
+  };
+  this.then = performance.now();
+  this.totalTimeSinceLastRedraw = 0;
+  this.draw = function(ctx, x, y) {
+    // Use time based animation to draw only a few images per second
+    var now = performance.now();
+    var delta = now - this.then;
+    // Draw currentSpriteImage
+    var currentSpriteImage = this.spriteArray[this.currentFrame];
+    // x, y, scale. 1 = size unchanged
+    currentSpriteImage.draw(ctx, x, y, 1);
+    // if the delay between images is elapsed, go to the next one
+    if (this.totalTimeSinceLastRedraw &gt; this.delayBetweenFrames) {
+    // Go to the next sprite image
+      this.currentFrame++;
+      this.currentFrame %= this.spriteArray.length;
+    // reset the total time since last image has been drawn
+      this.totalTimeSinceLastRedraw = 0;
+    } else {
+      // sum the total time since last redraw
+      this. totalTimeSinceLastRedraw += delta;
+    }
+    this.then = now;
+  };
+  this.setNbImagesPerSecond = function(nb) {
+    // delay in ms between images
+    this.delayBetweenFrames = 1000 / nb;
+  };
+}</pre>
 
 </details>
 
@@ -10861,18 +10723,16 @@ sprite sheet has 8 different postures, so you can call:</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  womanDown.extractSprites(spritesheet, NB_POSTURES, 1,
-2.                           NB_FRAMES_PER_POSTURE,
-3.                           SPRITE_WIDTH, SPRITE_HEIGHT);
-4.   
-5.  womanDiagonalBottomLeft.extractSprites(spritesheet, NB_POSTURES, 2,
-6.                          NB_FRAMES_PER_POSTURE,
-7.                          SPRITE_WIDTH, SPRITE_HEIGHT);
-8.   
-9.  womanLeft.extractSprites(spritesheet, NB_POSTURES, 3,
-10.                          NB_FRAMES_PER_POSTURE,
-11.                          SPRITE_WIDTH, SPRITE_HEIGHT);
-12. // etc...</pre>
+<pre>womanDown.extractSprites(spritesheet, NB_POSTURES, 1,
+                         NB_FRAMES_PER_POSTURE,
+                         SPRITE_WIDTH, SPRITE_HEIGHT);
+womanDiagonalBottomLeft.extractSprites(spritesheet, NB_POSTURES, 2,
+                        NB_FRAMES_PER_POSTURE,
+                        SPRITE_WIDTH, SPRITE_HEIGHT);
+womanLeft.extractSprites(spritesheet, NB_POSTURES, 3,
+                         NB_FRAMES_PER_POSTURE,
+                         SPRITE_WIDTH, SPRITE_HEIGHT);
+// etc...</pre>
 
 </details>
 
@@ -10936,112 +10796,99 @@ JsBin</a></b></p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  // Inits
-2.  window.onload = function init() {
-3.  var game = new GF();
-4.  game.start();
-5.  };
-6.   
-7.  // GAME FRAMEWORK STARTS HERE
-8.  var GF = function(){
-9.     ...
-10.    // Woman object and sprites
-11.    // sprite index corresponding to posture
-12.    var WOMAN_DIR_RIGHT = 6;
-13.    var WOMAN_DIR_LEFT = 2;
-14.    var woman = {
-15.       x:100,
-16.       y:200,
-17.       width:48,
-18.       speed:100, // pixels/s this time!
-19.       direction: WOMAN_DIR_RIGHT
-20.    };
-21.  
-22.    var womanSprites = [];
-23.  
-24.    var mainLoop = function(time){
-25.      ...
-26.      // Draw a woman moving left and right
-27.     womanSprites[woman.direction].draw(ctx, woman.x, woman.y);
-28.     updateWomanPosition(delta);
-29.     ...
-30.   };
-31. 
-32.   function updateWomanPosition(delta) {
-33.     // check collision on left or right
-34.     if(((woman.x+woman.width) &gt; canvas.width) || (woman.x &lt; 0)) {
-35.       // inverse speed
-36.       woman.speed = -woman.speed;
-37.     }
-38. 
-39.     // change sprite direction
-40.     if(woman.speed &gt;= 0) {
-41.       woman.direction = WOMAN_DIR_RIGHT;
-42.     } else {
-43.       woman.direction = WOMAN_DIR_LEFT;
-44.     }
-45.     woman.x += calcDistanceToMove(delta, woman.speed);
-46.   }
-47.  
-48.   /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
-49.   /* SPRITE UTILITY FUNCTIONS              */
-50.   /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
-51.   function SpriteImage(img, x, y, width, height) {
-52.     ...
-53.     this.draw = function(ctx, xPos, yPos, scale) {...};
-54.   }
-55.  
-56.   function Sprite() {
-57.     ...
-58.     this.extractSprites = function(...) {...};
-59.     this.drawStopped = function(ctx, x, y) {...};
-60.     this.draw = function(ctx, x, y) {...};
-61.     this.setNbImagesPerSecond = function(nb) {...};
-62.   }
-63.   /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
-64.   /* EN OF SPRITE UTILITY FUNCTIONS        */
-65.   /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
-66. 
-67. var loadAssets = function(callback) {
-68.     var SPRITESHEET_URL = &quot;https://i.imgur.com/3VesWqx.png&quot;;
-69.     var SPRITE_WIDTH = 48;
-70.     var SPRITE_HEIGHT = 92;
-71.     var NB_POSTURES=8;
-72.     var NB_FRAMES_PER_POSTURE = 13;
-73. 
-74.     // load the spritesheet
-75.     var spritesheet = new Image();
-76.     spritesheet.src = SPRITESHEET_URL;
-77. 
-78.     // Called when the spritesheet has been loaded
-79.     spritesheet.onload = function() {
-80.       // Create woman sprites
-81.       for(var i = 0; i &lt; NB_POSTURES; i++) {
-82.         var sprite = new Sprite();
-83. 
-84.         sprite.extractSprites(spritesheet, NB_POSTURES, (i+1),
-85.                               NB_FRAMES_PER_POSTURE,
-86.                               SPRITE_WIDTH, SPRITE_HEIGHT);
-87.         sprite.setNbImagesPerSecond(20);
-88.         womanSprites[i] = sprite;
-89.       }
-90.       // call the callback function passed as a parameter,
-91.       // we&#39;re done with loading assets and building the sprites
-92.       callback();
-93.     };
-94.   };
-95. 
-96.   var start = function(){
-97.     ...
-98.     // Load sounds and images, then when this is done, start the  mainLoop
-99.     loadAssets(function() {
-100.        // We enter here only when all assets have been loaded
-101.        requestAnimationFrame(mainLoop);
-102.     });
-103.   };
-104.   ...
-105.  };
-106. </pre>
+<pre>// Inits
+window.onload = function init() {
+var game = new GF();
+game.start();
+};
+// GAME FRAMEWORK STARTS HERE
+var GF = function(){
+   ...
+   // Woman object and sprites
+   // sprite index corresponding to posture
+   var WOMAN_DIR_RIGHT = 6;
+   var WOMAN_DIR_LEFT = 2;
+   var woman = {
+      x:100,
+      y:200,
+      width:48,
+      speed:100, // pixels/s this time!
+      direction: WOMAN_DIR_RIGHT
+   };
+   var womanSprites = [];
+   var mainLoop = function(time){
+     ...
+     // Draw a woman moving left and right
+    womanSprites[woman.direction].draw(ctx, woman.x, woman.y);
+    updateWomanPosition(delta);
+    ...
+  };
+  function updateWomanPosition(delta) {
+    // check collision on left or right
+    if(((woman.x+woman.width) &gt; canvas.width) || (woman.x &lt; 0)) {
+      // inverse speed
+      woman.speed = -woman.speed;
+    }
+    // change sprite direction
+    if(woman.speed &gt;= 0) {
+      woman.direction = WOMAN_DIR_RIGHT;
+    } else {
+      woman.direction = WOMAN_DIR_LEFT;
+    }
+    woman.x += calcDistanceToMove(delta, woman.speed);
+  }
+  /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
+  /* SPRITE UTILITY FUNCTIONS              */
+  /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
+  function SpriteImage(img, x, y, width, height) {
+    ...
+    this.draw = function(ctx, xPos, yPos, scale) {...};
+  }
+  function Sprite() {
+    ...
+    this.extractSprites = function(...) {...};
+    this.drawStopped = function(ctx, x, y) {...};
+    this.draw = function(ctx, x, y) {...};
+    this.setNbImagesPerSecond = function(nb) {...};
+  }
+  /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
+  /* EN OF SPRITE UTILITY FUNCTIONS        */
+  /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
+var loadAssets = function(callback) {
+    var SPRITESHEET_URL = &quot;https://i.imgur.com/3VesWqx.png&quot;;
+    var SPRITE_WIDTH = 48;
+    var SPRITE_HEIGHT = 92;
+    var NB_POSTURES=8;
+    var NB_FRAMES_PER_POSTURE = 13;
+    // load the spritesheet
+    var spritesheet = new Image();
+    spritesheet.src = SPRITESHEET_URL;
+    // Called when the spritesheet has been loaded
+    spritesheet.onload = function() {
+      // Create woman sprites
+      for(var i = 0; i &lt; NB_POSTURES; i++) {
+        var sprite = new Sprite();
+        sprite.extractSprites(spritesheet, NB_POSTURES, (i+1),
+                              NB_FRAMES_PER_POSTURE,
+                              SPRITE_WIDTH, SPRITE_HEIGHT);
+        sprite.setNbImagesPerSecond(20);
+        womanSprites[i] = sprite;
+      }
+      // call the callback function passed as a parameter,
+      // we&#39;re done with loading assets and building the sprites
+      callback();
+    };
+  };
+  var start = function(){
+    ...
+    // Load sounds and images, then when this is done, start the  mainLoop
+    loadAssets(function() {
+        // We enter here only when all assets have been loaded
+        requestAnimationFrame(mainLoop);
+    });
+  };
+  ...
+  };</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -11077,55 +10924,46 @@ are created on top of the monster.</p>
 <details open>
   <summary>JavaScript function!</summary>
 
-<pre>1.  function updateBalls(delta) {
-2.     // for each ball in the array
-3.     var allBallDead = true;
-4.  
-5.     for(var i=0; i &lt; ballArray.length; i++) {
-6.       var ball = ballArray[i];
-7.  
-8.       if(ball.dead) continue; // do nothing if the ball is dead
-9.  
-10.      // if we are here: the ball is not dead
-11.      allBallDead = false;
-12. 
-13.      // 1) move the ball
-14.      ball.move();
-15. 
-16.      // 2) test if the ball collides with a wall
-17.      testCollisionWithWalls(ball);
-18.  
-19.      // Test if the monster collides
-20.      if(circRectsOverlap(monster.x, monster.y,
-21.                          monster.width, monster.height,
-22.                          ball.x, ball.y, ball.radius)) {
-23. 
-24.         //change the color of the ball
-25.         ball.color = &#39;red&#39;;
-26.         ball.dead = true;
-27.         // Here, a sound effect would greatly improve
-28.         // the experience!
-29. 
-30.         currentScore+= 1;
-31.      }
-32. 
-33.      // 3) draw the ball
-34.      ball.draw();
-35.   }</pre>
+<pre>function updateBalls(delta) {
+   // for each ball in the array
+   var allBallDead = true;
+   for(var i=0; i &lt; ballArray.length; i++) {
+     var ball = ballArray[i];
+     if(ball.dead) continue; // do nothing if the ball is dead
+     // if we are here: the ball is not dead
+     allBallDead = false;
+     // 1) move the ball
+     ball.move();
+     // 2) test if the ball collides with a wall
+     testCollisionWithWalls(ball);
+     // Test if the monster collides
+     if(circRectsOverlap(monster.x, monster.y,
+                         monster.width, monster.height,
+                         ball.x, ball.y, ball.radius)) {
+        //change the color of the ball
+        ball.color = &#39;red&#39;;
+        ball.dead = true;
+        // Here, a sound effect would greatly improve
+        // the experience!
+        currentScore+= 1;
+     }
+     // 3) draw the ball
+     ball.draw();
+  }</pre>
 
 </details>
 
 <details open>
   <summary>JavaScript code</summary>
 
-<pre>1. if(allBallDead) {
-2.   // reset all balls, create more balls each time
-3.   // as a way of increasing the difficulty
-4.   // in a real game: change the level, play nice music!
-5.   nbBalls++;
-6.   createBalls(nbBalls);
-7.   }
-8. }</pre>
+<pre>if(allBallDead) {
+  // reset all balls, create more balls each time
+  // as a way of increasing the difficulty
+  // in a real game: change the level, play nice music!
+  nbBalls++;
+  createBalls(nbBalls);
+  }
+}</pre>
 
 </details>
 
@@ -11146,7 +10984,7 @@ survive?</p>
 <p><a href="https://jsbin.com/yatopunuje/edit?html,js,output" target="_blank" rel="noopener noreferrer">Try this
 JsBin</a>, then look at the source code. Start from the mainloop!</p>
 
-<pre>1. currentGameState = gameStates.gameOver:</pre>
+<pre>currentGameState = gameStates.gameOver:</pre>
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~ 152. Game Over Screen, asking to press space to start again. (251) ~~~~~~~~~~~~~-->
@@ -11157,7 +10995,7 @@ JsBin</a>, then look at the source code. Start from the mainloop!</p>
   title="Game over screen, asking to press space to start again"
   alt="Game over screen, asking to press space to start again." />
 
-<pre>1. currentGameState = gameStates.gamerunning:</pre>
+<pre>currentGameState = gameStates.gamerunning:</pre>
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~ 153. Game Over Screen, asking to press space to start again. (252) ~~~~~~~~~~~~~-->
@@ -11173,72 +11011,64 @@ JsBin</a>, then look at the source code. Start from the mainloop!</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  ...
-2.  // game states
-3.  var gameStates = {
-4.     mainMenu: 0,
-5.     gameRunning: 1,
-6.     gameOver: 2
-7.  };
-8.   
-9.  var currentGameState = gameStates.gameRunning;
-10. var currentLevel = 1;
-11. var TIME_BETWEEN_LEVELS = 5000; // 5 seconds
-12. var currentLevelTime = TIME_BETWEEN_LEVELS;
-13. ...
-14. var mainLoop = function (time) {
-15.    ...
-16.    // number of ms since last frame draw
-17.    delta = timer(time);
-18.  
-19.    // Clear the canvas
-20.    clearCanvas();
-21.  
-22.    // monster.dead is set to true in updateBalls when there
-23.    // is a collision
-24.    if (monster.dead) {
-25.       currentGameState = gameStates.gameOver;
-26.    }
-27.  
-28.    switch (currentGameState) {
-29.       case gameStates.gameRunning:
-30.         // draw the monster
-31.         drawMyMonster(monster.x, monster.y);
-32.  
-33.         // Check inputs and move the monster
-34.         updateMonsterPosition(delta);
-35.  
-36.         // update and draw balls
-37.         updateBalls(delta);
-38.  
-39.         // display Score
-40.         displayScore();
-41.  
-42.         // decrease currentLevelTime. Survive 5s per level
-43.         // When &lt; 0 go to next level
-44.        currentLevelTime -= delta;
-45.  
-46.        if (currentLevelTime &lt; 0) {
-47.           goToNextLevel();
-48.        }
-49.        break;
-50.     case gameStates.mainMenu:
-51.        // TO DO! We could have a main menu with high scores etc.
-52.        break;
-53.     case gameStates.gameOver:
-54.        ctx.fillText(&quot;GAME OVER&quot;, 50, 100);
-55.        ctx.fillText(&quot;Press SPACE to start again&quot;, 50, 150);
-56.        ctx.fillText(&quot;Move with arrow keys&quot;, 50, 200);
-57.        ctx.fillText(&quot;Survive 5 seconds for next level&quot;, 50, 250);
-58.  
-59.        if (inputStates.space) {
-60.           startNewGame();
-61.        }
-62.        break;
-63.     }
-64.      ...
-65.    };
-66. ...</pre>
+<pre>...
+// game states
+var gameStates = {
+   mainMenu: 0,
+   gameRunning: 1,
+   gameOver: 2
+};
+var currentGameState = gameStates.gameRunning;
+var currentLevel = 1;
+var TIME_BETWEEN_LEVELS = 5000; // 5 seconds
+var currentLevelTime = TIME_BETWEEN_LEVELS;
+...
+var mainLoop = function (time) {
+   ...
+   // number of ms since last frame draw
+   delta = timer(time);
+    // Clear the canvas
+   clearCanvas();
+    // monster.dead is set to true in updateBalls when there
+   // is a collision
+   if (monster.dead) {
+      currentGameState = gameStates.gameOver;
+   }
+  switch (currentGameState) {
+    case gameStates.gameRunning:
+        // draw the monster
+    drawMyMonster(monster.x, monster.y);
+         // Check inputs and move the monster
+    updateMonsterPosition(delta);
+        // update and draw balls
+        updateBalls(delta);
+        // display Score
+        displayScore();
+        // decrease currentLevelTime. Survive 5s per level
+        // When &lt; 0 go to next level
+       currentLevelTime -= delta;
+ 
+       if (currentLevelTime &lt; 0) {
+          goToNextLevel();
+       }
+       break;
+    case gameStates.mainMenu:
+       // TO DO! We could have a main menu with high scores etc.
+       break;
+    case gameStates.gameOver:
+      ctx.fillText(&quot;GAME OVER&quot;, 50, 100);
+      ctx.fillText(&quot;Press SPACE to start again&quot;, 50, 150);
+      ctx.fillText(&quot;Move with arrow keys&quot;, 50, 200);
+      ctx.fillText(&quot;Survive 5 seconds for next level&quot;, 50, 250);
+ 
+      if (inputStates.space) {
+        startNewGame();
+      }
+       break;
+    }
+     ...
+  };
+...</pre>
 
 </details>
 
@@ -11249,46 +11079,42 @@ and changes the current game-state to GameOver:</p>
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  function startNewGame() {
-2.      monster.dead = false;
-3.      currentLevelTime = 5000;
-4.      currentLevel = 1;
-5.      nbBalls = 5;
-6.      createBalls(nbBalls);
-7.      currentGameState = gameStates.gameRunning;
-8.  }
-9.   
-10. function goToNextLevel() {
-11.     // reset time available for next level
-12.     // 5 seconds in this example
-13.    currentLevelTime = 5000;
-14.    currentLevel++;
-15.    // Add two balls per level
-16.    nbBalls += 2;
-17.    createBalls(nbBalls);
-18. }
-19.  
-20. function updateBalls(delta) {
-21.     // Move and draw each ball, test collisions,
-22.     for (var i = 0; i &lt; ballArray.length; i++) {
-23.        ...
-24.        // Test if the monster collides
-25.        if (circRectsOverlap(monster.x, monster.y,
-26.                             monster.width, monster.height,
-27.                             ball.x, ball.y, ball.radius)) {
-28.  
-29.            //change the color of the ball
-30.            ball.color = &#39;red&#39;;
-31.            monster.dead = true;
-32.            // Here, a sound effect greatly improves
-33.            // the experience!
-34.            plopSound.play();
-35.        }
-36.  
-37.        // 3) draw the ball
-38.        ball.draw();
-39.     }
-40. }</pre>
+<pre>function startNewGame() {
+    monster.dead = false;
+    currentLevelTime = 5000;
+    currentLevel = 1;
+    nbBalls = 5;
+    createBalls(nbBalls);
+    currentGameState = gameStates.gameRunning;
+}
+function goToNextLevel() {
+    // reset time available for next level
+    // 5 seconds in this example
+   currentLevelTime = 5000;
+   currentLevel++;
+   // Add two balls per level
+   nbBalls += 2;
+   createBalls(nbBalls);
+}
+function updateBalls(delta) {
+    // Move and draw each ball, test collisions,
+    for (var i = 0; i &lt; ballArray.length; i++) {
+       ...
+       // Test if the monster collides
+       if (circRectsOverlap(monster.x, monster.y,
+                            monster.width, monster.height,
+                            ball.x, ball.y, ball.radius)) {
+           //change the color of the ball
+           ball.color = &#39;red&#39;;
+           monster.dead = true;
+           // Here, a sound effect greatly improves
+           // the experience!
+           plopSound.play();
+       }
+       // 3) draw the ball
+       ball.draw();
+    }
+}</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -11319,30 +11145,30 @@ JavaScript files:</p>
 <details>
   <summary>HTML code!</summary>
 
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.    &lt;meta charset=&quot;utf-8&quot;&gt;
-5.    &lt;title&gt;Nearly a real game&lt;/title&gt;
-6.    &lt;!-- External JS libs --&gt;
-7.    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.25/howler.min.js&quot;&gt;&lt;/script&gt;
-8.    &lt;!-- CSS files for your game --&gt;
-9.    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/game.css&quot;&gt;
-10.   &lt;!-- Include here all game JS files--&gt;
-11.   &lt;script src=&quot;js/game.js&quot;&gt;&lt;/script&gt;
-12. &lt;/head&gt;
-13. &lt;body&gt;
-14.   &lt;canvas id=&quot;myCanvas&quot; width=&quot;400&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
-15. &lt;/body&gt;
-16. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;Nearly a real game&lt;/title&gt;
+  &lt;!-- External JS libs --&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.25/howler.min.js&quot;&gt;&lt;/script&gt;
+  &lt;!-- CSS files for your game --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/game.css&quot;&gt;
+  &lt;!-- Include here all game JS files--&gt;
+  &lt;script src=&quot;js/game.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;canvas id=&quot;myCanvas&quot; width=&quot;400&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
 <p>Here is the game.css file (very simple):</p>
 
-<pre>1.  canvas {
-2.     border: 1px solid black;
-3.  }</pre>
+<pre>canvas {
+  border: 1px solid black;
+}</pre>
 
 <p>Let’s take the JavaScript code from the last JSBin example, save it
 to a file called game.js, and locate it in a subdirectory js under the
@@ -11373,19 +11199,19 @@ the console:</p>
 <details>
   <summary>JavaScript function!</summary>
 
-<pre>1.  // constructor function for balls
-2.  function Ball(x, y, angle, v, diameter) {
-3.     ...
-4.      this.draw = function () {
-5.         ctx.save();
-6.         ...
-7.      };
-8.      this.move = function () {
-9.        ...
-10.       this.x += calcDistanceToMove(delta, incX);
-11.       this.y += calcDistanceToMove(delta, incY);
-12.     };
-13. }</pre>
+<pre>// constructor function for balls
+function Ball(x, y, angle, v, diameter) {
+  ...
+  this.draw = function () {
+    ctx.save();
+     ...
+  };
+  this.move = function () {
+    ...
+    this.x += calcDistanceToMove(delta, incX);
+    this.y += calcDistanceToMove(delta, incY);
+  };
+}</pre>
 
 </details>
 
@@ -11424,18 +11250,16 @@ parameter.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  var delta, oldTime = 0;
-2.   
-3.  function timer(currentTime) {
-4.     var delta = currentTime - oldTime;
-5.     oldTime = currentTime;
-6.     return delta;
-7.  }
-8.   
-9.  var calcDistanceToMove = function (delta, speed) {
-10.    //console.log(&quot;#delta = &quot; + delta + &quot; speed = &quot; + speed);
-11.    return (speed * delta) / 1000;
-12. };</pre>
+<pre>var delta, oldTime = 0;
+function timer(currentTime) {
+  var delta = currentTime - oldTime;
+  oldTime = currentTime;
+  return delta;
+}
+var calcDistanceToMove = function (delta, speed) {
+  //console.log(&quot;#delta = &quot; + delta + &quot; speed = &quot; + speed);
+  return (speed * delta) / 1000;
+};</pre>
 
 </details>
 
@@ -11452,40 +11276,34 @@ the fps.js file.</p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  // vars for counting frames, used by the measureFPS function
-2.  var frameCount = 0;
-3.  var lastTime;
-4.  var fpsContainer;
-5.  var fps;
-6.   
-7.  var initFPSCounter = function() {
-8.     // adds a div for displaying the fps value
-9.     fpsContainer = document.createElement(&#39;div&#39;);
-10.    document.body.appendChild(fpsContainer);
-11. }
-12. 
-13. var measureFPS = function (newTime) {
-14.  
-15.    // test for the very first invocation
-16.    if (lastTime === undefined) {
-17.       lastTime = newTime;
-18.       return;
-19.    }
-20.  
-21.    //calculate the difference between last &amp; current frame
-22.    var diffTime = newTime - lastTime;
-23.  
-24.    if (diffTime &gt;= 1000) {
-25.       fps = frameCount;
-26.       frameCount = 0;
-27.       lastTime = newTime;
-28.    }
-29.  
-30.    //and display it in an element we appended to the
-31.    // document in the start() function
-32.    fpsContainer.innerHTML = &#39;FPS: &#39; + fps;
-33.    frameCount++;
-34. };</pre>
+<pre>// vars for counting frames, used by the measureFPS function
+var frameCount = 0;
+var lastTime;
+var fpsContainer;
+var fps;
+var initFPSCounter = function() {
+   // adds a div for displaying the fps value
+   fpsContainer = document.createElement(&#39;div&#39;);
+   document.body.appendChild(fpsContainer);
+}
+var measureFPS = function (newTime) {
+   // test for the very first invocation
+   if (lastTime === undefined) {
+      lastTime = newTime;
+      return;
+   }
+   //calculate the difference between last &amp; current frame
+   var diffTime = newTime - lastTime;
+   if (diffTime &gt;= 1000) {
+      fps = frameCount;
+      frameCount = 0;
+      lastTime = newTime;
+   }
+   //and display it in an element we appended to the
+   // document in the start() function
+   fpsContainer.innerHTML = &#39;FPS: &#39; + fps;
+   frameCount++;
+};</pre>
 
 </details>
 
@@ -11511,28 +11329,28 @@ also move the getMousePos method into there. </p>
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>1.  function addListeners(inputStates, canvas) {
-2.     //add the listener to the main, window object, and update the states
-3.     window.addEventListener(&#39;keydown&#39;, function (event) {
-4.        if (event.keyCode === 37) {
-5.           inputStates.left = true;
-6.        } else if (event.keyCode === 38) {
-7.           inputStates.up = true;
-8.        } ...
-9.     }, false);
-10.    //if the key is released, change the states object
-11.    window.addEventListener(&#39;keyup&#39;, function (event) {
-12.       ...
-13.    }, false);
-14.    // Mouse event listeners
-15.    canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
-16.       inputStates.mousePos = getMousePos(evt, canvas);
-17.    }, false);
-18. ...
-19. }
-20. function getMousePos(evt, canvas) {
-21.    ...
-22. }</pre>
+<pre>function addListeners(inputStates, canvas) {
+   //add the listener to the main, window object, and update the states
+   window.addEventListener(&#39;keydown&#39;, function (event) {
+      if (event.keyCode === 37) {
+         inputStates.left = true;
+      } else if (event.keyCode === 38) {
+         inputStates.up = true;
+      } ...
+   }, false);
+   //if the key is released, change the states object
+   window.addEventListener(&#39;keyup&#39;, function (event) {
+      ...
+   }, false);
+   // Mouse event listeners
+   canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
+      inputStates.mousePos = getMousePos(evt, canvas);
+   }, false);
+...
+}
+function getMousePos(evt, canvas) {
+   ...
+}</pre>
 
 </details>
 
@@ -11541,15 +11359,15 @@ also move the getMousePos method into there. </p>
 <p>Following the same idea, let’s put these into
 a collisions.js file:</p>
 
-<pre>1. // We can add the other collision functions seen in the
-2. // course here...
-3. // Collisions between rectangle and circle
-4. function circRectsOverlap(x0, y0, w0, h0, cx, cy, r) {
-5.    ...
-6. }
-7. function testCollisionWithWalls(ball, w, h) {
-8.    ...
-9. }</pre>
+<pre>// We can add the other collision functions seen in the
+// course here...
+// Collisions between rectangle and circle
+function circRectsOverlap(x0, y0, w0, h0, cx, cy, r) {
+   ...
+}
+function testCollisionWithWalls(ball, w, h) {
+   ...
+}</pre>
 
 <p>We added the width and height of the canvas as parameters to
 the testCollisionWithWalls function to resolve dependencies. The other
@@ -11573,25 +11391,25 @@ during the course, could be put into this file as well.</p>
 <details>
   <summary>HTML code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.    &lt;meta charset=&quot;utf-8&quot;&gt;
-5.    &lt;title&gt;Nearly a real game&lt;/title&gt;
-6.    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/game.css&quot;&gt;
-7.    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.25/howler.min.js&quot;&gt;&lt;/script&gt;
-8.    &lt;!-- Include here all JS files --&gt;
-9.    &lt;script src=&quot;js/game.js&quot;&gt;&lt;/script&gt;
-10.   &lt;script src=&quot;js/ball.js&quot;&gt;&lt;/script&gt;
-11.   &lt;script src=&quot;js/timeBasedAnim.js&quot;&gt;&lt;/script&gt;
-12.   &lt;script src=&quot;js/fps.js&quot;&gt;&lt;/script&gt;
-13.   &lt;script src=&quot;js/listeners.js&quot;&gt;&lt;/script&gt;
-14.   &lt;script src=&quot;js/collisions.js&quot;&gt;&lt;/script&gt;
-15. &lt;/head&gt;
-16. &lt;body&gt;
-17.   &lt;canvas id=&quot;myCanvas&quot; width=&quot;400&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
-18. &lt;/body&gt;
-19. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;Nearly a real game&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/game.css&quot;&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.25/howler.min.js&quot;&gt;&lt;/script&gt;
+  &lt;!-- Include here all JS files --&gt;
+  &lt;script src=&quot;js/game.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;js/ball.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;js/timeBasedAnim.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;js/fps.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;js/listeners.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;js/collisions.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;canvas id=&quot;myCanvas&quot; width=&quot;400&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -11928,16 +11746,16 @@ using XMLHttpRequest level 2.</p>
 the new arrayBuffer type for the expected response (<i>line
 5</i>):</p>
 
-<pre>1.  // Load a binary file from a URL as an ArrayBuffer.
-2.  function loadSoundFile(url) {
-3.  var xhr = new XMLHttpRequest();
-4.  xhr.open(&#39;GET&#39;, url, true);
-5.  xhr.responseType = &#39;arraybuffer&#39;;
-6.  xhr.onload = function(e) {
-7.  initSound(this.response); // this.response is an ArrayBuffer.
-8.  };
-9.  xhr.send();
-10. }</pre>
+<pre>// Load a binary file from a URL as an ArrayBuffer.
+function loadSoundFile(url) {
+var xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, url, true);
+xhr.responseType = &#39;arraybuffer&#39;;
+xhr.onload = function(e) {
+initSound(this.response); // this.response is an ArrayBuffer.
+};
+xhr.send();
+}</pre>
 
 <h4>Example: download a binary song file using XHR2 and responseType=‘arraybuffer’, and play it using Web Audio</h4>
 
@@ -11960,87 +11778,80 @@ it using XHR2.</p>
 <details>
   <summary>Complete source code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.   &lt;head&gt;
-4.     &lt;title&gt;XHR2 and binary files + Web Audio API&lt;/title&gt;
-5.   &lt;/head&gt;
-6.  &lt;body&gt;
-7.  &lt;p&gt;Example of using XHR2 and &lt;code&gt;xhr.responseType =
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;title&gt;XHR2 and binary files + Web Audio API&lt;/title&gt;
+ &lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Example of using XHR2 and &lt;code&gt;xhr.responseType =
     &#39;arraybuffer&#39;;&lt;/code&gt; to download a binary sound file
-8.  and start playing it on user-click using the Web Audio API.&lt;/p&gt;
-9.  
-10. &lt;p&gt;
-11. &lt;h2&gt;Load file using Ajax/XHR2 and the arrayBuffer response
-    type&lt;/h2&gt;
-12. &lt;button onclick=&quot;downloadSoundFile(&#39;https://myserver.com/song.mp3&#39;);&quot;&gt;
-13.      Download and play example song.
-14.  &lt;/button&gt;
-15. &lt;button onclick=&quot;playSound()&quot; disabled&gt;Start&lt;/button&gt;
-16. &lt;button onclick=&quot;stopSound()&quot; disabled&gt;Stop&lt;/button&gt;
-17. &lt;script&gt;
-18.   // WebAudio context
-19.   var context = new window.AudioContext();
-20.   var source = null;
-21.   var audioBuffer = null;
-22.  
-23.   function stopSound() {
-24.     if (source) {
-25.        source.stop();
-26.     }
-27.   }
-28.  
-29.   function playSound() {
-30.     // Build a source node for the audio graph
-31.     source = context.createBufferSource();
-32.     source.buffer = audioBuffer;
-33.     source.loop = false;
-34.     // connect to the speakers
-35.     source.connect(context.destination);
-36.     source.start(0); // Play immediately.
-37.   }
-38.  
-39.   function initSound(audioFile) {
-40.     // The audio file may be an mp3 - we must decode it before
+and start playing it on user-click using the Web Audio API.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;h2&gt;Load file using Ajax/XHR2 and the arrayBuffer response
+type&lt;/h2&gt;
+&lt;button onclick=&quot;downloadSoundFile(&#39;https://myserver.com/song.mp3&#39;);&quot;&gt;
+     Download and play example song.
+ &lt;/button&gt;
+&lt;button onclick=&quot;playSound()&quot; disabled&gt;Start&lt;/button&gt;
+&lt;button onclick=&quot;stopSound()&quot; disabled&gt;Stop&lt;/button&gt;
+&lt;script&gt;
+  // WebAudio context
+  var context = new window.AudioContext();
+  var source = null;
+  var audioBuffer = null;
+  function stopSound() {
+    if (source) {
+       source.stop();
+    }
+  }
+  function playSound() {
+    // Build a source node for the audio graph
+    source = context.createBufferSource();
+    source.buffer = audioBuffer;
+    source.loop = false;
+    // connect to the speakers
+    source.connect(context.destination);
+    source.start(0); // Play immediately.
+  }
+  function initSound(audioFile) {
+    // The audio file may be an mp3 - we must decode it before
     playing it from memory
-41.     context.decodeAudioData(audioFile, function(buffer) {
-42.       console.log(&quot;Song decoded!&quot;);
-43.       // audioBuffer the decoded audio file we&#39;re going to work with
-44.       audioBuffer = buffer;
-45. 
-46.       // Enable all buttons once the audio file is
-47.       // decoded
-48.       var buttons = document.querySelectorAll(&#39;button&#39;);
-49.       buttons[1].disabled = false; // play
-50.       buttons[2].disabled = false; // stop
-51.       alert(&quot;Binary file has been loaded and decoded, use play /
+    context.decodeAudioData(audioFile, function(buffer) {
+      console.log(&quot;Song decoded!&quot;);
+      // audioBuffer the decoded audio file we&#39;re going to work with
+      audioBuffer = buffer;
+      // Enable all buttons once the audio file is
+      // decoded
+      var buttons = document.querySelectorAll(&#39;button&#39;);
+      buttons[1].disabled = false; // play
+      buttons[2].disabled = false; // stop
+      alert(&quot;Binary file has been loaded and decoded, use play /
     stop buttons!&quot;)
-52.     }, function(e) {
-53.        console.log(&#39;Error decoding file&#39;, e);
-54.     });
-55.   }
-56.  
-57.   // Load a binary file from a URL as an ArrayBuffer.
-58.   function downloadSoundFile(url) {
-59.     var xhr = new XMLHttpRequest();
-60.     xhr.open(&#39;GET&#39;, url, true);
-61.  
-62.     xhr.responseType = &#39;arraybuffer&#39;; // THIS IS NEW WITH HTML5!
-63.     xhr.onload = function(e) {
-64.        console.log(&quot;Song downloaded, decoding...&quot;);
-65.        initSound(this.response); // this.response is an ArrayBuffer.
-66.     };
-67.     xhr.onerror = function(e) {
-68.       console.log(&quot;error downloading file&quot;);
-69.     }
-70.  
-71.     xhr.send();
-72.        console.log(&quot;Ajax request sent... wait until it downloads
+    }, function(e) {
+       console.log(&#39;Error decoding file&#39;, e);
+    });
+  }
+  // Load a binary file from a URL as an ArrayBuffer.
+  function downloadSoundFile(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(&#39;GET&#39;, url, true);
+    xhr.responseType = &#39;arraybuffer&#39;; // THIS IS NEW WITH HTML5!
+    xhr.onload = function(e) {
+       console.log(&quot;Song downloaded, decoding...&quot;);
+       initSound(this.response); // this.response is an ArrayBuffer.
+    };
+    xhr.onerror = function(e) {
+      console.log(&quot;error downloading file&quot;);
+    }
+    xhr.send();
+       console.log(&quot;Ajax request sent... wait until it downloads
     completely&quot;);
-73.   }
-74. &lt;/script&gt;
-75. &lt;/body&gt;
-76. &lt;/html&gt;</pre>
+  }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -12128,27 +11939,26 @@ different depending on the type of operation: a download (using the GET
 HTTP method), or an upload (using POST).</p>
 <p><b>Syntax for download:</b></p>
 
-<pre>1.  var xhr = new XMLHttpRequest();
-2.  xhr.open(&#39;GET&#39;, url, true);
-3.  ...
-4.  xhr.onprogress = function(e) {
-5.  // do something
-6.  }
+<pre>var xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, url, true);
+...
+xhr.onprogress = function(e) {
+// do something
+}
 580. 
 &lt;!-- --&gt;
-7.  xhr.send();</pre>
+xhr.send();</pre>
 
 <p>Note that an alternative syntax such as xhr.addEventListener(‘progress’, callback, false) also works.</p>
 <p><b>Syntax for upload:</b></p>
 
-<pre>1. var xhr = new XMLHttpRequest();
-2. xhr.open(&#39;POST&#39;, url, true);
-3. ...
-4. xhr.upload.onprogress = function(e) {
-5. // do something
-6. }
-7.   
-8. xhr.send();</pre>
+<pre>var xhr = new XMLHttpRequest();
+xhr.open(&#39;POST&#39;, url, true);
+...
+xhr.upload.onprogress = function(e) {
+// do something
+}
+xhr.send();</pre>
 
 <p>Notice that the only difference is the “upload” added after the name
 of the request object: with GET we use xhr.onprogress and with POST we
@@ -12173,27 +11983,25 @@ extract that does this for a download operation:</p>
 
 <h4>HTML</h4>
 
-<pre>1. &lt;progress id=&quot;downloadProgress&quot; value=0&gt;&lt;progress&gt;</pre>
+<pre>&lt;progress id=&quot;downloadProgress&quot; value=0&gt;&lt;progress&gt;</pre>
 
 <h4>Script:</h4>
 
 <details>
   <summary>JavaScript code!</summary>
   
-<pre>1.  // progress element
-2.  var progress = document.querySelector(&#39;#downloadProgress&#39;);
-3.   
-4.  function downloadSoundFile(url) {
-5.    var xhr = new XMLHttpRequest();
-6.    xhr.open(&#39;GET&#39;, url, true);
-7.   
-8.    ...
-9.    xhr.onprogress = function(e) {
-10.     progress.value = e.loaded;
-11.     progress.max = e.total;
-12.   }
-13.   xhr.send();
-14. }</pre>
+<pre>// progress element
+var progress = document.querySelector(&#39;#downloadProgress&#39;);
+function downloadSoundFile(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.open(&#39;GET&#39;, url, true);
+  ...
+  xhr.onprogress = function(e) {
+    progress.value = e.loaded;
+    progress.max = e.total;
+  }
+  xhr.send();
+}</pre>
 
 </details>
 
@@ -12317,40 +12125,36 @@ JSBin</a>:</p>
 <details>
   <summary>HTML source code!</summary>
   
-<pre>1.  &lt;!DOCTYPE html&gt;
-2.  &lt;html lang=&quot;en&quot;&gt;
-3.  &lt;head&gt;
-4.     &lt;meta charset=&quot;utf-8&quot; /&gt;
-5.     &lt;title&gt;File upload with XMLHttpRequest level 2 and HTML5&lt;/title&gt;
-6.  &lt;/head&gt;
-7.   
-8.  &lt;body&gt;
-9.  &lt;h1&gt;Example of XHR2 file upload&lt;/h1&gt;
-10.   Choose a file and wait a little until it is uploaded (on a fake  
-11.   server). A message should pop up once the file is uploaded 100%.
-12. &lt;p&gt;
-13. &lt;input id=&quot;file&quot; type=&quot;file&quot; /&gt;
-14. &lt;/p&gt;
-15. &lt;script&gt;
-16. var fileInput = document.querySelector(&#39;#file&#39;);
-17.  
-18. fileInput.onchange = function() {
-19.    var xhr = new XMLHttpRequest();
-20.    xhr.open(&#39;POST&#39;, &#39;upload.html&#39;); // With FormData,
-21.                                     // POST is mandatory
-22.  
-23.    xhr.onload = function() {
-24.      alert(&#39;Upload complete !&#39;);
-25.    };
-26.  
-27.    var form = new FormData();
-28.    form.append(&#39;file&#39;, fileInput.files[0]);
-29.    // send the request
-30.    xhr.send(form);
-31. };
-32. &lt;/script&gt;
-33. &lt;/body&gt;
-34. &lt;/html&gt;</pre>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;title&gt;File upload with XMLHttpRequest level 2 and HTML5&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Example of XHR2 file upload&lt;/h1&gt;
+  Choose a file and wait a little until it is uploaded (on a fake  
+  server). A message should pop up once the file is uploaded 100%.
+&lt;p&gt;
+&lt;input id=&quot;file&quot; type=&quot;file&quot; /&gt;
+&lt;/p&gt;
+&lt;script&gt;
+var fileInput = document.querySelector(&#39;#file&#39;);
+fileInput.onchange = function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open(&#39;POST&#39;, &#39;upload.html&#39;); // With FormData,
+                                                   // POST is mandatory
+  xhr.onload = function() {
+    alert(&#39;Upload complete !&#39;);
+  };
+  var form = new FormData();
+  form.append(&#39;file&#39;, fileInput.files[0]);
+  // send the request
+  xhr.send(form);
+};
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 
 </details>
 
@@ -12816,7 +12620,6 @@ online example):</p>
   text-align: center;
   cursor: move;
 }
-
 li:hover {
   border: 2px dashed #000;
 }</pre>

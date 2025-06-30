@@ -103,7 +103,7 @@ details > p {
   box-shadow: 3px 3px 4px #0008b;  /* dark blue */
 }
 details[open] > summary {
-  background-color: yellow;
+  background-color: #ffff00;  /* pure (or mostly pure) yellow */
 }
 
 <!-- 6/25/2025 -->
@@ -125,7 +125,7 @@ pre {
 pre code,
 pre .line-number {
   font: normal normal 10px/12px consolas,Courier,Monospace;
-  color: black;
+  color: #000;
   display: block;
 }
 pre .line-number {
@@ -134,7 +134,7 @@ pre .line-number {
   margin: 0 1em 0 -1em;
   border-right: 1px solid;
   text-align: right;
-  color: red;
+  color: #ff0000;  /* pure (or mostly pure) red */
 }
 pre .line-number span {
   display: block;

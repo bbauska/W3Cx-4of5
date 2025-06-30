@@ -9,6 +9,19 @@ img.displayed {
   border-style: solid; 
 }
 
+ul li {
+  font-size: 14.5px;
+  font-family: Bahnschrift, Inter, Helvetic, sans-serif;
+  padding: 14.5px;  /* 10px */
+  line-height:110%;
+}
+ol li {
+  font-size: 14.5px;
+  font-family: Bahnschrift, Inter, Helvetic, sans-serif;
+  padding: 14.5px;  /* 10px */
+  line-height:110%;
+}
+
 font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", 
   "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
 
@@ -132,13 +145,14 @@ pre .cl {
   clear: both;
 }
 pre {
+  width: 400px;
   overflow: auto;
 }
 pre[href]:hover  {
   text-decoration: none;
 }
 pre:hover, pre:focus {
-  width: 50%;  /* was: fit-content; before that; width: min-content */
+  width: 400px;  /* was: 50%; fit-content; before that; width: min-content */
 }
 
 a:link {
@@ -156,18 +170,22 @@ a:hover {
   background-color: #ffff00;  /* yellow */
   text-decoration: underline;
 }
+a[href];hover {
+  text-decoration: underline;
+  text-decoration-color: #0000ff;  /* pure (or mostly pure) blue */
+}
 
 div {
   float: left; 
 }
 
 th, td {
-  border: 1px solid black;
+  border: 1px solid #000;
 }
 table {
   border-collapse: collapse;
   margin-left: 15px;
-  border: 1px solid black;
+  border: 1px solid #000;
 }
 
 @media all and (max-width: 500px) {
@@ -181,7 +199,7 @@ table {
   div.example {
     font-size: 50px;
     padding: 50px;
-    border: 8px solid black;
-    background: yellow;
+    border: 8px solid #000;  /* black */
+    background: #ffff00;  /* pure (or mostly pure) yellow */
   }
 }

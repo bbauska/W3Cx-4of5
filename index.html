@@ -189,11 +189,11 @@ target="_blank" rel="noopener noreferrer">w3cx.org</a>!</p>
 <ul>
   <li>If you are new to the edX platform, we encourage you to (<b><a
     href="https://www.edx.org/course/demox" target="_blank" rel="noopener noreferrer">
-	check out DemoX</a></b>], a quick walk-through of an edX experience. It will help 
-	answer basic “how to’s” on taking an edX course.</li>
+    check out DemoX</a></b>], a quick walk-through of an edX experience. It will help 
+    answer basic “how to’s” on taking an edX course.</li>
   <li>As an alternative, do not hesitate to browse the <b><a
     href="https://support.edx.org/hc/en-us/categories/115002269607-Courses" 
-	target="_blank" rel="noopener noreferrer">courses’ FAQs in edX Help Center</a></b>.</li>
+    target="_blank" rel="noopener noreferrer">courses’ FAQs in edX Help Center</a></b>.</li>
 </ul>
 
 <hr>
@@ -1051,7 +1051,7 @@ written in April 2015, for further details.</p>
 <ul>
   <li>Safari provides a menu you can use to choose which subtitle/caption track 
     to display. If one of the defined text tracks has the default attribute set, 
-	then it is loaded by default. Otherwise, the default is off.</li>
+    then it is loaded by default. Otherwise, the default is off.</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~ 22. safari menu - subtitles/captions (19) ~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -1065,12 +1065,12 @@ written in April 2015, for further details.</p>
 <ul>
   <li><p>Chrome and Opera both provide a subtitle menu and load the text track 
     set that matches the browser language. If none of the available text tracks 
-	match the browser’s language, then it loads the track with the default 
-	attribute, if there is one. Otherwise, it loads none. Let’s say that support 
-	is very incomplete (!).</p></li>
+    match the browser’s language, then it loads the track with the default 
+    attribute, if there is one. Otherwise, it loads none. Let’s say that support 
+    is very incomplete (!).</p></li>
   <li><p>Firefox provides a subtitle menu but will show the first defined text 
     track <i>only if</i> it has default set. It will load all tracks in memory 
-	as soon as the page is loaded.</p></li>
+    as soon as the page is loaded.</p></li>
 </ul>
 
 <p>There is <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#timed-text-tracks" target="_blank" rel="noopener noreferrer">a Timed Text Track API in the 
@@ -1557,22 +1557,22 @@ function forceLoadTrack(n) {
 <ul>
   <li><p><i>Lines 26-31</i>: the function called when a button has been clicked. 
     This function in turn calls the getTrack(trackNumber, callback) function. It 
-	passes the readContent callback function as a parameter. This is typical JavaScript 
-	asynchronous programming: the getTrack() function may force the browser to 
-	load the track and this can take some time (a few seconds), then when the 
-	track has downloaded, we ask the getTrack function to call the function we 
-	passed (the readContent function, which is known as a <i>callback</i> function), 
-	with the loaded track as a parameter.</p></li>
+    passes the readContent callback function as a parameter. This is typical JavaScript 
+    asynchronous programming: the getTrack() function may force the browser to 
+    load the track and this can take some time (a few seconds), then when the 
+    track has downloaded, we ask the getTrack function to call the function we 
+    passed (the readContent function, which is known as a <i>callback</i> function), 
+    with the loaded track as a parameter.</p></li>
   <li><p><i>Line 6</i>: the getTrack function. It first checks if the HTML track 
     is already loaded (<i>line 10</i>). If it is, it calls the callback function 
-	passed by the caller, with the loaded TextTrack as a parameter. If the TextTrack 
-	is not loaded, then it sets its mode to “hidden”. This will instruct the browser 
-	to load the track. Because that may take some time, we must use a load event 
-	listener on the HTML track before calling the callback function. This allows 
-	us to be sure that the track is really completely loaded.</p></li>
+    passed by the caller, with the loaded TextTrack as a parameter. If the TextTrack 
+    is not loaded, then it sets its mode to “hidden”. This will instruct the browser 
+    to load the track. Because that may take some time, we must use a load event 
+    listener on the HTML track before calling the callback function. This allows 
+    us to be sure that the track is really completely loaded.</p></li>
   <li><p><i>Lines 1-4</i>: the readContent function is only called with a loaded 
     TextTrack. Here we do nothing special for the moment except that we refresh 
-	the different track statuses in the HTML document.</p></li>
+    the different track statuses in the HTML document.</p></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch1-2-4">1.2.4 Working With Cues</h3>
@@ -1624,8 +1624,8 @@ does, the one you are watching at right now.</p>
 <ul>
   <li><p>kind: equivalent to the kind attribute of HTML track elements. Its value 
     is either “subtitles”, “caption”, “descriptions”, “chapters”, or “metadata”. 
-	We will see examples of chapters, descriptions  and metadata tracks in subsequent 
-	lessons.</p></li>
+    We will see examples of chapters, descriptions  and metadata tracks in subsequent 
+    lessons.</p></li>
   <li><p>label: the label of the track, equivalent of the label attribute of HTML 
     track elements.</p></li>
   <li><p>language: the language of the text track, equivalent to the srclang attribute 
@@ -1636,9 +1636,9 @@ does, the one you are watching at right now.</p>
     content of the WebVTT file!</p></li>
   <li><p>activeCues: used in event listeners while the video is playing. Corresponds 
     to the cues located in the current time segment. The start and end times of cues 
-	can overlap. In reality this may rarely happen, but this property exists in case 
-	it does, returning a  TextTrackCueList object that contains all active tracks at 
-	a given time.</p></li>
+    can overlap. In reality this may rarely happen, but this property exists in case 
+    it does, returning a  TextTrackCueList object that contains all active tracks at 
+    a given time.</p></li>
   <li><p>addCue(cue): add a cue to the list of cues.</p></li>
   <li><p>removeCue(cue): remove a cue from the list of cues.</p></li>
   <li><p>getCueById(id): returns the cue with a given id (not implemented by all 
@@ -1652,13 +1652,13 @@ properties and methods;</p>
   <li><p>id: the cue id as written in the line that starts cues in the WebVTT file.</p></li>
   <li><p>startTime and endTime: define the time segment for the cue, in seconds, 
     as a floating point value. It is not the formatted String we have in the WebVTT 
-	file (<i>see screenshot below</i>).</p></li>
+    file (<i>see screenshot below</i>).</p></li>
   <li><p>text: the cue content.</p></li>
   <li><p>getCueAsHTML(): a method that returns an HTML version of the cue content, 
     not as plain text.</p></li>
   <li><p>Others such as align, line, position, size, snapToLines, etc., that correspond 
     to the position of the cue, as specified in the WebVTT file. See the HTML5 course 
-	Part 1 about cue positioning.</p></li>
+    Part 1 about cue positioning.</p></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 26. webvtt with arrows (32) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -3237,17 +3237,17 @@ function jumpTo(time) {
     HTML elements and their corresponding TextTrack objects.</p></li>
   <li><p><i>Line 19</i>: using that we can build the chapter navigation menu. All 
     is done in the window.onload callback, so nothing happens until the DOM is 
-	ready.</p></li>
+    ready.</p></li>
   <li><p><i>Lines 24-43</i>: the buildChapterMenu function first locates the chapter 
     track for the given language, then checks if this track has been loaded by the 
-	browser. Once it has been confirmed that the track is loaded, the function 
-	displayChapters is called.</p></li>
+    browser. Once it has been confirmed that the track is loaded, the function 
+    displayChapters is called.</p></li>
   <li><p><i>Lines 45-65</i>: the displayChapters(track) function will iterate over 
     all of the cues within the chapter track passed as its parameter. For each cue, 
-	the JSON content is re-formatted back into a JavaScript object (<i>line 55</i>) 
-	and the image filename and description of the chapter/cue are extracted 
-	(<i>lines 56-57</i>). Then an HTML description for the chapter is built and 
-	added to the div element with id=chapterMenu.</p></li>
+    the JSON content is re-formatted back into a JavaScript object (<i>line 55</i>) 
+    and the image filename and description of the chapter/cue are extracted 
+    (<i>lines 56-57</i>). Then an HTML description for the chapter is built and 
+    added to the div element with id=chapterMenu.</p></li>
 </ul>
 
 <h4>Here is the HTML code for one menu marker:</h4>
@@ -7338,48 +7338,48 @@ JsBin</a></p>
 var rect = {x:40, y:40, rayon: 30, width:80, height:80, v:1};
 var mousepos = {x:0, y:0};
 function init() {
-    canvas = document.querySelector(&quot;#myCanvas&quot;);
-    ctx = canvas.getContext(&#39;2d&#39;);
-    width = canvas.width;
-    height = canvas.height;
-    canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
-       mousepos = getMousePos(canvas, evt);
-    }, false);
-    mainloop();
+  canvas = document.querySelector(&quot;#myCanvas&quot;);
+  ctx = canvas.getContext(&#39;2d&#39;);
+  width = canvas.width;
+  height = canvas.height;
+  canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
+    mousepos = getMousePos(canvas, evt);
+  }, false);
+  mainloop();
 }
 function mainloop() {
-   // 1) clear screen
-   ctx.clearRect(0, 0, canvas.width, canvas.height);
-   // 2) move object
-    var dx = rect.x - mousepos.x;
-    var dy = rect.y - mousepos.y;
-    var angle = Math.atan2(dy, dx);
-    rect.x -= rect.v*Math.cos(angle);
-    rect.y -= rect.v*Math.sin(angle);
-    // 3) draw object
-    drawRectangle(angle);
-    // request new frame
-    window.requestAnimationFrame(mainloop);
+  // 1) clear screen
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // 2) move object
+  var dx = rect.x - mousepos.x;
+  var dy = rect.y - mousepos.y;
+  var angle = Math.atan2(dy, dx);
+  rect.x -= rect.v*Math.cos(angle);
+  rect.y -= rect.v*Math.sin(angle);
+  // 3) draw object
+  drawRectangle(angle);
+  // request new frame
+  window.requestAnimationFrame(mainloop);
 }
 function drawRectangle(angle) {
-   ctx.save();
-   // These two lines move the coordinate system
-   ctx.translate(rect.x, rect.y);
-   ctx.rotate(angle);
-   // recenter the coordinate system in the middle
-   // the rectangle. Like that it will rotate around
-   // this point instead of top left corner
-   ctx.translate(-rect.width/2, -rect.height/2);
-   ctx.fillRect(0, 0, rect.width, rect.height);
-   ctx.restore();
+  ctx.save();
+  // These two lines move the coordinate system
+  ctx.translate(rect.x, rect.y);
+  ctx.rotate(angle);
+  // recenter the coordinate system in the middle
+  // the rectangle. Like that it will rotate around
+  // this point instead of top left corner
+  ctx.translate(-rect.width/2, -rect.height/2);
+  ctx.fillRect(0, 0, rect.width, rect.height);
+  ctx.restore();
 }
 function getMousePos(canvas, evt) {
-   // necessary to take into account CSS boudaries
-   var rect = canvas.getBoundingClientRect();
-   return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
-   };
+  // necessary to take into account CSS boudaries
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
 }</pre>
 
 </details>
@@ -7432,7 +7432,7 @@ var GF = function() {
   ...
   // Vars for handling inputs
   var inputStates = {};
-  var measureFPS = function(newTime){
+  var measureFPS = function(newTime) {
      ...
   };
   // Clears the canvas content
@@ -7443,38 +7443,38 @@ var GF = function() {
   function drawMyMonster(x, y) {
     ...
   }
-  var mainLoop = function(time){
-   // Main function, called each frame
-   measureFPS(time);
-   // Clears the canvas
-   clearCanvas();
-   // Draws the monster
-   drawMyMonster(10+Math.random()*10, 10+Math.random()*10);
-   // Checks inputStates
-   if (inputStates.left) {
-     ctx.fillText(&quot;left&quot;, 150, 20);
-   }
-   if (inputStates.up) {
-     ctx.fillText(&quot;up&quot;, 150, 40);
-   }
-   if (inputStates.right) {
-     ctx.fillText(&quot;right&quot;, 150, 60);
-   }
-   if (inputStates.down) {
-     ctx.fillText(&quot;down&quot;, 150, 80);
-   }
-   if (inputStates.space) {
-     ctx.fillText(&quot;space bar&quot;, 140, 100);
-   }
-   if (inputStates.mousePos) {
-     ctx.fillText(&quot;x = &quot; + inputStates.mousePos.x + &quot; y = &quot; +
-                           inputStates.mousePos.y, 5, 150);
-   }
-   if (inputStates.mousedown) {
-     ctx.fillText(&quot;mousedown b&quot; + inputStates.mouseButton, 5, 180);
-   }
-   // Calls the animation loop every 1/60th of second
-   requestAnimationFrame(mainLoop);
+  var mainLoop = function(time) {
+    // Main function, called each frame
+    measureFPS(time);
+    // Clears the canvas
+    clearCanvas();
+    // Draws the monster
+    drawMyMonster(10+Math.random()*10, 10+Math.random()*10);
+    // Checks inputStates
+    if (inputStates.left) {
+      ctx.fillText(&quot;left&quot;, 150, 20);
+    }
+    if (inputStates.up) {
+      ctx.fillText(&quot;up&quot;, 150, 40);
+    }
+    if (inputStates.right) {
+      ctx.fillText(&quot;right&quot;, 150, 60);
+    }
+    if (inputStates.down) {
+      ctx.fillText(&quot;down&quot;, 150, 80);
+    }
+    if (inputStates.space) {
+      ctx.fillText(&quot;space bar&quot;, 140, 100);
+    }
+    if (inputStates.mousePos) {
+      ctx.fillText(&quot;x = &quot; + inputStates.mousePos.x + &quot; y = &quot; +
+        inputStates.mousePos.y, 5, 150);
+    }
+    if (inputStates.mousedown) {
+      ctx.fillText(&quot;mousedown b&quot; + inputStates.mouseButton, 5, 180);
+    }
+    // Calls the animation loop every 1/60th of second
+    requestAnimationFrame(mainLoop);
   };
   function getMousePos(evt) {
     // Necessary to take into account CSS boudaries
@@ -7484,10 +7484,10 @@ var GF = function() {
       y: evt.clientY - rect.top
     };
   }
-  var start = function(){
+  var start = function() {
     ...
     // Adds the listener to the main window object, and updates the states
-    window.addEventListener(&#39;keydown&#39;, function(event){
+    window.addEventListener(&#39;keydown&#39;, function(event) {
       if (event.keyCode === 37) {
         inputStates.left = true;
       } else if (event.keyCode === 38) {
@@ -7501,18 +7501,18 @@ var GF = function() {
       }
     }, false);
     // If the key is released, changes the states object
-    window.addEventListener(&#39;keyup&#39;, function(event){
+    window.addEventListener(&#39;keyup&#39;, function(event) {
       if (event.keyCode === 37) {
         inputStates.left = false;
       } else if (event.keyCode === 38) {
        inputStates.up = false;
       } else if (event.keyCode === 39) {
         inputStates.right = false;
-       } else if (event.keyCode === 40) {
+      } else if (event.keyCode === 40) {
         inputStates.down = false;
-       } else if (event.keyCode === 32) {
-         inputStates.space = false;
-       }
+      } else if (event.keyCode === 32) {
+        inputStates.space = false;
+      }
     }, false);
     // Mouse event listeners
     canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
@@ -7523,7 +7523,7 @@ var GF = function() {
       inputStates.mouseButton = evt.button;
     }, false);
     canvas.addEventListener(&#39;mouseup&#39;, function (evt) {
-     inputStates.mousedown = false;
+      inputStates.mousedown = false;
     }, false);
     // Starts the animation
     requestAnimationFrame(mainLoop);
@@ -7683,15 +7683,15 @@ stick) a <a href="https://w3c.github.io/gamepad/#event-gamepadconnected" target
   <summary>JavaScript code!</summary>
   
 <pre>window.addEventListener(&quot;gamepadconnected&quot;, function(e) {
-   var gamepad = e.gamepad;
-   var index = gamepad.index;
-   var id = gamepad.id;
-   var nbButtons = gamepad.buttons.length;
-   var nbAxes = gamepad.axes.length;
-   console.log(&quot;Gamepad No &quot; + index +
-               &quot;, with id &quot; + id + &quot; is connected. It has &quot; +
-               nbButtons + &quot; buttons and &quot; +
-               nbAxes + &quot; axes&quot;);
+  var gamepad = e.gamepad;
+  var index = gamepad.index;
+  var id = gamepad.id;
+  var nbButtons = gamepad.buttons.length;
+  var nbAxes = gamepad.axes.length;
+  console.log(&quot;Gamepad No &quot; + index +
+              &quot;, with id &quot; + id + &quot; is connected. It has &quot; +
+              nbButtons + &quot; buttons and &quot; +
+              nbAxes + &quot; axes&quot;);
 });</pre>
 
 </details>
@@ -7940,9 +7940,9 @@ example</a>:</p>
 <pre>var inputStates = {};
 ...
 function mainloop() {
-   // clear, draw objects, etc...
-   // update gamepad status
-   scangamepads();
+  // clear, draw objects, etc...
+  // update gamepad status
+  scangamepads();
   // Check gamepad button states
   checkButtons(gamepad);
   // Check joysticks states
@@ -7957,21 +7957,21 @@ function mainloop() {
   requestAnimationFrame(mainloop);
 }
 function updatePlayerPosition() {
-   directionDiv.innerHTML += &quot;&quot;;
-   if(inputStates.left) {
-      directionDiv.innerHTML = &quot;Moving left&quot;;
-   }
-   if(inputStates.right) {
-      directionDiv.innerHTML = &quot;Moving right&quot;;
-   }
-   if(inputStates.up) {
-      directionDiv.innerHTML = &quot;Moving up&quot;;
-   }
-   if(inputStates.down) {
-      directionDiv.innerHTML = &quot;Moving down&quot;;
-   }
-   // Display the angle in degrees, in the HTML page
- angleDiv.innerHTML = Math.round((inputStates.angle*180/Math.PI));
+  directionDiv.innerHTML += &quot;&quot;;
+  if(inputStates.left) {
+    directionDiv.innerHTML = &quot;Moving left&quot;;
+  }
+  if(inputStates.right) {
+    directionDiv.innerHTML = &quot;Moving right&quot;;
+  }
+  if(inputStates.up) {
+    directionDiv.innerHTML = &quot;Moving up&quot;;
+  }
+  if(inputStates.down) {
+    directionDiv.innerHTML = &quot;Moving down&quot;;
+  }
+  // Display the angle in degrees, in the HTML page
+  angleDiv.innerHTML = Math.round((inputStates.angle*180/Math.PI));
 }
 // gamepad code below
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -7981,15 +7981,15 @@ function checkAxes(gamepad) {
   if(!gamepad.connected) return;
   ...
   // Set inputStates.left, right, up, down
- inputStates.left = inputStates.right = inputStates.up = inputStates.down = false;
+  inputStates.left = inputStates.right = inputStates.up = inputStates.down = false;
   // all values between [-1 and 1]
   // Horizontal detection
   if(gamepad.axes[0] &gt; 0.5) {
-     inputStates.right=true;
-     inputStates.left=false;
+    inputStates.right=true;
+    inputStates.left=false;
   } else if(gamepad.axes[0] &lt; -0.5) {
-     inputStates.left=true;
-     inputStates.right=false;
+    inputStates.left=true;
+    inputStates.right=false;
   }
   // vertical detection
   if(gamepad.axes[1] &gt; 0.5) {
@@ -8182,7 +8182,7 @@ look at a far better solution - <i>“time based animation”
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>var mainLoop = function(time){
+<pre>var mainLoop = function(time) {
   // Main function, called each frame
   measureFPS(time);
   // Clears the canvas
@@ -8233,8 +8233,8 @@ the updateMonsterPosition() function:</p>
     ctx.fillText(&quot;mousedown b&quot; + inputStates.mouseButton, 5, 180);
     monster.speed = 5;
   } else {
-  // Mouse up
-  monster.speed = 1;
+    // Mouse up
+    monster.speed = 1;
   }
   monster.x += monster.speedX;
   monster.y += monster.speedY;
@@ -8292,18 +8292,18 @@ JSBin:</a></p>
   <summary>JavaScript code!</summary>
 
 <pre>var mainLoop = function(time) {
-   //main function, called each frame
-   measureFPS(time);
-   // Clear the canvas
-   clearCanvas();
-   // gamepad
-   updateGamePadStatus();
-   // draw the monster
-   drawMyMonster(monster.x, monster.y);
-   // Check inputs and move the monster
-   updateMonsterPosition();
-   // Call the animation loop every 1/60th of second
-   requestAnimationFrame(mainLoop);
+  //main function, called each frame
+  measureFPS(time);
+  // Clear the canvas
+  clearCanvas();
+  // gamepad
+  updateGamePadStatus();
+  // draw the monster
+  drawMyMonster(monster.x, monster.y);
+  // Check inputs and move the monster
+  updateMonsterPosition();
+  // Call the animation loop every 1/60th of second
+  requestAnimationFrame(mainLoop);
 };</pre>
 
 </details>
@@ -8496,43 +8496,43 @@ JSBin</a></p>
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-  &lt;meta charset=utf-8 /&gt;
-  &lt;title&gt;Small animation example&lt;/title&gt;
-  &lt;script&gt;
-    var canvas, ctx;
-    var width, height;
-    var x, y;
-    var speedX;
-    // Called after the DOM is ready (page loaded)
-    function init() {
-       // init the different variables
-       canvas = document.querySelector(&quot;#mycanvas&quot;);
-       ctx = canvas.getContext(&#39;2d&#39;);
-       width = canvas.width;
-       height = canvas.height;
-       x=10; y = 10;
-       // Move 3 pixels left or right at each frame
-       speedX = 3;
-       // Start animation
-       animationLoop();
-    }
-    function animationLoop() {
-       // an animation involves: 1) clear canvas and 2) draw shapes,
-       // 3) move shapes, 4) recall the loop with requestAnimationFrame
-       // clear canvas
-       ctx.clearRect(0, 0, width, height);
-       ctx.strokeRect(x, y, 10, 10);
-       // move rectangle
-       x += speedX;
-       // check collision on left or right
-       if(((x+5) &gt; width) || (x &lt;= 0)) {
-          // cancel move + inverse speed
-          x -= speedX;
-          speedX = -speedX;
-       }
-       // animate.
-       requestAnimationFrame(animationLoop);
-    }
+&lt;meta charset=utf-8 /&gt;
+&lt;title&gt;Small animation example&lt;/title&gt;
+&lt;script&gt;
+  var canvas, ctx;
+  var width, height;
+  var x, y;
+  var speedX;
+  // Called after the DOM is ready (page loaded)
+  function init() {
+    // init the different variables
+    canvas = document.querySelector(&quot;#mycanvas&quot;);
+    ctx = canvas.getContext(&#39;2d&#39;);
+    width = canvas.width;
+    height = canvas.height;
+    x=10; y = 10;
+    // Move 3 pixels left or right at each frame
+    speedX = 3;
+    // Start animation
+    animationLoop();
+  }
+  function animationLoop() {
+    // an animation involves: 1) clear canvas and 2) draw shapes,
+    // 3) move shapes, 4) recall the loop with requestAnimationFrame
+    // clear canvas
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeRect(x, y, 10, 10);
+    // move rectangle
+    x += speedX;
+    // check collision on left or right
+    if(((x+5) &gt; width) || (x &lt;= 0)) {
+      // cancel move + inverse speed
+      x -= speedX;
+      speedX = -speedX;
+    }
+    // animate.
+    requestAnimationFrame(animationLoop);
+  }
 &lt;/script&gt;
 &lt;/head&gt;
 &lt;body onload=&quot;init();&quot;&gt;
@@ -8625,67 +8625,67 @@ JSBin</a>:</p>
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-  &lt;meta charset=utf-8 /&gt;
-  &lt;title&gt;Move rectangle using time based animation&lt;/title&gt;
-  &lt;script&gt;
-    var canvas, ctx;
-    var width, height;
-    var x, y, incX; // incX is the distance from the previously &gt; drawn
-                    // rectangle to the new one
-    var speedX; // speedX is the target speed of the rectangle, in &gt; pixels/s
-    // for time based animation
-    var now, delta;
-    var then = new Date().getTime();
-    // Called after the DOM is ready (page loaded)
-    function init() {
-      // Init the different variables
-      canvas = document.querySelector(&quot;#mycanvas&quot;);
-      ctx = canvas.getContext(&#39;2d&#39;);
-      width = canvas.width;
-      height = canvas.height;
-      x=10; y = 10;
-      // Target speed in pixels/second, try with high values, 1000, &gt; 2000...
-      speedX = 200;
-      // Start animation
-     animationLoop();
-   }
-   function animationLoop() {
-     // Measure time
-     now = new Date().getTime();
-     // How long between the current frame and the previous one?
-     delta = now - then;
-     //console.log(delta);
-     // Compute the displacement in x (in pixels) in function of the &gt; time elapsed and
-     // in function of the wanted speed
-     incX = calcDistanceToMove(delta, speedX);
-     // an animation involves: 1) clear canvas and 2) draw shapes,
-     // 3) move shapes, 4) recall the loop with  &gt; requestAnimationFrame
-     // clear canvas
-     ctx.clearRect(0, 0, width, height);
-     ctx.strokeRect(x, y, 10, 10);
-     // move rectangle
-     x += incX;
-     // check collision on left or right
-     if((x+10 &gt;= width) || (x &lt;= 0)) {
-        // cancel move + inverse speed
-        x -= incX;
-        speedX = -speedX;
-     }
-     // Store time
-     then = now;
-     requestAnimationFrame(animationLoop);
- }
- // We want the rectangle to move at a speed given in pixels/second
- // (there are 60 frames in a second)
- // If we are really running at 60 frames/s, the delay between
- // frames should be 1/60
- // = 16.66 ms, so the number of pixels to move = (speed * &gt; del)/1000.
- // If the delay is twice as
- // long, the formula works: let&#39;s move the rectangle for twice as &gt; long!
- var calcDistanceToMove = function(delta, speed) {
-     return (speed * delta) / 1000;
- }
- &lt;/script&gt;
+&lt;meta charset=utf-8 /&gt;
+&lt;title&gt;Move rectangle using time based animation&lt;/title&gt;
+&lt;script&gt;
+  var canvas, ctx;
+  var width, height;
+  var x, y, incX; // incX is the distance from the previously &gt; drawn
+                  // rectangle to the new one
+  var speedX; // speedX is the target speed of the rectangle, in &gt; pixels/s
+  // for time based animation
+  var now, delta;
+  var then = new Date().getTime();
+  // Called after the DOM is ready (page loaded)
+  function init() {
+    // Init the different variables
+    canvas = document.querySelector(&quot;#mycanvas&quot;);
+    ctx = canvas.getContext(&#39;2d&#39;);
+    width = canvas.width;
+    height = canvas.height;
+    x=10; y = 10;
+    // Target speed in pixels/second, try with high values, 1000, &gt; 2000...
+    speedX = 200;
+    // Start animation
+    animationLoop();
+  }
+  function animationLoop() {
+    // Measure time
+    now = new Date().getTime();
+    // How long between the current frame and the previous one?
+    delta = now - then;
+    //console.log(delta);
+    // Compute the displacement in x (in pixels) in function of the &gt; time elapsed and
+    // in function of the wanted speed
+    incX = calcDistanceToMove(delta, speedX);
+    // an animation involves: 1) clear canvas and 2) draw shapes,
+    // 3) move shapes, 4) recall the loop with  &gt; requestAnimationFrame
+    // clear canvas
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeRect(x, y, 10, 10);
+    // move rectangle
+    x += incX;
+    // check collision on left or right
+    if((x+10 &gt;= width) || (x &lt;= 0)) {
+      // cancel move + inverse speed
+      x -= incX;
+      speedX = -speedX;
+    }
+    // Store time
+    then = now;
+    requestAnimationFrame(animationLoop);
+  }
+  // We want the rectangle to move at a speed given in pixels/second
+  // (there are 60 frames in a second)
+  // If we are really running at 60 frames/s, the delay between
+  // frames should be 1/60
+  // = 16.66 ms, so the number of pixels to move = (speed * &gt; del)/1000.
+  // If the delay is twice as
+  // long, the formula works: let&#39;s move the rectangle for twice as &gt; long!
+  var calcDistanceToMove = function(delta, speed) {
+    return (speed * delta) / 1000;
+  }
+&lt;/script&gt;
 &lt;/head&gt;
 &lt;body onload=&quot;init();&quot;&gt;
  &lt;canvas id=&quot;mycanvas&quot; width=&quot;200&quot; height=&quot;50&quot; style=&quot;border: 2px solid &gt; black&quot;&gt;&lt;/canvas&gt;
@@ -8881,54 +8881,54 @@ JSBin</a>:</p>
 &lt;head&gt;
 &lt;meta charset=utf-8 /&gt;
 &lt;title&gt;Time based animation using the parameter of the requestAnimationFrame callback&lt;/title&gt;
-  &lt;script&gt;
-   var canvas, ctx;
-   var width, height;
-   var x, y, incX; // incX is the distance from the previously drawn rectangle
-                   // to the new one
-   var speedX;     // speedX is the target speed of the rectangle in pixels/s
-   // for time based animation
-   var now, delta=0;
-   // High resolution timer
-   var oldTime = 0;
-   // Called after the DOM is ready (page loaded)
-   function init() {
-     // init the different variables
-     canvas = document.querySelector(&quot;#mycanvas&quot;);
-     ctx = canvas.getContext(&#39;2d&#39;);
-     width = canvas.width;
-     height = canvas.height;
-     x=10; y = 10;
-     // Target speed in pixels/second, try with high values, 1000, 2000...
-     speedX = 200;
-     // Start animation
-     requestAnimationFrame(animationLoop);
-   }
-   function animationLoop(currentTime) {
-     // How long between the current frame and the previous one?
-     delta = currentTime - oldTime;
-     // Compute the displacement in x (in pixels) in function of the time elapsed and
-     // in function of the wanted speed
-     incX = calcDistanceToMove(delta, speedX);
-     // clear canvas
-     ctx.clearRect(0, 0, width, height);
-     ctx.strokeRect(x, y, 10, 10);
-     // move rectangle
-     x += incX;
-     // check collision on left or right
-     if(((x+10) &gt; width) || (x &lt; 0)) {
-       // inverse speed
-       x -= incX;
-       speedX = -speedX;
-     }
-     // Store time
-     oldTime = currentTime;
-     // asks for next frame
-     requestAnimationFrame(animationLoop);
-   }
-   var calcDistanceToMove = function(delta, speed) {
-     return (speed * delta) / 1000;
-   }
+&lt;script&gt;
+  var canvas, ctx;
+  var width, height;
+  var x, y, incX; // incX is the distance from the previously drawn rectangle
+                  // to the new one
+  var speedX;     // speedX is the target speed of the rectangle in pixels/s
+  // for time based animation
+  var now, delta=0;
+  // High resolution timer
+  var oldTime = 0;
+  // Called after the DOM is ready (page loaded)
+  function init() {
+    // init the different variables
+    canvas = document.querySelector(&quot;#mycanvas&quot;);
+    ctx = canvas.getContext(&#39;2d&#39;);
+    width = canvas.width;
+    height = canvas.height;
+    x=10; y = 10;
+    // Target speed in pixels/second, try with high values, 1000, 2000...
+    speedX = 200;
+    // Start animation
+    requestAnimationFrame(animationLoop);
+  }
+  function animationLoop(currentTime) {
+    // How long between the current frame and the previous one?
+    delta = currentTime - oldTime;
+    // Compute the displacement in x (in pixels) in function of the time elapsed and
+    // in function of the wanted speed
+    incX = calcDistanceToMove(delta, speedX);
+    // clear canvas
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeRect(x, y, 10, 10);
+    // move rectangle
+    x += incX;
+    // check collision on left or right
+    if(((x+10) &gt; width) || (x &lt; 0)) {
+      // inverse speed
+      x -= incX;
+      speedX = -speedX;
+    }
+    // Store time
+    oldTime = currentTime;
+    // asks for next frame
+    requestAnimationFrame(animationLoop);
+  }
+  var calcDistanceToMove = function(delta, speed) {
+    return (speed * delta) / 1000;
+  }
 &lt;/script&gt;
 &lt;/head&gt;
 &lt;body onload=&quot;init();&quot;&gt;
@@ -9082,56 +9082,56 @@ example with the rectangle that also uses this technique</a>.</p>
 &lt;head&gt;
 &lt;meta charset=utf-8 /&gt;
 &lt;title&gt;Bouncing rectangle with high resolution timer and adjustable frame rate&lt;/title&gt;
- &lt;script&gt;
-   var canvas, ctx;
-   var width, height;
-   var x, y, incX; // incX is the distance from the previously drawn rectangle
-                   // to the new one
-   var speedX; // speedX is the target speed of the rectangle in pixels/s
-   // for time based animation, DelayInMS corresponds to the target frame rate
-   var now, delta, delayInMS, totalTimeSinceLastRedraw=0;
-   // High resolution timer
-   var then = performance.now();
-   // Michel Buffa: set the target frame rate. TRY TO CHANGE THIS VALUE AND SEE
-   // THE RESULT. Try 2 frames/s, 10 frames/s, 60, 100 frames/s Normally there
-   // should be a limit of 60 frames/s in the browser&#39;s implementations, but you can 
-   // try higher values
-   setFrameRateInFramesPerSecond(25);
-   function setFrameRateInFramesPerSecond(framerate) {
-     delayInMs = 1000 / framerate;
-   }
-   // Called after the DOM is ready (page loaded)
-   function init() {
-     // init the different variables
-     canvas = document.querySelector(&quot;#mycanvas&quot;);
-     ctx = canvas.getContext(&#39;2d&#39;);
-     width = canvas.width;
-     height = canvas.height;
-     x=10; y = 10;
-     // Target speed in pixels/second, try with high values, 1000, 2000...
-     speedX = 2000;
-     // Start animation
-     requestAnimationFrame(animationLoop)
-   }
-   function animationLoop(time) {
-     // Measure time with high resolution timer
-     now = time;
-     // How long between the current frame and the previous one?
-     delta = now - then;
-     if(totalTimeSinceLastRedraw &gt; delayInMs) {
-       // Compute the displacement in x (in pixels) in function of the time elapsed
-       // since the last draw and
-       // in function of the wanted speed. This time, instead of delta we
-       // use totalTimeSinceLastRedraw as we&#39;re not always drawing at
-       // each execution of mainloop
-     incX = calcDistanceToMove(totalTimeSinceLastRedraw, speedX);
-       // an animation involves: 1) clear canvas and 2) draw shapes,
-       // 3) move shapes, 4) recall the loop with requestAnimationFrame
-       // clear canvas
-       ctx.clearRect(0, 0, width, height);
-       ctx.strokeRect(x, y, 10, 10);
-       // move rectangle
-       x += incX;
+&lt;script&gt;
+  var canvas, ctx;
+  var width, height;
+  var x, y, incX; // incX is the distance from the previously drawn rectangle
+                  // to the new one
+  var speedX; // speedX is the target speed of the rectangle in pixels/s
+  // for time based animation, DelayInMS corresponds to the target frame rate
+  var now, delta, delayInMS, totalTimeSinceLastRedraw=0;
+  // High resolution timer
+  var then = performance.now();
+  // Michel Buffa: set the target frame rate. TRY TO CHANGE THIS VALUE AND SEE
+  // THE RESULT. Try 2 frames/s, 10 frames/s, 60, 100 frames/s Normally there
+  // should be a limit of 60 frames/s in the browser&#39;s implementations, but you can 
+  // try higher values
+  setFrameRateInFramesPerSecond(25);
+  function setFrameRateInFramesPerSecond(framerate) {
+    delayInMs = 1000 / framerate;
+  }
+  // Called after the DOM is ready (page loaded)
+  function init() {
+    // init the different variables
+    canvas = document.querySelector(&quot;#mycanvas&quot;);
+    ctx = canvas.getContext(&#39;2d&#39;);
+    width = canvas.width;
+    height = canvas.height;
+    x=10; y = 10;
+    // Target speed in pixels/second, try with high values, 1000, 2000...
+    speedX = 2000;
+    // Start animation
+    requestAnimationFrame(animationLoop)
+  }
+  function animationLoop(time) {
+    // Measure time with high resolution timer
+    now = time;
+    // How long between the current frame and the previous one?
+    delta = now - then;
+    if(totalTimeSinceLastRedraw &gt; delayInMs) {
+      // Compute the displacement in x (in pixels) in function of the time elapsed
+      // since the last draw and
+      // in function of the wanted speed. This time, instead of delta we
+      // use totalTimeSinceLastRedraw as we&#39;re not always drawing at
+      // each execution of mainloop
+      incX = calcDistanceToMove(totalTimeSinceLastRedraw, speedX);
+      // an animation involves: 1) clear canvas and 2) draw shapes,
+      // 3) move shapes, 4) recall the loop with requestAnimationFrame
+      // clear canvas
+      ctx.clearRect(0, 0, width, height);
+      ctx.strokeRect(x, y, 10, 10);
+      // move rectangle
+      x += incX;
       // check collision on left or right
       if((x+10 &gt;= width) || (x &lt;= 0)) {
         // cancel move + inverse speed
@@ -9140,19 +9140,19 @@ example with the rectangle that also uses this technique</a>.</p>
       }
       // reset the total time since last redraw
       totalTimeSinceLastRedraw = delta;
-   } else {
-     // sum the total time since last redraw
-     totalTimeSinceLastRedraw += delta;
-   }
-   // Store time
-   then = now;
-   // animate. 
-   requestAnimationFrame(animationLoop);
- }
- var calcDistanceToMove = function(delta, speed) {
+    } else {
+      // sum the total time since last redraw
+      totalTimeSinceLastRedraw += delta;
+    }
+    // Store time
+    then = now;
+    // animate. 
+    requestAnimationFrame(animationLoop);
+  }
+  var calcDistanceToMove = function(delta, speed) {
     return (speed * delta) / 1000;
- }
- &lt;/script&gt;
+  }
+  &lt;/script&gt;
 &lt;/head&gt;
 &lt;body onload=&quot;init();&quot;&gt;
   &lt;canvas id=&quot;mycanvas&quot; width=&quot;200&quot; height=&quot;50&quot; 
@@ -9510,17 +9510,15 @@ function init() {
 }
 function createBalls(numberOfBalls) {
   for(var i=0; i &lt; numberOfBalls; i++) {
-
     // Create a ball with random position and speed.
     // You can change the radius
     var ball = new Ball(width*Math.random(),
                         height*Math.random(),
               (2*Math.PI)*Math.random(), // angle
               (10*Math.random())-5,      // speed
-                        30);
-
-   // We add it in an array
-   ballArray[i] = ball;
+      30);
+    // We add it in an array
+    ballArray[i] = ball;
   }
 }
 function mainLoop() {
@@ -9529,8 +9527,8 @@ function mainLoop() {
 function testCollisionWithWalls(ball) {
   // left
   if (ball.x &lt; ball.radius) {
-     ball.x = ball.radius;
-     ball.angle = -ball.angle + Math.PI;
+    ball.x = ball.radius;
+    ball.angle = -ball.angle + Math.PI;
   }
   // right
   if (ball.x &gt; width - (ball.radius)) {
@@ -9556,13 +9554,13 @@ function Ball(x, y, angle, v, diameter) {
   this.v = v;
   this.radius = diameter/2;
   this.draw = function() {
-   ...
+    ...
   };
   this.move = function() {
-   // add horizontal increment to the x pos
-   // add vertical increment to the y pos
-   this.x += this.v * Math.cos(this.angle);
-   this.y += this.v * Math.sin(this.angle);
+    // add horizontal increment to the x pos
+    // add vertical increment to the y pos
+    this.x += this.v * Math.cos(this.angle);
+    this.y += this.v * Math.sin(this.angle);
   };
 }</pre>
 
@@ -9784,19 +9782,19 @@ var player = {
 <details>
   <summary>JavaScript code!</summary>
 
-<pre>var mainLoop = function(time){
-//main function, called each frame
-measureFPS(time);
-// Clear the canvas
-clearCanvas();
-// Draw the monster
+<pre>var mainLoop = function(time) {
+  //main function, called each frame
+  measureFPS(time);
+  // Clear the canvas
+  clearCanvas();
+  // Draw the monster
   drawMyMonster();
-// Check inputs and move the monster
-updateMonsterPosition();
-updatePlayer();
-checkCollisions();
-// Call the animation loop every 1/60th of second
-requestAnimationFrame(mainLoop);
+  // Check inputs and move the monster
+  updateMonsterPosition();
+  updatePlayer();
+  checkCollisions();
+  // Call the animation loop every 1/60th of second
+  requestAnimationFrame(mainLoop);
 };
 function updatePlayer() {
 // The player is just a circle drawn at the mouse position
@@ -9810,16 +9808,15 @@ if(inputStates.mousePos) {            // Move the player and draw it as a
   }
 }
 function checkCollisions() {
-if(circleCollide(player.x, player.y, player.boundingCircleRadius,
-   monster.x, monster.y, monster.boundingCircleRadius)) {  
-   // Draw everything in red
-   ctx.fillText(&quot;Collision&quot;, 150, 20);
-   ctx.strokeStyle = ctx.fillStyle = &#39;red&#39;;
+  if(circleCollide(player.x, player.y, player.boundingCircleRadius,
+  monster.x, monster.y, monster.boundingCircleRadius)) { 
+    // Draw everything in red
+    ctx.fillText(&quot;Collision&quot;, 150, 20);
+     ctx.strokeStyle = ctx.fillStyle = &#39;red&#39;;
   } else {  
-// Draw in black
-  ctx.fillText(&quot;No collision&quot;, 150, 20);
-
-  ctx.strokeStyle = ctx.fillStyle = &#39;black&#39;;
+    // Draw in black
+    ctx.fillText(&quot;No collision&quot;, 150, 20);
+    ctx.strokeStyle = ctx.fillStyle = &#39;black&#39;;
   }
 }
 function circleCollide(x1, y1, r1, x2, y2, r2) {
@@ -10037,12 +10034,12 @@ function checkCollisions() {
       ctx.fillText(&quot;No collision&quot;, 150, 20);
       ctx.strokeStyle = ctx.fillStyle = &#39;black&#39;;
     }
-  }
-  &lt;!-- --&gt;
-  538
-  &lt;!-- --&gt;
-  // Collisions between aligned rectangles
-  function rectsOverlap(x1, y1, w1, h1, x2, y2, w2, h2) {
+}
+&lt;!-- --&gt;
+538
+&lt;!-- --&gt;
+// Collisions between aligned rectangles
+function rectsOverlap(x1, y1, w1, h1, x2, y2, w2, h2) {
   &lt;!-- --&gt;
   539
   &lt;!-- --&gt;
@@ -10124,13 +10121,13 @@ Thread at StackOverflow</a>):</p>
 
 <pre>// Collisions between rectangle and circle
 function circRectsOverlap(x0, y0, w0, h0, cx, cy, r) {
-   var testX=cx;
-   var testY=cy;
-   if (testX &lt; x0) testX=x0;
-   if (testX &gt; (x0+w0)) testX=(x0+w0);
-   if (testY &lt; y0) testY=y0;
-   if (testY &gt; (y0+h0)) testY=(y0+h0);
-   return (((cx-testX)*(cx-testX)+(cy-testY)*(cy-testY))&lt; r*r);
+  var testX=cx;
+  var testY=cy;
+  if (testX &lt; x0) testX=x0;
+  if (testX &gt; (x0+w0)) testX=(x0+w0);
+  if (testY &lt; y0) testY=y0;
+  if (testY &gt; (y0+h0)) testY=(y0+h0);
+  return (((cx-testX)*(cx-testX)+(cy-testY)*(cy-testY))&lt; r*r);
 }</pre>
 
 </details>
@@ -10235,8 +10232,8 @@ earlier.</p>
     if(circRectsOverlap(monster.x, monster.y,
                         monster.width, monster.height,
                         ball.x, ball.y, ball.radius)) {
-    //change the color of the ball
-    ball.color = &#39;red&#39;;
+      //change the color of the ball
+      ball.color = &#39;red&#39;;
     }
     // 3) draw the ball
     ball.draw();
@@ -10370,8 +10367,8 @@ consider how to support different layouts of sprite sheet.</p>
   <li>Extract the different postures and store them in an array of sprites,</li>
   <li>Choose the appropriate one, and draw it within the animation loop, taking into 
     account elapsed time. We cannot draw a different image of the woman walking at 60 
-	updates per second. We will have to create a realistic “delay” between each change 
-	of sprite image.</li>
+    updates per second. We will have to create a realistic “delay” between each change 
+    of sprite image.</li>
 </ol>
 
 <p>In this lesson, let’s construct an interactive tool to present the principles of sprite 
@@ -10452,71 +10449,71 @@ var xField, yField, wField, hField, spriteSelect, spriteNumber;
 // The two canvases and respective contexts
 var canvas, canvasSpriteSheet, ctx1, ctx2;
 window.onload = function() {
-    canvas = document.getElementById(&quot;canvas&quot;);
-    ctx1 = canvas.getContext(&quot;2d&quot;);
-    canvasSpriteSheet = document.getElementById(&quot;spritesheet&quot;);
-    ctx2 = canvasSpriteSheet.getContext(&quot;2d&quot;);
-    xField = document.querySelector(&quot;#x&quot;);
-    yField = document.querySelector(&quot;#y&quot;);
-    wField = document.querySelector(&quot;#width&quot;);
-    hField = document.querySelector(&quot;#height&quot;);
-    spriteSelect = document.querySelector(&quot;#spriteSelect&quot;);
-    spriteNumber = document.querySelector(&quot;#spriteNumber&quot;);
-    // Update values of the input fields in the page
-    wField.value = SPRITE_WIDTH;
-    hField.value = SPRITE_HEIGHT;
-    xField.value = 0;
-    yField.value = 0;
-    // Set attributes for the slider depending on the number of
-    &gt; sprites on the 
-    // sprite sheet
-    spriteSelect.min = 0;
-    spriteSelect.max=NB_ROWS*NB_FRAMES_PER_POSTURE - 1;
-    // By default the slider is disabled until the sprite sheet is
-    &gt; fully loaded
-    spriteSelect.disabled = true;
-    spriteNumber.innerHTML=0;
-    // Load the spritesheet
-    spritesheet = new Image();
-    spritesheet.src=&quot;https://i.imgur.com/3VesWqx.png&quot;;
-    // Called when the spritesheet has been loaded
-    spritesheet.onload = function() {
-      // enable slider
-      spriteSelect.disabled = false;
-      // Resize big canvas to the size of the sprite sheet image
-      canvasSpriteSheet.width = spritesheet.width;
-      canvasSpriteSheet.height = spritesheet.height;
+  canvas = document.getElementById(&quot;canvas&quot;);
+  ctx1 = canvas.getContext(&quot;2d&quot;);
+  canvasSpriteSheet = document.getElementById(&quot;spritesheet&quot;);
+  ctx2 = canvasSpriteSheet.getContext(&quot;2d&quot;);
+  xField = document.querySelector(&quot;#x&quot;);
+  yField = document.querySelector(&quot;#y&quot;);
+  wField = document.querySelector(&quot;#width&quot;);
+  hField = document.querySelector(&quot;#height&quot;);
+  spriteSelect = document.querySelector(&quot;#spriteSelect&quot;);
+  spriteNumber = document.querySelector(&quot;#spriteNumber&quot;);
+  // Update values of the input fields in the page
+  wField.value = SPRITE_WIDTH;
+  hField.value = SPRITE_HEIGHT;
+  xField.value = 0;
+  yField.value = 0;
+  // Set attributes for the slider depending on the number of
+  &gt; sprites on the 
+  // sprite sheet
+  spriteSelect.min = 0;
+  spriteSelect.max=NB_ROWS*NB_FRAMES_PER_POSTURE - 1;
+  // By default the slider is disabled until the sprite sheet is
+  &gt; fully loaded
+  spriteSelect.disabled = true;
+  spriteNumber.innerHTML=0;
+  // Load the spritesheet
+  spritesheet = new Image();
+  spritesheet.src=&quot;https://i.imgur.com/3VesWqx.png&quot;;
+  // Called when the spritesheet has been loaded
+  spritesheet.onload = function() {
+    // enable slider
+    spriteSelect.disabled = false;
+    // Resize big canvas to the size of the sprite sheet image
+    canvasSpriteSheet.width = spritesheet.width;
+    canvasSpriteSheet.height = spritesheet.height;
 
-     // Draw the whole spritesheet
-     ctx2.drawImage(spritesheet, 0, 0);
-     // Draw the first sprite in the big canvas, corresponding to &gt; sprite 0
-     // wireframe rectangle in the sprite sheet
+    // Draw the whole spritesheet
+    ctx2.drawImage(spritesheet, 0, 0);
+    // Draw the first sprite in the big canvas, corresponding to &gt; sprite 0
+    // wireframe rectangle in the sprite sheet
     &gt;  drawWireFrameRect(ctx2, 0 , 0, SPRITE_WIDTH, SPRITE_HEIGHT, &#39;red&#39;, 3);
     &gt;      // small canvas, draw sub image corresponding to sprite 0
-     ctx1.drawImage(spritesheet, 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT,
-                                 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
-   };
-   // input listener on the slider
-   spriteSelect.oninput = function(evt) {
-     // Current sprite number from 0 to NB_FRAMES_PER_POSTURE * &gt; NB_ROWS
-     var index = spriteSelect.value;
-     // Computation of the x and y position that corresponds to &gt; the sprite
-     // number index as selected by the slider
-     var x = index * SPRITE_WIDTH % spritesheet.width;
-   &gt;  var y = Math.floor(index / NB_FRAMES_PER_POSTURE) * SPRITE_HEIGHT;
-     // Update fields
-     xField.value = x;
-     yField.value = y;
-     // Clear big canvas, draw wireframe rect at x, y, redraw &gt; stylesheet
-   &gt;  ctx2.clearRect(0, 0, canvasSpriteSheet.width, canvasSpriteSheet.height);
-     ctx2.drawImage(spritesheet, 0, 0);
-   &gt;  drawWireFrameRect(ctx2, x , y, SPRITE_WIDTH, SPRITE_HEIGHT, &#39;red&#39;, 3);
-     // Draw the current sprite in the small canvas
-     ctx1.clearRect(0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
-     ctx1.drawImage(spritesheet, x, y, SPRITE_WIDTH, SPRITE_HEIGHT,
-                                 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
-     // Update output elem on the right of the slider
-     spriteNumber.innerHTML = index;
+    ctx1.drawImage(spritesheet, 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT,
+                                0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
+  };
+  // input listener on the slider
+  spriteSelect.oninput = function(evt) {
+    // Current sprite number from 0 to NB_FRAMES_PER_POSTURE * &gt; NB_ROWS
+    var index = spriteSelect.value;
+    // Computation of the x and y position that corresponds to &gt; the sprite
+    // number index as selected by the slider
+    var x = index * SPRITE_WIDTH % spritesheet.width;
+    &gt;  var y = Math.floor(index / NB_FRAMES_PER_POSTURE) * SPRITE_HEIGHT;
+    // Update fields
+    xField.value = x;
+    yField.value = y;
+    // Clear big canvas, draw wireframe rect at x, y, redraw &gt; stylesheet
+    &gt;  ctx2.clearRect(0, 0, canvasSpriteSheet.width, canvasSpriteSheet.height);
+    ctx2.drawImage(spritesheet, 0, 0);
+    &gt;  drawWireFrameRect(ctx2, x , y, SPRITE_WIDTH, SPRITE_HEIGHT, &#39;red&#39;, 3);
+    // Draw the current sprite in the small canvas
+    ctx1.clearRect(0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
+    ctx1.drawImage(spritesheet, x, y, SPRITE_WIDTH, SPRITE_HEIGHT,
+                                0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
+    // Update output elem on the right of the slider
+    spriteNumber.innerHTML = index;
   };
 };
 function drawWireFrameRect(ctx, x, y, w, h, color, lineWidth) {
@@ -10587,7 +10584,7 @@ window.onload = function() {
                          SPRITE_WIDTH, SPRITE_HEIGHT);
     robot.setNbImagesPerSecond(20);
     requestAnimationFrame(mainloop);
- }; // onload
+  }; // onload
 };
 function mainloop() {
   // Clear the canvas
@@ -10624,19 +10621,18 @@ yPos position, and at anappropriate size. </p>
   <summary>JavaScript function!</summary>
   
 <pre>function SpriteImage(img, x, y, width, height) {
-   this.img = img; // the whole image that contains all sprites
-   this.x = x;     // x, y position of the sprite image in the whole
-&gt; image
-   this.y = y;
-   this.width = width; // width and height of the sprite image
-   this.height = height;
-   this.draw = function(ctx, xPos, yPos, scale) {
-      ctx.drawImage(this.img,
-        this.x, this.y, // x, y, width and height of img to extract
-        this.width, this.height,
-        xPos, yPos, // x, y, width and height of img to draw
-        this.width*scale, this.height*scale);
- };
+  this.img = img; // the whole image that contains all sprites
+  this.x = x;     // x, y position of the sprite image in the whole &gt; image
+  this.y = y;
+  this.width = width; // width and height of the sprite image
+  this.height = height;
+  this.draw = function(ctx, xPos, yPos, scale) {
+    ctx.drawImage(this.img,
+    this.x, this.y, // x, y, width and height of img to extract
+    this.width, this.height,
+    xPos, yPos, // x, y, width and height of img to draw
+      this.width*scale, this.height*scale);
+  };
 }</pre>
 
 </details>
@@ -10664,22 +10660,20 @@ small robot in the previous example.</p>
                                  nbPostures, postureToExtract,
                                  nbFramesPerPosture,
                                  spriteWidth, spriteHeight) {
-    // number of sprites per row in the spritesheet
-&gt;   var nbSpritesPerRow = Math.floor(spritesheet.width / spriteWidth);
+    // number of sprites per row in the spritesheet &gt;
+    var nbSpritesPerRow = Math.floor(spritesheet.width / spriteWidth);
     // Extract each sprite
     var startIndex = (postureToExtract -1) * nbFramesPerPosture;
     var endIndex = startIndex + nbFramesPerPosture;
     for(var index = startIndex; index &lt; maxIndex; index++) {
-    // Computation of the x and y position that corresponds to the
-    &gt; sprite
-      // index
+      // Computation of the x and y position that corresponds to the 
+      // &gt; sprite index
       // x is the rest of index/nbSpritesPerRow * width of a sprite
       var x = (index % nbSpritesPerRow) * spriteWidth;
-      // y is the divisor of index by nbSpritesPerRow * height of a
-&gt; sprite
+      // y is the divisor of index by nbSpritesPerRow * height of a &gt; sprite
       var y = Math.floor(index / nbSpritesPerRow) * spriteHeight;
-      // build a spriteImage object
-&gt;   var s = new SpriteImage(spritesheet, x, y, spriteWidth, spriteHeight);
+      // build a spriteImage object &gt;
+      var s = new SpriteImage(spritesheet, x, y, spriteWidth, spriteHeight);
       this.spriteArray.push(s);
     }
   };
@@ -10695,10 +10689,10 @@ small robot in the previous example.</p>
     currentSpriteImage.draw(ctx, x, y, 1);
     // if the delay between images is elapsed, go to the next one
     if (this.totalTimeSinceLastRedraw &gt; this.delayBetweenFrames) {
-    // Go to the next sprite image
+      // Go to the next sprite image
       this.currentFrame++;
       this.currentFrame %= this.spriteArray.length;
-    // reset the total time since last image has been drawn
+      // reset the total time since last image has been drawn
       this.totalTimeSinceLastRedraw = 0;
     } else {
       // sum the total time since last redraw
@@ -10808,27 +10802,27 @@ JsBin</a></b></p>
   
 <pre>// Inits
 window.onload = function init() {
-var game = new GF();
-game.start();
+  var game = new GF();
+  game.start();
 };
 // GAME FRAMEWORK STARTS HERE
 var GF = function(){
-   ...
-   // Woman object and sprites
-   // sprite index corresponding to posture
-   var WOMAN_DIR_RIGHT = 6;
-   var WOMAN_DIR_LEFT = 2;
-   var woman = {
-      x:100,
-      y:200,
-      width:48,
-      speed:100, // pixels/s this time!
-      direction: WOMAN_DIR_RIGHT
-   };
-   var womanSprites = [];
-   var mainLoop = function(time){
-     ...
-     // Draw a woman moving left and right
+  ...
+  // Woman object and sprites
+  // sprite index corresponding to posture
+  var WOMAN_DIR_RIGHT = 6;
+  var WOMAN_DIR_LEFT = 2;
+  var woman = {
+    x:100,
+    y:200,
+    width:48,
+    speed:100, // pixels/s this time!
+    direction: WOMAN_DIR_RIGHT
+  };
+  var womanSprites = [];
+  var mainLoop = function(time){
+    ...
+    // Draw a woman moving left and right
     womanSprites[woman.direction].draw(ctx, woman.x, woman.y);
     updateWomanPosition(delta);
     ...
@@ -10864,41 +10858,41 @@ var GF = function(){
   /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
   /* EN OF SPRITE UTILITY FUNCTIONS        */
   /*--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--*/
-var loadAssets = function(callback) {
-    var SPRITESHEET_URL = &quot;https://i.imgur.com/3VesWqx.png&quot;;
-    var SPRITE_WIDTH = 48;
-    var SPRITE_HEIGHT = 92;
-    var NB_POSTURES=8;
-    var NB_FRAMES_PER_POSTURE = 13;
-    // load the spritesheet
-    var spritesheet = new Image();
-    spritesheet.src = SPRITESHEET_URL;
-    // Called when the spritesheet has been loaded
-    spritesheet.onload = function() {
-      // Create woman sprites
-      for(var i = 0; i &lt; NB_POSTURES; i++) {
-        var sprite = new Sprite();
-        sprite.extractSprites(spritesheet, NB_POSTURES, (i+1),
-                              NB_FRAMES_PER_POSTURE,
-                              SPRITE_WIDTH, SPRITE_HEIGHT);
-        sprite.setNbImagesPerSecond(20);
-        womanSprites[i] = sprite;
-      }
-      // call the callback function passed as a parameter,
-      // we&#39;re done with loading assets and building the sprites
-      callback();
-    };
-  };
-  var start = function(){
-    ...
-    // Load sounds and images, then when this is done, start the  mainLoop
-    loadAssets(function() {
-        // We enter here only when all assets have been loaded
-        requestAnimationFrame(mainLoop);
-    });
-  };
-  ...
-  };</pre>
+  var loadAssets = function(callback) {
+    var SPRITESHEET_URL = &quot;https://i.imgur.com/3VesWqx.png&quot;;
+    var SPRITE_WIDTH = 48;
+    var SPRITE_HEIGHT = 92;
+    var NB_POSTURES=8;
+    var NB_FRAMES_PER_POSTURE = 13;
+    // load the spritesheet
+    var spritesheet = new Image();
+    spritesheet.src = SPRITESHEET_URL;
+    // Called when the spritesheet has been loaded
+    spritesheet.onload = function() {
+      // Create woman sprites
+      for(var i = 0; i &lt; NB_POSTURES; i++) {
+        var sprite = new Sprite();
+        sprite.extractSprites(spritesheet, NB_POSTURES, (i+1),
+          NB_FRAMES_PER_POSTURE,
+          SPRITE_WIDTH, SPRITE_HEIGHT);
+        sprite.setNbImagesPerSecond(20);
+        womanSprites[i] = sprite;
+      }
+      // call the callback function passed as a parameter,
+      // we&#39;re done with loading assets and building the sprites
+      callback();
+    };
+  };
+  var start = function(){
+    ...
+    // Load sounds and images, then when this is done, start the  mainLoop
+    loadAssets(function() {
+      // We enter here only when all assets have been loaded
+      requestAnimationFrame(mainLoop);
+    });
+  };
+  ...
+};</pre>
 
 </details>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -10935,31 +10929,32 @@ are created on top of the monster.</p>
   <summary>JavaScript function!</summary>
 
 <pre>function updateBalls(delta) {
-   // for each ball in the array
-   var allBallDead = true;
-   for(var i=0; i &lt; ballArray.length; i++) {
-     var ball = ballArray[i];
-     if(ball.dead) continue; // do nothing if the ball is dead
-     // if we are here: the ball is not dead
-     allBallDead = false;
-     // 1) move the ball
-     ball.move();
-     // 2) test if the ball collides with a wall
-     testCollisionWithWalls(ball);
-     // Test if the monster collides
-     if(circRectsOverlap(monster.x, monster.y,
-                         monster.width, monster.height,
-                         ball.x, ball.y, ball.radius)) {
-        //change the color of the ball
-        ball.color = &#39;red&#39;;
-        ball.dead = true;
-        // Here, a sound effect would greatly improve
-        // the experience!
-        currentScore+= 1;
-     }
-     // 3) draw the ball
-     ball.draw();
-  }</pre>
+  // for each ball in the array
+  var allBallDead = true;
+  for(var i=0; i &lt; ballArray.length; i++) {
+    var ball = ballArray[i];
+    if(ball.dead) continue; // do nothing if the ball is dead
+    // if we are here: the ball is not dead
+    allBallDead = false;
+    // 1) move the ball
+    ball.move();
+    // 2) test if the ball collides with a wall
+    testCollisionWithWalls(ball);
+    // Test if the monster collides
+    if(circRectsOverlap(monster.x, monster.y,
+    monster.width, monster.height,
+    ball.x, ball.y, ball.radius)) {
+      //change the color of the ball
+      ball.color = &#39;red&#39;;
+      ball.dead = true;
+      // Here, a sound effect would greatly improve
+      // the experience!
+      currentScore+= 1;
+    }
+    // 3) draw the ball
+    ball.draw();
+  }
+}</pre>
 
 </details>
 
@@ -10995,7 +10990,6 @@ survive?</p>
 JsBin</a>, then look at the source code. Start from the mainloop!</p>
 
 <pre>currentGameState = gameStates.gameOver:</pre>
-
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~ 152. Game Over Screen, asking to press space to start again. (251) ~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -11006,7 +11000,6 @@ JsBin</a>, then look at the source code. Start from the mainloop!</p>
   alt="Game over screen, asking to press space to start again." />
 
 <pre>currentGameState = gameStates.gamerunning:</pre>
-
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~ 153. Game Over Screen, asking to press space to start again. (252) ~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -11024,9 +11017,9 @@ JsBin</a>, then look at the source code. Start from the mainloop!</p>
 <pre>...
 // game states
 var gameStates = {
-   mainMenu: 0,
-   gameRunning: 1,
-   gameOver: 2
+  mainMenu: 0,
+  gameRunning: 1,
+  gameOver: 2
 };
 var currentGameState = gameStates.gameRunning;
 var currentLevel = 1;
@@ -11034,50 +11027,50 @@ var TIME_BETWEEN_LEVELS = 5000; // 5 seconds
 var currentLevelTime = TIME_BETWEEN_LEVELS;
 ...
 var mainLoop = function (time) {
-   ...
-   // number of ms since last frame draw
-   delta = timer(time);
-    // Clear the canvas
-   clearCanvas();
-    // monster.dead is set to true in updateBalls when there
-   // is a collision
-   if (monster.dead) {
-      currentGameState = gameStates.gameOver;
-   }
+  ...
+  // number of ms since last frame draw
+  delta = timer(time);
+  // Clear the canvas
+  clearCanvas();
+  // monster.dead is set to true in updateBalls when there
+  // is a collision
+  if (monster.dead) {
+    currentGameState = gameStates.gameOver;
+  }
   switch (currentGameState) {
     case gameStates.gameRunning:
-        // draw the monster
+    // draw the monster
     drawMyMonster(monster.x, monster.y);
-         // Check inputs and move the monster
+    // Check inputs and move the monster
     updateMonsterPosition(delta);
-        // update and draw balls
-        updateBalls(delta);
-        // display Score
-        displayScore();
-        // decrease currentLevelTime. Survive 5s per level
-        // When &lt; 0 go to next level
-       currentLevelTime -= delta;
+    // update and draw balls
+    updateBalls(delta);
+    // display Score
+    displayScore();
+    // decrease currentLevelTime. Survive 5s per level
+    // When &lt; 0 go to next level
+    currentLevelTime -= delta;
  
-       if (currentLevelTime &lt; 0) {
-          goToNextLevel();
-       }
-       break;
+    if (currentLevelTime &lt; 0) {
+      goToNextLevel();
+    }
+    break;
     case gameStates.mainMenu:
-       // TO DO! We could have a main menu with high scores etc.
-       break;
+    // TO DO! We could have a main menu with high scores etc.
+    break;
     case gameStates.gameOver:
-      ctx.fillText(&quot;GAME OVER&quot;, 50, 100);
-      ctx.fillText(&quot;Press SPACE to start again&quot;, 50, 150);
-      ctx.fillText(&quot;Move with arrow keys&quot;, 50, 200);
-      ctx.fillText(&quot;Survive 5 seconds for next level&quot;, 50, 250);
+    ctx.fillText(&quot;GAME OVER&quot;, 50, 100);
+    ctx.fillText(&quot;Press SPACE to start again&quot;, 50, 150);
+    ctx.fillText(&quot;Move with arrow keys&quot;, 50, 200);
+    ctx.fillText(&quot;Survive 5 seconds for next level&quot;, 50, 250);
  
-      if (inputStates.space) {
-        startNewGame();
-      }
-       break;
-    }
-     ...
-  };
+    if (inputStates.space) {
+      startNewGame();
+    }
+    break;
+  }
+  ...
+};
 ...</pre>
 
 </details>
@@ -11090,40 +11083,40 @@ and changes the current game-state to GameOver:</p>
   <summary>JavaScript code!</summary>
   
 <pre>function startNewGame() {
-    monster.dead = false;
-    currentLevelTime = 5000;
-    currentLevel = 1;
-    nbBalls = 5;
-    createBalls(nbBalls);
-    currentGameState = gameStates.gameRunning;
+  monster.dead = false;
+  currentLevelTime = 5000;
+  currentLevel = 1;
+  nbBalls = 5;
+  createBalls(nbBalls);
+  currentGameState = gameStates.gameRunning;
 }
 function goToNextLevel() {
-    // reset time available for next level
-    // 5 seconds in this example
-   currentLevelTime = 5000;
-   currentLevel++;
-   // Add two balls per level
-   nbBalls += 2;
-   createBalls(nbBalls);
+  // reset time available for next level
+  // 5 seconds in this example
+  currentLevelTime = 5000;
+  currentLevel++;
+  // Add two balls per level
+  nbBalls += 2;
+  createBalls(nbBalls);
 }
 function updateBalls(delta) {
-    // Move and draw each ball, test collisions,
-    for (var i = 0; i &lt; ballArray.length; i++) {
-       ...
-       // Test if the monster collides
-       if (circRectsOverlap(monster.x, monster.y,
-                            monster.width, monster.height,
-                            ball.x, ball.y, ball.radius)) {
-           //change the color of the ball
-           ball.color = &#39;red&#39;;
-           monster.dead = true;
-           // Here, a sound effect greatly improves
-           // the experience!
-           plopSound.play();
-       }
-       // 3) draw the ball
-       ball.draw();
-    }
+  // Move and draw each ball, test collisions,
+  for (var i = 0; i &lt; ballArray.length; i++) {
+    ...
+    // Test if the monster collides
+    if (circRectsOverlap(monster.x, monster.y,
+      monster.width, monster.height,
+      ball.x, ball.y, ball.radius)) {
+        //change the color of the ball
+        ball.color = &#39;red&#39;;
+        monster.dead = true;
+        // Here, a sound effect greatly improves
+        // the experience!
+        plopSound.play();
+      }
+      // 3) draw the ball
+      ball.draw();
+  }
 }</pre>
 
 </details>
@@ -11292,27 +11285,27 @@ var lastTime;
 var fpsContainer;
 var fps;
 var initFPSCounter = function() {
-   // adds a div for displaying the fps value
-   fpsContainer = document.createElement(&#39;div&#39;);
-   document.body.appendChild(fpsContainer);
+  // adds a div for displaying the fps value
+  fpsContainer = document.createElement(&#39;div&#39;);
+  document.body.appendChild(fpsContainer);
 }
 var measureFPS = function (newTime) {
-   // test for the very first invocation
-   if (lastTime === undefined) {
-      lastTime = newTime;
-      return;
-   }
-   //calculate the difference between last &amp; current frame
-   var diffTime = newTime - lastTime;
-   if (diffTime &gt;= 1000) {
-      fps = frameCount;
-      frameCount = 0;
-      lastTime = newTime;
-   }
-   //and display it in an element we appended to the
-   // document in the start() function
-   fpsContainer.innerHTML = &#39;FPS: &#39; + fps;
-   frameCount++;
+  // test for the very first invocation
+  if (lastTime === undefined) {
+    lastTime = newTime;
+    return;
+  }
+  //calculate the difference between last &amp; current frame
+  var diffTime = newTime - lastTime;
+  if (diffTime &gt;= 1000) {
+    fps = frameCount;
+    frameCount = 0;
+    lastTime = newTime;
+  }
+  //and display it in an element we appended to the
+  // document in the start() function
+  fpsContainer.innerHTML = &#39;FPS: &#39; + fps;
+  frameCount++;
 };</pre>
 
 </details>
@@ -11340,23 +11333,23 @@ also move the getMousePos method into there. </p>
   <summary>JavaScript code!</summary>
 
 <pre>function addListeners(inputStates, canvas) {
-   //add the listener to the main, window object, and update the states
-   window.addEventListener(&#39;keydown&#39;, function (event) {
-      if (event.keyCode === 37) {
-         inputStates.left = true;
-      } else if (event.keyCode === 38) {
-         inputStates.up = true;
-      } ...
-   }, false);
-   //if the key is released, change the states object
-   window.addEventListener(&#39;keyup&#39;, function (event) {
-      ...
-   }, false);
-   // Mouse event listeners
-   canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
-      inputStates.mousePos = getMousePos(evt, canvas);
-   }, false);
-...
+  //add the listener to the main, window object, and update the states
+  window.addEventListener(&#39;keydown&#39;, function (event) {
+    if (event.keyCode === 37) {
+      inputStates.left = true;
+    } else if (event.keyCode === 38) {
+      inputStates.up = true;
+    } ...
+  }, false);
+  //if the key is released, change the states object
+  window.addEventListener(&#39;keyup&#39;, function (event) {
+    ...
+  }, false);
+  // Mouse event listeners
+  canvas.addEventListener(&#39;mousemove&#39;, function (evt) {
+    inputStates.mousePos = getMousePos(evt, canvas);
+  }, false);
+  ...
 }
 function getMousePos(evt, canvas) {
    ...
@@ -11514,7 +11507,7 @@ Some of them are based on the framework presented in the course.</p>
 <ul>
   <li>Gameboy Tetris (written starting from the game framework presented in the 
     course). <a href="https://courses.edx.org/assets/courseware/v1/b3fc2d6c5c519aaa5986f58e064a6426/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/Tetris.rar" target="_blank" rel="noopener noreferrer">Download 
-	the sources</a> (author Maxime Demetrio)</li>
+    the sources</a> (author Maxime Demetrio)</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~ 162. gameboy tetris in html5 (263) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -11758,13 +11751,13 @@ the new arrayBuffer type for the expected response (<i>line
 
 <pre>// Load a binary file from a URL as an ArrayBuffer.
 function loadSoundFile(url) {
-var xhr = new XMLHttpRequest();
-xhr.open(&#39;GET&#39;, url, true);
-xhr.responseType = &#39;arraybuffer&#39;;
-xhr.onload = function(e) {
-initSound(this.response); // this.response is an ArrayBuffer.
-};
-xhr.send();
+  var xhr = new XMLHttpRequest();
+  xhr.open(&#39;GET&#39;, url, true);
+  xhr.responseType = &#39;arraybuffer&#39;;
+  xhr.onload = function(e) {
+    initSound(this.response); // this.response is an ArrayBuffer.
+  };
+  xhr.send();
 }</pre>
 
 <h4>Example: download a binary song file using XHR2 and responseType=‘arraybuffer’, and play it using Web Audio</h4>
@@ -11849,14 +11842,14 @@ type&lt;/h2&gt;
     xhr.open(&#39;GET&#39;, url, true);
     xhr.responseType = &#39;arraybuffer&#39;; // THIS IS NEW WITH HTML5!
     xhr.onload = function(e) {
-       console.log(&quot;Song downloaded, decoding...&quot;);
-       initSound(this.response); // this.response is an ArrayBuffer.
-    };
-    xhr.onerror = function(e) {
-      console.log(&quot;error downloading file&quot;);
-    }
+      console.log(&quot;Song downloaded, decoding...&quot;);
+      initSound(this.response); // this.response is an ArrayBuffer.
+    };
+    xhr.onerror = function(e) {
+      console.log(&quot;error downloading file&quot;);
+    }
     xhr.send();
-       console.log(&quot;Ajax request sent... wait until it downloads
+      console.log(&quot;Ajax request sent... wait until it downloads
     completely&quot;);
   }
 &lt;/script&gt;
@@ -11953,7 +11946,7 @@ HTTP method), or an upload (using POST).</p>
 xhr.open(&#39;GET&#39;, url, true);
 ...
 xhr.onprogress = function(e) {
-// do something
+  // do something
 }
 580. 
 &lt;!-- --&gt;
@@ -11966,7 +11959,7 @@ xhr.send();</pre>
 xhr.open(&#39;POST&#39;, url, true);
 ...
 xhr.upload.onprogress = function(e) {
-// do something
+  // do something
 }
 xhr.send();</pre>
 
@@ -12264,13 +12257,13 @@ creations.</p>
 <ul>
   <li>Did you hear about <a href="https://davidwalsh.name/fetch" target="_blank" 
     rel="noopener noreferrer">the Fetch API</a>? This APIs is easier to use than 
-	XhR2, but monitoring progress is a bit trickier and will require the use of 
-	the streams API. Monitoring upload is not yet supported. <a href="https://javascript.info/fetch-progress" target="_blank" rel="noopener noreferrer">See for example this article</a>.</li>
+    XhR2, but monitoring progress is a bit trickier and will require the use of 
+    the streams API. Monitoring upload is not yet supported. <a href="https://javascript.info/fetch-progress" target="_blank" rel="noopener noreferrer">See for example this article</a>.</li>
   <li>Did you note that using XHR2 for monitoring progress is really simple and 
     efficient?  What is your experience? Please share ;)</li>
   <li>How can we monitor the speed of an upload/download in bytes per second? What 
     would you propose? Did you find any interesting resources on the Web that explain 
-	that?</li>
+    that?</li>
 </ul>
 
 <h4>Optional projects:</h4>
@@ -12278,12 +12271,12 @@ creations.</p>
 <ul>
   <li><p>If you know how to program server-side code, please make a small app that 
     will upload files, monitor the progress of the upload, save the files server-side, 
-	and send back a message containing the URLs of the files. Better: create a Web 
-	page that displays links to the uploaded files.</p></li>
+    and send back a message containing the URLs of the files. Better: create a Web 
+    page that displays links to the uploaded files.</p></li>
   <li><p>Try to write an assetLoader function that will download a set of images 
     and sound (maybe using the BufferUtility seen during Module 1), but this time 
-	with a progress bar. This could be useful for a game, or for a Web app that 
-	needs to load resources before starting.</p></li>
+    with a progress bar. This could be useful for a game, or for a Web app that 
+    needs to load resources before starting.</p></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-3">3.3 Drag and Drop: the Basics</h3>
@@ -12597,16 +12590,16 @@ it at CodePen</a>:</p>
     the zone we prevent event propagation (ondragover=“return false”)</p></li>
   <li><p>When we enter the dragstart listener (<i>line 5</i>), we copy the dragged-
     element’s data-value attribute to the drag and drop clipboard with a name/key 
-	equal to “Fruit” (<i>line 11</i>),</p></li>
+    equal to “Fruit” (<i>line 11</i>),</p></li>
   <li><p>When a drop occurs in the “drop zone” (the &lt;div&gt; at <i>line 44</i>), 
     the dropHandler(event) function is called. This always occurs after a call to 
-	the dragstart handler. In other words: when we enter the drop handler, there 
-	must always be something on the clipboard! We use an event.dataTransfer.setData(…) 
-	in the dragstart handler, and an event.dataTransfer.getData(…) in the drop handler.</p></li>
+    the dragstart handler. In other words: when we enter the drop handler, there 
+    must always be something on the clipboard! We use an event.dataTransfer.setData(…) 
+    in the dragstart handler, and an event.dataTransfer.getData(…) in the drop handler.</p></li>
   <li><p>The dropHandler function is called (<i>line 15</i>), we get the object 
     with a name/key equal to “Fruit” (<i>line 21</i>) from the clipboard , we create 
-	a &lt;li&gt; element (<i>line 18</i>), and set its value according to the value 
-	in that clipboard object (<i>lines 23-31</i>),</p></li>
+    a &lt;li&gt; element (<i>line 18</i>), and set its value according to the value 
+    in that clipboard object (<i>lines 23-31</i>),</p></li>
   <li><p>Finally we add the &lt;li&gt; element to the &lt;ol&gt; list within the 
     drop zone &lt;div&gt;.</p></li>
 </ul>
@@ -13091,74 +13084,74 @@ the dragstart handler, and we set the effect (to “move”, “copy”, etc.)
   ...
 }</pre>
 
-<p>To set a custom image, we also do the following in
-the dragstart handler:</p>
+<p>To set a custom image, we also do the following in the dragstart handler:</p>
 
 <details>
   <summary>JavaScript Extract!</summary>
   
 <pre>function dragStartHandler(event) {
-   // allowed cursor effects
-   event.dataTransfer.effectAllowed = &#39;copy&#39;;
+  // allowed cursor effects
+  event.dataTransfer.effectAllowed = &#39;copy&#39;;
 
-   // Load and create an image
-   var dragIcon = document.createElement(&#39;img&#39;);
-   dragIcon.src = &#39;anImage.png&#39;;
-   dragIcon.width = 100;
+  // Load and create an image
+  var dragIcon = document.createElement(&#39;img&#39;);
+  dragIcon.src = &#39;anImage.png&#39;;
+  dragIcon.width = 100;
 
-   // set the cursor to this image, with an offset in X, Y
-   event.dataTransfer.setDragImage(dragIcon, -10, -10);
-   ...
+  // set the cursor to this image, with an offset in X, Y
+  event.dataTransfer.setDragImage(dragIcon, -10, -10);
+  ...
 }</pre>
 
 </details>
 
 <h4>Complete online example</h4>
 
-<p>Here is the previous example (with apples, oranges, etc) that sets a
-“copy” cursor and a custom image. Try it in your browser below (start to
-drag and wait a few seconds for the image to be loaded. You might have
-to try twice before it works) or <a
-href="https://codepen.io/w3devcampus/pen/ZbEpEE" target="_blank" rel="noopener noreferrer">play with it at
-CodePen</a>:</p>
-<p>Here are the various possible values for cursor states (your browser
-will not necessarily support all of these; we noticed that copyMove,
-etc. had no effect with Chrome, for example). The values of “move”,
-“copy”, and “link” are widely supported.</p>
+<p>Here is the previous example (with apples, oranges, etc) that sets a “copy” cursor and a 
+custom image. Try it in your browser below (start to drag and wait a few seconds for the image 
+to be loaded. You might have to try twice before it works) or 
+<a href="https://codepen.io/w3devcampus/pen/ZbEpEE" target="_blank" rel="noopener noreferrer">
+play with it at CodePen</a>:</p>
+
+<p>Here are the various possible values for cursor states (your browser will not necessarily 
+support all of these; we noticed that copyMove, etc. had no effect with Chrome, for example). 
+The values of “move”, “copy”, and “link” are widely supported.</p>
+
 <p>All possible values for dropEffect and effectAllowed:</p>
 
 <ul>
-  <li><p><b>dataTransfer.effectAllowed</b> can be set to the following values:
-    none, copy, copyLink, copyMove, link, linkMove, move, all, and uninitialized.</p></li>
-  <li><p><b>dataTransfer.dropEffect </b>can take on one of the following values: 
-    <b>none</b>, <b>copy</b>, <b>link</b>, <b>move</b>.</p></li>
+  <li><p><b>dataTransfer.effectAllowed</b> can be set to the following values: none, copy, copyLink, 
+    copyMove, link, linkMove, move, all, and uninitialized.</p></li>
+  <li><p><b>dataTransfer.dropEffect </b>can take on one of the following values: <b>none</b>, 
+    <b>copy</b>, <b>link</b>, <b>move</b>.</p></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-3-7">3.3.7 Drag and drop HTML elements</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h4>Drag and drop images or any HTML element within a document</h4>
 
-<p>We saw the main principles of HTML5 drag and drop in the previous
-sections. There are other interesting uses that differ in the way we
-copy and paste things to/from the clipboard. The clipboard is accessed
-through the dataTransfer property of the different events:</p>
+<p>We saw the main principles of HTML5 drag and drop in the previous sections. There are other 
+interesting uses that differ in the way we copy and paste things to/from the clipboard. The 
+clipboard is accessed through the dataTransfer property of the different events:</p>
 
 <pre>event.dataTransfer.setData(&quot;Fruit&quot;, event.target.dataset.value);
 ...
 var data = event.dataTransfer.getData(&quot;Fruit&quot;);</pre>
 
 <p>&lt;img&gt; elements are all draggable by default!</p>
-<p>Normally, to make an element draggable, you must add
-the draggable=true attribute. &lt;img&gt; elements are an exception:
-they are draggable by default! The next example shows how to drag and
+
+<p>Normally, to make an element draggable, you must add the draggable=true attribute. &lt;img&gt; 
+elements are an exception: they are draggable by default! The next example shows how to drag and
 drop an image from one location in the document to another.</p>
 
 <p>Example: move images as an HTML subtree</p>
+
 <p>Try this example (adapted from <a
-href="https://web.archive.org/web/20160219080616/http:/html5demo.braincracking.org/demo/dragNDrop.php" target="_blank" rel="noopener noreferrer">braincracking.org</a> (in
-French)) in your browser below or <a
-href="https://codepen.io/w3devcampus/pen/xwxEZg" target="_blank" rel="noopener noreferrer">play with it at
-CodePen</a>:</p>
+href="https://web.archive.org/web/20160219080616/http:/html5demo.braincracking.org/demo/dragNDrop.php" target="_blank" rel="noopener noreferrer">braincracking.org</a>
+ (in French)) in your browser below or 
+<a href="https://codepen.io/w3devcampus/pen/xwxEZg" target="_blank" rel="noopener noreferrer">
+play with it at CodePen</a>:</p>
+
 <p>Code from the example:</p>
 
 <details>
@@ -13167,42 +13160,42 @@ CodePen</a>:</p>
 <pre>&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
 &lt;style&gt;
-   .box {
-      border: silver solid;
-      width: 256px;
-      height: 128px;
-      margin: 10px;
-      padding: 5px;
-      float: left;
-   }
+  .box {
+    border: silver solid;
+    width: 256px;
+    height: 128px;
+    margin: 10px;
+    padding: 5px;
+    float: left;
+  }
 &lt;/style&gt;
 &lt;script&gt;
-    function drag(target, evt) {
-        evt.dataTransfer.setData(&quot;Text&quot;, target.id);
-    }
-    function drop(target, evt) {
-        var id = evt.dataTransfer.getData(&quot;Text&quot;);
-        target.appendChild(document.getElementById(id));
-        // prevent default behavior
-        evt.preventDefault();
-    }
+  function drag(target, evt) {
+    evt.dataTransfer.setData(&quot;Text&quot;, target.id);
+  }
+  function drop(target, evt) {
+    var id = evt.dataTransfer.getData(&quot;Text&quot;);
+    target.appendChild(document.getElementById(id));
+    // prevent default behavior
+    evt.preventDefault();
+  }
 &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
 Drag and drop browser images in a zone:&lt;br/&gt;
   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/ABiBCwZ.png&quot; id=&quot;cr&quot; 
-        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Chrome&quot;&gt;
+    ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Chrome&quot;&gt;
   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/n7xo93U.png&quot; id=&quot;ff&quot;
-        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Firefox&quot;&gt;
+    ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Firefox&quot;&gt;
   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/ugUmuGQ.png&quot; id=&quot;ie&quot;
-        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo IE&quot;&gt;
+    ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo IE&quot;&gt;
   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/jfrNErz.png&quot; id=&quot;op&quot;
-        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Opera&quot;&gt;
+    ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Opera&quot;&gt;
   &lt;img src=&quot;https://mainline.i3s.unice.fr/mooc/gDJCG0l.png&quot; id=&quot;sf&quot;
-        ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Safari&quot;&gt;&lt;br/&gt;
+    ondragstart=&quot;drag(this, event)&quot; alt=&quot;Logo Safari&quot;&gt;&lt;br/&gt;
   &lt;div class=&quot;box&quot; ondragover=&quot;return 
     false&quot; ondrop=&quot;drop(this, event)&quot;&gt;
-      &lt;p&gt;Good web browsers&lt;/p&gt;
+    &lt;p&gt;Good web browsers&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class=&quot;box&quot; ondragover=&quot;return false&quot; 
     ondrop=&quot;drop(this, event)&quot;&gt;
@@ -13297,7 +13290,7 @@ CodePen</a>:</p>
     This paragraph is not selectable however. Look at the CSS in the source code.
   &lt;/p&gt;
   &lt;div class=&quot;box&quot; ondragover=&quot;return false&quot; 
-    ondrop=&quot;drop(this, event)&quot;&gt;
+  ondrop=&quot;drop(this, event)&quot;&gt;
     &lt;p&gt;Drop some text selection here.&lt;/p&gt;
   &lt;/div&gt;
 &lt;/body&gt;
@@ -13319,9 +13312,9 @@ creations.</p>
 
 <ul>
   <li><p>If you find interesting drag and drop examples on the Web, please share 
-    them in the forum.</p></li>
+  them in the forum.</p></li>
   <li><p>What other example(s) would you like to be added to the course (drag and 
-    drop of files is covered in the next lesson)?</p></li>
+  drop of files is covered in the next lesson)?</p></li>
 </ul>
 
 <h4>Optional projects:</h4>
@@ -13329,11 +13322,11 @@ creations.</p>
 <ul>
   <li><p>Code an illustrative drag and drop demo, and share it in the forum. For example, 
     try to add something similar to the “what is your preferred fruit” or “what is your 
-	preferred browser” to a form.</p></li>
+    preferred browser” to a form.</p></li>
   <li><p>Order a set of images by dragging and dropping them. A sort of picture gallery, 
     you drag one picture (an &lt;img&gt; element) from its current position and drop it 
-	at another location in the gallery (a grid). In the meantime, the other pictures 
-	will have to move to give some room for the picture you dropped.</p></li>
+    at another location in the gallery (a grid). In the meantime, the other pictures 
+    will have to move to give some room for the picture you dropped.</p></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-4">3.4 Drag and Drop: Working with Files</h3>
@@ -13447,8 +13440,8 @@ function dropHandler(event) {
     rel="noopener noreferrer">Using the HTML5 drag and drop API</a>”</p></li>
   <li><p>HTML Goodies article: 
     “<a  href="https://www.htmlgoodies.com/html5/javascript/drag-files-into-the-browser-from-the-desktop-HTML5.html"
-	target="_blank" rel="noopener noreferrer">Drag Files Into the Browser From the Desktop 
-	with HTML5</a>”</p></li>
+    target="_blank" rel="noopener noreferrer">Drag Files Into the Browser From the Desktop 
+    with HTML5</a>”</p></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-4-2">3.4.2 Drag and drop files in a drop zone</h3>
@@ -13607,9 +13600,9 @@ target="_blank" rel="noopener noreferrer">play with it at CodePen</a>:</p>
 <ul>
   <li><p>We prevented the browser default behavior in the drop and dragover handlers. 
     Otherwise, if we dropped a media file (an image, an audio of video file), the browser 
-	would try to display/play it in a new window/tab. We also stop the  propagation for 
-	performance reasons, because when we drag an object it can raise many events within 
-	the parents of the drop zone element as well.</p></li>
+    would try to display/play it in a new window/tab. We also stop the  propagation for 
+    performance reasons, because when we drag an object it can raise many events within 
+    the parents of the drop zone element as well.</p></li>
   <li><p><i>Lines 73-74</i> create a &lt;li&gt; element. Its value is initialized with 
     the file name of the current file in the collection, and added to the &lt;ol&gt; list.</p></li>
 </ul>
@@ -14152,14 +14145,14 @@ creations.</p>
 <ul>
   <li><p>If a user were to drag and drop the same file to a drop zone several times, 
     this would be confusing. Try to modify some of the examples to avoid duplication 
-	(i.e.: not uploading the same file twice).</p></li>
+    (i.e.: not uploading the same file twice).</p></li>
   <li><p>Try to modify the example that played a song loaded in memory, using Web 
     Audio, for allowing a song file to be dragged and dropped.</p></li>
   <li><p>Combine these topics with the talents you developed earlier, working with 
     canvas: instead of a progress ‘thermometer’ to measure XHR2 upload progress, 
-	try modifying the appearance of the thumbnail to show the proportion of the 
-	graphic file as it is transferred (alternatively, if you have style-sheet skills, 
-	you could try this using CSS transitions).</p></li>
+    try modifying the appearance of the thumbnail to show the proportion of the 
+    graphic file as it is transferred (alternatively, if you have style-sheet skills, 
+    you could try this using CSS transitions).</p></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-5">3.5 Forms and Files</h3>
@@ -14215,7 +14208,7 @@ code provided with each of the examples.</p>
 <ul>
   <li><p>This method enables us to send all of the form’s content (regular input 
     field values + files selected) at once, <i>using a single Ajax request</i> 
-	(we will need only one progress bar),</p></li>
+    (we will need only one progress bar),</p></li>
   <li><p>or we may <i>use multiple Ajax requests</i>, which we don’t start until 
     the submit button has been clicked.</p></li>
 </ul>
@@ -15871,13 +15864,13 @@ code):</p>
 <ul>
   <li><p>Since there’s only one object store, you can avoid passing a list of object 
     stores that you need in your transaction and just pass the name as a string 
-	(<i>line 8</i>),</p></li>
+    (<i>line 8</i>),</p></li>
   <li><p>We are only reading from the database, so we don’t need a “readwrite” 
     transaction. Calling transaction() with no mode specified gives a “readonly” 
-	transaction (<i>line 8</i>),</p></li>
+    transaction (<i>line 8</i>),</p></li>
   <li><p>We don’t actually save the request object to a variable. Since the DOM 
     event has the request as its target we can use the event to get to the result 
-	property (<i>line 9</i>).</p></li>
+    property (<i>line 9</i>).</p></li>
 </ul>
 
 <h4>Second method: getting more than one piece of data</h4>
@@ -16217,7 +16210,7 @@ comments/observations/questions and share your creations.</p>
 <ul>
   <li><p>IndexedDB is certainly the most complex API presented in this course. However, 
     using it is rather simple once you’ve climbed the learning curve. If you have prior 
-	experience with databases, can you tell your feelings in the forum?</p></li>
+    experience with databases, can you tell your feelings in the forum?</p></li>
   <li><p>If you found handy tools for using IndexedDB, or other external tutorials and 
     examples, please share!</p></li>
 </ul>
@@ -16227,14 +16220,14 @@ comments/observations/questions and share your creations.</p>
 <ul>
   <li><p>Start from the examples provided in the IndexedDB course and adapt them in order 
     to manage a database of the HTML5 interactive examples (also provided in this course). 
-	For example, objects stores in the datastore may be composed of:</p>
+    For example, objects stores in the datastore may be composed of:</p>
   <ul>
     <li><p>the jsbin.com URL of the example,</p></li>
     <li><p>a description,</p></li>
     <li><p>the name of the week in which the example has been presented, and,</p></li>
     <li><p>the name of the lesson in the chapter,</p></li>
     <li><p>eventually, a screenshot for the example (URL, or if you are a bit of a geek, 
-	  image content).</p></li>
+      image content).</p></li>
   </ul>
   </li>
 </ul>
@@ -16242,8 +16235,8 @@ comments/observations/questions and share your creations.</p>
 <ul>
   <li>Produce an HTML page which contains your application. When loaded, it must populate 
     the indexedDB database with at least 10 different examples, and display them in a 
-	table or in a list. The GUI must also provide a search form for retrieving all the 
-	examples from a given chapter.</li>
+    table or in a list. The GUI must also provide a search form for retrieving all the 
+    examples from a given chapter.</li>
 </ul>
 
 <h4>Conclusion</h4>
@@ -16260,16 +16253,16 @@ your needs.</p>
 <ul>
   <li><p><b>If you need to work with transactions</b> (in the database sense: protect 
     data against concurrent access, etc.), or do some searches on a large amount 
-	of data, if you need indexes, etc., <b>then use IndexedDB.</b></p></li>
+    of data, if you need indexes, etc., <b>then use IndexedDB.</b></p></li>
   <li><p><b>If you need a way to store simple strings or JSON objects, then use 
     localStorage/sessionStorage</b>. <i>Example</i>: store HTML form content as 
-	you type, store a game’s hi-scores, preferences of an application, etc.</p></li>
+    you type, store a game’s hi-scores, preferences of an application, etc.</p></li>
   <li><p><b>If you need to manipulate files (read or download/upload), then use 
     the File API and XHR2.</b></p></li>
   <li><p>If you need to manipulate a file system, there is a FileSystem and a 
     FileWriter API which are very poorly supported and will certainly be replaced 
-	in HTML 5.1. We decided not to discuss these in the course because they lack 
-	agreement within the community and browser vendors.</p></li>
+    in HTML 5.1. We decided not to discuss these in the course because they lack 
+    agreement within the community and browser vendors.</p></li>
   <li><p>If you need an SQL database client-side: No! Forget this idea, please! 
     There was once a WebSQL API, but it disappeared rapidly.</p></li>
 </ul>
@@ -16286,12 +16279,12 @@ your needs.</p>
   <li>You might be interested by 
     <a href="https://developers.google.com/web/fundamentals/instant-and-offline/web-storage/cache-api" 
     target="_blank" rel="noopener noreferrer">the Cache API</a> to make your 
-	application data available offline (in other terms: making your Web page 
-	or your Web app. available offline).<br><br></li>
+    application data available offline (in other terms: making your Web page 
+    or your Web app. available offline).<br><br></li>
   <li>Read also <a href="https://web.dev/storage-for-the-web/" target="_blank" rel="noopener noreferrer">
     this article</a> that covers all the different options for storing data in the 
-	browser and gives another look at what has been presented in this chapter of 
-	the course.</li>
+    browser and gives another look at what has been presented in this chapter of 
+    the course.</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-1">Module 4. Web Components and other HTML5 APIs</h3>
@@ -17294,19 +17287,19 @@ try {
 <ul>
   <li><p><i>Line 5: </i>we use this particular selector for safety. It means “select 
     the element only in the HTML of the document that is attached to this JavaScript. 
-	Web Components might be included in other HTML pages, as we will see in the next 
-	pages of this course. A good practice is to select elements only in the HTML page 
-	of the Web Component, not in the document that will import the Web Component.</p></li>
+    Web Components might be included in other HTML pages, as we will see in the next 
+    pages of this course. A good practice is to select elements only in the HTML page 
+    of the Web Component, not in the document that will import the Web Component.</p></li>
   <li><p><i>Line 7</i>: definition of the Web Component class attached to the custom 
     element &lt;my-widget&gt;</p></li>
   <li><p><i>Lines 8-17</i>:  the constructor definition for the class always starts 
     by calling super() so that the correct prototype chain is established. Inside 
-	the constructor, we define all the functionality the element will have. Very 
-	often this starts by cloning a template in the Shadow DOM.</p></li>
+    the constructor, we define all the functionality the element will have. Very 
+    often this starts by cloning a template in the Shadow DOM.</p></li>
   <li><p><i>Lines 22</i>: registration of a new custom element named &lt;my-widget&gt;. 
     When the browser encounters &lt;my-widget&gt; within an HTML document, it will 
-	create an instance of the MyWidget class and render the shadow DOM of the Web 
-	Component.</p></li>
+    create an instance of the MyWidget class and render the shadow DOM of the Web 
+    Component.</p></li>
 </ul>
 
 <h4>Full example</h4>
@@ -18208,12 +18201,12 @@ things:</p>
 <ol type="1">
   <li>Chrome has already implemented a new way for transferring objects from/to Web 
     Workers by reference, in addition to the standard “by copy” method. This is 
-	<a href="https://www.w3.org/TR/html51/infrastructure.html#transferable-objects" 
-	target="_blank" rel="noopener noreferrer"> in the HTML 5.1 draft specification from 
-	the W3C</a> - look for “transferable” objects!</li>
+    <a href="https://www.w3.org/TR/html51/infrastructure.html#transferable-objects" 
+    target="_blank" rel="noopener noreferrer"> in the HTML 5.1 draft specification from 
+    the W3C</a> - look for “transferable” objects!</li>
   <li>The canvas is not usable from Web Workers, however, 
     <a href="https://www.w3.org/TR/html51/semantics.html#proxying-canvases-to-workers" 
-	target="_blank" rel="noopener noreferrer">HTML 5.1 proposes a canvas proxy.</a></li>
+    target="_blank" rel="noopener noreferrer">HTML 5.1 proposes a canvas proxy.</a></li>
 </ol>
 
 <h4>Debugging Web Workers</h4>
@@ -18223,7 +18216,7 @@ things:</p>
     and having a good tool-kit makes this process much easier.</li>
   <li><b>Chrome</b> provides tools for debugging Web Workers. See 
     <a href ="https://developers.google.com/web/tools/chrome-devtools/javascript/background-services" 
-	target="_blank" rel="noopener noreferrer">Debug Background Services With Chrome DevTools</a>.</li>
+    target="_blank" rel="noopener noreferrer">Debug Background Services With Chrome DevTools</a>.</li>
 </ul>
 
 <p>When you open a page with Web Workers, open the Chrome Dev Tools (F12), look on the 
@@ -18243,7 +18236,7 @@ session with the prime numbers example:</p>
 <ul>
   <li><b>FireFox</b> has similar tools, see 
     <a href="https://developer.mozilla.org/en-US/docs/Tools" target="_blank" 
-	rel="noopener noreferrer">Firefox developer tools</a>.</li>
+    rel="noopener noreferrer">Firefox developer tools</a>.</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-3-4">4.3.4 Demos</h3>
@@ -18309,7 +18302,7 @@ your comments/observations/questions and share your creations.</p>
     Workers can be a savior in some situations?</p></li>
   <li><p>Can you find some explanations on the Web about multi core architectures and Web 
     Workers (e.g., about threads/workers benefiting from multi core processors, leading to 
-	greater performance). Please share any relevant articles in the forum!</p></li>
+    greater performance). Please share any relevant articles in the forum!</p></li>
 </ul>
 
 <h4>Optional projects:</h4>
@@ -18319,13 +18312,13 @@ your comments/observations/questions and share your creations.</p>
   <li>There is a wonderful demonstration of a 
     <a href="https://testdrive-archive.azurewebsites.net/Graphics/WorkerFountains/Default.html" 
     target="_blank" rel="noopener noreferrer">fountain animation</a> using <i>particles</i>, 
-	made by Microsoft. Can you write something similar, but perhaps with fewer options? The 
-	idea was the following: compute <i>particle movements</i> in separate <i>workers</i>, 
-	and when a new array of <i>particles</i> is ready to be drawn, post it from the Web 
-	Worker. The main page has a mainloop for animating at 60 frames per second. When a 
-	new set of <i>particles</i> is ready (posted by a <i>Worker</i>), it is drawn and 
-	animated. The demo had up to 10 <i>workers</i> operating in <i>parallel</i>, in the 
-	<i>background</i>.</p></li>
+    made by Microsoft. Can you write something similar, but perhaps with fewer options? The 
+    idea was the following: compute <i>particle movements</i> in separate <i>workers</i>, 
+    and when a new array of <i>particles</i> is ready to be drawn, post it from the Web 
+    Worker. The main page has a mainloop for animating at 60 frames per second. When a 
+    new set of <i>particles</i> is ready (posted by a <i>Worker</i>), it is drawn and 
+    animated. The demo had up to 10 <i>workers</i> operating in <i>parallel</i>, in the 
+    <i>background</i>.</p></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~ 243. ie10 web workers fountain demo (456) ~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -18568,11 +18561,11 @@ x<sub>0</sub> and z<sub>0</sub>.
     (window.DeviceOrientationEvent is not null),</li>
   <li>Define a listener for the ‘deviceorientation’ event as follows: 
     window.addEventListener(‘deviceorientation’, callback, false); with 
-	the callback function accepting the event object as its single input parameter,</li>
+    the callback function accepting the event object as its single input parameter,</li>
   <li>Extract the angles from the event (use its properties: alpha, beta, gamma), and</li>
   <li><a href="https://jsbin.com/limugat/edit" target="_blank" 
     rel="noopener noreferrer">Here’s an example on JsBin</a>. Try it with  a 
-	smartphone, a tablet, or a device with an accelerometer:</li>
+    smartphone, a tablet, or a device with an accelerometer:</li>
 </ol>
 
 <p>(If using a mobile device, <a href="https://jsbin.com/limugat" 
@@ -19012,7 +19005,7 @@ ball.y += acceleration.y;
             // Display the raw acceleration data
             var rawAcceleration = &quot;[&quot; + Math.round(acceleration.x) 
               + &quot;, &quot; + Math.round(acceleration.y) 
-			  + &quot;, &quot; + Math.round(acceleration.z) + &quot;]&quot;;
+              + &quot;, &quot; + Math.round(acceleration.z) + &quot;]&quot;;
             // Z is the acceleration in the Z axis, and if the device
             // is facing up or down
             var facingUp = -1;
@@ -19294,14 +19287,14 @@ target="_blank" rel="noopener noreferrer">use this URL instead</a>!</p>
 <ul>
   <li>From the W3C specification: 
     <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html#devicemotion" 
-	target="_blank" rel="noopener noreferrer">devicemotion Event</a><br><br></li>
+    target="_blank" rel="noopener noreferrer">devicemotion Event</a><br><br></li>
   <li>From Google Devs: 
     "<a href="https://web.dev/articles/device-orientation"
-	target="_blank" rel="noopener noreferrer">Device Orientation &amp; Motion</a>"<br><br></li>
+    target="_blank" rel="noopener noreferrer">Device Orientation &amp; Motion</a>"<br><br></li>
   <li>On Dev. Opera: 
     "<a href="https://dev.opera.com/articles/w3c-device-orientation-api/" 
-	target="_blank" rel="noopener noreferrer"> The W3C Device Orientation API: 
-	Detecting Orientation and Acceleration</a>"</li>
+    target="_blank" rel="noopener noreferrer"> The W3C Device Orientation API: 
+    Detecting Orientation and Acceleration</a>"</li>
 </ul>
 <!-- https://developers.google.com/web/fundamentals/native-hardware/device-orientation/" -->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -19342,8 +19335,10 @@ comments/observations/questions and share your creations.</p>
   Last Updated: 5-27-2025 Tue 11:22pm<br>
   Last Updated: 6-25-2025 Tue 7:38pm<br>
   Last Updated: 6-27-2025 Fri 2:04pm<br>
-  Last Updated: 6-29-2025 Sun 7:42pm</h6>
+  Last Updated: 6-29-2025 Sun 7:42pm<br>
+  Last Updated: 9-13-2025 Sat 10:27pm</h6>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <script src="./js/scripts.js"></script>
 </body>
 </html>
+

@@ -18334,14 +18334,13 @@ your comments/observations/questions and share your creations.</p>
   <li>Please write a small Web app. that uses Web Workers.</li>
   <li>There is a wonderful demonstration of a 
     <a href="https://testdrive-archive.azurewebsites.net/Graphics/WorkerFountains/Default.html" 
-    target="_blank" rel="noopener noreferrer">fountain animation</a> using <i>particles</i>, 
-    made by Microsoft. Can you write something similar, but perhaps with fewer options? The 
-    idea was the following: compute <i>particle movements</i> in separate <i>workers</i>, 
-    and when a new array of <i>particles</i> is ready to be drawn, post it from the Web 
-    Worker. The main page has a mainloop for animating at 60 frames per second. When a 
-    new set of <i>particles</i> is ready (posted by a <i>Worker</i>), it is drawn and 
-    animated. The demo had up to 10 <i>workers</i> operating in <i>parallel</i>, in the 
-    <i>background</i>.</p></li>
+    target="_blank" rel="noopener noreferrer" title="Fountain Animation using particles">
+	fountain animation</a> using <i>particles</i>, made by Microsoft. Can you write something similar, 
+	but perhaps with fewer options? The idea was the following: compute <i>particle movements</i> in
+	separate <i>workers</i>, and when a new array of <i>particles</i> is ready to be drawn, post it 
+	from the Web Worker. The main page has a mainloop for animating at 60 frames per second. When a 
+	new set of <i>particles</i> is ready (posted by a <i>Worker</i>), it is drawn and animated. The 
+	demo had up to 10 <i>workers</i> operating in <i>parallel</i>, in the <i>background</i>.</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~ 243. ie10 web workers fountain demo (456) ~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -18354,84 +18353,78 @@ your comments/observations/questions and share your creations.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-4">4.4 The Orientation and Device Motion APIs</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>This section covers
-the <a href="https://www.w3.org/TR/screen-orientation/" target="_blank" rel="noopener noreferrer">HTML5
-orientation API</a>: a way to use angle measures provided by
+<p>This section covers the 
+<a href="https://www.w3.org/TR/screen-orientation/" target="_blank" rel="noopener noreferrer" 
+title="HTML5 orientation API">HTML5 orientation API</a>: a way to use angle measures provided by
 accelerometers from mobile devices or laptops such as MacBooks.</p>
 
-<p><b>Beware</b>: all examples must be run on a device with an
-orientation sensor and/or with an accelerometer. Furthermore,
-Chrome/Safari and Mozilla support this API, but Opera mobile doesn’t
+<p><b>Beware</b>: all examples must be run on a device with an orientation sensor and/or with an 
+accelerometer. Furthermore, Chrome/Safari and Mozilla support this API, but Opera mobile doesn’t
 (yet) at the time of writing.</p>
 
-<p>If it provides a “mobile device emulation mode”, you can use the
-devtools of a desktop browser to fake the orientation values (see the
-support table below, the columns for desktop versions of browsers are
-about the support for this emulation mode).</p>
+<p>If it provides a “mobile device emulation mode”, you can use the devtools of a desktop browser 
+to fake the orientation values (see the support table below, the columns for desktop versions of 
+browsers are about the support for this emulation mode).</p>
 
 <h4>External resources:</h4>
 
 <ul>
-  <li>The W3C specification: <a href="https://www.w3.org/TR/screen-orientation/" target="_blank" rel="noopener noreferrer">The Screen Orientation API</a></li>
-  <li>Article on HTML5Rocks.com about device orientation: <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank" rel="noopener noreferrer">Device Orientation and Motion</a></li>
+  <li>The W3C specification: <a href="https://www.w3.org/TR/screen-orientation/" target="_blank" 
+    rel="noopener noreferrer">The Screen Orientation API</a></li>
+  <li>Article on HTML5Rocks.com about device orientation: 
+  <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank" 
+  rel="noopener noreferrer" title="Device orientation and motion">
+  Device Orientation and Motion</a></li>
   <li>Browser compatibility:</li>
-  <li><a href="https://caniuse.com/#feat=deviceorientation" target="_blank" rel="noopener noreferrer">DeviceOrientation &amp; DeviceMotion events</a> on CanIUse</li>
-  <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation#Browser_compatibility" target="_blank" rel="noopener noreferrer">DeviceOrientationEvent</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation#Browser_compatibility" target="_blank" rel="noopener noreferrer">DeviceMotionEvent</a> on MDN</li>
+  <li><a href="https://caniuse.com/#feat=deviceorientation" target="_blank" rel="noopener noreferrer"
+    title="DeviceOrientation and DeviceMotion events on CanIUse">
+	DeviceOrientation &amp; DeviceMotion events</a> on CanIUse</li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation#Browser_compatibility" target="_blank" rel="noopener noreferrer" title="DeviceOrientationEvent on MDN">
+  DeviceOrientationEvent</a> and 
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation#Browser_compatibility" target="_blank" rel="noopener noreferrer" title="DeviceMotionEvent on MDN">DeviceMotionEvent</a> on MDN</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-4-2">4.4.2 The coordinate system</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Transformations between the Earth coordinate frame and the device
-coordinate frame uses the following system of rotations.</p>
+<p>Transformations between the Earth coordinate frame and the device coordinate frame uses the 
+following system of rotations.</p>
 
-<p>Rotations use the right-hand convention, such that positive rotation
-around an axis is clockwise when viewed along the positive direction of
-the axis. When considering <i>rotations</i>, always think in terms of
-looking down: either at your feet on the ground or at a device (or map)
-lying flat on a table. We count <i>clockwise</i> rotation as
-a <i>positive</i> number, and <i>anti-clockwise</i> as <i>negative</i>.
-In this case, <i>rotations</i> are measured in <i>degrees</i>.</p>
+<p>Rotations use the right-hand convention, such that positive rotation around an axis is clockwise 
+when viewed along the positive direction of the axis. When considering <i>rotations</i>, always 
+think in terms of looking down: either at your feet on the ground or at a device (or map) lying flat 
+on a table. We count <i>clockwise</i> rotation as a <i>positive</i> number, and <i>anti-clockwise</i> as <i>negative</i>. In this case, <i>rotations</i> are measured in <i>degrees</i>.</p>
 
-<p>If you are not familiar with using a compass to navigate, here is an
-illustrated explanation of <a
-href="https://www.wikihow.com/Use-a-Compass" target="_blank" rel="noopener noreferrer">relating compass readings
-to the real-world/a map</a>.</p>
+<p>If you are not familiar with using a compass to navigate, here is an illustrated explanation of 
+<a href="https://www.wikihow.com/Use-a-Compass" target="_blank" rel="noopener noreferrer" 
+title="Relating compass readings to the real-world">relating compass readings to the real-world/a 
+map</a>.</p>
 
-<p>As well as the (2D) left/right, forward/backward directions on a map
-(or HTML5 canvas!), we need to consider other types of movements.</p>
+<p>As well as the (2D) left/right, forward/backward directions on a map (or HTML5 canvas!), we need 
+to consider other types of movements.</p>
 
-<p>For example, height/depth: there might be a huge difference in
-position between being at the top or the bottom of a cliff, and yet the
-horizontal distance from one to the other is small. </p>
+<p>For example, height/depth: there might be a huge difference in position between being at the top 
+or the bottom of a cliff, and yet the horizontal distance from one to the other is small.</p>
 
-<p>Another direction that is not apparent when we assume our world is as
-flat as a map, is to tilt. If you’ve ever ridden a motor-cycle you will
-know that it is easier to change its direction by leaning over, than by
-trying to turn the handlebar. Imagine then, tilting or twisting your
-device to steer your character in a motorcycle or airplane game!</p>
+<p>Another direction that is not apparent when we assume our world is as flat as a map, is to tilt. 
+If you’ve ever ridden a motor-cycle you will know that it is easier to change its direction by 
+leaning over, than by trying to turn the handlebar. Imagine then, tilting or twisting your device 
+to steer your character in a motorcycle or airplane game!</p>
 
-<p>Before making use of a <i>location</i>-aware device, we must align
-its understanding of <i>direction</i> with our own view of ‘the Earth’.
-Once we have a unified <i>coordinate system</i>, we apply rotations in
-the following order:</p>
+<p>Before making use of a <i>location</i>-aware device, we must align its understanding of 
+<i>direction</i> with our own view of ‘the Earth’. Once we have a unified <i>coordinate system</i>, 
+we apply rotations in the following order:</p>
 
 <h4>Rotate the device frame around its z axis by alpha degrees, with alpha in [0, 360]</h4>
 
 <table>
-<colgroup>
-<col style="width: 23%" />
-<col style="width: 76%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>
-Device in the initial<br>
-position, with Earth<br>
-(XYZ) and<br>
-body (xyz) frames<br>
-aligned.
-</th>
-<th>
+  <colgroup>
+    <col style="width: 23%" />
+    <col style="width: 76%" />
+  </colgroup>
+  <thead>
+    <tr class="header">
+      <th>Device in the initial<br>position, with Earth<br>(XYZ) and<br>body (xyz) frames<br> aligned.</th>
+      <th>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~ 244. start orientation & rotation about z axis (458) ~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18441,21 +18434,14 @@ aligned.
   title="Start orientation"
   alt="Start orientation." />
 
-</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>
-Device rotated<br>
-through angle alpha<br>
-about z axis,<br>
-with previous<br>
-locations of x and y<br>
-axes shown as x<sub>0</sub> and<br>
-y<sub>0</sub>.
-</td>
-<td>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="odd">
+    <td>Device rotated<br>through angle alpha<br>about z axis,<br>with previous<br>locations of x and y<br>
+	axes shown as x<sub>0</sub> and<br>y<sub>0</sub>.</td>
+    <td>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 245. rotation about z axis (459) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18464,20 +18450,21 @@ y<sub>0</sub>.
   style="width:45%;" 
   title="Rotation about z axis"
   alt="Rotation about z axis." />
-</td>
-</tr>
+    </td>
+  </tr>
 </tbody>
 </table>
 
 <h4>Rotate the device frame around its x axis by beta degrees, with beta in[-180, 180]</h4>
+
 <table>
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Device in the initial position, with Earth (XYZ) and<br /> body (xyz) frames aligned.</th>
+  <colgroup>
+    <col style="width: 21%" />
+    <col style="width: 78%" />
+  </colgroup>
+  <thead>
+    <tr class="header">
+      <th>Device in the initial position, with Earth (XYZ) and<br /> body (xyz) frames aligned.</th>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~ 245b. start orientation & rotation about x axis (460) ~~~~~~~~~~~~~~~~~~~-->
 <th>
@@ -18487,19 +18474,14 @@ y<sub>0</sub>.
   style="width:45%;" 
   title="Start orientation"
   alt="Start orientation." />
-</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Device rotated<br>
-through angle beta<br>
-about new x axis,<br>
-with previous<br>
-locations of y and z<br>
-axes shown as<br>
-y<sub>0</sub> and z<sub>0</sub>.</td>
-<td>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="odd">
+      <td>Device rotated<br>through angle beta<br>about new x axis,<br>with previous<br>
+	  locations of y and z<br>axes shown as<br>y<sub>0</sub> and z<sub>0</sub>.</td>
+      <td>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 246. rotation about the x axis (461) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18508,31 +18490,22 @@ y<sub>0</sub> and z<sub>0</sub>.</td>
   title="Rotation about the x axis"
   alt="Rotation about the x axis."
   style="width:45%;" />
-</td>
-</tr>
-</tbody>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
-<p>Rotate the device frame around its y axis by gamma degrees,<br>
-with gamma in [-90, 90]</p>
+<p>Rotate the device frame around its y axis by gamma degrees,<br> with gamma in [-90, 90]</p>
 
 <table>
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 81%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>
-Device in the<br>
-initial position,<br>
-with Earth<br>
-(XYZ) and<br>
-body (xyz)<br>
-frames<br>
-aligned.
-</th>
-<th>
+  <colgroup>
+    <col style="width: 18%" />
+    <col style="width: 81%" />
+  </colgroup>
+  <thead>
+    <tr class="header">
+      <th>Device in the<br>initial position,<br>with Earth<br>(XYZ) and<br>body (xyz)<br>frames<br>aligned.</th>
+      <th>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 246b. start orientation (462) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18580,15 +18553,14 @@ x<sub>0</sub> and z<sub>0</sub>.
 <p>The use of this API is very straightforward:</p>
 
 <ol type="1">
-  <li>Test if your browser supports the orientation API 
-    (window.DeviceOrientationEvent is not null),</li>
+  <li>Test if your browser supports the orientation API (window.DeviceOrientationEvent is not null),</li>
   <li>Define a listener for the ‘deviceorientation’ event as follows: 
-    window.addEventListener(‘deviceorientation’, callback, false); with 
-    the callback function accepting the event object as its single input parameter,</li>
+    window.addEventListener(‘deviceorientation’, callback, false); with the callback function 
+	accepting the event object as its single input parameter,</li>
   <li>Extract the angles from the event (use its properties: alpha, beta, gamma), and</li>
-  <li><a href="https://jsbin.com/limugat/edit" target="_blank" 
-    rel="noopener noreferrer">Here’s an example on JsBin</a>. Try it with  a 
-    smartphone, a tablet, or a device with an accelerometer:</li>
+  <li>Try it with a smartphone, a tablet, or a device with an accelerometer: 
+    <a href="https://jsbin.com/limugat/edit" target="_blank" rel="noopener noreferrer" 
+	title="Example on JSBin">Here’s an example on JsBin</a>.</li>
 </ol>
 
 <p>(If using a mobile device, <a href="https://jsbin.com/limugat" 
@@ -18604,9 +18576,12 @@ mode</a> (without the JsBin editor) )</p>
   style="width:40%;" />
 
 <p>The above screenshot came from an iPad laying immobile on a desk. <br>
-Theoretically, all the angle values will be zero when the device is laid flat, providing it has not been moved since the page loaded.<br>
-However, depending on the hardware, these values may change even if the device is stationary: a very sensitive sensor might report constantly changing values.<br>
-This is why, in the example, we round the returned values with Math.round() at display time (see code).</p>
+Theoretically, all the angle values will be zero when the device is laid flat, providing it has not 
+been moved since the page loaded.<br>
+However, depending on the hardware, these values may change even if the device is stationary: a 
+very sensitive sensor might report constantly changing values.<br>
+This is why, in the example, we round the returned values with Math.round() at display time (see 
+code).</p>
 
 <p>If we change the orientation of the device here are the results:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -18665,21 +18640,18 @@ device.
     alert(&quot;Device orientation not supported on your device or browser. Sorry.&quot;);
   }
   function deviceOrientationHandler(LR, FB, DIR) {
-    document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
-    document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
-    document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
+    document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma : &quot; + Math.round(LR);
+    document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta : &quot; + Math.round(FB);
+    document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :  &quot; + Math.round(DIR);
   }
 &lt;/script&gt;
 ...</pre>
 
 </details>
 
-<h4>Another example that shows how to orient the HTML5 logo using the orientation API + 
-CSS3 3D rotations</h4>
+<h4>Another example that shows how to orient the HTML5 logo using the orientation API + CSS3 3D rotations</h4>
 
-<p>This is just a variation of the previous example, 
-<a href="https://jsbin.com/manobezoji/edit?html,js,output" target="_blank" 
-rel="noopener noreferrer">try it at JsBin</a></p>
+<p>This is just a variation of the previous example, <a href="https://jsbin.com/manobezoji/edit?html,js,output" target="_blank" rel="noopener noreferrer" title="JSBin example of logo orientation">try it at JsBin</a></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~ 252. html logo orientation api example 3 (467) ~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18689,8 +18661,8 @@ rel="noopener noreferrer">try it at JsBin</a></p>
   alt="Orientation API example 3."
   style="width:40%;" />
 
-<p>Results on the iPad: the logo rotates when we change the iPad’s orientation. This is 
-a good “visual feedback” for an orientation controlled game…</p>
+<p>Results on the iPad: the logo rotates when we change the iPad’s orientation. This is a good 
+“visual feedback” for an orientation controlled game…</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 253. side-by-side logo 1 (468) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18718,7 +18690,7 @@ a good “visual feedback” for an orientation controlled game…</p>
 
 <p>This example is also on 
 <a href="https://www.youtube.com/watch?v=OrNLhOAGSdE" target="_blank" 
-rel="noopener noreferrer">video</a>.</p>
+rel="noopener noreferrer" title="YouTube video example of logo orientation">video</a>.</p>
 
 <h4>Code from the example:</h4>
 
@@ -18753,13 +18725,13 @@ class=&quot;logo&quot;&gt;
     // USE CSS3 rotations for rotating the HTML5 logo
     //for webkit browser
     document.getElementById(&quot;imgLogo&quot;).style.webkitTransform =
-    &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
+    &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0, &quot; + (FB * -1) + &quot;deg)&quot;;
     //for HTML5 standard-compliance
     document.getElementById(&quot;imgLogo&quot;).style.transform =
-    &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0,    &quot; + (FB * -1) + &quot;deg)&quot;;
-    document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma :    &quot; + Math.round(LR);
-    document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta :    &quot; + Math.round(FB);
-    document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha :    &quot; + Math.round(DIR);
+    &quot;rotate(&quot; + LR + &quot;deg) rotate3d(1,0,0, &quot; + (FB * -1) + &quot;deg)&quot;;
+    document.querySelector(&quot;#LR&quot;).innerHTML = &quot;gamma : &quot; + Math.round(LR);
+    document.querySelector(&quot;#FB&quot;).innerHTML = &quot;beta : &quot; + Math.round(FB);
+    document.querySelector(&quot;#DIR&quot;).innerHTML = &quot;alpha : &quot; + Math.round(DIR);
   }
 &lt;/script&gt;
 ...</pre>
@@ -18769,11 +18741,11 @@ class=&quot;logo&quot;&gt;
 <h4>A simple level tool using device orientation</h4>
 
 <p>This example works in Firefox, Chrome, and IOS Safari. Created by 
-<a href="https://twitter.com/derekanderson" target="_blank" rel="noopener noreferrer">
-Derek Anderson</a> @<a href="https://imagesupstream.com/" target="_blank" 
-rel="noopener noreferrer">Media Upstream</a>. Original source code available 
+<a href="https://twitter.com/derekanderson" target="_blank" rel="noopener noreferrer" title="Derek 
+Anderson's Twitter account">Derek Anderson</a> @<a href="https://imagesupstream.com/" target="_blank" 
+rel="noopener noreferrer" title="Media upstream">Media Upstream</a>. Original source code available 
 <a href="https://github.com/imagesupstream/levelToolJS" target="_blank" 
-rel="noopener noreferrer">GitHub</a>.</p>
+rel="noopener noreferrer" title="GitHub source code for device orientation example">GitHub</a>.</p>
 
 <p><a href="https://jsbin.com/quboge/edit" target="_blank" rel="noopener noreferrer">
 We adapted the source code so that you can tweak it in JsBin</a>, 
@@ -18790,17 +18762,14 @@ test it in standalone mode</a> (using a mobile device).</p>
   
 <h4>Other interesting uses: mix orientation API and WebSockets</h4>
 
-<p>You can imagine the above example that sends the current orientation
-of the device to a server using WebSockets. The server in turn updates
-the logo and position on a PC screen. If multiple devices connect, they
-can chat together and take control of the 3D Logo.</p>
+<p>You can imagine the above example that sends the current orientation of the device to a server 
+using WebSockets. The server in turn updates the logo and position on a PC screen. If multiple 
+devices connect, they can chat together and take control of the 3D Logo.</p>
 
-<p>This video shows one of the above examples slightly modified: the
-JavaScript code running in the Web page on the iPad sends in real time
-the device orientation using the Web Sockets API to a server that in
-turns sends the orientation to a client running on a desktop browser. In
-this way the tablet “controls” the HTML5 logo that is shown on the
-desktop browser:</p>
+<p>This video shows one of the above examples slightly modified: the JavaScript code running in the 
+Web page on the iPad sends in real time the device orientation using the Web Sockets API to a server 
+that in turns sends the orientation to a client running on a desktop browser. In this way the tablet 
+“controls” the HTML5 logo that is shown on the desktop browser:</p>
 
 <p>Click on the image to see the YouTube video:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -18814,11 +18783,11 @@ desktop browser:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-4-4">4.4.4 The Device Motion API</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>This section presents the Device Motion API which is used in a similar manner 
-to the device orientation API discussed earlier.</p>
+<p>This section presents the Device Motion API which is used in a similar manner to the device 
+orientation API discussed earlier.</p>
 
-<p>The <span class="var">deviceMotion</span> API deals with <i>accelerations</i> 
-instead of <i>orientation</i> only.</p>
+<p>The <span class="var">deviceMotion</span> API deals with <i>accelerations</i> instead of 
+<i>orientation</i> only.</p>
 
 <p>Use cases proposed by the specification are:</p>
 
@@ -18846,10 +18815,9 @@ window.addEventListener(&quot;devicemotion&quot;, handleMotionEvent, true);</p
 <h4>Basics about acceleration</h4>
 
 <p>The <span class="var">deviceMotion</span> API is rather straightforward and is very similar to the 
-orientation API except that it returns more than just the <i>rotation</i> 
-information, it also returns <a href="https://en.wikipedia.org/wiki/Acceleration)information" 
-target="_blank" rel="noopener noreferrer">acceleration</a> reflecting the device’s 
-actual movement.</p>
+orientation API except that it returns more than just the <i>rotation</i> information, it also returns 
+<a href="https://en.wikipedia.org/wiki/Acceleration)information" target="_blank" rel="noopener noreferrer">
+acceleration</a> reflecting the device’s actual movement.</p>
 
 <p>The <i>acceleration</i> is in three parts:</p>
 
@@ -18886,8 +18854,8 @@ it returns <i>rotation</i> as well as <i>acceleration</i> information from t
 
 <h4>Example of acceleration values</h4>
 
-<p>If a laptop is in its normal position with the screen facing up, the data returned 
-would be <a href="https://developers.google.com/web/fundamentals/native-hardware/device-orientation/" 
+<p>If a laptop is in its normal position with the screen facing up, the data returned would be 
+<a href="https://developers.google.com/web/fundamentals/native-hardware/device-orientation/" 
 target="_blank" rel="noopener noreferrer">(info taken from this [article]</a>):</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 258. acceleration values 1 (472) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -18898,8 +18866,8 @@ target="_blank" rel="noopener noreferrer">(info taken from this [article]</a>):
   alt="Acceleration values with screen facing up."
   style="width:50%;"  />
 
-<p>A mobile phone rotated along the x-axis so the screen is perpendicular to its 
-normal position would return:</p>
+<p>A mobile phone rotated along the x-axis so the screen is perpendicular to its normal position 
+would return:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 259. acceleration values 2 (472) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18928,17 +18896,16 @@ normal position would return:</p>
 <ol type="1">
   <li>Test if the API is supported by the browser,</li>
   <li>Add a listener for ‘devicemotion’ events,</li>
-  <li>Get the acceleration values from the DOM event that has been passed to the 
-    listener,</li>
+  <li>Get the acceleration values from the DOM event that has been passed to the listener,</li>
   <li>Process the data.</li>
 </ol>
 
 <h4>Common processing with acceleration values</h4>
 
-<p>Test the value of the acceleration.z property: If &gt; 0 then the device is 
-facing up, otherwise it is facing down. This would be useful if you wanted to 
-play <a href="https://en.wikipedia.org/wiki/Coin_flipping" target="_blank" 
-rel="noopener noreferrer">heads or tails</a> with your phone ;-)</p>
+<p>Test the value of the acceleration.z property: If &gt; 0 then the device is facing up, otherwise 
+it is facing down. This would be useful if you wanted to play 
+<a href="https://en.wikipedia.org/wiki/Coin_flipping" target="_blank" rel="noopener noreferrer">
+heads or tails</a> with your phone ;-)</p>
 
 <pre>// For example, if acceleration.z is &gt; 0 then the phone is facing up
 var facingUp = -1;
@@ -18967,8 +18934,8 @@ This example uses the accelerationIncludingGravity property of the event.</p>
 
 </details>
 
-<p>Compute the vertical (direction of the sky) - this extract comes from a complete 
-example further down this page…</p>
+<p>Compute the vertical (direction of the sky) - this extract comes from a complete example further 
+down this page…</p>
 
 <pre>...
 var angle = Math.atan2(accel.y,accel.x);
@@ -18979,8 +18946,8 @@ ctx.moveTo(50,50);
 ctx.lineTo(50-50*Math.cos(angle),50+50*Math.sin(angle));
 ctx.stroke();</pre>
 
-<p>Use acceleration values to move a ball on the screen of a tablet when the 
-tablet is tilted front / back or left / right (complete example later on)…</p>
+<p>Use acceleration values to move a ball on the screen of a tablet when the tablet is tilted front 
+/ back or left / right (complete example later on)…</p>
 
 <pre>...
 ball.x += acceleration.x;
@@ -18991,7 +18958,8 @@ ball.y += acceleration.y;
 
 <h4>Move the HTML5 logo</h4>
 
-<p><a href="https://jsbin.com/pasoboyucu/edit?html,js,output" target="_blank" rel="noopener noreferrer">Online example at JsBin</a>.</p>
+<p><a href="https://jsbin.com/pasoboyucu/edit?html,js,output" target="_blank" rel="noopener noreferrer">
+Online example at JsBin</a>.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~ 261. devicemotion api example (474) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -19074,12 +19042,12 @@ ball.y += acceleration.y;
 
 <h4>Interesting example that uses jQuery mobile</h4>
 
-<p>This example shows how the X and Y acceleration values can be used for 
-indicating the sky’s direction (vertical), and how the Z acceleration is, 
-in fact, an indicator for the face up / face down orientation of the device.</p>
+<p>This example shows how the X and Y acceleration values can be used for indicating the sky’s 
+direction (vertical), and how the Z acceleration is, in fact, an indicator for the face up / face 
+down orientation of the device.</p>
 
-<p>This example has been adapted and put on jsbin.com so that you can tweak 
-it: <a href="https://jsbin.com/uyuqek/4/edit" target="_blank" rel="noopener noreferrer">https://jsbin.com/uyuqek/4/edit</a></p>
+<p>This example has been adapted and put on jsbin.com so that you can tweak it: 
+<a href="https://jsbin.com/uyuqek/4/edit" target="_blank" rel="noopener noreferrer">https://jsbin.com/uyuqek/4/edit</a></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 262. devicemotion api (476) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -19323,16 +19291,14 @@ target="_blank" rel="noopener noreferrer">use this URL instead</a>!</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-4-5">4.4.5 Discussion and projects</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Here is the discussion forum for this part of the course. Please post your 
-comments/observations/questions and share your creations.</p>
+<p>Here is the discussion forum for this part of the course. Please post your comments/observations/
+questions and share your creations.</p>
 
 <h4>Suggested topics of discussion:</h4>
 
 <ul>
-  <li>Did you know that you can “fake” the orientation using the devtools of some 
-    desktop browsers?<br><br></li>
-  <li>What kind of application would benefit from the Orientation and Motion APIs 
-    (apart from games)?</li>
+  <li>Did you know that you can “fake” the orientation using the devtools of some desktop browsers?<br><br></li>
+  <li>What kind of application would benefit from the Orientation and Motion APIs (apart from games)?</li>
 </ul>
 
 <h4>Optional projects:</h4>
@@ -19359,11 +19325,13 @@ comments/observations/questions and share your creations.</p>
   Last Updated: 6-25-2025 Tue 7:38pm<br>
   Last Updated: 6-27-2025 Fri 2:04pm<br>
   Last Updated: 6-29-2025 Sun 7:42pm<br>
-  Last Updated: 9-13-2025 Sat 10:27pm</h6>
+  Last Updated: 9-13-2025 Sat 10:27pm<br>
+  Last Updated: 1-1-2026 Thu 1:43pm</h6>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <script src="./js/scripts.js"></script>
 </body>
 </html>
+
 
 
 

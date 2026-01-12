@@ -177,15 +177,15 @@ JavaScript Introduction</a> course. And most of all, have fun!</p>
   <li>Play with audio and video in “<b>Module 1</b>: Advanced HTML5 multimedia”.</li>
   <li>Start programming an HTML5-based game of your own in <b>Module 2</b>! Learn the core techniques 
     for writing 2D video games that run at 60 frames/s. Discover basic game development concepts, set 
-	up a single game framework, understand time-based animation, animate multiple objects, use sprite 
-	sheets, detect collisions, deal with gamepad events, and many more.</li>
+    up a single game framework, understand time-based animation, animate multiple objects, use sprite 
+    sheets, detect collisions, deal with gamepad events, and many more.</li>
   <li><b>Module 3</b> is about drag and drop, upload/download files with Ajax/XHR2 and IndexedDB. The 
     Indexed Database API is a recommended standard interface for a local database of records holding 
-	simple values and hierarchical objects. Note that IndexedDB is also useful for storing your HTML5 
-	game scores!</li>
+    simple values and hierarchical objects. Note that IndexedDB is also useful for storing your HTML5 
+    game scores!</li>
   <li>This is the last set of lectures! <b>Module 4</b> gives a lot of space to Web components as 
     they help build Web pages using ready to use standardized building blocks. Web components comprise 
-	Custom Elements, Shadow DOM and HTML Imports and Templates.</li>
+    Custom Elements, Shadow DOM and HTML Imports and Templates.</li>
   <li>These specifications are under continuous development at W3C.</li>
 </ul>
 
@@ -210,11 +210,11 @@ to re-take that course</i>.</p>
   <li>If you are new to the edX platform, we encourage you to (<b><a
     href="https://www.edx.org/course/demox" target="_blank" rel="noopener noreferrer" title="DemoX">
     check out DemoX</a></b>], a quick walk-through of an edX experience. It will help answer basic 
-	“how to’s” on taking an edX course.</li>
+    “how to’s” on taking an edX course.</li>
   <li>As an alternative, do not hesitate to browse the <b><a
     href="https://support.edx.org/hc/en-us/categories/115002269607-Courses" 
     target="_blank" rel="noopener noreferrer" title="EdX courses' FAQs in edX">
-	courses’ FAQs in edX Help Center</a></b>.</li>
+    courses’ FAQs in edX Help Center</a></b>.</li>
 </ul>
 
 <hr>
@@ -277,28 +277,28 @@ sample:</p>
 <ul>
   <li><a href="https://www.sublimetext.com/" target="_blank" rel="noopener noreferrer" 
     title="Sublime text">Sublime Text</a> is quite popular with developers, though there can be a 
-	bit of a learning curve to use its many features.</li>
+    bit of a learning curve to use its many features.</li>
   <li><a href="https://notepad-plus-plus.org/" target="_blank" rel="noopener noreferrer" 
     title="Notepad on Windows PC's">Notepad</a> - on Windows PC’s.</li>
   <li><a href="https://visualstudio.microsoft.com/" target="_blank" rel="noopener 
     noreferrer" title="Visual Studio on Windows PC's">
-	Visual Studio</a> - on Windows PC’s, many developers are already familiar with it.</li>
+    Visual Studio</a> - on Windows PC’s, many developers are already familiar with it.</li>
   <li>TextEdit - This is available on Macs, but be sure you’re 
     <a href="https://discussions.apple.com/message/5014514#5014514" target="_blank" 
     rel="noopener noreferrer" title="Saving as plain text">saving as plain text</a>, not as a .rtf or .doc file.</li>
   <li><a href="http://bluegriffon.org/" target="_blank" rel="noopener noreferrer" 
     title="BlueGriffon">BlueGriffon</a> is a WYSIWYG (“What You See Is What You Get”) content editor 
-	for the World Wide Web. Powered by Gecko, the rendering engine of Firefox, it’s a modern and 
-	robust solution to edit Web pages in conformance to the latest Web Standards.</li>
+    for the World Wide Web. Powered by Gecko, the rendering engine of Firefox, it’s a modern and 
+    robust solution to edit Web pages in conformance to the latest Web Standards.</li>
   <li><a href="https://developer.apple.com/xcode/" target="_blank" rel="noopener
     noreferrer" title="Apple Mac's XCode">XCode</a> - Mac developers may be familiar with XCode.</li>
   <li><a href="https://atom.io/" target="_blank" rel="noopener noreferrer" title="Atom editor">
     Atom</a> is another cross platform editor, created by <a href="https://github.com/" target="_blank" 
-	rel="noopener noreferrer" title="GitHub">GitHub</a>.</li>
+    rel="noopener noreferrer" title="GitHub">GitHub</a>.</li>
   <li><a href="https://www.vim.org/" target="_blank" rel="noopener noreferrer" title="Vim">
     Vim</a> or <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener noreferrer" 
-	title="Emacs">Emacs</a> are great editors on which the Web was built, but if you’re not already 
-	familiar with these, this isn’t the time to try.</li>
+    title="Emacs">Emacs</a> are great editors on which the Web was built, but if you’re not already 
+    familiar with these, this isn’t the time to try.</li>
 </ul>
 
 <p>To help you practice during the whole duration of the course, you will use the following online 
@@ -14164,11 +14164,14 @@ creations.</p>
 <p>We had many questions about how to submit a form with regular input
 fields AND benefit from the HTML5 built-in validation AND upload files
 AND monitor the file upload progress with a progress bar.</p>
+
 <p>Many solutions proposed on the Web rely on jQuery plugins. However,
 coding such a behavior using only HTML5 APIs is easy AND faster AND has
 a lower <i>page weight</i>, as we will see.</p>
+
 <p>This part of the course will describe different approaches for
 implementing file uploads associated with a form.</p>
+
 <p>We have included PHP server-side code: this course focuses on HTML5
 and front-end development - so, the PHP code is given “as is”.</p>
 
@@ -14184,6 +14187,7 @@ and upload multiple files (which might include images). </p>
 multiple&gt; input field, and one or more &lt;progress&gt; elements for
 monitoring file uploads. The form will also have input fields of
 different types.</p>
+
 <p>An example of this kind of form is shown below: when the user drags
 and drops files, they will start being uploaded immediately. However,
  the form will only be sent when all the fields are valid. </p>
@@ -14202,6 +14206,7 @@ they are selected or dropped into the message window, but the message
 will only be sent when you press the “send” button. An empty field with
 a required attribute, if left empty, will cause an error message pop
 up in a bubble, and the form will not be submitted. Nice!</p>
+
 <p>However, on the server side, we need a way to “join” the files that
 have been asynchronously uploaded with the rest of the form’s
 values. This is easier to do than it sounds. Look at the provided PHP
@@ -14233,41 +14238,40 @@ as the server-side PHP code.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-5-2">3.5.2 Installation guide</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Please download all examples (authors: Michel Buffa, improvements and
-fixes by Vincent Mazenod): <a
+<p>Please download all examples (authors: Michel Buffa, improvements and fixes by Vincent Mazenod): 
+<a 
 href="https://courses.edx.org/assets/courseware/v1/5909531330a0343fa4499895a2de137d/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/forms_php_upload.zip" target="_blank" rel="noopener noreferrer">Zip
 file containing all examples (html + css + js + php + readmes)</a></p>
-<p>The examples can be tried online at JSBin (see in the following
-pagesà, but the upload is “faked”. These online examples do not use a
-/ PHP).</p>
-<p>Unzip the archive and follow the included READMEs. These examples
-propose <b>different implementations of the two approaches</b> presented
-real server, but are useful for playing with the code and understanding
-how it works. You can try them and see uploads’ progress, etc.</p>
-<p>However, we also provide complete source code for these examples,
-including the server-side PHP code. The course is about HTML5, not PHP,
-so we provide this code “as is”: it is only a few lines long per
-example, and has been tested with the latest version of PHP.  It should
-run out of the box with most WAMP, LAMP, and MAMP distributions (Apache
-in the previous lecture, and both with an &lt;input type=file&gt; and
-drag and drop.</p>
-<p>The HTML part of the examples is also using a technique, seen during
-the W3Cx HTML5 Coding Essentials course, that saves the input fields’
-content as you type, using LocalStorage. You can reload the page any
-time without losing what you typed. Initially, the examples all used a
-FormData object but at the time we encountered some incompatibilities
-with older versions of PHP, so we had to manually set a component of the
-HTTP header.</p>
-<p>This part of the lesson is optional and is mainly useful for students
-who are also involved in the server side of the Web development.</p>
+
+<p>The examples can be tried online at JSBin (see in the following pagesà, but the upload is 
+“faked”. These online examples do not use a / PHP).</p>
+
+<p>Unzip the archive and follow the included READMEs. These examples propose <b>different 
+implementations of the two approaches</b> presented real server, but are useful for playing with 
+the code and understanding how it works. You can try them and see uploads’ progress, etc.</p>
+
+<p>However, we also provide complete source code for these examples, including the server-side PHP 
+code. The course is about HTML5, not PHP, so we provide this code “as is”: it is only a few lines 
+long per example, and has been tested with the latest version of PHP.  It should run out of the 
+box with most WAMP, LAMP, and MAMP distributions (Apache in the previous lecture, and both with 
+an &lt;input type=file&gt; and drag and drop.</p>
+
+<p>The HTML part of the examples is also using a technique, seen during the W3Cx HTML5 Coding 
+Essentials course, that saves the input fields’ content as you type, using LocalStorage. You can 
+reload the page any time without losing what you typed. Initially, the examples all used a FormData 
+object but at the time we encountered some incompatibilities with older versions of PHP, so we had 
+to manually set a component of the HTTP header.</p>
+
+<p>This part of the lesson is optional and is mainly useful for students who are also involved in 
+the server side of the Web development.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-5-3">3.5.3 Serial approach</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p>We made two examples that rely on the serial approach:</p>
 
 <ol type="1">
-  <li><p>one that uses only a file selector,</p></li>
-  <li><p>one that uses drag and drop.</p></li>
+  <li>one that uses only a file selector,<br></li>
+  <li>one that uses drag and drop.</li>
 </ol>
 
 <p>We could have merged file selector + drag and drop, as we did in
@@ -14356,8 +14360,11 @@ if ($fn) {
 <h4>Explanations:</h4>
 
 <ul>
-  <li>When files are first uploaded, they are stored in a directory called upload/RecycleBin. If it does not exist, this directory is created (<i>lines 22-32</i>).</li>
-  <li>When the form is submitted, a directory whose name is today’s date is created, and the files located in the RecycleBin directory are moved to that directory. If it does not already exist, the directory will be created  (<i>lines 7-20</i>).</li>
+  <li>When files are first uploaded, they are stored in a directory called upload/RecycleBin. If it 
+    does not exist, this directory is created (<i>lines 22-32</i>).</li>
+  <li>When the form is submitted, a directory whose name is today’s date is created, and the files 
+    located in the RecycleBin directory are moved to that directory. If it does not already exist, 
+	the directory will be created  (<i>lines 7-20</i>).</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-5-4">3.5.4 Package approach</h3>
@@ -14365,20 +14372,20 @@ if ($fn) {
 <p>Let’s use the previous two examples as a basis for two further examples:</p>
 
 <ol type="1">
-  <li><p>one that uses only a file selector,</p></li>
-  <li><p>one that uses drag and drop.</p></li>
+  <li>one that uses only a file selector,<br></li>
+  <li>one that uses drag and drop.</li>
 </ol>
 
 <h4>Example #3: uploading everything at once using a file selector</h4>
 
 <p>A file selector (&lt;input type=“file”&gt;).</p>
-<p>This time, we add the files to an HTML5 FormData object before
-sending XHR2 Ajax requests to the server (one for each file + one for
-the rest of the form).  The uploads only start once the form is
+
+<p>This time, we add the files to an HTML5 FormData object before sending XHR2 Ajax requests to the 
+server (one for each file + one for the rest of the form).  The uploads only start once the form is 
 submitted.</p>
-<p>You can <a
-href="https://jsbin.com/quzohi/edit?html,css,js,output" target="_blank" rel="noopener noreferrer">try this example
-at JSBin</a>, and look at the source code and comments for details.</p>
+
+<p>You can <a href="https://jsbin.com/quzohi/edit?html,css,js,output" target="_blank" rel="noopener 
+noreferrer">try this example at JSBin</a>, and look at the source code and comments for details.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 190. example 3 of file uploads (327) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -14390,8 +14397,8 @@ at JSBin</a>, and look at the source code and comments for details.</p>
 
 <h4>Example #4: uploading using drag and drop</h4>
 
-<p><a href="https://jsbin.com/xonemow/edit?html,css,output" target="_blank" rel="noopener noreferrer">Try the
-example at JSBin</a> and look at source code and comments.</p>
+<p><a href="https://jsbin.com/xonemow/edit?html,css,output" target="_blank" rel="noopener noreferrer">
+Try the example at JSBin</a> and look at source code and comments.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~ 191. example 4 using drag n drop files (327) ~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -14460,73 +14467,76 @@ if (isset($_FILES) &amp;&amp; is_array($_FILES) &amp;&amp; array_key_exists
 <h4>Suggested topics of discussion:</h4>
 
 <ul>
-  <li><p>The given examples come with PHP code. If you adapt them to work with another server side languages, please share!</p></li>
-  <li><p>There are many possible improvements to the provided examples in the client code: monitoring the speed of upload/downloads, canceling an upload, etc. The examples are given “as is”… if you improve them, as usual, share them in the forum!</p></li>
+  <li>The given examples come with PHP code. If you adapt them to work with another server side 
+    languages, please share!<br></li>
+  <li>There are many possible improvements to the provided examples in the client code: monitoring 
+    the speed of upload/downloads, canceling an upload, etc. The examples are given “as is”… if you 
+	improve them, as usual, share them in the forum!</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-6">3.6 IndexDB Concepts (part 1)</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p>Hello everyone! Today I will talk about IndexedDB.</p>
-<p>In this first video, we will present the main concepts of this
-client-based NoSQL database.</p>
-<p>IndexedDB is a front-end database. It means that it runs directly in
-your browser contrarily to</p>
+
+<p>In this first video, we will present the main concepts of this client-based NoSQL database.</p>
+
+<p>IndexedDB is a front-end database. It means that it runs directly in your browser contrarily to</p>
+
 <p>MySQL, Postgres or Oracle databases that run on the server side.</p>
-<p>In our case, we’ve got a NoSQL database, it means that we will not be
-able to use SQL.</p>
-<p>And in the NoSQL world of databases, we will find different kinds of
-databases…</p>
+
+<p>In our case, we’ve got a NoSQL database, it means that we will not be able to use SQL.</p>
+
+<p>And in the NoSQL world of databases, we will find different kinds of databases…</p>
+
 <p>Some use graph representations, some use object representations.</p>
+
 <p>In our case, we will store directly JavaScript objects.</p>
-<p>Here is an example; in this case, you’ve got a person defined by two
-properties:</p>
-<p>firstName and lastName. It is designed to work with huge amount
-of</p>
-<p>data with also very good performances. You can use indexes. So an
-index system allows you to specify that some properties will be
-‘indexes’ and this will make requests on these properties much faster.
-For example, if I’ve got 100 000 people in my database, and I am looking
-for all the people with the last name equal to ‘Buffa’.</p>
-<p>If the lastName is an index, the retrieval will be very very
-fast.</p>
-<p>And also, remember that in the JavaScript world, all operations are
-asynchronous.</p>
-<p>We will see in the next video that we will that we use callbacks
-everywhere.</p>
-<p>You open a video, you will need to check that it has been correctly
-opened in a callback.</p>
-<p>You insert data, you will need to check in a callback that the insert
-has been performed correctly.</p>
-<p>Databases, when you store objects inside are called ‘object stores’,
-they have a name and they are attached to a domain.</p>
+
+<p>Here is an example; in this case, you’ve got a person defined by two properties:</p>
+
+<p>firstName and lastName. It is designed to work with huge amount of data with also very good 
+performances. You can use indexes. So an index system allows you to specify that some properties 
+will be ‘indexes’ and this will make requests on these properties much faster. For example, if 
+I’ve got 100 000 people in my database, and I am looking for all the people with the last name 
+equal to ‘Buffa’.</p>
+
+<p>If the lastName is an index, the retrieval will be very very fast. And also, remember that in 
+the JavaScript world, all operations are asynchronous.</p>
+
+<p>We will see in the next video that we will use callbacks everywhere. You open a video, you will 
+need to check that it has been correctly opened in a callback.</p>
+
+<p>You insert data, you will need to check in a callback that the insert has been performed correctly.</p>
+
+<p>Databases, when you store objects inside are called ‘object stores’, they have a name and they 
+are attached to a domain.</p>
+
 <p>You can imagine they are attached to a Web app.</p>
-<p>Let’s look at some examples. The first very popular example is Google
-Drive.</p>
-<p>Google Drive stores lots of documents, spreadsheets, presentations…
-and if you are offline, it works! So I just open the dev tools and you
-can see that Google Drive relies a lot on IndexedDB. So we’ve got
-different data stores here and the different data stores will hold, for
-example, the synced documents I’ve got in my repository.</p>
-<p>And these documents are JavaScript objects, you can see the brackets
-here that are typical of JavaScript objects, and you have got properties
-like the data, the viewMode and so on.</p>
-<p>Another example is a guitar pedalboard I wrote for processing in real
-time the sound of the guitar. You can see that we have got different
-categories…</p>
-<p>and we can select different presets, and each preset is attached with
-some values or a position…</p>
-<p>and if I reload the application it remembers exactly the settings
-because every time I am doing an action, I am storing the current state
-in an IndexedDB database, here… and I am storing directly JavaScript
-object with the preset values and so on.</p>
-<p>And we are synchronizing this database that is located in the browser
-with a MongoDB database that is located on the server side and that
-holds also JavaScript objects.</p>
-<p>Having the same representation for data -JavaScript objects-, is
-really comfortable.</p>
-<p>In the course, you will see a lot of small examples that we prepared
-on JSBin, and each of these examples show an individual operation, a
-very core operation like creating a Customer database.</p>
+
+<p>Let’s look at some examples. The first very popular example is Google Drive.</p>
+
+<p>Google Drive stores lots of documents, spreadsheets, presentations… and if you are offline, it 
+works! So I just open the dev tools and you can see that Google Drive relies a lot on IndexedDB. 
+So we’ve got different data stores here and the different data stores will hold, for example, the 
+synced documents I’ve got in my repository.</p>
+
+<p>And these documents are JavaScript objects, you can see the brackets here that are typical of 
+JavaScript objects, and you have got properties like the data, the viewMode and so on.</p>
+
+<p>Another example is a guitar pedalboard I wrote for processing in real time the sound of the 
+guitar. You can see that we have got different categories…
+and we can select different presets, and each preset is attached with some values or a position… 
+and if I reload the application it remembers exactly the settings because every time I am doing an 
+action, I am storing the current state in an IndexedDB database, here… and I am storing directly 
+JavaScript object with the preset values and so on.</p>
+
+<p>And we are synchronizing this database that is located in the browser with a MongoDB database 
+that is located on the server side and that holds also JavaScript objects. Having the same 
+representation for data -JavaScript objects-, is really comfortable.</p>
+
+<p>In the course, you will see a lot of small examples that we prepared on JSBin, and each of these 
+examples show an individual operation, a very core operation like creating a Customer database.</p>
+
 <p>If I click on the “create CustomerDB database” (button), and if I
 open the devtools console, and I go to IndexedDB, I can see that the
 CustomerDB database I created appeared here, and I can see that the
@@ -14535,22 +14545,25 @@ security number. You will see examples for creating a database, for
 working with data, for inserting data, removing data, modifying data,
 getting data and so on. And each of these small examples will provide
 very useful code that you can reuse in your own examples.</p>
+
 <p>In the course, you will also find more complete examples like this
 one that shows how you can make requests to collect just some subset of
 data using what we called ‘bounds’.</p>
+
 <p>For example, if you want to get just one single result, you can
 interactively try this application, or if you want all the data running
 from ‘Batman’ to ‘Curry’, you can also try this…</p>
-<p>These examples should be good starting points for writing big scale
-application.</p>
-<p>In the next video, we will complete the presentation of the main
-concepts, so see you there, bye!</p>
+
+<p>These examples should be good starting points for writing big scale application. In the next 
+video, we will complete the presentation of the main concepts, so see you there, bye!</p>
+
 <p>IndexedDB is presented as an alternative to the WebSQL Database,
 which the W3C deprecated on November 18, 2010 (while still available in
 some browsers, it is no longer in the HTML5 specification). Both are
 solutions for storage, but they do not offer the same functionalities.
 WebSQL Database is <i>a relational database access system</i>,
 whereas IndexedDB is <i>an indexed table system</i>.</p>
+
 <p>From <a href="https://www.w3.org/TR/IndexedDB/" target="_blank" rel="noopener noreferrer">the W3C specification
 about IndexedDB</a>: “<i>User agents (apps running in browsers) may
 need to store large numbers of objects locally in order to satisfy
@@ -14559,6 +14572,7 @@ seen in the HTML5 part 1 course -localStorage and sessionStorage) is
 useful for storing pairs of keys and their corresponding values,
 IndexedDB provides in-order retrieval of keys, efficient searching of
 values, and the storage of duplicate values for a key</i>”. </p>
+
 <p>The W3C specification provides a concrete API to perform advanced
 key-value data management that is at the heart of most sophisticated
 query processors. It does so by using <i>transactional
@@ -14572,10 +14586,10 @@ data records.</p>
 <h4>To sum up:</h4>
 
 <ol type="1">
-  <li><p><b>IndexedDB is a transactional Object Store in which you will be able to store JavaScript objects.</b></p></li>
-  <li><p><b>Indexes on some properties of these objects facilitate faster retrieval and search.</b></p></li>
-  <li><p><b>Applications using IndexedDB can work both online and offline.</b></p></li>
-  <li><p><b>IndexedDB is transactional: it manages concurrent access to data.</b></p></li>
+  <li><b>IndexedDB is a transactional Object Store in which you will be able to store JavaScript objects.</b><br></li>
+  <li><b>Indexes on some properties of these objects facilitate faster retrieval and search.</b><br></li>
+  <li><b>Applications using IndexedDB can work both online and offline.</b><br></li>
+  <li><b>IndexedDB is transactional: it manages concurrent access to data.</b></li>
 </ol>
 
 <h4>Examples of applications where IndexedDB should be considered</h4>
@@ -14748,51 +14762,60 @@ if the operation succeeded or failed. This may sound a little complicated at fir
 all, you are a JavaScript programmer, aren’t you? ;-)</p>
 
 <p>So, please review the previous code extracts noting: transaction oncomplete, transaction onerror, request onsuccess, and so forth.</p>
+
 <p><b>IndexedDB uses <i>requests</i> quite a lot.</b> Requests are objects that receive the success or failure DOM events mentioned previously. They have <i>onsuccess</i> and <i>onerror</i> properties, and you can call addEventListener() and removeEventListener() on them. They also have readyState, result, and errorCode properties which advise the status of a request.</p>
+
 <p>The <i>result property</i> is particularly magical, as it can be many different things, depending on how the request was generated (for example, an IDBCursor instance, or the key for a value that you just inserted into the database). We will see this in detail during a future lecture: “Using IndexedDB”.</p>
+
 <p><b>IndexedDB uses DOM events to notify you when results are available.</b> DOM events always have a type property (in IndexedDB, it is most commonly set to “success” or “error”). DOM events also have a target property that shows where the event is headed. In most cases, the target of an event is the IDBRequest object that was generated as a result of doing some database operation. Success events don’t bubble up and they can’t be cancelled. Error events, on the other hand, do bubble, and can be cancelled. This is quite important, as error events abort the transaction, unless they are cancelled.</p> <p><b>IndexedDB is object-oriented</b>. IndexedDB is not a relational  atabase, which has tables with collections of rows and columns. This important and fundamental difference affects the way you design and build your applications. IndexedDB is an Object Store!</p>
+
 <p>In a traditional relational data store, you would have a table that stores a collection of rows of data and columns of named types of data. IndexedDB, on the other hand, requires you to create an object store for a type of data and simply persist JavaScript objects to that store. Each
 object store can have a collection of indexes (corresponding to the properties of the JavaScript object you store in the store) that enable
 efficient querying and iteration.</p>
+
 <p><b>IndexedDB does not use Structured Query Language (SQL).</b> It phrases a query in terms of an index, that produces a cursor, which you use to iterate through the result set. If you are not familiar with NoSQL systems, read <a href="https://en.wikipedia.org/wiki/NoSQL" target="_blank" rel="noopener noreferrer">the Wikipedia article on NoSQL</a>.</p>
+
 <p><b>IndexedDB adheres to a same-origin policy.</b> An origin consists of the domain, the application layer protocol, and the port of a URL of
 the document where the script is being executed. Each origin has its own associated set of databases. Every database has a name that identifies
 it within an origin. Think of it as: “an application + a Database”.</p>
+
 <p>The concept of “same origin” is defined by the combination of all three components mentioned earlier (domain, protocol, port). For example, an app in a page with the URL https://www.example.com/app/, and a second app at https://www.example.com/dir/, may both access the same IndexedDB database because they have the <i>same origin</i> (https, example.com, and 80). Whereas apps at https://www.example.com:8080/dir/ (different port) or https://www.example.com/dir/ (different protocol), do not satisfy the <i>same origin</i> criteria (port or protocol differ from https://www.example.com)</p>
+
 <p>See this article from MDN about <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener noreferrer">the same-origin policy</a> for further details and examples.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-6-3">3.6.3 Definitions</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>This chapter can be read as is, but it is primarily given as a
-reference. We recommend you skim read it, then do the next section
-(“using IndexedDB”), then come back to this page if you need any
+<p>This chapter can be read as is, but it is primarily given as a reference. We recommend you skim 
+read it, then do the next section (“using IndexedDB”), then come back to this page if you need any 
 clarification.</p>
 
-<p>These definitions come from <a href="https://www.w3.org/TR/IndexedDB/#database-api" target="_blank" rel="noopener noreferrer">the W3C specification</a>. Please read this page to familiarize yourself with the terms.</p>
+<p>These definitions come from <a href="https://www.w3.org/TR/IndexedDB/#database-api" 
+target="_blank" rel="noopener noreferrer">the W3C specification</a>. Please read this page to 
+familiarize yourself with the terms.</p>
 
 <h4>Database</h4>
 
 <ul>
-  <li><p>Each <a href="https://www.w3.org/TR/IndexedDB/#dfn-origin" target="_blank" rel="noopener noreferrer">origin</a> (you may consider as “each application”) has an associated set of <a href="https://www.w3.org/TR/IndexedDB/#dfn-database" target="_blank" rel="noopener noreferrer">databases</a>. A <i>database</i> comprises one or more <a href="https://www.w3.org/TR/IndexedDB/#dfn-object-store" target="_blank" rel="noopener noreferrer">object stores</a> which hold the data stored in the database.</p></li>
-  <li><p>Every database has a <i>name</i> that identifies it within a specific origin. The name can be any string value, including the empty string, and stays constant for the lifetime of the database.</p></li>
-  <li><p>Each database also has a current version. When a database is first created, its <a href="https://www.w3.org/TR/IndexedDB/#dfn-version" target="_blank" rel="noopener noreferrer">version</a> is 0, if not specified otherwise.  Each database can only have one version at any given time. A database can’t exist in multiple versions at once.</p></li>
-  <li><p>The act of opening a database creates <i>a connection</i>. There may be multiple <a href="https://www.w3.org/TR/IndexedDB/#dfn-connection" target="_blank" rel="noopener noreferrer">connections</a> to a given database at any given time.</p></li>
+  <li>Each <a href="https://www.w3.org/TR/IndexedDB/#dfn-origin" target="_blank" rel="noopener noreferrer">origin</a> (you may consider as “each application”) has an associated set of <a href="https://www.w3.org/TR/IndexedDB/#dfn-database" target="_blank" rel="noopener noreferrer">databases</a>. A <i>database</i> comprises one or more <a href="https://www.w3.org/TR/IndexedDB/#dfn-object-store" target="_blank" rel="noopener noreferrer">object stores</a> which hold the data stored in the database.<br></li>
+  <li>Every database has a <i>name</i> that identifies it within a specific origin. The name can be any string value, including the empty string, and stays constant for the lifetime of the database.<br></li>
+  <li>Each database also has a current version. When a database is first created, its <a href="https://www.w3.org/TR/IndexedDB/#dfn-version" target="_blank" rel="noopener noreferrer">version</a> is 0, if not specified otherwise.  Each database can only have one version at any given time. A database can’t exist in multiple versions at once.<br></li>
+  <li>The act of opening a database creates <i>a connection</i>. There may be multiple <a href="https://www.w3.org/TR/IndexedDB/#dfn-connection" target="_blank" rel="noopener noreferrer">connections</a> to a given database at any given time.</li>
 </ul>
 
 <h4>Object store</h4>
 
 <ul>
-  <li><p>An object store is the mechanism by which data is stored in the database. </p></li>
-  <li><p>Every object store has <i>a name</i>. The name is unique within the database to which it belongs.</p></li>
-  <li><p>The object store persistently holds records (JavaScript objects), which are key-value pairs. One of these keys is  a kind of “primary key” in the SQL database sense. This “key” is a property that every object in the datastore <i>must</i> contain. Values in the object store are structured, but this structure may vary between objects (i.e., if we store persons in a database, and use the email as “the key all objects must define”, some may have first name and last name, others may have an address or no address at all, etc.)</p></li>
-  <li><p>Records within an object store are sorted according to <a href="https://developer.mozilla.org/en-US/docs/IndexedDB/Basic_Concepts_Behind_IndexedDB#gloss_key" target="_blank" rel="noopener noreferrer">keys</a>, in ascending order.</p></li>
-  <li><p>Optionally, an object store may also have a<i> <a href="https://www.w3.org/TR/IndexedDB/#dfn-key-generator" target="_blank" rel="noopener noreferrer">key generator</a> </i>and a <a href="https://www.w3.org/TR/IndexedDB/#dfn-object-store-key-path" target="_blank" rel="noopener noreferrer "><i>key path</i></a>. If the object store has a key path, it is said to use in-line keys. Otherwise, it is said to use <i>out-of-line</i> keys.</p></li>
-  <li><p>The object store can derive <a href="https://www.w3.org/TR/IndexedDB/#key-construct" target="_blank" rel="noopener noreferrer">the key</a> from one of three sources:</p>
+  <li>An object store is the mechanism by which data is stored in the database. <br></li>
+  <li>Every object store has <i>a name</i>. The name is unique within the database to which it belongs.<br></li>
+  <li>The object store persistently holds records (JavaScript objects), which are key-value pairs. One of these keys is  a kind of “primary key” in the SQL database sense. This “key” is a property that every object in the datastore <i>must</i> contain. Values in the object store are structured, but this structure may vary between objects (i.e., if we store persons in a database, and use the email as “the key all objects must define”, some may have first name and last name, others may have an address or no address at all, etc.)<br></li>
+  <li>Records within an object store are sorted according to <a href="https://developer.mozilla.org/en-US/docs/IndexedDB/Basic_Concepts_Behind_IndexedDB#gloss_key" target="_blank" rel="noopener noreferrer">keys</a>, in ascending order.<br></li>
+  <li>Optionally, an object store may also have a<i> <a href="https://www.w3.org/TR/IndexedDB/#dfn-key-generator" target="_blank" rel="noopener noreferrer">key generator</a> </i>and a <a href="https://www.w3.org/TR/IndexedDB/#dfn-object-store-key-path" target="_blank" rel="noopener noreferrer "><i>key path</i></a>. If the object store has a key path, it is said to use in-line keys. Otherwise, it is said to use <i>out-of-line</i> keys.<br></li>
+  <li>The object store can derive <a href="https://www.w3.org/TR/IndexedDB/#key-construct" target="_blank" rel="noopener noreferrer">the key</a> from one of three sources:</p>
   
   <ol type="1">
-    <li><p>A key generator. A key generator generates a monotonically increasing number every time a key is needed. This is somewhat similar to auto-incremented primary keys in a SQL database.</p></li>
-    <li><p>Keys can be derived via a key path.</p></li>
-    <li><p>Keys can also be explicitly specified when <a href="https://www.w3.org/TR/IndexedDB/#value-construct" target="_blank" rel="noopener noreferrer">a value</a> is stored in the object store.</p></li>
+    <li>A key generator. A key generator generates a monotonically increasing number every time a key is needed. This is somewhat similar to auto-incremented primary keys in a SQL database.<br></li>
+    <li>Keys can be derived via a key path.<br></li>
+    <li>Keys can also be explicitly specified when <a href="https://www.w3.org/TR/IndexedDB/#value-construct" target="_blank" rel="noopener noreferrer">a value</a> is stored in the object store.</li>
   </ol>
   </li>
 </ul>
@@ -14802,8 +14825,8 @@ clarification.</p>
 <h4>Version</h4>
 
 <ul>
-  <li><p>When a database is first created, its version is the integer 0. Each database has one version at a time; a database can’t exist in multiple versions at once.</p></li>
-  <li><p>The only way to change the version is by opening it with a higher version number than the current one. This will start a versionchange transaction and fire an upgradeneeded event. The only place where the schema of the database can be updated is inside the handler of that event.</p></li>
+  <li>When a database is first created, its version is the integer 0. Each database has one version at a time; a database can’t exist in multiple versions at once.<br></li>
+  <li>The only way to change the version is by opening it with a higher version number than the current one. This will start a versionchange transaction and fire an upgradeneeded event. The only place where the schema of the database can be updated is inside the handler of that event.</li>
 </ul>
 
 <p>This definition describes<a
@@ -14815,18 +14838,24 @@ removed IDBDatabase.setVersion() method.</p>
 <h4>Transaction</h4>
 
 <p>From the specification: “*A transaction is used to interact with the data in a database. Whenever data is read or written to the database, this is done by using <a href="https://www.w3.org/TR/IndexedDB/#dfn-transaction" target="_blank" rel="noopener noreferrer">a transaction</a>.</p>
+
 <p>All transactions are created through <a href="https://www.w3.org/TR/IndexedDB/#dfn-connection" target="_blank" rel="noopener noreferrer">a connection</a>, which is the transaction’s connection. The transaction has <a href="https://www.w3.org/TR/IndexedDB/#dfn-mode" target="_blank" rel="noopener noreferrer">a mode</a> (read, readwrite or versionchange) that determines which types of interactions can be performed upon that transaction. The mode is set when the transaction is created and remains fixed for the life of the transaction. The transaction also has a scope that determines the object stores with which the transaction may interact*.”</p>
+
 <p>A transaction in IndexedDB is similar to a transaction in a SQL database. It defines: “<i>An atomic and durable set of data-access and data-modification operations</i>”. Either all operations succeed or all fail. </p>
 <p>A database connection can have several active transactions associated with it at a time, but these write transactions cannot have overlapping <a
 href="https://developer.mozilla.org/en-US/docs/IndexedDB/Basic_Concepts_Behind_IndexedDB#scope" target="_blank" rel="noopener noreferrer">scopes</a> (<i>they cannot work on the same data at the same time</i>). The scope of a transaction, which is defined at creation time, determines which
 concurrent transactions can read or write the same data (multiple reads can occur, while writes will be sequential, only one at a time), and remains constant for the lifetime of the transaction.</p>
+
 <p>So, for example, if a database connection already has a writing transaction with a scope that covers only the flyingMonkey object store, you can start a second transaction with a scope of the unicornCentaur and unicornPegasus object stores. As for reading transactions, you can have several of them, and they may even overlap. A “versionchange” transaction never runs concurrently with other transactions (reminder: we usually use such transactions when we create the object store or when we modify the schema).</p>
+
 <p>Generally speaking, the above requirements mean that “readwrite” transactions which have overlapping scopes always run in the order they were <a
 href="https://www.w3.org/TR/IndexedDB/#dfn-transaction-create" target="_blank" rel="noopener noreferrer">created</a>, and never run in parallel. A “versionchange” transaction is automatically created when a database version number is provided that is greater than the current database version. This transaction will be active inside the onupgradeneeded event handler, allowing the creation of new object stores and <a href="https://www.w3.org/TR/IndexedDB/#dfn-index" target="_blank" rel="noopener noreferrer">indexes</a>.</p>
 
 <h4>Request</h4>
 
-<p>The operation by which reading and writing on a database is done.  Every request represents one read or one write operation. Requests are always run within a transaction. The example below adds a customer to the object store named “customers”.</p>
+<p>The operation by which reading and writing on a database is done.  Every request represents one 
+read or one write operation. Requests are always run within a transaction. The example below adds 
+a customer to the object store named “customers”.</p>
 
 <pre>// Use the transaction to add data...
 var objectStore = transaction.objectStore(&quot;customers&quot;);
@@ -14842,6 +14871,7 @@ for (var i in customerData) {
 <p>It is sometimes useful to retrieve <a
 href="https://www.w3.org/TR/IndexedDB/#dfn-record" target="_blank" rel="noopener noreferrer">records</a> from an
 object store through means other than their key.</p>
+
 <p>An <i>index</i> allows the user to look up records in an object store
 using the properties of the values in the object store’s records.
 Indexes are a common concept in databases. Indexes can speed up object
@@ -14849,17 +14879,20 @@ retrieval and allow multi-criteria searches. For example, if you store
 persons in your object store, and add an index on the “email” property
 of each person, then searching for some person using his/her email
 address will be much faster.</p>
+
 <p>An index is a specialized persistent key-value storage and has
 a <i>referenced</i> object store. For example, with our “persons” object
 store, that is the referenced data store. Then, a reference store may
 have an index store associated with it, that contains indexes which map
 email values to key values in the reference store (for example).</p>
+
 <p>An index is <i>a list of records</i> which holds the data stored in
 the index. The records in an index are automatically populated whenever
 records in <a href="https://www.w3.org/TR/IndexedDB/#dfn-referenced" target="_blank" rel="noopener noreferrer">the
 referenced object store</a> are inserted, updated or deleted. There may
 be several indexes referencing the same object store, in which case
 changes to the object store cause all such indexes to update.</p>
+
 <p>An index contains <i>a unique flag</i>. When this flag is set
 to true, the index enforces the rule that no two records in the index
 may have the same key. If a user attempts to insert or modify a record
@@ -14878,16 +14911,19 @@ href="https://developer.mozilla.org/en-US/docs/IndexedDB/Basic_Concepts_Behind_I
 key generator</a>, <a
 href="https://developer.mozilla.org/en-US/docs/IndexedDB/Basic_Concepts_Behind_IndexedDB#gloss_keypath" target="_blank" rel="noopener noreferrer">a
 key path</a>, and an explicitly specified value.</p>
+
 <p>The key must be of a data type that has a number that is greater than
 the one before. Each record in an object store must have a key that is
 unique within the same store, so you cannot have multiple records with
 the same key in a given object store.</p>
+
 <p>A key can be one of the following types: <a
 href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" target="_blank" rel="noopener noreferrer">string</a>, <a
 href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date" target="_blank" rel="noopener noreferrer">date</a>, float, and <a
 href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener noreferrer">array</a>.
 For arrays, the key can range from an empty value to infinity. And you
 can include an array within an array.</p>
+
 <p>Alternatively, you can also look up records in an object store
 using <a
 href="https://developer.mozilla.org/en-US/docs/IndexedDB/Basic_Concepts_Behind_IndexedDB#gloss_index" target="_blank" rel="noopener noreferrer"> an
@@ -18316,12 +18352,12 @@ your comments/observations/questions and share your creations.</p>
   <li>There is a wonderful demonstration of a 
     <a href="https://testdrive-archive.azurewebsites.net/Graphics/WorkerFountains/Default.html" 
     target="_blank" rel="noopener noreferrer" title="Fountain Animation using particles">
-	fountain animation</a> using <i>particles</i>, made by Microsoft. Can you write something similar, 
-	but perhaps with fewer options? The idea was the following: compute <i>particle movements</i> in
-	separate <i>workers</i>, and when a new array of <i>particles</i> is ready to be drawn, post it 
-	from the Web Worker. The main page has a mainloop for animating at 60 frames per second. When a 
-	new set of <i>particles</i> is ready (posted by a <i>Worker</i>), it is drawn and animated. The 
-	demo had up to 10 <i>workers</i> operating in <i>parallel</i>, in the <i>background</i>.</li>
+    fountain animation</a> using <i>particles</i>, made by Microsoft. Can you write something similar, 
+    but perhaps with fewer options? The idea was the following: compute <i>particle movements</i> in
+    separate <i>workers</i>, and when a new array of <i>particles</i> is ready to be drawn, post it 
+    from the Web Worker. The main page has a mainloop for animating at 60 frames per second. When a 
+    new set of <i>particles</i> is ready (posted by a <i>Worker</i>), it is drawn and animated. The 
+    demo had up to 10 <i>workers</i> operating in <i>parallel</i>, in the <i>background</i>.</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~ 243. ie10 web workers fountain demo (456) ~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -18359,7 +18395,7 @@ browsers are about the support for this emulation mode).</p>
   <li>Browser compatibility:</li>
   <li><a href="https://caniuse.com/#feat=deviceorientation" target="_blank" rel="noopener noreferrer"
     title="DeviceOrientation and DeviceMotion events on CanIUse">
-	DeviceOrientation &amp; DeviceMotion events</a> on CanIUse</li>
+    DeviceOrientation &amp; DeviceMotion events</a> on CanIUse</li>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation#Browser_compatibility" target="_blank" rel="noopener noreferrer" title="DeviceOrientationEvent on MDN">
   DeviceOrientationEvent</a> and 
   <a href="https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation#Browser_compatibility" target="_blank" rel="noopener noreferrer" title="DeviceMotionEvent on MDN">DeviceMotionEvent</a> on MDN</li>
@@ -18421,7 +18457,7 @@ we apply rotations in the following order:</p>
   <tbody>
     <tr class="odd">
     <td>Device rotated<br>through angle alpha<br>about z axis,<br>with previous<br>locations of x and y<br>
-	axes shown as x<sub>0</sub> and<br>y<sub>0</sub>.</td>
+    axes shown as x<sub>0</sub> and<br>y<sub>0</sub>.</td>
     <td>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 245. rotation about z axis (459) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -18461,7 +18497,7 @@ we apply rotations in the following order:</p>
   <tbody>
     <tr class="odd">
       <td>Device rotated<br>through angle beta<br>about new x axis,<br>with previous<br>
-	  locations of y and z<br>axes shown as<br>y<sub>0</sub> and z<sub>0</sub>.</td>
+      locations of y and z<br>axes shown as<br>y<sub>0</sub> and z<sub>0</sub>.</td>
       <td>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 246. rotation about the x axis (461) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -18537,16 +18573,16 @@ x<sub>0</sub> and z<sub>0</sub>.
   <li>Test if your browser supports the orientation API (window.DeviceOrientationEvent is not null),</li>
   <li>Define a listener for the ‘deviceorientation’ event as follows: 
     window.addEventListener(‘deviceorientation’, callback, false); with the callback function 
-	accepting the event object as its single input parameter,</li>
+    accepting the event object as its single input parameter,</li>
   <li>Extract the angles from the event (use its properties: alpha, beta, gamma), and</li>
   <li>Try it with a smartphone, a tablet, or a device with an accelerometer: 
     <a href="https://jsbin.com/limugat/edit" target="_blank" rel="noopener noreferrer" 
-	title="Example on JSBin">Here’s an example on JsBin</a>.</li>
+    title="Example on JSBin">Here’s an example on JsBin</a>.</li>
 </ol>
 
 <p>(If using a mobile device, <a href="https://jsbin.com/limugat" 
-target="_blank" rel="noopener noreferrer">open the page in standalone 
-mode</a> (without the JsBin editor) )</p>
+target="_blank" rel="noopener noreferrer" title="JsBin on mobile, open in standalone mode without 
+JSBin editor">open the page in standalone mode</a> (without the JSBin editor) )</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~ 248. device orientation api 2 (464) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -18564,7 +18600,7 @@ very sensitive sensor might report constantly changing values.<br>
 This is why, in the example, we round the returned values with Math.round() at display time (see 
 code).</p>
 
-<p>If we change the orientation of the device here are the results:</p>
+<p>If we change the orientation of the device, here are the results:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 249. orientation api 3 (465) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -19028,15 +19064,17 @@ direction (vertical), and how the Z acceleration is, in fact, an indicator for t
 down orientation of the device.</p>
 
 <p>This example has been adapted and put on jsbin.com so that you can tweak it: 
-<a href="https://jsbin.com/uyuqek/4/edit" target="_blank" rel="noopener noreferrer">https://jsbin.com/uyuqek/4/edit</a></p>
+<a href="https://jsbin.com/uyuqek/4/edit" target="_blank" rel="noopener noreferrer" title="JSBin example indicating the sky's direction">https://jsbin.com/uyuqek/4/edit</a></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 262. devicemotion api (476) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 262. devicemotion jquery api (476) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<a href="https://jsbin.com/uyuqek/4/edit" target="_blank" rel="noopener noreferrer">
 <img class="displayed"
   src="./images/webp/image262.webp"
   loading="lazy"
   title="Devicemotion API. Uses jQuery mobile."
   alt="Devicemotion API. Uses jQuery mobile."
   style="width:30%;" />
+</a>
 
 <h4>Code from the example:</h4>
 
@@ -19156,99 +19194,99 @@ target="_blank" rel="noopener noreferrer">use this URL instead</a>!</p>
         40, from(red), color-stop(75%, black), to(rgba(255, 255, 255, 0)));
         -webkit-box-shadow: 3px 3px 5px #888;
       }
-      &lt;/style&gt;
-      &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js&quot;&gt;
-        &lt;/script&gt;
-      &lt;script&gt;
-        !window.jQuery &amp;&amp; document.write(&#39;&lt;script
-        src=&quot;./js/jquery.min.js&quot;&gt;&lt;/script&gt;&#39;)
-      &lt;/script&gt;
-      &lt;script&gt;
-        var offset;
-        var velocity;
-        var board;
-        var ball;
-        var interval;
-        $(document).ready(function() {
-          window.addEventListener(&quot;devicemotion&quot;, onDeviceMotion, false);
-          $(&#39;#timestamp&#39;).html(new Date().toString());
-          $(&#39;#status&#39;).html(&quot;Ready!&quot;);
-          velocity = {};
-          velocity.x = 0;
-          velocity.y = 0;
-          offset = {};
-          board = $(&#39;#board&#39;);
-          ball = $(&#39;#ball&#39;);
-          offset.left = (board.width() - ball.width()) / 2;
-          offset.top = (board.height() - ball.height()) / 2;
-          $(&#39;#ball&#39;).offset(offset);
-          interval = setInterval(updateBall, 25);
-        });
-        function onDeviceMotion(event) {
-          $(&#39;#timestamp&#39;).html(new Date().toString());
-          $(&#39;#status&#39;).html(&quot;Device Motion Event&quot;);
-          var eventDetails;
-          try {
-            var accel = event.accelerationIncludingGravity;
-            eventDetails = &quot;accelerationIncludingGravity: {&quot; +
-              &quot;&lt;br&gt;     x: &quot; + accel.x +
-              &quot;&lt;br&gt;     y: &quot; + accel.y +
-              &quot;&lt;br&gt;     z: &quot; + accel.z +
-              &quot;&lt;br/&gt;} &lt;/br&gt;&lt;br/&gt;&quot; +
-              &quot;interval: &quot; + event.interval;
-              updateVelocity(event);
-          } catch (e) {
-            eventDetails = e.toString();
-          }
-          $(&#39;#details&#39;).html(eventDetails);
-        }
-      var decay = .9;
-      var bounceDecay = .95;
-      var maxVelocity = 100;
-      function updateVelocity(event) {
-        velocity.x += event.accelerationIncludingGravity.x;
-        if (Math.abs(velocity.x) &gt; maxVelocity) {
-          if (velocity.x &gt; 0) velocity.x = maxVelocity;
-            else velocity.x = -maxVelocity;
-        }
-        velocity.y += event.accelerationIncludingGravity.y;
-        if (Math.abs(velocity.y) &gt; maxVelocity) {
-          if (velocity.y &gt; 0) velocity.y = maxVelocity;
-            else velocity.y = -maxVelocity;
-          }
-      }
-      function updateBall() {
-        if (offset.left &lt;= -(ball.width() / 2)) {
-          velocity.x = Math.abs(velocity.x * bounceDecay);
-        } else if (offset.left &gt;= (board.width() - (ball.width() / 2))) {
-          velocity.x = -Math.abs(velocity.x * bounceDecay);
-        } else {
-          velocity.x = parseInt(velocity.x);
-          velocity.x *= decay;
-        }
-        if (offset.top &lt;= -(ball.height() / 2)) {
-          velocity.y = -Math.abs(velocity.y * bounceDecay);
-        } else if (offset.top &gt;= (board.height() - (ball.height() / 2))) {
-          velocity.y = Math.abs(velocity.y * bounceDecay);
-        } else {
-          velocity.y = parseInt(velocity.y);
-          velocity.y *= decay;
+    &lt;/style&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js&quot;&gt;
+      &lt;/script&gt;
+    &lt;script&gt;
+      !window.jQuery &amp;&amp; document.write(&#39;&lt;script
+      src=&quot;./js/jquery.min.js&quot;&gt;&lt;/script&gt;&#39;)
+    &lt;/script&gt;
+    &lt;script&gt;
+      var offset;
+      var velocity;
+      var board;
+      var ball;
+      var interval;
+      $(document).ready(function() {
+        window.addEventListener(&quot;devicemotion&quot;, onDeviceMotion, false);
+        $(&#39;#timestamp&#39;).html(new Date().toString());
+        $(&#39;#status&#39;).html(&quot;Ready!&quot;);
+        velocity = {};
+        velocity.x = 0;
+        velocity.y = 0;
+        offset = {};
+        board = $(&#39;#board&#39;);
+        ball = $(&#39;#ball&#39;);
+        offset.left = (board.width() - ball.width()) / 2;
+        offset.top = (board.height() - ball.height()) / 2;
+        $(&#39;#ball&#39;).offset(offset);
+        interval = setInterval(updateBall, 25);
+      });
+      function onDeviceMotion(event) {
+        $(&#39;#timestamp&#39;).html(new Date().toString());
+        $(&#39;#status&#39;).html(&quot;Device Motion Event&quot;);
+        var eventDetails;
+        try {
+          var accel = event.accelerationIncludingGravity;
+          eventDetails = &quot;accelerationIncludingGravity: {&quot; +
+            &quot;&lt;br&gt;     x: &quot; + accel.x +
+            &quot;&lt;br&gt;     y: &quot; + accel.y +
+            &quot;&lt;br&gt;     z: &quot; + accel.z +
+            &quot;&lt;br/&gt;} &lt;/br&gt;&lt;br/&gt;&quot; +
+            &quot;interval: &quot; + event.interval;
+            updateVelocity(event);
+        } catch (e) {
+          eventDetails = e.toString();
         }
-        offset.left += velocity.x;
-        offset.top -= velocity.y;
-        $(&#39;#ball&#39;).offset(offset);
-      }
-    &lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div id=&quot;timestamp&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;status&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;details&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;board&quot;&gt;
-      &lt;div id=&quot;ball&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    spec: 
-    &lt;a href=&quot;https://w3c.github.io/deviceorientation/spec-source-orientation.html&quot; target=&quot;https://w3c.github.io/deviceorientation/spec-source-orientation.html&quot;&gt;https://w3c.github.io/deviceorientation/spec-source-orientation.html&lt;/a&gt;
+        $(&#39;#details&#39;).html(eventDetails);
+      }
+    var decay = .9;
+    var bounceDecay = .95;
+    var maxVelocity = 100;
+    function updateVelocity(event) {
+      velocity.x += event.accelerationIncludingGravity.x;
+      if (Math.abs(velocity.x) &gt; maxVelocity) {
+        if (velocity.x &gt; 0) velocity.x = maxVelocity;
+          else velocity.x = -maxVelocity;
+      }
+      velocity.y += event.accelerationIncludingGravity.y;
+      if (Math.abs(velocity.y) &gt; maxVelocity) {
+        if (velocity.y &gt; 0) velocity.y = maxVelocity;
+          else velocity.y = -maxVelocity;
+        }
+    }
+    function updateBall() {
+      if (offset.left &lt;= -(ball.width() / 2)) {
+        velocity.x = Math.abs(velocity.x * bounceDecay);
+      } else if (offset.left &gt;= (board.width() - (ball.width() / 2))) {
+        velocity.x = -Math.abs(velocity.x * bounceDecay);
+      } else {
+        velocity.x = parseInt(velocity.x);
+        velocity.x *= decay;
+      }
+      if (offset.top &lt;= -(ball.height() / 2)) {
+        velocity.y = -Math.abs(velocity.y * bounceDecay);
+      } else if (offset.top &gt;= (board.height() - (ball.height() / 2))) {
+        velocity.y = Math.abs(velocity.y * bounceDecay);
+      } else {
+        velocity.y = parseInt(velocity.y);
+        velocity.y *= decay;
+      }
+      offset.left += velocity.x;
+      offset.top -= velocity.y;
+      $(&#39;#ball&#39;).offset(offset);
+    }
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;timestamp&quot;&gt;&lt;/div&gt;
+  &lt;div id=&quot;status&quot;&gt;&lt;/div&gt;
+  &lt;div id=&quot;details&quot;&gt;&lt;/div&gt;
+  &lt;div id=&quot;board&quot;&gt;
+  &lt;div id=&quot;ball&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  spec: 
+  &lt;a href=&quot;https://w3c.github.io/deviceorientation/spec-source-orientation.html&quot; target=&quot;https://w3c.github.io/deviceorientation/spec-source-orientation.html&quot;&gt;https://w3c.github.io/deviceorientation/spec-source-orientation.html&lt;/a&gt;
   &lt;/body&gt;
 &lt;/html&gt;</pre>
 
@@ -19260,15 +19298,15 @@ target="_blank" rel="noopener noreferrer">use this URL instead</a>!</p>
   <li>From the W3C specification: 
     <a href="https://w3c.github.io/deviceorientation/spec-source-orientation.html#devicemotion" 
     target="_blank" rel="noopener noreferrer" title="W3C's devicemotion Event">
-	devicemotion Event</a><br><br></li>
+    devicemotion Event</a><br><br></li>
   <li>From Google Devs: 
     "<a href="https://web.dev/articles/device-orientation"
     target="_blank" rel="noopener noreferrer" title="Device Orientation &amp; Motion">
-	Device Orientation &amp; Motion</a>"<br><br></li>
+    Device Orientation &amp; Motion</a>"<br><br></li>
   <li>On Dev. Opera: 
     "<a href="https://dev.opera.com/articles/w3c-device-orientation-api/" 
     target="_blank" rel="noopener noreferrer" title="W3C Device Orientation API Detecting Orientation 
-	and Acceleration">The W3C Device Orientation API: Detecting Orientation and Acceleration</a>"</li>
+    and Acceleration">The W3C Device Orientation API: Detecting Orientation and Acceleration</a>"</li>
 </ul>
 <!-- https://developers.google.com/web/fundamentals/native-hardware/device-orientation/" -->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -19291,9 +19329,9 @@ questions and share your creations.</p>
 <ul>
   <li><a href="https://mainline.i3s.unice.fr/mooc/SkywardBound/" target="_blank" 
     rel="noopener noreferrer" title="The Christmas game by students">
-	The Christmas game</a> developed by students from the previous run is a perfect candidate to be 
-	controlled using the APIs seen in this course!! I would start with the orientation API and try 
-	to move the bunny left/right…<br><br></li>
+    The Christmas game</a> developed by students from the previous run is a perfect candidate to be 
+    controlled using the APIs seen in this course!! I would start with the orientation API and try 
+    to move the bunny left/right…<br><br></li>
   <li>Using the game framework, try to control the monster using the orientation API, so that it 
     avoids the balls - see the last example from Module 2 of the course!</li>
 </ul>
@@ -19310,3 +19348,4 @@ questions and share your creations.</p>
   <script src="./js/scripts.js"></script>
 </body>
 </html>
+

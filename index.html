@@ -14408,56 +14408,47 @@ representation for data -JavaScript objects-, is really comfortable.</p>
 <p>In the course, you will see a lot of small examples that we prepared on JSBin, and each of these 
 examples show an individual operation, a very core operation like creating a Customer database.</p>
 
-<p>If I click on the “create CustomerDB database” (button), and if I
-open the devtools console, and I go to IndexedDB, I can see that the
-CustomerDB database I created appeared here, and I can see that the
-objects are stored: people with an age, email, name and a social
-security number. You will see examples for creating a database, for
-working with data, for inserting data, removing data, modifying data,
-getting data and so on. And each of these small examples will provide
-very useful code that you can reuse in your own examples.</p>
+<p>If I click on the “create CustomerDB database” (button), and if I open the devtools console, and I go 
+to IndexedDB, I can see that the CustomerDB database I created appeared here, and I can see that the 
+objects are stored: people with an age, email, name and a social security number. You will see examples 
+for creating a database, for working with data, for inserting data, removing data, modifying data, getting 
+data and so on. And each of these small examples will provide very useful code that you can reuse in your 
+own examples.</p>
 
-<p>In the course, you will also find more complete examples like this
-one that shows how you can make requests to collect just some subset of
-data using what we called ‘bounds’.</p>
+<p>In the course, you will also find more complete examples like this one that shows how you can make 
+requests to collect just some subset of data using what we called ‘bounds’.</p>
 
-<p>For example, if you want to get just one single result, you can
-interactively try this application, or if you want all the data running
-from ‘Batman’ to ‘Curry’, you can also try this…</p>
+<p>For example, if you want to get just one single result, you can interactively try this application, 
+or if you want all the data running from ‘Batman’ to ‘Curry’, you can also try this…</p>
 
 <p>These examples should be good starting points for writing big scale application. In the next 
 video, we will complete the presentation of the main concepts, so see you there, bye!</p>
 
-<p>IndexedDB is presented as an alternative to the WebSQL Database,
-which the W3C deprecated on November 18, 2010 (while still available in
-some browsers, it is no longer in the HTML5 specification). Both are
-solutions for storage, but they do not offer the same functionalities.
-WebSQL Database is <i>a relational database access system</i>,
-whereas IndexedDB is <i>an indexed table system</i>.</p>
+<p>IndexedDB is presented as an alternative to the WebSQL Database, which the W3C deprecated on 
+November 18, 2010 (while still available in some browsers, it is no longer in the HTML5 specification). 
+Both are solutions for storage, but they do not offer the same functionalities. WebSQL Database is <i>a 
+relational database access system</i>, whereas IndexedDB is <i>an indexed table system</i>.</p>
 
-<p>From <a href="https://www.w3.org/TR/IndexedDB/" target="_blank" rel="noopener noreferrer">the W3C specification
-about IndexedDB</a>: “<i>User agents (apps running in browsers) may
-need to store large numbers of objects locally in order to satisfy
-off-line data requirements of Web applications. Where WebStorage (as
-seen in the HTML5 part 1 course -localStorage and sessionStorage) is
-useful for storing pairs of keys and their corresponding values,
-IndexedDB provides in-order retrieval of keys, efficient searching of
-values, and the storage of duplicate values for a key</i>”. </p>
+<p>From <a href="https://www.w3.org/TR/IndexedDB/" target="_blank" rel="noopener noreferrer" 
+title="W3c specificatations">the W3C specification about IndexedDB</a>: “<i>User agents (apps 
+running in browsers) may need to store large numbers of objects locally in order to satisfy 
+off-line data requirements of Web applications. Where WebStorage (as seen in the HTML5 part 1 
+course -localStorage and sessionStorage) is useful for storing pairs of keys and their 
+corresponding values, IndexedDB provides in-order retrieval of keys, efficient searching of 
+values, and the storage of duplicate values for a key</i>”.</p>
 
-<p>The W3C specification provides a concrete API to perform advanced
-key-value data management that is at the heart of most sophisticated
-query processors. It does so by using <i>transactional
-databases</i> to store keys and their corresponding values (one or more
-per key), and providing a means of traversing keys in a deterministic
-order. This is often implemented through the use of persistent B-tree
-data structures which are considered efficient for insertion and
-deletion, as well as for in-order traversal of very large numbers of
-data records.</p>
+<p>The W3C specification provides a concrete API to perform advanced key-value data management that is 
+at the heart of most sophisticated query processors. It does so by using <i>transactional databases</i> 
+to store keys and their corresponding values (one or more per key), and providing a means of traversing 
+keys in a deterministic order. This is often implemented through the use of persistent B-tree data 
+structures which are considered efficient for insertion and deletion, as well as for in-order traversal 
+of very large numbers of data records.</p>
 
 <h4>To sum up:</h4>
 
 <ol type="1">
-  <li><b>IndexedDB is a transactional Object Store in which you will be able to store JavaScript objects.</b><br></li>
+  <li><b>IndexedDB is a transactional Object Store in which you will be able to store JavaScript 
+    objects.</b><br></li>
   <li><b>Indexes on some properties of these objects facilitate faster retrieval and search.</b><br></li>
   <li><b>Applications using IndexedDB can work both online and offline.</b><br></li>
   <li><b>IndexedDB is transactional: it manages concurrent access to data.</b></li>
@@ -14482,41 +14473,45 @@ data records.</p>
 
 <h4>External resources</h4>
 
-<p>Much of this chapter either builds on or is an adaptation of articles
-posted on the Mozilla Developer Network (MDN) Web site (IndexedDB, <a href="https://developer.mozilla.org/en-US/docs/IndexedDB/Basic_Concepts_Behind_IndexedDB" target="_blank" rel="noopener noreferrer">Basic Concepts of IndexedDB</a> and <a href="https://developer.mozilla.org/en-US/docs/IndexedDB/Using_IndexedDB" target="_blank" rel="noopener noreferrer">Using IndexedDB</a>).</p>
+<p>Much of this chapter either builds on or is an adaptation of articles posted on the Mozilla Developer 
+Network (MDN) Web site (IndexedDB, <a href="https://developer.mozilla.org/en-US/docs/IndexedDB/Basic_Concepts_Behind_IndexedDB" 
+target="_blank" rel="noopener noreferrer" title="Basic concepts on IndexDB">Basic Concepts of IndexedDB</a> 
+and <a href="https://developer.mozilla.org/en-US/docs/IndexedDB/Using_IndexedDB" target="_blank" rel="noopener 
+noreferrer" title "Using IndexSB">Using IndexedDB</a>).</p>
 
 <ul>
-  <li><p><a href="https://www.w3.org/TR/IndexedDB/" target="_blank" rel="noopener noreferrer">W3C specification about IndexedDB</a></p></li>
-  <li><p><a href="https://developer.mozilla.org/en/IndexedDB" target="_blank" rel="noopener noreferrer">MDN’s page about the IndexedDB API</a></p></li>
-  <li><p><a href="https://itnext.io/getting-started-with-persistent-offline-storage-with-indexeddb-1af66727246c" target="_blank" rel="noopener noreferrer">Getting Started with Persistent Offline Storage with IndexedDB</a></p></li>
+  <li><a href="https://www.w3.org/TR/IndexedDB/" target="_blank" rel="noopener noreferrer" 
+    title="W3C's specification about IndexDB">W3C specification about IndexedDB</a><br></li>
+  <li><a href="https://developer.mozilla.org/en/IndexedDB" target="_blank" rel="noopener noreferrer" 
+    title="MDN's page about IndexDB">MDN’s page about the IndexedDB API</a><br></li>
+  <li><a href="https://itnext.io/getting-started-with-persistent-offline-storage-with-indexeddb-1af66727246c" 
+  target="_blank" rel="noopener noreferrer" title="Getting started with persistent offline storage">
+  Getting Started with Persistent Offline Storage with IndexedDB</a></li>
 </ul>
 
-<p><a href="https://caniuse.com/#search=indexed" target="_blank" rel="noopener noreferrer">Current support is
-excellent</a> both on mobile and desktop browsers.</p>
+<p><a href="https://caniuse.com/#search=indexed" target="_blank" rel="noopener noreferrer" 
+title="Can I Use">Current support is excellent</a> both on mobile and desktop browsers.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-6-2">3.6.2 IndexDB Concepts (part 2)</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Among the concepts used by IndexedDB is the concept of transactions.
-A transactional database ensures that concurrent access to data would not compromise this data.</p>
+<p>Among the concepts used by IndexedDB is the concept of transactions. A transactional database 
+ensures that concurrent access to data would not compromise this data.</p>
 
 <p>It uses a locking system, that means that when an instance of your Web application is modifying 
 some data and another instance or another application on the same domain is reading this data, there 
 won’t be anything wrong regarding to this data.</p>
 
-<p>When do we need such a mechanism? When you have multiple tabs opened
-on the same WebApp or WebApps from the same domain. Or you have got
-multiple games that store high scores and they are all coming from
-the”MyBeautifulGame.com” domain. They will share the same database</p>
+<p>When do we need such a mechanism? When you have multiple tabs opened on the same WebApp or WebApps 
+from the same domain. Or you have got multiple games that store high scores and they are all coming 
+from the”MyBeautifulGame.com” domain. They will share the same database</p>
 
-<p>You need to have some security system. But remember also that HTML5
-is also used for writing applications that run outside of the
-traditional browser, like on a game console…the PS4, the Xbox One… your
-Windows desktop uses also applications written in HTML5.</p>
+<p>You need to have some security system. But remember also that HTML5 is also used for writing 
+applications that run outside of the traditional browser, like on a game console…the PS4, the Xbox 
+One… your Windows desktop uses also applications written in HTML5.</p>
 
-<p>All these applications will belong to the same default domain and if
-they need to store data, in an IndexedDB database -there is an IndexedDB
-database in your Xbox or in your PlayStation-! Then, in that case all these 
-applications will have to fight for accessing the data and you need transactions.</p>
+<p>All these applications will belong to the same default domain and if they need to store data, in an 
+IndexedDB database -there is an IndexedDB database in your Xbox or in your PlayStation-! Then, in that 
+case all these applications will have to fight for accessing the data and you need transactions.</p>
 
 <p>Another concept is called the KeyPath. The KeyPath is like a unique ID attached 
 to each data in your database. And this KeyPath is either one explicit property, in 
@@ -14526,42 +14521,32 @@ implicit, if you do not specify any KeyPath when you create your database anothe
 property will be added to your object. It’s a bit like the auto-incremented primary keys 
 in the SQL world.</p>
 
-<p>You can also have flexible schemas for your data.
-All your data need to share the unique ID I just talked about, but
-they can have some variable properties… you can have some contacts for
-example, in your data store, that have one single phone number or
-multiple phone numbers, or a description, or an age, or a name attached
-to them…</p>
+<p>You can also have flexible schemas for your data. All your data need to share the unique ID I 
+just talked about, but they can have some variable properties… you can have some contacts for example, 
+in your data store, that have one single phone number or multiple phone numbers, or a description, or 
+an age, or a name attached to them…</p>
 
-<p>… but not all objects must share the same schema like what you have
-got in relational tables in a relational databases. Another concept we
-find in most databases is the concept of ‘indexes’. You can specify that
-a property of your object you store in a database is an index. In that
-case, the retrieval of data using this index will be much faster.</p>
+<p>… but not all objects must share the same schema like what you have got in relational tables in a 
+relational databases. Another concept we find in most databases is the concept of ‘indexes’. You can 
+specify that a property of your object you store in a database is an index. In that case, the retrieval 
+of data using this index will be much faster.</p>
 
-<p>And indexes, contrarily to KeyPath, can be unique or non unique.
-For example if my object has a lastName, I can have several objects
-with lastName being Buffa, my family name, and I can send a request to
-the database asking for all the people whose lastName is equal to
-Buffa. And in that case, the retrieval will be much faster than if lastName
-was not an index.</p>
+<p>And indexes, contrarily to KeyPath, can be unique or non unique. For example if my object has a 
+lastName, I can have several objects with lastName being Buffa, my family name, and I can send a 
+request to the database asking for all the people whose lastName is equal to Buffa. And in that case, 
+the retrieval will be much faster than if lastName was not an index.</p>
 
-<p>To sum up: IndexedDB is a NoSQL database, that stores JavaScript
-objects. It runs in your browser (client side), it uses transactions -
-so several tabs or several applications on the same domain can access
-with a lot of security a same data at the same time.
-It uses indexes for faster retrieval, and finally it can hold huge
-amount of data.</p>
+<p>To sum up: IndexedDB is a NoSQL database, that stores JavaScript objects. It runs in your browser 
+(client side), it uses transactions - so several tabs or several applications on the same domain can 
+access with a lot of security a same data at the same time. It uses indexes for faster retrieval, and 
+finally it can hold huge amount of data.</p>
 
-<p>Thanks for your attention, in the next videos we will look at some
-pieces of code to learn how to program some application that will use
-IndexedDB. Bye bye!</p>
+<p>Thanks for your attention, in the next videos we will look at some pieces of code to learn how to 
+program some application that will use IndexedDB. Bye bye!</p>
 
-<p>IndexedDB is very different from SQL databases, but don’t be afraid
-if you’ve only used SQL databases: IndexedDB might seem complex at first
-sight, but it really isn’t.
-Let’s quickly look at the main concepts of IndexedDB, as we will go
-into detail later on:</p>
+<p>IndexedDB is very different from SQL databases, but don’t be afraid if you’ve only used SQL databases: 
+IndexedDB might seem complex at first sight, but it really isn’t. Let’s quickly look at the main concepts 
+of IndexedDB, as we will go into detail later on:</p>
 
 <ul>
   <li><p>IndexedDB stores and retrieves objects which are indexed by a “key”.</p></li>
@@ -19196,5 +19181,6 @@ questions and share your creations.</p>
   <script src="./js/scripts.js"></script>
 </body>
 </html>
+
 
 

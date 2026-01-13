@@ -3444,27 +3444,23 @@ if (typeof track.getCueById !== &quot;function&quot;) {
 <h4>Techniques</h4>
 
 <p>To add a TextTrack to a track element, use
-the <a href="https://www.w3.org/TR/html5/embedded-content-0.html#text-track-api" target="_blank" rel="noopener noreferrer">addTextTrack method</a> (of the
-audio or video element). The function’s signature is
-addTextTrack(kind[,label[,language]]) where kind is our familiar choice
-between subtitles, captions, chapters, etc. The optional label is any
-text you’d like to use describing the track; and the
-optional <i>language</i> is from our usual list of BCP-47 abbreviations,
-eg ‘de’, ‘en’, ‘es’, ‘fr’ (etc).</p>
+the <a href="https://www.w3.org/TR/html5/embedded-content-0.html#text-track-api" target="_blank" 
+rel="noopener noreferrer" title="W3's addTextTrack method">addTextTrack method</a> (of the audio or 
+video element). The function’s signature is addTextTrack(kind[,label[,language]]) where kind is our 
+familiar choice between subtitles, captions, chapters, etc. The optional label is any text you’d 
+like to use describing the track; and the optional <i>language</i> is from our usual list of BCP-47 
+abbreviations, eg ‘de’, ‘en’, ‘es’, ‘fr’ (etc).</p>
 
-<p>The VTTCue constructor enables us to create our own cue
-class-instances programmatically. We create a cue instance by using
-the new keyword. The constructor function expects three familiar
-arguments, thus: new VTTCue(startTime, endTime, id) - more detail is
-available
+<p>The VTTCue constructor enables us to create our own cue class-instances programmatically. We 
+create a cue instance by using the new keyword. The constructor function expects three familiar 
+arguments, thus: new VTTCue(startTime, endTime, id) - more detail is available
 from <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Video_Text_Tracks_Format" target="_blank" rel="noopener noreferrer">the
-MDN</a> and <a href="https://w3c.github.io/webvtt/#the-vttcue-interface" target="_blank" rel="noopener noreferrer">the
-W3C’s two applicable groups</a>.</p>
+MDN</a> and <a href="https://w3c.github.io/webvtt/#the-vttcue-interface" target="_blank" 
+rel="noopener noreferrer">the W3C’s two applicable groups</a>.</p>
 
-<p>To add cue-instances to a TextTrack on-the-fly, use the track
-object’s addCue method, eg track.addCue(cue). The argument is a <i>cue
-instance</i> - as above. Note that the track <b>must</b> be a
-<i>TextTrack</i> object because addCue does <b>not</b> work with
+<p>To add cue-instances to a TextTrack on-the-fly, use the track object’s addCue method, eg 
+track.addCue(cue). The argument is a <i>cue instance</i> - as above. Note that the track 
+<b>must</b> be a <i>TextTrack</i> object because addCue does <b>not</b> work with 
 <i>HTMLTrackElement</i> Objects.</p>
 
 <h4>HTML source code extract:</h4>
@@ -3556,15 +3552,13 @@ window.onload = function() {
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch1-4-2">1.4.2 Update the Document in Sync with a Media Playing</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Mixing JSON cue content with track and cue events, makes the
-synchronization of elements in the HTML document (while the video is
-playing) much easier.</p>
+<p>Mixing JSON cue content with track and cue events, makes the synchronization of elements in the 
+HTML document (while the video is playing) much easier.</p>
 
 <h4>Example of track event listeners that use JSON cue contents</h4>
 
-<p>Here is a small code extract that shows how we can capture the JSON
-content of a cue when the video reaches its start time. We do this
-within a cuechange listener attached to a TextTrack:</p>
+<p>Here is a small code extract that shows how we can capture the JSON content of a cue when the 
+video reaches its start time. We do this within a cuechange listener attached to a TextTrack:</p>
 
 <details>
   <summary>JavaScript code!</summary>
@@ -3579,15 +3573,15 @@ within a cuechange listener attached to a TextTrack:</p>
 
 </details>
 
-<p>Here is <a href="https://simpl.info/track/map/index.html" target="_blank" rel="noopener noreferrer">a very
-impressive demo by Sam Dutton that uses JSON cues containing the
-latitude and longitude of the camera used for filming the video, to
-synchronize two map views</a>: every time the active cue changes, the
-Google map and equivalent Google street view are updated. </p>
+<p>Here is <a href="https://simpl.info/track/map/index.html" target="_blank" rel="noopener noreferrer" 
+title="Demo by Sam Dutton that uses JSON cues">a very impressive demo by Sam Dutton that uses JSON 
+cues containing the latitude and longitude of the camera used for filming the video, to synchronize 
+two map views</a>: every time the active cue changes, the Google map and equivalent Google street 
+view are updated.</p>
 
-<p><b>WARNING:</b> as this Google service is no longer free of charge, you
-might see “for development purpose only” messages during the execution
-of this demo. You’ll need a valid Google API key in order to remove these messages.</p>
+<p><b>WARNING:</b> as this Google service is no longer free of charge, you might see “for development 
+purpose only” messages during the execution of this demo. You’ll need a valid Google API key in 
+order to remove these messages.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~ 47. video synced with google map and google street map (75) ~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -3603,8 +3597,8 @@ of this demo. You’ll need a valid Google API key in order to remove these mess
 
 <h4>Cue events and cue content:</h4>
 
-<p>We can acquire a cue DOM object using the techniques we have seen
-previously, or by using the new HTML5 TextTrack getCueById() method.</p>
+<p>We can acquire a cue DOM object using the techniques we have seen previously, or by using the 
+new HTML5 TextTrack getCueById() method.</p>
 
 <pre>var videoElement = document.querySelector(&quot;#myvideo&quot;);
 var textTracks = videoElement.textTracks; // one for each track element
@@ -3621,10 +3615,8 @@ cue.onexit = function(){
   // do something else
 };</pre>
 
-<p>If the getCueById method is not implemented (this is the case in some
-browsers), we use the @<span class="citation"
-data-cites="polyfill">@polyfill</span> presented in the previous
-section:</p>
+<p>If the getCueById method is not implemented (this is the case in some browsers), we use the 
+@<span class="citation" data-cites="polyfill">@polyfill</span> presented in the previous section:</p>
 
 <pre>// for browsers that do not implement the getCueById() method
 // let&#39;s assume we&#39;re adding the getCueById function to a TextTrack object
@@ -3642,8 +3634,8 @@ if (typeof track.getCueById !== &quot;function&quot;) {
 
 <h4>Example that displays a wikipedia page and a google map while a video is playing</h4>
 
-<p><a href="https://jsbin.com/gucutiyoyu/2/edit?html,js,output" target="_blank" rel="noopener noreferrer">Try the
-example at JSBin</a></p>
+<p><a href="https://jsbin.com/gucutiyoyu/2/edit?html,js,output" target="_blank" rel="noopener 
+noreferrer" title="JSBin example">Try the example at JSBin</a></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~ 51. video synced with an iframe that shows external urls w/google map (76) ~~~~~~~~-->
 <img class="displayed"
@@ -6271,12 +6263,10 @@ API</a> is preferable.</p>
 
 <h4>The Web Audio API</h4>
 
-<p>This is a 100% JavaScript API designed for working in real time with
-uncompressed sound samples or for generating procedural music. Sound
-samples will need to be loaded into memory and decompressed prior to
-being used. Up to 12 sound effects are provided natively by browsers
-that support the API (all major browsers except IE, although Microsoft
-Edge supports it).</p>
+<p>This is a 100% JavaScript API designed for working in real time with uncompressed sound samples 
+or for generating procedural music. Sound samples will need to be loaded into memory and decompressed 
+prior to being used. Up to 12 sound effects are provided natively by browsers that support the API 
+(all major browsers except IE, although Microsoft Edge supports it).</p>
 
 <h4><b>Interacting</b>: dealing with keyboard and mouse events, the GamePad API</h4>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -6288,13 +6278,12 @@ Edge supports it).</p>
   alt="A picture of gamepad remote."
   style="width:7%;" />
 
-<p>User inputs will rely on several APIs, some of which are well
-established, such as the DOM API that is used for keyboard, touch or
-mouse inputs. There is also a <a
-href="https://www.w3.org/TR/gamepad/" target="_blank" rel="noopener noreferrer">Gamepad API</a>  (in W3C Working
-Draft status) that is already implemented by some browsers, which we
-will also cover in this course. The Gamepad specification defines a
-low-level interface that represents gamepad devices.</p>
+<p>User inputs will rely on several APIs, some of which are well established, such as the DOM API 
+that is used for keyboard, touch or mouse inputs. There is also a <a
+href="https://www.w3.org/TR/gamepad/" target="_blank" rel="noopener noreferrer" 
+title="Gamepad API">Gamepad API</a>  (in W3C Working Draft status) that is already implemented by 
+some browsers, which we will also cover in this course. The Gamepad specification defines a low-
+level interface that represents gamepad devices.</p>
 
 <h4>Multi-participants feature: WebSockets</h4>
 
@@ -8698,19 +8687,19 @@ exactly the case</i>. If you do a console.log(delta)in the animation loop, you 
 very powerful computer, the delta is “very close” to 16.6666 ms, but 99% of the time it will be slightly 
 different.</p>
 
-<p>The function calcDistanceToMove(delta, speed) takes two parameters: 1) the time elapsed in ms, and 
-2) the target speed in pixels/s.</p>
+<p>The function calcDistanceToMove(delta, speed) takes two parameters: 1) the time elapsed in ms, 
+and 2) the target speed in pixels/s.</p>
 
 <p>Try this example on a smartphone, use this 
-<a href="https://jsbin.com/jeribi" target="_blank" rel="noopener noreferrer">link</a> to run the JSBin example in
-stand-alone mode. Normally you should see no difference in speed, but it may look a bit jerky on a low-end 
-smartphone or on a slow computer. <i>This is the correct behavior.</i></p>
+<a href="https://jsbin.com/jeribi" target="_blank" rel="noopener noreferrer">link</a> to run the 
+JSBin example in stand-alone mode. Normally you should see no difference in speed, but it may look 
+a bit jerky on a low-end smartphone or on a slow computer. <i>This is the correct behavior.</i></p>
 
-<p>Or you can try the next example that simulates a complex animation loop that takes a 
-long time to draw each frame…</p>
+<p>Or you can try the next example that simulates a complex animation loop that takes a long time to 
+draw each frame…</p>
 
-<p>Example #2: using a simulation that spends a lot of time in the animation loop, to 
-compare with the previous example</p>
+<p>Example #2: using a simulation that spends a lot of time in the animation loop, to compare with 
+the previous example</p>
 
 <p><a href="https://jsbin.com/jeribi/edit" target="_blank" rel="noopener noreferrer">
 Try it on JsBin</a>:</p>
@@ -8758,37 +8747,43 @@ as in the previous example: the animation adapts itself!</p>
 
 <p>Since the beginning of HTML5, game developers, musicians, and others have asked for a 
 sub-millisecond timer to be able to avoid some glitches that occur with the regular JavaScript 
-timer. This API is called the “<a href="https://www.w3.org/TR/hr-time/" target="_blank" rel="noopener noreferrer">
-High Resolution Time API</a>”.</p>
+timer. This API is called the “<a href="https://www.w3.org/TR/hr-time/" target="_blank" rel="noopener 
+noreferrer" title="W3's high resolution time API">High Resolution Time API</a>”.</p>
 
 <p>This API is very simple to use - just do:</p>
 
 <pre>var time = performance.now();</pre>
 
-<p>… to get a sub-millisecond time-stamp. It is similar to Date.now() except that the accuracy is much higher and 
-that the result is not exactly the same. The value returned is a floating point number, not an integer value!</p>
+<p>… to get a sub-millisecond time-stamp. It is similar to Date.now() except that the accuracy is 
+much higher and that the result is not exactly the same. The value returned is a floating point 
+number, not an integer value!</p>
 
-<p>From <a href="https://www.sitepoint.com/discovering-the-high-resolution-time-api/" target="_blank" rel="noopener noreferrer">
-this article that explains the High Resolution Time API</a>:  “<i>The only method exposed is now(), which returns a DOMHighResTimeStamp 
-representing the current time in milliseconds. The timestamp is very accurate, with precision to a thousandth of a millisecond. Please 
-note that while Date.now() returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC, performance.now() returns the 
-number of milliseconds, with microseconds in the fractional part, from performance.timing.navigationStart(), the start of navigation of 
-the document, to the performance.now() call. Another important difference between Date.now() and performance.now() is that the latter is 
-monotonically increasing, so the difference between two calls will never be negative.</i>”</p>
+<p>From <a href="https://www.sitepoint.com/discovering-the-high-resolution-time-api/" target="_blank" 
+rel="noopener noreferrer" title="Sitepoint">this article that explains the High Resolution Time API</a>: 
+“<i>The only method exposed is now(), which returns a DOMHighResTimeStamp representing the current 
+time in milliseconds. The timestamp is very accurate, with precision to a thousandth of a millisecond. 
+Please note that while Date.now() returns the number of milliseconds elapsed since 1 January 1970 
+00:00:00 UTC, performance.now() returns the number of milliseconds, with microseconds in the 
+fractional part, from performance.timing.navigationStart(), the start of navigation of the document, 
+to the performance.now() call. Another important difference between Date.now() and performance.now() 
+is that the latter is monotonically increasing, so the difference between two calls will never be negative.</i>”</p>
 
 <h4>To sum up:</h4>
 
 <ul>
-  <li>performance.now() returns the time since the load of the document (it is called a DOMHighResTimeStamp), with a sub mill-second accuracy, 
-    as a floating point value, with very high accuracy.</li>
+  <li>performance.now() returns the time since the load of the document (it is called a 
+    DOMHighResTimeStamp), with a sub mill-second accuracy, as a floating point value, with 
+	very high accuracy.</li>
   <li>Date.now() returns the number of mill-seconds since the Unix epoch, as an integer value.</li>
 </ul>
 
 <p>Support for this API is quite good - see the compatibility table 
-<a href="https://caniuse.com/#feat=high-resolution-time" target="_blank" rel="noopener noreferrer">online</a>.</p>
+<a href="https://caniuse.com/#feat=high-resolution-time" target="_blank" rel="noopener noreferrer" 
+title="Can I Use">online</a>.</p>
 
-<p>Here is <a href="https://jsbin.com/wecaho/edit" target="_blank" rel="noopener noreferrer">
-a version on JSBin of the previous example with the bouncing rectangle, that uses the high resolution timer</a>.</p>
+<p>Here is <a href="https://jsbin.com/wecaho/edit" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">a version on JSBin of the previous example with the bouncing rectangle, that 
+uses the high resolution timer</a>.</p>
 
 <h4>Source code:</h4>
 
@@ -8841,32 +8836,28 @@ a version on JSBin of the previous example with the bouncing rectangle, that use
 
 </details>
 
-<p>Only two lines have changed but the accuracy is much higher, if you
-uncomment the console.log(…) calls in the main loop. You will see the
-difference.</p>
+<p>Only two lines have changed but the accuracy is much higher, if you uncomment the console.log(…) 
+calls in the main loop. You will see the difference.</p>
 
-<p>Method #3: using the optional timestamp parameter of the callback
-function of requestAnimationFrame</p>
+<p>Method #3: using the optional timestamp parameter of the callback function of requestAnimationFrame</p>
 
 <blockquote>
   <p><b>This is the recommended method!</b></p>
 </blockquote>
 
-<p>There is an optional parameter that is passed to the callback
-function called by requestAnimationFrame: a timestamp!</p>
+<p>There is an optional parameter that is passed to the callback function called by 
+requestAnimationFrame: a timestamp!</p>
 
-<p><a href="https://www.w3.org/TR/animation-timing/" target="_blank" rel="noopener noreferrer">The
-requestAnimationFrame API specification</a>  says that this timestamp
-corresponds to the time elapsed since the page has been loaded.</p>
+<p><a href="https://www.w3.org/TR/animation-timing/" target="_blank" rel="noopener noreferrer" 
+title="W3's requestAnimationFrame API specification">The requestAnimationFrame API specification</a> 
+says that this timestamp corresponds to the time elapsed since the page has been loaded.</p>
 
-<p>It is similar to the value sent by the high resolution timer
-using performance.now().</p>
+<p>It is similar to the value sent by the high resolution timer using performance.now().</p>
 
-<p>Here is a running example of the animated rectangle, that uses this
-timestamp parameter.</p>
+<p>Here is a running example of the animated rectangle, that uses this timestamp parameter.</p>
 
-<p><a href="https://jsbin.com/kuvumu/edit" target="_blank" rel="noopener noreferrer">Online example at
-JSBin</a>:</p>
+<p><a href="https://jsbin.com/kuvumu/edit" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">Online example at JSBin</a>:</p>
 
 <h4>Source code of the example:</h4>
 
@@ -8937,20 +8928,22 @@ JSBin</a>:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-4-3">2.4.3 Setting the frame rate</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Principle: even if the mainloop is called 60 times per second, ignore
-some frames in order to reach the desired frame rate.</p>
+<p>Principle: even if the mainloop is called 60 times per second, ignore some frames in order to 
+reach the desired frame rate.</p>
 
-<p>It is also possible to set the frame rate using time based animation.
-We can set a global variable that corresponds to the desired frame rate
-and compare the elapsed time between two executions of the animation
-loop:</p>
+<p>It is also possible to set the frame rate using time based animation. We can set a global variable 
+that corresponds to the desired frame rate and compare the elapsed time between two executions of the 
+animation loop:</p>
 
 <ul>
-  <li><p>If the time elapsed is too short for the target frame rate: do nothing,</p></li>
-  <li><p>If the time elapsed exceeds the delay corresponding to the chosen frame rate: draw the frame and reset this time to zero.</p></li>
+  <li>If the time elapsed is too short for the target frame rate: do nothing,<br></li>
+  <li>If the time elapsed exceeds the delay corresponding to the chosen frame rate: draw the 
+    frame and reset this time to zero.</li>
 </ul>
 
-<p>Here is the <a href="https://jsbin.com/bonutur/edit" target="_blank" rel="noopener noreferrer">online example at JSBin</a>.</p>
+<p>Here is the <a href="https://jsbin.com/bonutur/edit" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">online example at JSBin</a>.</p>
+
 <p><b>Try to change the parameter value of the call to: </b></p>
 
 <pre>&lt;sup&gt;setFrameRateInFramesPerSecond(5); // try other values!&lt;/sup&gt;</pre>
@@ -9064,10 +9057,10 @@ loop:</p>
 
 <p>Same technique with the bouncing rectangle</p>
 
-<p>See how we can set both the speed (in pixels/s) and the frame-rate
-using a high-resolution time with this <a
-href="https://jsbin.com/momeci/edit" target="_blank" rel="noopener noreferrer">modified version on JSBin of the
-example with the rectangle that also uses this technique</a>.</p>
+<p>See how we can set both the speed (in pixels/s) and the frame-rate using a high-resolution time 
+with this 
+<a href="https://jsbin.com/momeci/edit" target="_blank" rel="noopener noreferrer">modified version 
+on JSBin of the example with the rectangle that also uses this technique</a>.</p>
 
 <h4>Source code:</h4>
 
@@ -9161,30 +9154,25 @@ example with the rectangle that also uses this technique</a>.</p>
 
 <p>Can we use setInterval?</p>
 
-<p>It’s quite possible to use setInterval(function, interval) if you do
-not need an accurate scheduling.</p>
+<p>It’s quite possible to use setInterval(function, interval) if you do not need an accurate 
+scheduling.</p>
 
-<p>To animate a monster at 60 fps but blinking his eyes once per second,
-you would use a mainloop with requestAnimationFrame and target a 60 fps
-animation, but you would also have a call to setInterval(changeEyeColor,
-1000); and the changeEyeColor function will update a global
-variable, eyeColor, every second, which will be taken into account
-within the drawMonster function, called 60 times/s from the
-mainloop.</p>
+<p>To animate a monster at 60 fps but blinking his eyes once per second, you would use a mainloop 
+with requestAnimationFrame and target a 60 fps animation, but you would also have a call to setInterval(changeEyeColor, 1000); and the changeEyeColor function will update a global variable, 
+eyeColor, every second, which will be taken into account within the drawMonster function, called 
+60 times/s from the mainloop.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch-2-4-4">2.4.4 Adding time-based animation</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>To add time-based animation to our game engine, we will be using the
-technique discussed in the previous lesson. This technique is now widely
-supported by browsers, and adds time-based animation to our game
-framework, through the timestamp parameter passed to the callback
-function (mainLoop) by the call to requestAnimationFrame(mainLoop).</p>
+<p>To add time-based animation to our game engine, we will be using the technique discussed in the 
+previous lesson. This technique is now widely supported by browsers, and adds time-based animation 
+to our game framework, through the timestamp parameter passed to the callback function (mainLoop) 
+by the call to requestAnimationFrame(mainLoop).</p>
 
-<p><a href="https://jsbin.com/xacebu/edit" target="_blank" rel="noopener noreferrer">Here is an online example of
-the game framework at JSBin</a>: this time, the monster has a speed in
-pixels/s and we use time-based animation. Try it and verify the
-smoothness of the animation; the FPS counter on a Mac Book Pro core i7
-shows 60 fps.</p>
+<p><a href="https://jsbin.com/xacebu/edit" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">Here is an online example of the game framework at JSBin</a>: this time, the 
+monster has a speed in pixels/s and we use time-based animation. Try it and verify the smoothness 
+of the animation; the FPS counter on a Mac Book Pro core i7 shows 60 fps.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~ 118. screenshot of the monster moving at 60 f/s (209) ~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -9194,13 +9182,11 @@ shows 60 fps.</p>
   alt="Screenshot of the monster moving at 60 f/s."
   style="width:35%;" />
 
-<p><a href="https://jsbin.com/gazatuquya/edit?html,js,output" target="_blank" rel="noopener noreferrer">Now try
-this slightly modified version</a> in which we added a delay inside the
-animation loop. This should slow down the frame rate.  On a Mac Book Pro
-+ core i7, the frame-rate drops down to 37 fps. However, if you move the
-monster using the arrow keys, its speed on the screen is the same,
-excepting that it’s not as smooth as in the previous version, which ran
-at 60 fps.</p>
+<p><a href="https://jsbin.com/gazatuquya/edit?html,js,output" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">Now try this slightly modified version</a> in which we added a delay inside the 
+animation loop. This should slow down the frame rate.  On a Mac Book Pro + core i7, the frame-rate 
+drops down to 37 fps. However, if you move the monster using the arrow keys, its speed on the screen 
+is the same, excepting that it’s not as smooth as in the previous version, which ran at 60 fps.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~ 119. screenshot of the monster moving at 37 f/s (209) ~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -9224,10 +9210,12 @@ var monster = {
 };</pre>
 
 <ul>
-  <li>We added a timer(currentTime) function that returns the delta of the time elapsed since its last call</li>
+  <li>We added a timer(currentTime) function that returns the delta of the time elapsed since its 
+    last call</li>
 </ul>
 
-<p>We refer to it from the game loop, to measure the time between frames. Notice that here we pass the delta as a parameter to the updateMonsterPosition call:</p>
+<p>We refer to it from the game loop, to measure the time between frames. Notice that here we pass 
+the delta as a parameter to the updateMonsterPosition call:</p>
 
 <details>
   <summary>JavaScript code!</summary>
@@ -9268,80 +9256,64 @@ var mainLoop = function(time){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-5">2.5 Animating Multiple Objects</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Hi, welcome! Let me show you how we can add many animated objects to the game 
-framework.</p>
+<p>Hi, welcome! Let me show you how we can add many animated objects to the game framework.</p>
 
-<p>You can imagine them as being the enemies the player should fight or
-whatever. For the sake of this example, we are using black balls, but
-you can imagine small images or small monsters or whatever.</p>
+<p>You can imagine them as being the enemies the player should fight or whatever. For the sake of 
+this example, we are using black balls, but you can imagine small images or small monsters or whatever.</p>
 
-<p>Using here a constructor function is interesting because we can
-design a sort of class.</p>
+<p>Using here a constructor function is interesting because we can design a sort of class.</p>
 
-<p>I mean a bit like Java classes or C# classes, if we make a comparison
-with other objected oriented languages. So we just say that the ball has
-a x position and a y position, an angle, a speed (the ‘v’ here if for he
-speed), and a radius.</p>
+<p>I mean a bit like Java classes or C# classes, if we make a comparison with other objected oriented 
+languages. So we just say that the ball has a x position and a y position, an angle, a speed (the ‘v’ 
+here if for he speed), and a radius.</p>
 
-<p>We also said that each ball will be able to move and to be drawn on
-the screen.</p>
+<p>We also said that each ball will be able to move and to be drawn on the screen.</p>
 
-<p>It is a way to encapsulate in one single function the properties and
-the methods for manipulating the balls. And the advantage is that now we
-can create many balls using the new operator and passing different
-parameters.</p>
+<p>It is a way to encapsulate in one single function the properties and the methods for manipulating 
+the balls. And the advantage is that now we can create many balls using the new operator and passing 
+different parameters.</p>
 
-<p>Let’s have a look at a function that will build a certain amount of
-balls with different parameters. We called it createBalls: it takes as parameters a number
-of balls and will, in a loop, create new balls. The new ball here will
-create a ball with a random x position, a random y position, a random
-angle between 0 and 2*PI, and a random speed and a given size. So I can
-change the size here, I can use another size so the reduce is a fixe
-parameter here. Every ball is added to an array, so we have got a
-variable called ballArray that contains all the balls.</p>
+<p>Let’s have a look at a function that will build a certain amount of balls with different parameters. 
+We called it createBalls: it takes as parameters a number of balls and will, in a loop, create new 
+balls. The new ball here will create a ball with a random x position, a random y position, a random 
+angle between 0 and 2*PI, and a random speed and a given size. So I can change the size here, I can 
+use another size so the reduce is a fixe parameter here. Every ball is added to an array, so we have 
+got a variable called ballArray that contains all the balls.</p>
 
-<p>At the initialization, when the page is loaded we call this
-createBalls function that will fill the ball array. The mainLoop is
-called 60 times per seconds and goes along the whole ballArray and for
-each ball in the array, we will call ‘move’ that will change the x and y
-position depending on the angle and the speed of the ball and we will
-draw the balls.</p>
+<p>At the initialization, when the page is loaded we call this createBalls function that will fill 
+the ball array. The mainLoop is called 60 times per seconds and goes along the whole ballArray and 
+for each ball in the array, we will call ‘move’ that will change the x and y position depending on 
+the angle and the speed of the ball and we will draw the balls.</p>
 
-<p>In the middle we test if the ball is colliding with a side and we
-change the angle.</p>
+<p>In the middle we test if the ball is colliding with a side and we change the angle.</p>
 
-<p>I can just call createBalls with a large number: here I created 100
-balls, 1000 balls, and I can change some of their properties. This small
-example, that is 50 lines of code long, we can just take the function
-and add them inside the game framework.</p>
+<p>I can just call createBalls with a large number: here I created 100 balls, 1000 balls, and I can 
+change some of their properties. This small example, that is 50 lines of code long, we can just take 
+the function and add them inside the game framework.</p>
 
-<p>So here, what we did is that we just added the ballArray variable
-inside the game framework, we called createBalls in the start function
-of the game framework, start function, I am inside here, so I create 160
-balls or 1 ball so I can do whatever I like.</p>
+<p>So here, what we did is that we just added the ballArray variable inside the game framework, we 
+called createBalls in the start function of the game framework, start function, I am inside here, so 
+I create 160 balls or 1 ball so I can do whatever I like.</p>
 
-<p>And we call the draw ball and move ball from inside the animation
-loop.</p>
+<p>And we call the draw ball and move ball from inside the animation loop.</p>
 
-<p>If you look at the animation loop, we clear the canvas, we draw the
-monster and we update the monster position to take into account the
-keys. If I press some keys the monster moves. So we call updateBalls
-that will move all the balls and draw all the balls.</p>
+<p>If you look at the animation loop, we clear the canvas, we draw the monster and we update the 
+monster position to take into account the keys. If I press some keys the monster moves. So we call 
+updateBalls that will move all the balls and draw all the balls.</p>
 
-<p>What we have is that we got the last example with the moving monster
-plus a set of enemies that are animated.</p>
+<p>What we have is that we got the last example with the moving monster plus a set of enemies that 
+are animated.</p>
 
-<p>In this section, we will see how we can animate and control not only
-the player but also other objects on the screen.</p>
-
-<p>Let’s study a simple example: animating a few balls and detecting
-collisions with the surrounding walls. For the sake of simplicity, we
-will not use time-based animation in the first examples.</p>
+<p>In this section, we will see how we can animate and control not only the player but also other 
+objects on the screen.</p>
+1
+<p>Let’s study a simple example: animating a few balls and detecting collisions with the surrounding 
+walls. For the sake of simplicity, we will not use time-based animation in the first examples.</p>
 
 <h4>Animating multiple balls which bounce off horizontal and vertical walls</h4>
 
-<p><a href="https://jsbin.com/fikomik/edit?js,output" target="_blank" rel="noopener noreferrer">Online example at
-JSBin</a>:</p>
+<p><a href="https://jsbin.com/fikomik/edit?js,output" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">Online example at JSBin</a>:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~ 120. some circular balls that bounce against vertical & horizontal borders (212) ~~~~~-->
 <img class="displayed"
@@ -9351,16 +9323,16 @@ JSBin</a>:</p>
   title="Some circular balls that bounce agains vertical and horizontal borders of the canvas"
   alt="Some circular balls that bounce agains vertical and horizontal borders of the canvas." />
 
-<p>In this example, we define <i>a constructor function</i> for
-creating balls. This is a way to design JavaScript “pseudo classes” as
-found in other object-oriented languages like Java, C# etc. It’s useful
-when you plan to create many objects of the same class. Using this we
-could animate hundreds of balls on the screen.</p>
-<p>Each ball has an x and y position, and in this example, instead of
-working with angles, we defined two “speeds” - horizontal and vertical
-speeds - in the form of the increments we will add to
-the x and y positions at each frame of animation. We also added a
-variable for adjusting the size of the balls: the radius.</p>
+<p>In this example, we define <i>a constructor function</i> for creating balls. This is a way to 
+design JavaScript “pseudo classes” as found in other object-oriented languages like Java, C# etc. 
+It’s useful when you plan to create many objects of the same class. Using this we could animate 
+hundreds of balls on the screen.</p>
+
+<p>Each ball has an x and y position, and in this example, instead of working with angles, we 
+defined two “speeds” - horizontal and vertical speeds - in the form of the increments we will 
+add to the x and y positions at each frame of animation. We also added a variable for adjusting 
+the size of the balls: the radius.</p>
+
 <p>Here is the constructor function for building balls:</p>
 
 <details>
@@ -9390,23 +9362,21 @@ function Ball(x, y, vx, vy, diameter) {
 
 </details>
 
-<p>Using a constructor function makes it easy to build new balls as
-follows:</p>
+<p>Using a constructor function makes it easy to build new balls as follows:</p>
 
 <pre>var b1 = new Ball(10, 10, 2, 2, 5); // x, y, vx, vy, radius
 var b1 = new Ball(100, 130, 4, 5, 5); 
 etc...</pre>
 
-<p>We defined two methods in the constructor function for moving the
-ball and for drawing the ball as a black filled circle. Here is the
-syntax for moving and drawing a ball:</p>
+<p>We defined two methods in the constructor function for moving the ball and for drawing the ball 
+as a black filled circle. Here is the syntax for moving and drawing a ball:</p>
 
 <pre>b1.draw();
 b1.move();</pre>
 
-<p>We will call these methods from inside the mainLoop, and as you’ll
-see, we will create many balls. This object-oriented design makes it
-easier to handle large quantities.</p>
+<p>We will call these methods from inside the mainLoop, and as you’ll see, we will create many 
+balls. This object-oriented design makes it easier to handle large quantities.</p>
+
 <p>Here is the rest of the code from this example:</p>
 
 <details>
@@ -9481,11 +9451,18 @@ function testCollisionWithWalls(ball) {
 <p><b>Notice that:</b></p>
 
 <ul>
-  <li><p>All the balls are stored in an array (<i>line 4</i>),</p></li> 
-  <li><p>We wrote a createBalls(nb) function that creates a given number of balls (and stores them in the array) with random values for position and speed (<i>lines 18-32</i>)</p></li>
-  <li><p>In the mainLoop, we iterate on the array of balls and for each ball we: 1) move it, 2) test if it collides with the boundaries of the canvas (in the function testCollisionWithWalls), and 3) we draw the balls (<i>lines 38-50</i>). The order of these steps is not critical
-  and may be changed.</p></li>
-  <li><p>The function that tests collisions is straightforward (<i>lines 55-76</i>).  We did not use “if… else if” since a ball may sometimes touch two walls at once (in the corners). In that rare case, we need to invert both the horizontal and vertical speeds. When a ball collides with a wall, we need to replace it in a position where it is no longer against the wall (otherwise it will collide again during the next animation loop execution).</p></li>
+  <li>All the balls are stored in an array (<i>line 4</i>),<br></li>
+  <li>We wrote a createBalls(nb) function that creates a given number of balls (and stores them in 
+    the array) with random values for position and speed (<i>lines 18-32</i>)<br></li>
+  <li>In the mainLoop, we iterate on the array of balls and for each ball we: 1) move it, 2) test 
+    if it collides with the boundaries of the canvas (in the function testCollisionWithWalls), 
+	and 3) we draw the balls (<i>lines 38-50</i>). The order of these steps is not critical and 
+	may be changed.<br></li>
+  <li>The function that tests collisions is straightforward (<i>lines 55-76</i>).  We did not use 
+    “if… else if” since a ball may sometimes touch two walls at once (in the corners). In that 
+	rare case, we need to invert both the horizontal and vertical speeds. When a ball collides 
+	with a wall, we need to replace it in a position where it is no longer against the wall 
+	(otherwise it will collide again during the next animation loop execution).</li>
 </ul>
 
 <h4>Similar example but with the ball direction as an angle, and a single velocity variable</h4>
@@ -9665,10 +9642,9 @@ interactions between the player (the monster) and the obstacles/enemies
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-5-3">2.5.3 Collision detection</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>In this chapter, we explore some techniques for detecting collisions 
-between objects. This includes moving and static objects. We first 
-present three “classic” collision tests, and follow them with brief 
-sketches of more complex algorithms.</p>
+<p>In this chapter, we explore some techniques for detecting collisions between objects. This 
+includes moving and static objects. We first present three “classic” collision tests, and follow 
+them with brief sketches of more complex algorithms.</p>
 
 <h4>Circle collision test</h4>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -9682,17 +9658,17 @@ sketches of more complex algorithms.</p>
 
 <p>Collision between circles is easy. Imagine there are two circles:</p>
 <ol type="1">
-  <li><p>Circle c1 with center (x1,y1) and radius r1;</p></li>
-  <li><p>Circle c2 with center (x2,y2) and radius r2.</p></li>
+  <li>Circle c1 with center (x1,y1) and radius r1;<br></li>
+  <li>Circle c2 with center (x2,y2) and radius r2.</li>
 </ol>
 <p>Imagine there is a line running between those two center points. The distances from 
 the center points to the edge of each circle is, by definition, equal to their respective 
 radii. So:</p>
 
 <ul>
-  <li><p>if the edges of the circles touch, the distance between the centers is r1+r2;</p></li>
-  <li><p>any greater distance and the circles don’t touch or collide; whereas</p></li>
-  <li><p>any less and they do collide or overlay.</p></li>
+  <li>if the edges of the circles touch, the distance between the centers is r1+r2;<br></li>
+  <li>any greater distance and the circles don’t touch or collide; whereas<br></li>
+  <li>any less and they do collide or overlay.</li>
 </ul>
 
 <blockquote>
@@ -10105,13 +10081,12 @@ the links provided.</p>
 a rectangle:</p>
 
 <ol type="1">
-  <li><p>Either the circle’s center lies inside the rectangle, or</p></li>
-  <li><p>One of the edges of the rectangle intersects the circle.</p></li>
+  <li>Either the circle’s center lies inside the rectangle, or<br></li>
+  <li>One of the edges of the rectangle intersects the circle.</li>
 </ol>
 
-<p>We propose this function (implemented after reading <a
-href="https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection" target="_blank" rel="noopener noreferrer">this
-Thread at StackOverflow</a>):</p>
+<p>We propose this function (implemented after reading 
+<a href="https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection" target="_blank" rel="noopener noreferrer" title="Thread at StockOverflow">this Thread at StackOverflow</a>):</p>
 
 <details>
   <summary>JavaScript code!</summary>
@@ -10129,8 +10104,8 @@ function circRectsOverlap(x0, y0, w0, h0, cx, cy, r) {
 
 </details>
 
-<p><a href="https://jsbin.com/acohiv/845/edit?html,output" target="_blank" rel="noopener noreferrer">Try this
-function in this example on JSBin</a>.</p>
+<p><a href="https://jsbin.com/acohiv/845/edit?html,output" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">Try this function in this example on JSBin</a>.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~ 135. circle and rectangle not in collision (230) ~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -10151,8 +10126,10 @@ function in this example on JSBin</a>.</p>
 <h4>[ADVANCED] Collision between balls (pool like)</h4>
 
 <ul>
-  <li><p>Math and physics: please read <a href="https://web.archive.org/web/20181231090226/http:/archive.ncsa.illinois.edu/Classes/MATH198/townsend/math.html" target="_blank" rel="noopener  noreferrer">this external resource (for math), a great article that explains the physics of a pool game</a>.</p></li>
-  <li><p><a href="https://jsbin.com/juzefa/edit" target="_blank" rel="noopener noreferrer">Example of colliding balls at JSBin (author: M.Buffa)</a>, and also <a href="https://jsbin.com/nopefe/edit" target="_blank" rel="noopener noreferrer">try this example that does the same with a blurring effect</a></p></li>
+  <li>Math and physics: please read 
+  <a href="https://web.archive.org/web/20181231090226/http:/archive.ncsa.illinois.edu/Classes/MATH198/townsend/math.html" target="_blank" rel="noopener  noreferrer">this external resource (for math), a great article 
+  that explains the physics of a pool game</a>.<br></li>
+  <li><a href="https://jsbin.com/juzefa/edit" target="_blank" rel="noopener noreferrer">Example of colliding balls at JSBin (author: M.Buffa)</a>, and also <a href="https://jsbin.com/nopefe/edit" target="_blank" rel="noopener noreferrer">try this example that does the same with a blurring effect</a></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 137. ball-ball collision example (231) ~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -10593,10 +10570,10 @@ function mainloop() {
 
 </details>
 
-<p><a href="https://jsbin.com/rugosu/edit?js,output" target="_blank" rel="noopener noreferrer">Try the example on
-JSBin that uses this framework first!</a> Experiment by editing <i>line
-20</i>: <b>robot.setNbImagesPerSecond(20); </b>changing the value of
-the parameter and observing the result.</p>
+<p><a href="https://jsbin.com/rugosu/edit?js,output" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">Try the example on JSBin that uses this framework first!</a> Experiment by 
+editing <i>line 20</i>: <b>robot.setNbImagesPerSecond(20); </b>changing the value of the parameter 
+and observing the result.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~ 147. example of the sprite framework on jsbin (244) ~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -10608,11 +10585,10 @@ the parameter and observing the result.</p>
 
 <h4>The SpriteImage object and sprite models</h4>
 
-<p>In this small framework we use “SpriteImage ”, a JS object we build
-to  represent one sprite image. Its properties are: the global sprite
-sheet to which it belongs, its position in the sprite sheet, and its
-size. It also has a draw method for drawing the sprite image at an xPos,
-yPos position, and at anappropriate size. </p>
+<p>In this small framework we use “SpriteImage ”, a JS object we build to  represent one sprite 
+image. Its properties are: the global sprite sheet to which it belongs, its position in the sprite 
+sheet, and its size. It also has a draw method for drawing the sprite image at an xPos, yPos 
+position, and at anappropriate size. </p>
 
 <details>
   <summary>JavaScript function!</summary>
@@ -10634,14 +10610,16 @@ yPos position, and at anappropriate size. </p>
 
 </details>
 
-<p>We define the Sprite model. This is the one we used to create the
-small robot in the previous example.</p>
+<p>We define the Sprite model. This is the one we used to create the small robot in the previous example.</p>
 
 <ul>
-  <li><p>A Sprite is defined by an array of SpriteImage objects.</p></li>
-  <li><p>It has a method for extracting all SpriteImages from a given sprite sheet and filling the above array.</p></li>
-  <li><p>It has a draw method which will draw the current SpriteImage. A Sprite is an animated object, therefore, calling draw multiple times will involve an automatic change of the current SpriteImage being drawn.</p></li>
-  <li><p>The number of different images to be drawn per second is a parameter of the sprite.</p></li>
+  <li>A Sprite is defined by an array of SpriteImage objects.<br></li>
+  <li>It has a method for extracting all SpriteImages from a given sprite sheet and filling the 
+    above array.<br></li>
+  <li>It has a draw method which will draw the current SpriteImage. A Sprite is an animated object, 
+    therefore, calling draw multiple times will involve an automatic change of the current SpriteImage 
+	being drawn.<br></li>
+  <li>The number of different images to be drawn per second is a parameter of the sprite.</li>
 </ul>
 
 <h4>Here is the code of the Sprite model:</h4>
@@ -10707,7 +10685,8 @@ small robot in the previous example.</p>
 
 <h4>Same example but with the walking woman sprite sheet</h4>
 
-<p><a href="http://jsbin.com/fekacu/edit?js,output" target="_blank" rel="noopener noreferrer">Try this JsBin</a></p>
+<p><a href="http://jsbin.com/fekacu/edit?js,output" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">Try this JsBin</a></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 148. woman animated (246) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -10717,9 +10696,9 @@ small robot in the previous example.</p>
   alt="Woman animated."
   style="width:50%;" />
 
-<p>This time, we have changed the parameters of the sprites and sprite
-sheet. Now you can select the index of the posture to extract: the woman
-sprite sheet has 8 different postures, so you can call:</p>
+<p>This time, we have changed the parameters of the sprites and sprite sheet. Now you can select 
+the index of the posture to extract: the woman sprite sheet has 8 different postures, so you can 
+call:</p>
 
 <details>
   <summary>JavaScript code!</summary>
@@ -10739,8 +10718,8 @@ womanLeft.extractSprites(spritesheet, NB_POSTURES, 3,
 
 <h4>Moving the sprites, stopping the sprites</h4>
 
-<p><a href="https://jsbin.com/muwoje/edit?js,output" target="_blank" rel="noopener noreferrer">Example at
-JsBin</a></p>
+<p><a href="https://jsbin.com/muwoje/edit?js,output" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">Example at JsBin</a></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~ 149. woman moving left then right, jsbin screenshot (247) ~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -10750,11 +10729,11 @@ JsBin</a></p>
   alt="Woman moving left and right, jsbin screenshot."
   style="width:50%;" />
 
-<p>As usual, we used key listeners, an inputStates global object, and
-this time we created 8 woman sprites, one for each direction.</p>
-<p>Notice that we added a drawStopped method in the Sprite model in
-order to stop animating the woman when no key is pressed for moving
-her.</p>
+<p>As usual, we used key listeners, an inputStates global object, and this time we created 8 woman 
+sprites, one for each direction.</p>
+
+<p>Notice that we added a drawStopped method in the Sprite model in order to stop animating the 
+woman when no key is pressed for moving her.</p>
 
 <h4>External resource</h4>
 
@@ -10764,16 +10743,14 @@ her.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-6-5">2.6.5 Adding sprites to the game framework</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Let us use the animated woman example and take the sprite utility
-functions and some predefined values, such as the sprite sheet URL, the
-size of the sprites, the number of postures, etc., and add it all to one
-of the examples that used the game framework (the last one from the time
-based animation lesson (to keep things simple, we did not use the ones
-with gamepad, etc)).</p>
-<p><b>First, try this <a
-href="https://jsbin.com/mifeva/edit?js,console,output" target="_blank" rel="noopener noreferrer">example at
-JsBin</a></b></p>
+<p>Let us use the animated woman example and take the sprite utility functions and some predefined 
+values, such as the sprite sheet URL, the size of the sprites, the number of postures, etc., and 
+add it all to one of the examples that used the game framework (the last one from the time based 
+animation lesson (to keep things simple, we did not use the ones with gamepad, etc)).</p>
 
+<p><b>First, try this <a
+href="https://jsbin.com/mifeva/edit?js,console,output" target="_blank" rel="noopener noreferrer" 
+title="JSBin example">example at JsBin</a></b></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~ 150. the woman sprite in the game framework, jsbin screenshot (246) ~~~~~~~~~~~~-->
 <img class="displayed"
@@ -10786,10 +10763,19 @@ JsBin</a></b></p>
 <h4>How to add sprites to the game framework…</h4>
 
 <ol type="1">
-  <li><p>We declare a woman object, similar to the monster object, with x, y, speed, width properties. We add a direction property that corresponds to a posture’s index (so direction = 2 corresponds to the sprite animation for the woman moving to the left, whereas direction = 6 corresponds to the posture of the woman moving to the right…)</p></li>
-  <li><p>We add the Sprite and SpriteImage objects to the game framework,</p></li>
-  <li><p>We write a loadAssets(callback) function which: a) loads the sprite sheet, b) extracts all the woman sprites and builds the womanSprites array, and c) calls the callback function passed as a parameter once finished,</p></li>
-  <li><p>We call the loadAssets function from the game framework start function, and we start the animation loop only when the loadAssets function has completed loading and extracting the sprites. In a real game the loadAssets function would also load the sounds, and perhaps other sprite sheets or resources etc. In this function, you could use the BufferLoader utility for loading multiple resources asynchronously, as  discussed during Module 1.</p></li>
+  <li>We declare a woman object, similar to the monster object, with x, y, speed, width properties. 
+    We add a direction property that corresponds to a posture’s index (so direction = 2 corresponds 
+	to the sprite animation for the woman moving to the left, whereas direction = 6 corresponds to 
+	the posture of the woman moving to the right…)<br></li>
+  <li>We add the Sprite and SpriteImage objects to the game framework,<br></li>
+  <li>We write a loadAssets(callback) function which: a) loads the sprite sheet, b) extracts all 
+    the woman sprites and builds the womanSprites array, and c) calls the callback function passed 
+	as a parameter once finished,<br></li>
+  <li>We call the loadAssets function from the game framework start function, and we start the 
+    animation loop only when the loadAssets function has completed loading and extracting the 
+	sprites. In a real game the loadAssets function would also load the sounds, and perhaps other 
+	sprite sheets or resources etc. In this function, you could use the BufferLoader utility for 
+	loading multiple resources asynchronously, as  discussed during Module 1.</li>
 </ol>
 
 <h4>Source code extract:</h4>
@@ -10895,20 +10881,17 @@ var GF = function(){
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-7">2.7 Game States: Menus, high score tables, etc.</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>With our game framework handling the basics, we can make things more
-exciting by causing something to happen when a collision occurs - maybe
-the player ‘dies’, balls are removed, or we should add to your score?
-Usually, we add extra properties to the player and enemy objects. For
-example, a boolean dead property that will record if an object is dead
-or alive: if a ball is marked “dead”, do not draw it! If all balls are
-dead: go to the next level with more balls, faster balls, etc.</p>
+<p>With our game framework handling the basics, we can make things more exciting by causing 
+something to happen when a collision occurs - maybe the player ‘dies’, balls are removed, or we 
+should add to your score? Usually, we add extra properties to the player and enemy objects. For 
+example, a boolean dead property that will record if an object is dead or alive: if a ball is 
+marked “dead”, do not draw it! If all balls are dead: go to the next level with more balls, faster 
+balls, etc.</p>
 
-<p>Let’s try adding a dead property to balls and consult it before
-drawing them. We could also test to see if all the balls are dead, in
-which case we recreate them and add one more ball. Let’s
-update the score whenever the monster eats a ball. And finally, we
-should add a test in the createBalls function to ensure that no balls
-are created on top of the monster.</p>
+<p>Let’s try adding a dead property to balls and consult it before drawing them. We could also test 
+to see if all the balls are dead, in which case we recreate them and add one more ball. Let’s update 
+the score whenever the monster eats a ball. And finally, we should add a test in the createBalls 
+function to ensure that no balls are created on top of the monster.</p>
 
 <p><a href="https://jsbin.com/jixolu/edit?js,console,output" target="_blank" rel="noopener noreferrer">Try this jsBin!</a></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -10971,17 +10954,15 @@ are created on top of the monster.</p>
 
 <h4>Game states:menus, high score tables, etc.</h4>
 
-<p>In this example, let’s make use of a global gameState variable for
-managing the life-cycle of the game. Usually, there is a main menu with
-a “start new game” option, then we play the game, and if we ‘die’ we
-suffer a game-over screen, etc…</p>
+<p>In this example, let’s make use of a global gameState variable for managing the life-cycle of the 
+game. Usually, there is a main menu with a “start new game” option, then we play the game, and if we 
+‘die’ we suffer a game-over screen, etc…</p>
 
-<p>Ah!… you think that the game has been too easy? Let’s reverse the
-game: now you must survive without being touched by a ball!!!</p>
+<p>Ah!… you think that the game has been too easy? Let’s reverse the game: now you must survive 
+without being touched by a ball!!!</p>
 
-<p>Also, every five seconds a next level will start: the set of balls
-is re-created, and each level has two more than before. How long can you
-survive?</p>
+<p>Also, every five seconds a next level will start: the set of balls is re-created, and each level 
+has two more than before. How long can you survive?</p>
 
 <p><a href="https://jsbin.com/yatopunuje/edit?html,js,output" target="_blank" rel="noopener noreferrer">Try this
 JsBin</a>, then look at the source code. Start from the mainloop!</p>
@@ -11120,18 +11101,22 @@ function updateBalls(delta) {
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-7-2">2.7.2 Splitting the game into several JS files</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>JSBin is a great tool for sharing code, for experimenting, etc. But
-as soon as the size of your project increases, you’ll find that the tool
-is not suited for developing large systems. </p>
+<p>JSBin is a great tool for sharing code, for experimenting, etc. But as soon as the size of your 
+project increases, you’ll find that the tool is not suited for developing large systems. </p>
 
-<p>In order to keep working on this game framework, we recommend that
-you modularize the project and split the JavaScript code into several
-JavaScript files:</p>
+<p>In order to keep working on this game framework, we recommend that you modularize the project 
+and split the JavaScript code into several JavaScript files:</p>
 
 <ul>
-  <li><p>Review the different functions and isolate those that have no dependence on the framework. Obviously, the sprite utility functions, the collision detection functions, and the ball  constructor function can be separated from the game framework, and could easily be reused in other projects. Key and mouse listeners also can be isolated, gamepad code too…</p></li>
-  <li><p>Look at what you could change to reduce dependencies: add a parameter in order to make a function independent from global variables, for example.</p></li>
-  <li><p>In the end, try to limit the game.js file to the core of the game framework (init function, mainloop, game states, score, levels), and separate the rest into functional groupings, eg utils.js, sprites.js, collision.js, listeners.js, etc.</p></li>
+  <li>Review the different functions and isolate those that have no dependence on the framework. 
+    Obviously, the sprite utility functions, the collision detection functions, and the ball 
+	constructor function can be separated from the game framework, and could easily be reused in 
+	other projects. Key and mouse listeners also can be isolated, gamepad code too…<br></li>
+  <li>Look at what you could change to reduce dependencies: add a parameter in order to make a 
+    function independent from global variables, for example.<br></li>
+  <li>In the end, try to limit the game.js file to the core of the game framework (init function, 
+    mainloop, game states, score, levels), and separate the rest into functional groupings, eg 
+	utils.js, sprites.js, collision.js, listeners.js, etc.</li>
 </ul>
 
 <p>Let’s do this together!</p>
@@ -11170,10 +11155,9 @@ JavaScript files:</p>
   border: 1px solid black;
 }</pre>
 
-<p>Let’s take the JavaScript code from the last JSBin example, save it
-to a file called game.js, and locate it in a subdirectory js under the
-directory where the game.html file is located. Similarly, we’ll keep the
-CSS file in a css subdirectory:</p>
+<p>Let’s take the JavaScript code from the last JSBin example, save it to a file called game.js, and 
+locate it in a subdirectory js under the directory where the game.html file is located. Similarly, 
+we’ll keep the CSS file in a css subdirectory:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 154. game.html (256) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -11183,16 +11167,14 @@ CSS file in a css subdirectory:</p>
   title="First game structure"
   alt="First game structure." />
 
-<p>Try the game: open the game.html file in your browser. If the game
-does not work, open devtools, look at the console, fix the errors, try
-again, etc. You may have to do this several times when you split your
-files and encounter errors.</p>
+<p>Try the game: open the game.html file in your browser. If the game does not work, open devtools, 
+look at the console, fix the errors, try again, etc. You may have to do this several times when you 
+split your files and encounter errors.</p>
 
 <h4>Isolate the ball function constructor</h4>
 
-<p>Put the Ball constructor function in a js/ball.js file, include it in
-the game.html file, and try the game: oops, it doesn’t work! Let’s open
-the console:</p>
+<p>Put the Ball constructor function in a js/ball.js file, include it in the game.html file, and 
+try the game: oops, it doesn’t work! Let’s open the console:</p>
 
 <h4>Ball.js:</h4>
 
@@ -11217,12 +11199,11 @@ function Ball(x, y, angle, v, diameter) {
 
 <h4>Isolate the time based animation functions into a separate file</h4>
 
-<p>Hmmm… the calcDistanceToMove function is used here, but is defined in
-the game.js file, inside the GF object and will certainly raise an
-error… Also, the ctx variable should be added as a parameter to
-the draw method, otherwise it won’t be recognized… </p>
-<p>Just for fun, let’s try the game without fixing this, and look at the
-devtools console:</p>
+<p>Hmmm… the calcDistanceToMove function is used here, but is defined in the game.js file, inside 
+the GF object and will certainly raise an error… Also, the ctx variable should be added as a 
+parameter to the draw method, otherwise it won’t be recognized… </p>
+
+<p>Just for fun, let’s try the game without fixing this, and look at the devtools console:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~ 155. function calcdisktomove error not found in ball.js (257) ~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -11232,18 +11213,14 @@ devtools console:</p>
   title="Error the function calcDistToMove not found in ball.js"
   alt="Error the function calcDistToMove not found in ball.js." />
 
-<p>Aha! The calcDistanceToMove function is indeed used by the Ball
-constructor in ball.js at <i>line 2</i>7 (it moves the ball using
-time-based animation). If you look carefully, you will see that it’s
-also used for moving the monster, etc. In fact, there are parts in the
-game framework related to time-based animation. Let’s move them all into
-a timeBasedAnim.js file!!</p>
+<p>Aha! The calcDistanceToMove function is indeed used by the Ball constructor in ball.js at 
+<i>line 2</i>7 (it moves the ball using time-based animation). If you look carefully, you will 
+see that it’s also used for moving the monster, etc. In fact, there are parts in the game 
+framework related to time-based animation. Let’s move them all into a timeBasedAnim.js file!!</p>
 
-<p>Fix: extract the utility functions related to time-based animation
-and add a ctx parameter to the draw method of ball.js. Don’t forget to
-add it in game.js where ball.draw() is called. The call should be
-now ball.draw(<b>ctx</b>); instead of ball.draw() without any
-parameter.</p>
+<p>Fix: extract the utility functions related to time-based animation and add a ctx parameter to 
+the draw method of ball.js. Don’t forget to add it in game.js where ball.draw() is called. The 
+call should be now ball.draw(<b>ctx</b>); instead of ball.draw() without any parameter.</p>
 
 <h4>timeBasedAnim.js:</h4>
 
@@ -11319,10 +11296,9 @@ var measureFPS = function (newTime) {
 
 <h4>Let’s continue and isolate the event listeners</h4>
 
-<p>Now, consider the code that creates the listeners, can we move
-it from the GF.start() method into a listeners.js file? We’ll have to
-pass the canvas as an extra parameter (to resolve a dependency) and we
-also move the getMousePos method into there. </p>
+<p>Now, consider the code that creates the listeners, can we move it from the GF.start() method 
+into a listeners.js file? We’ll have to pass the canvas as an extra parameter (to resolve a 
+dependency) and we also move the getMousePos method into there. </p>
 
 <h4>listeners.js:</h4>
 
@@ -11369,10 +11345,9 @@ function testCollisionWithWalls(ball, w, h) {
    ...
 }</pre>
 
-<p>We added the width and height of the canvas as parameters to
-the testCollisionWithWalls function to resolve dependencies. The other
-collision functions (circle-circle and rectangle-rectangle) presented
-during the course, could be put into this file as well.</p>
+<p>We added the width and height of the canvas as parameters to the testCollisionWithWalls function 
+to resolve dependencies. The other collision functions (circle-circle and rectangle-rectangle) 
+presented during the course, could be put into this file as well.</p>
 
 <h4>Final downloadable version and conclusion</h4>
 
@@ -11413,27 +11388,21 @@ during the course, could be put into this file as well.</p>
 
 </details>
 
-<p>We could go further by defining a monster.js file, turning all the
-code related to the monster/player into a well-formed object, with
-draw and move methods, etc. There are many potential improvements you
-could make. JavaScript experts are welcome to make a much fancier
-version of this little game :-)</p>
+<p>We could go further by defining a monster.js file, turning all the code related to the monster/player 
+into a well-formed object, with draw and move methods, etc. There are many potential improvements you
+could make. JavaScript experts are welcome to make a much fancier version of this little game :-)</p>
 
 <p><a
-href="https://courses.edx.org/assets/courseware/v1/478683feac813a20439115e55e2b55d3/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/gameForMooc.zip" target="_blank" rel="noopener noreferrer">Download
-the zip for this version</a>, just open the game.html file in your
-browser!</p>
+href="https://courses.edx.org/assets/courseware/v1/478683feac813a20439115e55e2b55d3/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/gameForMooc.zip" target="_blank" rel="noopener noreferrer" title="Zip files for this version">
+Download the zip for this version</a>, just open the game.html file in your browser!</p>
 
-<p>Our intent this week was to show you the primary
-techniques/approaches for dealing with animation, interactions,
-collisions, managing with game states, etc. </p>
+<p>Our intent this week was to show you the primary techniques/approaches for dealing with animation, 
+interactions, collisions, managing with game states, etc.</p>
 
-<p>The quizzes for this week are not so important. <i>We’re keen to see
-you write your own game</i>! You are welcome to freely re-use the
-examples presented in the lessons and modify them, improve the code
-structure, playability, add sounds, better graphics, more levels, etc.
-We like to give points for style and flair, but most especially because
-we’ve been (pleasantly) surprised!</p>
+<p>The quizzes for this week are not so important. <i>We’re keen to see you write your own game</i>! 
+You are welcome to freely re-use the examples presented in the lessons and modify them, improve the 
+code structure, playability, add sounds, better graphics, more levels, etc. We like to give points 
+for style and flair, but most especially because we’ve been (pleasantly) surprised!</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-7-3">2.7.3 Discussion and projects</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -11444,21 +11413,24 @@ creations.</p>
 <h4>Suggested topics of discussion:</h4>
 
 <ul>
-  <li><p>What additional content would you like to see in this part of the course?</p></li>
-  <li><p>Did you notice we gave you (without saying) a small particle engine during Week 1? This is very useful for simulating explosions or bullet impacts…</p></li>
+  <li>What additional content would you like to see in this part of the course?<br></li>
+  <li>Did you notice we gave you (without saying) a small particle engine during Week 1? This 
+    is very useful for simulating explosions or bullet impacts…</li>
 </ul>
 
 <h4>Optional projects: create your own game!</h4>
 
-<p>Try to make your own game, either by modifying/completing the given
-example (change the scenario, add levels, colors, sound effects,
-sprites, shots, etc.) or by writing your own using the methods explained
-in the course.<br />
-To inspire you, here are some examples written by Michel’s students.
-Some of them are based on the framework presented in the course.</p>
+<p>Try to make your own game, either by modifying/completing the given example (change the scenario, 
+add levels, colors, sound effects, sprites, shots, etc.) or by writing your own using the methods 
+explained in the course.<br />
+To inspire you, here are some examples written by Michel’s students. Some of them are based on the 
+framework presented in the course.</p>
 
 <ul>
-  <li><a href="https://output.jsbin.com/cuwuso/" target="_blank" rel="noopener noreferrer">The Wanted</a>: escape the Police and steal as many gold coins as you can! This game did not really follow the game framework presented in the course, but the final game is fun and is an interesting variation on examples presented in the course.</li>
+  <li><a href="https://output.jsbin.com/cuwuso/" target="_blank" rel="noopener noreferrer">The Wanted</a>: 
+    escape the Police and steal as many gold coins as you can! This game did not really follow the game 
+    framework presented in the course, but the final game is fun and is an interesting variation on
+	examples presented in the course.</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~ 158. wanted game main screen (262) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -11478,7 +11450,11 @@ Some of them are based on the framework presented in the course.</p>
   alt="The game running, monster with black bombs and gold coins." />
 
 <ul>
-  <li>Duck Hunt (by Benjamin Reale and Anthony Caron). <a href="https://github.com/Ben06/ASCI-CARON-REALE-Duck-Hunt/" target="_blank" rel="noopener noreferrer">Get the whole game at this GitHub link</a> + just grab the sprite sheet and sounds<a href="https://courses.edx.org/assets/courseware/v1/a48a111288de4f3583b4fd9ae352cc12/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/DuckHuntSpriteAndSounds.zip" target="_blank" rel="noopener noreferrer"> in this archive and try to make the game yourself</a> (500k). This one started with the game framework presented in the course.</li>
+  <li>Duck Hunt (by Benjamin Reale and Anthony Caron). <a href="https://github.com/Ben06/ASCI-CARON-REALE-Duck-Hunt/" target="_blank" rel="noopener noreferrer" 
+  title="Duck hunt game on GitHub">Get the whole game at this GitHub link</a> + just grab the sprite 
+  sheet and sounds <a href="https://courses.edx.org/assets/courseware/v1/a48a111288de4f3583b4fd9ae352cc12/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/DuckHuntSpriteAndSounds.zip" target="_blank" rel="noopener noreferrer" 
+  title="Duck Hunt sprite and sounds (zipped)"> in this archive and try to make the game yourself</a> 
+  (500k). This one started with the game framework presented in the course.</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 160. duck hunt game screenshot (262) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -11490,7 +11466,9 @@ Some of them are based on the framework presented in the course.</p>
   alt="Screenshot of the Duck hunt game." />
 
 <ul>
-  <li>Shoot em up (by Max Chazarra) (sources <a href="https://github.com/MaxChazarra/MIAGE-Jeu-JS/tree/5e78fa85d257b81116fd784460848172040b3b71" target="_blank" rel="noopener noreferrer">on the GitHub site</a>). This one started with the game framework presented in the course:</li>
+  <li>Shoot em up (by Max Chazarra) (sources 
+    <a   href="https://github.com/MaxChazarra/MIAGE-Jeu-JS/tree/5e78fa85d257b81116fd784460848172040b3b71" target="_blank" rel="noopener noreferrer"title="GitHub site for duck hunt game">
+    on the GitHub site</a>). This one started with the game framework presented in the course:</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~ 161. shoot em up game screenshot (262) ~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -11502,9 +11480,9 @@ Some of them are based on the framework presented in the course.</p>
   alt="Screenshot of the shoot em up game." />
 
 <ul>
-  <li>Gameboy Tetris (written starting from the game framework presented in the 
-    course). <a href="https://courses.edx.org/assets/courseware/v1/b3fc2d6c5c519aaa5986f58e064a6426/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/Tetris.rar" target="_blank" rel="noopener noreferrer">Download 
-    the sources</a> (author Maxime Demetrio)</li>
+  <li>Gameboy Tetris (written starting from the game framework presented in the course). 
+  <a href="https://courses.edx.org/assets/courseware/v1/b3fc2d6c5c519aaa5986f58e064a6426/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/Tetris.rar" target="_blank" rel="noopener noreferrer" title="EdX downloads">
+	Download the sources</a> (author Maxime Demetrio)</li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~ 162. gameboy tetris in html5 (263) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -11516,7 +11494,9 @@ Some of them are based on the framework presented in the course.</p>
   alt="Gameboy Tetris in HTML5." />
 
 <ul>
-  <li>A small “kill the ninjas” game (by Tristan Poilvet). This game used the game framework presented in the course as a starting point. <a href="https://courses.edx.org/assets/courseware/v1/19ecac62725b07966804bb28031f0fba/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/snna.zip" target="_blank" rel="noopener noreferrer">Sources available here.</a></li>
+  <li>A small “kill the ninjas” game (by Tristan Poilvet). This game used the game framework 
+    presented in the course as a starting point. <a href="https://courses.edx.org/assets/courseware/v1/19ecac62725b07966804bb28031f0fba/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/snna.zip" target="_blank" rel="noopener noreferrer" title="EdX sources">Sources
+	available here.</a></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 163. kill the ninja game (264) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -11530,45 +11510,38 @@ Some of them are based on the framework presented in the course.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2 id="ch3-1">Module 3. HTML5 File Uploads and Downloads</h2>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Hi. This week, we will talk about the new version of Ajax called XHR2
-for XMLHttpRequest Level 2 that plays an important role in today’s
-modern complex Web apps.</p>
+<p>Hi. This week, we will talk about the new version of Ajax called XHR2 for XMLHttpRequest Level 
+2 that plays an important role in today’s modern complex Web apps.</p>
 
-<p>XHR2 introduces new capabilities like cross-origin requests,
-uploading progress events, and support for uploading/downloading binary
-data.</p>
+<p>XHR2 introduces new capabilities like cross-origin requests, uploading progress events, and 
+support for uploading/downloading binary data.</p>
 
-<p>You will learn how to download and upload files using XHR2,
-monitoring the upload/download progress, etc.</p>
+<p>You will learn how to download and upload files using XHR2, monitoring the upload/download 
+progress, etc.</p>
 
-<p>The course will provide full examples of HTML5 forms that handle
-files with client and server side code provided.</p>
+<p>The course will provide full examples of HTML5 forms that handle files with client and server 
+side code provided.</p>
 
 <p>Drag’n’drop will be covered as well, between elements inside an HTML document but also with
 files from and to the desktop.</p>
 
-<p>The second part of the week will show you how to use IndexedDB, a
-powerful NoSQL database located in your browser, client side. Many
-examples will be provided that will help you create, research, update
-and delete data in that database.</p>
+<p>The second part of the week will show you how to use IndexedDB, a powerful NoSQL database located 
+in your browser, client side. Many examples will be provided that will help you create, research, 
+update and delete data in that database.</p>
 
-<p>We encourage you to use IndexedDB for saving and restoring the high
-scores in the small game you have certainly wrote during week 2. Enjoy!</p>
+<p>We encourage you to use IndexedDB for saving and restoring the high scores in the small game you 
+have certainly wrote during week 2. Enjoy!</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-2">3.2 Ajax and XHR2</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>We present below a short history of Ajax: an introduction to
-XMLHttpRequest level 2 (XHR2).</p>
+<p>We present below a short history of Ajax: an introduction to XMLHttpRequest level 2 (XHR2).</p>
 
-<p><b>Wikipedia definition</b>: <i>“Ajax, short for Asynchronous
-JavaScript and XML), is a group of interrelated Web development
-techniques used on the client-side to create asynchronous Web
-applications. With Ajax, Web applications can send data to and retrieve
-from a server asynchronously (in the background) without interfering
-with the display and behavior of the existing page. Data can be
-retrieved using the XMLHttpRequest object. Despite the name, the use of
-XML is not required (JSON is often used), and the requests do not need
-to be asynchronous.”</i></p>
+<p><b>Wikipedia definition</b>: <i>“Ajax, short for Asynchronous JavaScript and XML), is a group 
+of interrelated Web development techniques used on the client-side to create asynchronous Web 
+applications. With Ajax, Web applications can send data to and retrieve from a server asynchronously 
+(in the background) without interfering with the display and behavior of the existing page. Data 
+can be retrieved using the XMLHttpRequest object. Despite the name, the use of XML is not required 
+(JSON is often used), and the requests do not need to be asynchronous.”</i></p>
 
 <p>Ajax appeared around 2005 with Google Maps, and is now widely used.
 We are not going to teach you Ajax programming, but instead focus on the
@@ -19318,4 +19291,5 @@ questions and share your creations.</p>
   <script src="./js/scripts.js"></script>
 </body>
 </html>
+
 

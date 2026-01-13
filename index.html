@@ -6543,7 +6543,10 @@ game.start();</pre>
 
 <p>Let’s put something into the mainLoop function, and check if it works</p>
 
-<p><a href="https://jsbin.com/tatowa/edit" target="_blank" rel="noopener noreferrer">Try this online example at JSBin</a>, with a new mainloop:  (check the JavaScript and output tabs). This page should display a different random number every 1/60 second. We don’t have a real game yet, but we’re improving our game engine :-)</p>
+<p><a href="https://jsbin.com/tatowa/edit" target="_blank" rel="noopener noreferrer">Try this 
+online example at JSBin</a>, with a new mainloop:  (check the JavaScript and output tabs). This 
+page should display a different random number every 1/60 second. We don’t have a real game yet, 
+but we’re improving our game engine :-)</p>
 
 <h4>Source code extract:</h4>
 
@@ -6567,13 +6570,26 @@ game.start();</pre>
 
 <ol type="1">
   <li><p>Count the time elapsed by adding <i>deltas</i> in the mainloop.</p></li>
-  <li><p>If the sum of the <i>deltas</i> is greater or equal to 1000, then 1s has elapsed since we started counting.</p></li>
-  <li><p>If at the same time, we count the number of <i>frames</i> that have been drawn, then we have the <i>frame rate</i> - measured in number of frames per second. Remember, it should be around 60 fps!</p></li>
+  <li><p>If the sum of the <i>deltas</i> is greater or equal to 1000, then 1s has elapsed since we 
+    started counting.</p></li>
+  <li><p>If at the same time, we count the number of <i>frames</i> that have been drawn, then we 
+    have the <i>frame rate</i> - measured in number of frames per second. Remember, it should be 
+	around 60 fps!</p></li>
 </ol>
 
-<p><b>Quick glossary:</b> the word <i>delta</i> is the name of a Greek letter (uppercase <b>Δ</b>, lowercase <b>δ</b> or <b>𝛿).</b> The upper-case version is used in mathematics as an abbreviation for measuring the <i>change</i> in some object, over time - in our case, how quickly the mainloopis running. This dictates the maximum speed at which the game display will be updated. This maximum speed could be referred to as the <i>rate of change</i>. We call what is displayed at a single point-in-time, a <i>frame</i>. Thus the <i>rate of change</i>  can be measured in frames per second (<i>fps</i>). Accordingly, our game’s <i>delta,</i> determines the achievable frame rate - the <b>shorter</b> the <i>delta</i> (measured in mS), the <b>faster</b> the possible <i>rate of change</i> (in <i>fps</i>).</p>
+<p><b>Quick glossary:</b> the word <i>delta</i> is the name of a Greek letter (uppercase <b>Δ</b>, 
+lowercase <b>δ</b> or <b>𝛿).</b> The upper-case version is used in mathematics as an abbreviation 
+for measuring the <i>change</i> in some object, over time - in our case, how quickly the mainloopis 
+running. This dictates the maximum speed at which the game display will be updated. This maximum 
+speed could be referred to as the <i>rate of change</i>. We call what is displayed at a single 
+point-in-time, a <i>frame</i>. Thus the <i>rate of change</i>  can be measured in frames per 
+second (<i>fps</i>). Accordingly, our game’s <i>delta,</i> determines the achievable frame rate 
+- the <b>shorter</b> the <i>delta</i> (measured in mS), the <b>faster</b> the possible <i>rate 
+of change</i> (in <i>fps</i>).</p>
 
-<p>Here is a screenshot of an example and the code we added to our game engine, for measuring FPS (<a href="https://jsbin.com/noqibu/edit" target="_blank" rel="noopener noreferrer">try it online at JSBin</a>):</p>
+<p>Here is a screenshot of an example and the code we added to our game engine, for measuring FPS 
+(<a href="https://jsbin.com/noqibu/edit" target="_blank" rel="noopener noreferrer">try it online 
+at JSBin</a>):</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~ 96. screenshiot of example that displays 60 fps (155) ~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -6614,7 +6630,8 @@ var measureFPS = function(newTime){
 
 </details>
 
-<p>Now we can call the measureFPS function from inside the animation loop, passing it the current time, given by the high resolution timer that comes with the requestAnimationFrame API:</p>
+<p>Now we can call the measureFPS function from inside the animation loop, passing it the current 
+time, given by the high resolution timer that comes with the requestAnimationFrame API:</p>
 
 <details>
   <summary>JavaScript code!</summary>
@@ -6629,7 +6646,8 @@ var measureFPS = function(newTime){
 
 </details>
 
-<p>And the &lt;div&gt; element used to display FPS on the screen is created in this example by the start() function:</p>
+<p>And the &lt;div&gt; element used to display FPS on the screen is created in this example by the 
+start() function:</p>
 
 <details>
   <summary>JavaScript code!</summary>
@@ -6646,7 +6664,8 @@ var measureFPS = function(newTime){
 
 <p>Hack: achieving more than 60 fPS? It’s possible but to be avoided except in hackers’ circles!</p>
 
-<p>We also know methods of implementing loops in JavaScript which achieve even more than 60fps (this is the limit using requestAnimationFrame).</p>
+<p>We also know methods of implementing loops in JavaScript which achieve even more than 60fps 
+(this is the limit using requestAnimationFrame).</p>
 
 <p>My favorite hack uses the onerror callback on an &lt;img&gt; element like this:</p>
 
@@ -6666,8 +6685,8 @@ providing invalid data as a source of the image. The image cannot be
 displayed properly, so the browser calls the onerror event handler that
 is the mainloop function itself, and so on.</p>
 
-<p>Funny right? Please <a href="https://jsbin.com/notupe/edit" target="_blank" rel="noopener noreferrer">try this
-and check the number of FPS displayed with this JSBin example</a>.</p>
+<p>Funny right? Please <a href="https://jsbin.com/notupe/edit" target="_blank" rel="noopener 
+noreferrer">try this and check the number of FPS displayed with this JSBin example</a>.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 97. 4145 fps displayed canvas (157) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -6696,24 +6715,23 @@ and check the number of FPS displayed with this JSBin example</a>.</p>
 <h3 id="ch2-3-2">2.3.2 Introducing graphics</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p>[<i>Note</i>: drawing within a canvas is studied in detail during the 
-<a href="https://www.edx.org/course/html5-coding-essentials-and-best-practices" 
-target="_blank" rel="noopener noreferrer">W3C HTML5 Coding Essentials and Best 
-Practices course</a>, in module 3.]</p>
+<a href="https://www.edx.org/course/html5-coding-essentials-and-best-practices" target="_blank" 
+rel="noopener noreferrer">W3C HTML5 Coding Essentials and Best Practices course</a>, in module 3.]</p>
 
 <p>Is this really a course about games? Where are the graphics?<br />
-Good news! We will add graphics to our game engine in this lesson!
- To-date we have talked of “basic concepts”; so without further ado,
-let’s draw something, animate it, and move shapes around the screen
-:-)</p>
+Good news! We will add graphics to our game engine in this lesson! To-date we have talked of 
+“basic concepts”; so without further ado, let’s draw something, animate it, and move shapes 
+around the screen :-)</p>
 
 <p>Let’s do this by including into our framework the same “monster” we
 used during the <a
-href="https://www.edx.org/course/html5-coding-essentials-and-best-practices" target="_blank" rel="noopener noreferrer">W3C
-HTML5 Coding Essentials and Best Practices course</a>.</p>
+href="https://www.edx.org/course/html5-coding-essentials-and-best-practices" target="_blank" 
+rel="noopener noreferrer">W3C HTML5 Coding Essentials and Best Practices course</a>.</p>
 
 <h4>HTML5 canvas basic usage: drawing a monster</h4>
 
-<p>How to draw a monster in a canvas: <a href="https://jsbin.com/ponaki/edit" target="_blank" rel="noopener noreferrer">you can try it online at JSBin</a>.</p>
+<p>How to draw a monster in a canvas: <a href="https://jsbin.com/ponaki/edit" target="_blank" 
+rel="noopener noreferrer">you can try it online at JSBin</a>.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~ 98. small monster drawn in a canvas (158) ~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -6741,26 +6759,28 @@ HTML5 Coding Essentials and Best Practices course</a>.</p>
 
 </details>
 
-<p>The canvas declaration is at<i> line 8</i>. Use attributes to give
-it a width and a height, but unless you add some CSS properties, you
-will not see it on the screen because it’s transparent!</p>
+<p>The canvas declaration is at<i> line 8</i>. Use attributes to give it a width and a height, but 
+unless you add some CSS properties, you will not see it on the screen because it’s transparent!</p>
 
-<p>Let’s use CSS to reveal the canvas, for example, add a 1px black
-border around it:</p>
+<p>Let’s use CSS to reveal the canvas, for example, add a 1px black border around it:</p>
 
 <pre>canvas {
   border: 1px solid black;
 }</pre>
 
-<p>And here is a reminder of best practices when using the canvas, as
-described in the HTML5 Part 1 course:</p>
+<p>And here is a reminder of best practices when using the canvas, as described in the HTML5 Part 1 
+course:</p>
 
 <ol type="1">
-  <li><p>Use a function that is called AFTER the page is fully loaded (and the DOM is ready), set a pointer to the canvas node in the DOM.</p></li>
-  <li><p>Then, get a 2D graphic context for this canvas (the context is an object we will use to draw on the canvas, to set global properties such as color, gradients, patterns and line width).</p></li>
-  <li><p>Only then can you can draw something,</p></li>
-  <li><p>Do not forget to use global variables for the canvas and context objects. I also recommend keeping the width and height of the canvas somewhere. These might be useful later.</p></li>
-  <li><p>For each function that will change the context (color, line width, coordinate system, etc.), start by saving the context, and end by restoring it.</p></li>
+  <li>Use a function that is called AFTER the page is fully loaded (and the DOM is ready), set a 
+    pointer to the canvas node in the DOM.<br></li>
+  <li>Then, get a 2D graphic context for this canvas (the context is an object we will use to 
+    draw on the canvas, to set global properties such as color, gradients, patterns and line width).<br></li>
+  <li>Only then can you can draw something,<br></li>
+  <li>Do not forget to use global variables for the canvas and context objects. I also recommend 
+    keeping the width and height of the canvas somewhere. These might be useful later.<br></li>
+  <li>For each function that will change the context (color, line width, coordinate system, etc.), 
+    start by saving the context, and end by restoring it.</li>
 </ol>
 
 <h4>Here is JavaScript code which implements those best practices:</h4>
@@ -6812,11 +6832,21 @@ function drawMyMonster(x, y) {
 using the default color (black) and wireframe and filled modes:</p>
 
 <ul>
-  <li><p>ctx.fillRect(x, y, width, height): draws a rectangle whose top left corner is at (x, y) and whose size is specified by the width and height parameters; and both outlined by, and filled with, the default color.</p></li>
-  <li><p>ctx.strokeRect(x, y, width, height): same but in wireframe mode.</p></li>
-  <li><p>Note that we use (<i>line 30</i>) ctx.translate(x, y) to make it easier to move the monster around. So, all the drawing instructions are coded as if the monster was in (0, 0), at the top left corner of the canvas (look at <i>line 33</i>). We draw the body outline with a rectangle starting from (0, 0). Calling context.translate “changes the coordinate system” by moving the “old (0, 0)” to (x, y) and keeping other coordinates in the same position relative to the origin.</p></li>
-  <li><p><i>Line 19</i>: we call the drawMonster function with (10, 10) as parameters, which will cause the original coordinate system to be translated by (10, 10).</p></li>
-  <li><p>And if we change the coordinate system (this is what the call to ctx.translate(…) does) in a function, it is a best practice to always save the previous context  at the beginning of the function and restore it at the end of the function (<i>lines 27 and 50</i>).</p></li>
+  <li>ctx.fillRect(x, y, width, height): draws a rectangle whose top left corner is at (x, y) 
+    and whose size is specified by the width and height parameters; and both outlined by, and filled 
+	with, the default color.<br></li>
+  <li>ctx.strokeRect(x, y, width, height): same but in wireframe mode.<br></li>
+  <li>Note that we use (<i>line 30</i>) ctx.translate(x, y) to make it easier to move the monster 
+    around. So, all the drawing instructions are coded as if the monster was in (0, 0), at the top 
+	left corner of the canvas (look at <i>line 33</i>). We draw the body outline with a rectangle 
+	starting from (0, 0). Calling context.translate “changes the coordinate system” by moving the 
+	“old (0, 0)” to (x, y) and keeping other coordinates in the same position relative to the 
+	origin.<br></li>
+  <li><i>Line 19</i>: we call the drawMonster function with (10, 10) as parameters, which will 
+    cause the original coordinate system to be translated by (10, 10).<br></li>
+  <li>And if we change the coordinate system (this is what the call to ctx.translate(…) does) 
+    in a function, it is a best practice to always save the previous context  at the beginning of 
+	the function and restore it at the end of the function (<i>lines 27 and 50</i>).</li>
 </ul>
 
 <h4>Animating the monster and including it in our game engine</h4>
@@ -6824,15 +6854,17 @@ using the default color (black) and wireframe and filled modes:</p>
 <p>Ok, now that we know how to move the monster, let’s integrate it into our game engine:</p>
 
 <ol type="1">
-  <li><p>add the canvas to the HTML page,</p></li>
-  <li><p>add the content of the init() function to the start() function of the game engine,</p></li>
-  <li><p>add a few global variables (canvas, ctx, etc.),</p></li>
-  <li><p>call the drawMonster(…) function from the mainLoop,</p></li>
-  <li><p>add a random displacement to the x, y position of the monster to see it moving,</p></li>
-  <li><p>in the main loop, do not forget to clear the canvas before drawing again; this is done using the ctx.clearRect(x, y, width, height) function.</p></li>
+  <li>add the canvas to the HTML page,<br></li>
+  <li>add the content of the init() function to the start() function of the game engine,<br></li>
+  <li>add a few global variables (canvas, ctx, etc.),<br></li>
+  <li>call the drawMonster(…) function from the mainLoop,<br></li>
+  <li>add a random displacement to the x, y position of the monster to see it moving,<br></li>
+  <li>in the main loop, do not forget to clear the canvas before drawing again; this is done using 
+    the ctx.clearRect(x, y, width, height) function.</li>
 </ol>
 
-<p><a href="https://jsbin.com/xuruja/edit" target="_blank" rel="noopener noreferrer">You can try this version online at JSBin</a>.</p>
+<p><a href="https://jsbin.com/xuruja/edit" target="_blank" rel="noopener noreferrer">You can try 
+this version online at JSBin</a>.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 99. trembling monster (161) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -6919,20 +6951,19 @@ var GF = function() {
 <h4>Explanations:</h4>
 
 <ul>
-  <li><p>Note that we now start the game engine in a window.onload callback 
-    (<i>line 2</i>), so only after the page has been loaded.</p></li>
-  <li><p>We also moved 99% of the init() method from the previous example into the 
-    start() method of the game engine, and added the canvas, ctx, w, h variables as 
-    global variables to the game framework object.</p></li>
-  <li><p>Finally, in the main loop we added a call to the drawMonster() function, 
-    injecting randomicity through the parameters:  the monster is drawn with an x,y 
-    offset of between 0 and 10, in successive frames of the animation.</p></li>
-  <li><p>And we clear the previous canvas content before drawing the current frame 
-    (<i>line 35</i></p></li>
+  <li>Note that we now start the game engine in a window.onload callback (<i>line 2</i>), so only 
+    after the page has been loaded.<br></li>
+  <li>We also moved 99% of the init() method from the previous example into the start() method of 
+    the game engine, and added the canvas, ctx, w, h variables as global variables to the game 
+	framework object.<br></li>
+  <li>Finally, in the main loop we added a call to the drawMonster() function, injecting randomicity 
+    through the parameters:  the monster is drawn with an x,y offset of between 0 and 10, in successive 
+	frames of the animation.<br></li>
+  <li>And we clear the previous canvas content before drawing the current frame (<i>line 35</i></li>
 </ul>
 
-<p>If you try the example, you will see a trembling monster. The canvas is cleared 
-and the monster drawn in random positions, at around 60 times per second!</p>
+<p>If you try the example, you will see a trembling monster. The canvas is cleared and the monster 
+drawn in random positions, at around 60 times per second!</p>
 
 <p>Next, let’s see how to interact with it using the mouse or the keyboard.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -6942,29 +6973,28 @@ and the monster drawn in random positions, at around 60 times per second!</p>
 
 <h4>HTML5 events</h4>
 
-<p>There is no input or output in JavaScript. We treat <i>events</i> caused by user 
-actions as inputs, and we manipulate the DOM structure as output. Usually in games, 
-we will maintain state variables representing moving objects like the position and 
-speed of an alien ship, and the animation loop will refer to these variables in 
-determining the movement of such objects.</p>
+<p>There is no input or output in JavaScript. We treat <i>events</i> caused by user actions as 
+inputs, and we manipulate the DOM structure as output. Usually in games, we will maintain state 
+variables representing moving objects like the position and speed of an alien ship, and the 
+animation loop will refer to these variables in determining the movement of such objects.</p>
 
-<p>In any case, the events are called DOM events, and we use the DOM APIs to create 
-<i>event handlers</i>.</p>
+<p>In any case, the events are called DOM events, and we use the DOM APIs to create <i>event 
+handlers</i>.</p>
 
 <h4>How to listen to events</h4>
 
-<p>There are three ways to manage events in the DOM structure. You could attach an 
-event inline in your HTML code like this:</p>
+<p>There are three ways to manage events in the DOM structure. You could attach an event inline 
+in your HTML code like this:</p>
 
 <h4>Method #1: declare an event handler in the HTML code</h4>
 
 <pre>&lt;div id=&quot;someDiv&quot; onclick=&quot;alert(&#39;clicked!&#39;)&quot;&gt; content of the
 div &lt;/div&gt;</pre>
 
-<p>This method is very easy to use, but it is not the recommended way to handle events. 
-Indeed, It works today but is <i>deprecated</i> (will probably be abandoned in the 
-future). Mixing ‘visual layer’ (HTML) and ‘logic layer’ (JavaScript) in one place 
-is really bad practice and causes a host of problems during development.</p>
+<p>This method is very easy to use, but it is not the recommended way to handle events. Indeed, It 
+works today but is <i>deprecated</i> (will probably be abandoned in the future). Mixing ‘visual 
+layer’ (HTML) and ‘logic layer’ (JavaScript) in one place is really bad practice and causes a host 
+of problems during development.</p>
 
 <h4>Method #2: attach an event handler to an HTML element in JavaScript</h4>
 
@@ -6972,53 +7002,46 @@ is really bad practice and causes a host of problems during development.</p>
   alert(&#39;clicked!&#39;);
 }</pre>
 
-<p>This method is fine, but  you will not be able to attach multiple <i>listener</i> 
-functions. If you need to do this, use the version shown below.</p>
+<p>This method is fine, but  you will not be able to attach multiple <i>listener</i> functions. If 
+you need to do this, use the version shown below.</p>
 
-<p>Method #3: register a callback to the event listener with the addEventListener 
-method (preferred  method)</p>
+<p>Method #3: register a callback to the event listener with the addEventListener method (preferred 
+method)</p>
 
 <pre>document.getElementById(&#39;someDiv&#39;).addEventListener(&#39;click&#39;, function() {
   alert(&#39;clicked!&#39;);
 }, false);</pre>
 
-<p>Note that the third parameter describes whether
-the <i>callback</i> has to be called during the captured phase. This is not important 
-for now, just set it to false.</p>
+<p>Note that the third parameter describes whether the <i>callback</i> has to be called during the 
+captured phase. This is not important for now, just set it to false.</p>
 
 <p>Details of the DOM event are passed to the event listener function</p>
 
-<p>When you create an <i>event listener</i> and attach it to an element,
-the listener will create an <i>event object</i> to describe what
-happened. This object is provided as a parameter of the callback
+<p>When you create an <i>event listener</i> and attach it to an element, the listener will create an 
+<i>event object</i> to describe what happened. This object is provided as a parameter of the callback 
 function:</p>
 
 <pre>element.addEventListener(&#39;click&#39;, function(event) {
   / now you can use event object inside the callback /
 }, false);</pre>
 
-<p>Depending on the type of event you are listening to, you will consult
-different properties from the event object in order to obtain useful
-information such as: “which keys are pressed down?”, “what is the
-location of the mouse cursor?”, “which mouse button has been clicked?”,
-etc.</p>
+<p>Depending on the type of event you are listening to, you will consult different properties from 
+the event object in order to obtain useful information such as: “which keys are pressed down?”, 
+“what is the location of the mouse cursor?”, “which mouse button has been clicked?”, etc.</p>
 
-<p>In the following lessons, we will remind you now how to deal with the
-keyboard and the mouse (previously covered during the HTML5 Part 1
-course) in the context of a game engine (in particular, how to manage
-multiple events at the same time), and also demonstrate how you can
-accept input from a game pad using the new Gamepad API.</p>
+<p>In the following lessons, we will remind you now how to deal with the keyboard and the mouse 
+(previously covered during the HTML5 Part 1 course) in the context of a game engine (in particular, 
+how to manage multiple events at the same time), and also demonstrate how you can accept input from 
+a game pad using the new Gamepad API.</p>
 
 <h4>Further reading</h4>
 
-<p>In the method #1 above, we mentioned that “Mixing ‘visual layer’
-(HTML) and ‘logic layer’ (JavaScript) … bad practice”, and this is
-similarly reflected in many style features being deprecated in HTML5 and
-moved into CSS3. The management philosophy at play here is called “the
-separation of concerns” and applies in several ways to software
-development - at the code level, through to the management of staff.
-It’s not part of the course, but professionals may find the following
-references useful:</p>
+<p>In the method #1 above, we mentioned that “Mixing ‘visual layer’ (HTML) and ‘logic layer’ 
+(JavaScript) … bad practice”, and this is similarly reflected in many style features being 
+deprecated in HTML5 and moved into CSS3. The management philosophy at play here is called 
+“the separation of concerns” and applies in several ways to software development - at the code 
+level, through to the management of staff. It’s not part of the course, but professionals may 
+find the following references useful:</p>
 
 <ul>
   <li><a href="https://en.wikipedia.org/wiki/Separation_of_concerns" target="_blank" 
@@ -7218,10 +7241,9 @@ var GF = function(){
 
 </details>
 
-<p>You may notice that on some computers / operating systems, it is not
-possible to simultaneously press the up and down arrow keys, or left and
-right arrow keys, because they are mutually exclusive. However space +
-up + right should work in combination.</p>
+<p>You may notice that on some computers / operating systems, it is not possible to simultaneously 
+press the up and down arrow keys, or left and right arrow keys, because they are mutually exclusive. 
+However space + up + right should work in combination.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-3-5">2.3.5 Adding mouse listeners</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -7235,26 +7257,23 @@ up + right should work in combination.</p>
   alt="A schema of mouse internals."
   style="width:40%;" />
 
-<p>Working with mouse events requires detecting whether a mouse button
-is up or down, identifying that button, keeping track of mouse movement,
-getting the x and y coordinates of the cursor, etc.</p>
+<p>Working with mouse events requires detecting whether a mouse button is up or down, identifying 
+that button, keeping track of mouse movement, getting the x and y coordinates of the cursor, etc.</p>
 
-<p>Special care must be taken when acquiring mouse coordinates because
-the HTML5 canvas has default (or directed) CSS properties which could
-produce false coordinates. The trick to get the right x and y mouse
-cursor coordinates is to use this method from the canvas API:</p>
+<p>Special care must be taken when acquiring mouse coordinates because the HTML5 canvas has default 
+(or directed) CSS properties which could produce false coordinates. The trick to get the right x and 
+y mouse cursor coordinates is to use this method from the canvas API:</p>
 
 <p>// necessary to take into account CSS boundaries</p>
 
 <p>var rect = canvas.getBoundingClientRect();</p>
 
-<p>The width and height of the rect object must be taken into account.
-These dimensions correspond to the padding / margins / borders of the
-canvas. See how we deal with them in the getMousePos() function in the
-next example.</p>
+<p>The width and height of the rect object must be taken into account. These dimensions correspond 
+to the padding / margins / borders of the canvas. See how we deal with them in the getMousePos() 
+function in the next example.</p>
 
-<p>Here is <a href="https://jsbin.com/metavu/edit" target="_blank" rel="noopener noreferrer">an online example at
-JSBin</a> that covers all cases correctly.</p>
+<p>Here is <a href="https://jsbin.com/metavu/edit" target="_blank" rel="noopener noreferrer">an 
+online example at JSBin</a> that covers all cases correctly.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~ 104. jsbin example mouse position + button pressed (168) ~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -7264,10 +7283,9 @@ JSBin</a> that covers all cases correctly.</p>
   alt="Screenshot of a JSBin example that shows the mouse position + button pressed."
   style="width:35%;" />
 
-<p>Move the mouse over the canvas and press or release mouse buttons.
-Notice that we keep the state of the mouse (position, buttons up or
-down) as part of the inputStates object, just as we do with the keyboard
-(per previous lesson).</p>
+<p>Move the mouse over the canvas and press or release mouse buttons. Notice that we keep the state 
+of the mouse (position, buttons up or down) as part of the inputStates object, just as we do with 
+the keyboard (per previous lesson).</p>
 
 <h4>Below is the JavaScript source code for this small example:</h4>
 
@@ -7322,8 +7340,8 @@ function getMousePos(canvas, evt) {
 
 <h4>Making an object follow the mouse cursor</h4>
 
-<p><a href="https://jsbin.com/soduko/edit?js,output" target="_blank" rel="noopener noreferrer">Try this example at
-JsBin</a></p>
+<p><a href="https://jsbin.com/soduko/edit?js,output" target="_blank" rel="noopener noreferrer">Try 
+this example at JsBin</a></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~ 105. a rectangle that follows mouse cursor (169) ~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -7400,12 +7418,11 @@ function getMousePos(canvas, evt) {
 
 <h4>Adding mouse listeners to the game framework</h4>
 
-<p>Now we will include these listeners into our game framework. Notice
-that we changed some parameters (no need to pass the canvas as a
-parameter of the getMousePos() function, for example).</p>
+<p>Now we will include these listeners into our game framework. Notice that we changed some parameters 
+(no need to pass the canvas as a parameter of the getMousePos() function, for example).</p>
 
-<p><a href="https://jsbin.com/rizuyah/edit" target="_blank" rel="noopener noreferrer">
-The new online version of the game engine can be tried at JSBin</a>:</p>
+<p><a href="https://jsbin.com/rizuyah/edit" target="_blank" rel="noopener noreferrer">The new 
+online version of the game engine can be tried at JSBin</a>:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~ 106. message on mouse event listener (171) ~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -7415,11 +7432,10 @@ The new online version of the game engine can be tried at JSBin</a>:</p>
   alt="Message on mouse event listener."
   style="width:35%;" />
 
-<p>Try pressing arrows and space keys, moving the mouse, and pressing
-the buttons, all at the same time. You’ll see that the game framework
-handles all these events simultaneously because the global variable
-named inputStates is updated by keyboard and mouse events, and consulted
-to direct movements every 1/60th second.</p>
+<p>Try pressing arrows and space keys, moving the mouse, and pressing the buttons, all at the same 
+time. You’ll see that the game framework handles all these events simultaneously because the global 
+variable named inputStates is updated by keyboard and mouse events, and consulted to direct movements 
+every 1/60th second.</p>
 
 <h4>JavaScript source code:</h4>
 
@@ -7542,49 +7558,41 @@ var GF = function() {
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-3-6">2.3.6 Gamepad events</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Hi! In this lesson we will look at how we can manage such an input
-device! This is a Microsoft xbox 360 controller -a wired one- with an
-USB plug. And we will see how we can use the gamepad API that is
-available on modern browsers… except a few ones…</p>
+<p>Hi! In this lesson we will look at how we can manage such an input device! This is a Microsoft 
+xbox 360 controller -a wired one- with an USB plug. And we will see how we can use the gamepad API 
+that is available on modern browsers… except a few ones…</p>
 
-<p>The first thing you can do is to add some even listeners for the
-gamepadconnect and gamepaddisconnected events.</p>
+<p>The first thing you can do is to add some even listeners for the gamepadconnect and 
+gamepaddisconnected events.</p>
 
-<p>If I plug in the game pad (I’m using Google Chrome for this demo), I
-plug it in…</p>
+<p>If I plug in the game pad (I’m using Google Chrome for this demo), I plug it in…</p 
 
-<p>Here we are! I need to press a button, for the gamepad to be
-detected. If I just plug it in: it won’t be detected. On FireFox, I
-tried too… and it has been detected as soon as I plugged it in.</p>
+<p>Here we are! I need to press a button, for the gamepad to be detected. If I just plug it in: 
+it won’t be detected. On FireFox, I tried too… and it has been detected as soon as I plugged it 
+in.</p>
 
-<p>Once it’s plugged, you can get a property of the event that is called
-gamepad… and you can get the number of buttons, and the number of
-axes.</p>
+<p>Once it’s plugged, you can get a property of the event that is called gamepad… and you can get 
+the number of buttons, and the number of axes.</p>
 
-<p>Here, it says it’s got 4 axes… the axes are for the joysticks…
-horizontal and vertical axes. We will see how to manage that in a
-minute. And it’s got 17 buttons.</p>
+<p>Here, it says it’s got 4 axes… the axes are for the joysticks… horizontal and vertical axes. We 
+will see how to manage that in a minute. And it’s got 17 buttons.</p>
 
-<p>We can also detect when we disconnect it. So… I just unpluged it and
-it’s also detected…</p>
+<p>We can also detect when we disconnect it. So… I just unpluged it and it’s also detected…</p>
 
-<p>But, in order to scan… in order to know in real time the state of the
-different buttons…</p>
+<p>But, in order to scan… in order to know in real time the state of the different buttons…</p>
 
-<p>and you’ve got some analogic buttons like these triggers… and you’ve
-got axes… they are the joysticks here… and buttons… you need to scan at
-a very fast frequency the state of the gamepad.</p>
+<p>and you’ve got some analogic buttons like these triggers… and you’ve got axes… they are the 
+joysticks here… and buttons… you need to scan at a very fast frequency the state of the gamepad.</p>
 
-<p>This is done in another example here, where I can press some buttons
-and you see that the buttons are detected.</p>
+<p>This is done in another example here, where I can press some buttons and you see that the 
+buttons are detected.</p>
 
-<p>And in case of an analogic button, I’m using a progress HTML element
-to draw/show the pressure… So, how do you manage these values?</p>
+<p>And in case of an analogic button, I’m using a progress HTML element to draw/show the pressure… 
+So, how do you manage these values?</p>
 
-<p>You’ve got to have a mainloop that is very similar to the animation
-loop (or you can do this in the animation loop). And we call a method, a
-function called scanGamepads that will ask for the gamepad 60 times per
-second. Here we say “Navigator!</p>
+<p>You’ve got to have a mainloop that is very similar to the animation loop (or you can do this in 
+the animation loop). And we call a method, a function called scanGamepads that will ask for the 
+gamepad 60 times per second. Here we say “Navigator!</p>
 
 <p>Hey browser! Give me all the gamepads you’ve got!” And you’ve got a
 gamepad array… if the gamepad is detected, it’s non null and you can use
@@ -7596,8 +7604,8 @@ it. In this example we use just one gamepad.</p>
 scanGamepad()… then we’re going to check the buttons that are pressed…
 so how do we check the buttons?</p>
 
-<p>We get the number of buttons: gamepad.buttons, we do an iteration on
-them, we get the current button and check if its pressed or not.</p>
+<p>We get the number of buttons: gamepad.buttons, we do an iteration on them, we get the current 
+button and check if its pressed or not.</p>
 
 <p>This is a boolean property: “pressed”.</p>
 
@@ -7605,49 +7613,39 @@ them, we get the current button and check if its pressed or not.</p>
 an analogic buttons, like the triggers here… and the value will be
 between 0 and 1. And this is what we draw here.</p>
 
-<p>If you want to try another demo and look at the code for managing
-multiple gamepads, I added a link to this demo that has been done by
-people from Mozilla…</p>
+<p>If you want to try another demo and look at the code for managing multiple gamepads, I added a 
+link to this demo that has been done by people from Mozilla…</p>
 
-<p>If you plug a second gamepad (I’ve got only one here), it will
-display another row for checking the state of the second gamepad.</p>
+<p>If you plug a second gamepad (I’ve got only one here), it will display another row for checking 
+the state of the second gamepad.</p>
 
-<p>Another thing that is interesting is to detect the joystick values
-here… you can see the progress bars moving. The joystick returns values
-between -1 and +1, 0 is the neutral position here.</p>
+<p>Another thing that is interesting is to detect the joystick values here… you can see the progress 
+bars moving. The joystick returns values between -1 and +1, 0 is the neutral position here.</p>
 
-<p>The way you detect that is that instead of doing an iteration on the
-buttons: you do an iteration on the axes… the checkAxes function
-proposed in the course will just iterate on the axes array you get from
-the gamepad object.</p>
+<p>The way you detect that is that instead of doing an iteration on the buttons: you do an iteration 
+on the axes… the checkAxes function proposed in the course will just iterate on the axes array you 
+get from the gamepad object.</p>
 
-<p>gamepad.axes[i] here will returns the status… the value of the
-current axis.</p>
+<p>gamepad.axes[i] here will returns the status… the value of the current axis.</p>
 
-<p>axes[0] means horizontal here, axes[1] means vertical for the left
-joystick, axes[2] will mean left/right for the second joystick and
-axes[3] for the up/down.</p>
+<p>axes[0] means horizontal here, axes[1] means vertical for the left joystick, axes[2] will mean 
+left/right for the second joystick and axes[3] for the up/down.</p>
 
 <p>This is how we manage that. Look at the code, it’s very simple.</p>
 
-<p>And in the course you will see how we can make the small monster move
-using the gamepad.</p>
+<p>And in the course you will see how we can make the small monster move using the gamepad.</p>
 
-<p>It’s, I think, in the next lesson… I gave an example at the end, for
-moving the monster with the gamepad. We just reused the functions I’ve
-shown.</p>
+<p>It’s, I think, in the next lesson… I gave an example at the end, for moving the monster with the 
+gamepad. We just reused the functions I’ve shown.</p>
 
-<p>And here we can make the monster move using the gamepad as you can
-see… with the left joystick.</p>
+<p>And here we can make the monster move using the gamepad as you can see… with the left joystick.</p>
 
-<p>We just added scanGamepads() in the mailoop…updateGamepadStatus()…and 
-updateGamepadStatus() will scan the gamepads, check the buttons, and check the 
-axes 60 times per second… the rest of the code is the same as I presented 
-earlier. So I hope you enjoyed this part of the course and that you will use a 
-gamepad in the small game you are going to develop during this week. Bye! Bye!</p>
+<p>We just added scanGamepads() in the mailoop…updateGamepadStatus()…and updateGamepadStatus() will 
+scan the gamepads, check the buttons, and check the axes 60 times per second… the rest of the code 
+is the same as I presented earlier. So I hope you enjoyed this part of the course and that you will 
+use a gamepad in the small game you are going to develop during this week. Bye! Bye!</p>
 
-<p>Some games, mainly arcade/action games, are designed to be used with 
-a gamepad:</p>
+<p>Some games, mainly arcade/action games, are designed to be used with a gamepad:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 107. x-box game controller (176) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -7664,24 +7662,24 @@ href="https://caniuse.com/#feat=gamepad" target="_blank" rel="noopener noreferre
 feature’s compatibility table</a>. Note that the API is still a draft and
 may change in the future.</p>
 
-<p>We recommend using a Wired Xbox 360 Controller or a PS2 controller, both of which should 
-work <i>out of the box</i> on Windows XP, Windows Vista, Windows, and Linux desktop 
-distributions. Wireless controllers are supposed to work too, but we haven’t tested 
-the API with them. You may find someone who has managed but they’ve probably needed 
-to install an operating system driver to make it work.</p>
+<p>We recommend using a Wired Xbox 360 Controller or a PS2 controller, both of which should work 
+<i>out of the box</i> on Windows XP, Windows Vista, Windows, and Linux desktop distributions. 
+Wireless controllers are supposed to work too, but we haven’t tested the API with them. You may 
+find someone who has managed but they’ve probably needed to install an operating system driver to 
+make it work.</p>
 
 <h4>Detecting gamepads</h4>
 
 <h4>Events triggered when the gamepad is plugged in or unplugged</h4>
 
-<p>Let’s start with a ‘discovery’ script to check that the GamePad is
-connected, and to see the range of facilities it can offer to
-JavaScript.</p>
+<p>Let’s start with a ‘discovery’ script to check that the GamePad is connected, and to see the range 
+of facilities it can offer to JavaScript.</p>
 
 <p>If the user interacts with a controller (presses a button, moves a
 stick) a <a href="https://w3c.github.io/gamepad/#event-gamepadconnected" target="_blank" rel="noopener noreferrer">gamepadconnected</a> event will be sent to the page. NB the page must be visible! The event object passed to the gamepadconnected listener has a gamepad property which describes the connected device.</p>
 
-<p><a href="https://jsbin.com/kiduwu/edit?console,output" target="_blank" rel="noopener noreferrer">Example on JSBin</a></p>
+<p><a href="https://jsbin.com/kiduwu/edit?console,output" target="_blank" rel="noopener noreferrer">
+Example on JSBin</a></p>
 
 <details>
   <summary>JavaScript code!</summary>
@@ -7708,7 +7706,10 @@ stick) a <a href="https://w3c.github.io/gamepad/#event-gamepadconnected" target
   alt="Message on mouse event listener."
   style="width:35%;" />
 
-<p>If a gamepad is disconnected (you unplug it), a <a href="https://w3c.github.io/gamepad/#event-gamepaddisconnected" target="_blank" rel="noopener noreferrer">gamepaddisconnected</a> event is fired. Any references to the gamepad object will have their connected property set to false.</p>
+<p>If a gamepad is disconnected (you unplug it), a 
+<a href="https://w3c.github.io/gamepad/#event-gamepaddisconnected" target="_blank" rel="noopener 
+noreferrer">gamepaddisconnected</a> event is fired. Any references to the gamepad object will have 
+their connected property set to false.</p>
 
 <pre>window.addEventListener(&quot;gamepaddisconnected&quot;, function(e) {
   var gamepad = e.gamepad;
@@ -7726,15 +7727,14 @@ stick) a <a href="https://w3c.github.io/gamepad/#event-gamepadconnected" target
 
 <h4>Scanning for gamepads</h4>
 
-<p>If you reload the page, and if the gamepad has already been detected
-by the browser, it will not fire the gamepadconnected event again. This
-can be problematic if you use a global variable for managing the
-gamepad, or an array of gamepads in your code. As the event is not
-fired, these variables will stay undefined…</p>
+<p>If you reload the page, and if the gamepad has already been detected by the browser, it will not 
+fire the gamepadconnected event again. This can be problematic if you use a global variable for 
+managing the gamepad, or an array of gamepads in your code. As the event is not fired, these 
+variables will stay undefined…</p>
 
-<p>So, you need to regularly scan for gamepads available on the system.
-You should still use that event listener if you want to do something
-special when the system detects that a gamepad has been unplugged.</p>
+<p>So, you need to regularly scan for gamepads available on the system. You should still use that 
+event listener if you want to do something special when the system detects that a gamepad has been 
+unplugged.</p>
 
 <p>Here is the code to use to scan for a gamepad:</p>
 
@@ -7763,23 +7763,21 @@ function scangamepads() {
 
 </details>
 
-<p>In this code, we check every 1/60 second for newly or re-connected
-gamepads, and we update the gamepad global var with the first gamepad
-object returned by the browser. We need to do this so that we have an
-accurate “snapshot” of the gamepad state, with fixed values for the
-buttons, axes, etc. If we want to check the current button and joystick
-statuses, we must poll the browser at a high frequency  and call for an
-updated snapshot.</p>
+<p>In this code, we check every 1/60 second for newly or re-connected gamepads, and we update the 
+gamepad global var with the first gamepad object returned by the browser. We need to do this so 
+that we have an accurate “snapshot” of the gamepad state, with fixed values for the buttons, axes, 
+etc. If we want to check the current button and joystick statuses, we must poll the browser at a 
+high frequency  and call for an updated snapshot.</p>
 
-<p>From the specification: <i>“getGamepads retrieves a snapshot of the
-data for the currently connected and interacted with gamepads.”</i></p>
+<p>From the specification: <i>“getGamepads retrieves a snapshot of the data for the currently 
+connected and interacted with gamepads.”</i></p>
 
-<p>This code will be integrated (as well as the event listeners presented earlier) 
-in the next JSBin examples.</p>
+<p>This code will be integrated (as well as the event listeners presented earlier) in the next JSBin 
+examples.</p>
 
 <p>To keep things simple, the above code works with a single gamepad
-- <a href="https://github.com/luser/gamepadtest" target="_blank" rel="noopener noreferrer">here’s a good example
-of managing multiple gamepads</a>.</p>
+- <a href="https://github.com/luser/gamepadtest" target="_blank" rel="noopener noreferrer">here’s a 
+good example of managing multiple gamepads</a>.</p>
 
 <h4>Detecting button status and axes values (joysticks)</h4>
 
@@ -7919,11 +7917,9 @@ function checkAxes(gamepad) {
 
 <h4>Detecting the direction (left, right, up, down, diagonals) and angle of the left joystick</h4>
 
-<p>We could add an inputStates object similar to the one we used in the
-game framework, and check its values in the mainloop to decide whether
-to move the player up/down/left/right, including diagonals - or maybe
-we’d prefer to use the current angle of the joystick. Here is how we
-manage this:</p>
+<p>We could add an inputStates object similar to the one we used in the game framework, and check its 
+values in the mainloop to decide whether to move the player up/down/left/right, including diagonals - 
+or maybe we’d prefer to use the current angle of the joystick. Here is how we manage this:</p>
 
 <p><a href="https://jsbin.com/vuxoqo/edit?js,output" target="_blank" rel="noopener noreferrer">JSBin
 example</a>:</p>
@@ -8021,29 +8017,26 @@ function checkAxes(gamepad) {
 
 <h4>Logitech Attack 3 Joystick on Linux</h4>
 
-<p><i>Hi (=dn reports): Have successfully installed a Logitech Attack
-3 joy-stick on my Thinkpad running Linux Mint 17.1. It runs all of the
-code presented here correctly, reporting 11 buttons and 3 axes (the
-knurled rotating knob (closest to my pen) is described as a ‘throttle’
-or ‘accelerator’)).</i></p>
+<p><i>Hi (=dn reports): Have successfully installed a Logitech Attack 3 joy-stick on my Thinkpad 
+running Linux Mint 17.1. It runs all of the code presented here correctly, reporting 11 buttons 
+and 3 axes (the knurled rotating knob (closest to my pen) is described as a ‘throttle’ or 
+‘accelerator’)).</i></p>
 
-<p><i>Traditionally Linux has been described as ‘for work only’ or ‘no
-games’, so it was a pleasant surprise to see how easy things were - no
-“driver” to install (it seems important to uninstall any existing
-connection between a device and the x-server), installed “joystick”
-testing and calibration tool, and the “jstest-gtk” configuration and
-testing tool; and that was ‘it’ - no actual configuration was
-necessary!</i></p>
+<p><i>Traditionally Linux has been described as ‘for work only’ or ‘no games’, so it was a pleasant 
+surprise to see how easy things were - no “driver” to install (it seems important to uninstall any 
+existing connection between a device and the x-server), installed “joystick” testing and calibration 
+tool, and the “jstest-gtk” configuration and testing tool; and that was ‘it’ - no actual configuration 
+was necessary!</i></p>
 
 <h4>External resources</h4>
 
 <ul>
-  <li><p><a href="https://www.smashingmagazine.com/2015/11/gamepad-api-in-web-games/" target="_blank" rel="noopener noreferrer">THE BEST resource: this paper from smashingmagazine.com tells you everything about the GamePad API</a>. Very complete, explains how to set a dead zone, a keyboard fallback, etc.</p></li>
-  <li><p><a href="https://hacks.mozilla.org/2013/12/the-gamepad-api/" target="_blank" rel="noopener  noreferrer">Good article about using the gamepad API on the Mozilla Developer Network site</a></p></li>
-  <li><p><a href="https://www.html5rocks.com/en/tutorials/doodles/gamepad/" target="_blank" rel="noopener noreferrer">An interesting article on the gamepad support, published on the HTML5 Rocks Web site</a></p></li>
-  <li><p><a href="https://github.com/neogeek/gamepad.js" target="_blank" rel="noopener noreferrer">gamepad.js </a>is a Javascript library to enable the use of gamepads and joysticks in the browser. It smoothes over the differences between browsers, platforms, APIs, and a wide variety of gamepad/joystick devices.</p></li>
-  <li><p><a href="https://github.com/kallaspriit/HTML5-JavaScript-Gamepad-Controller-Library" target="_blank" rel="noopener noreferrer">Another library we used in our team for controlling a mobile robot (good support from the authors)</a></p></li>
-  <li><p><a href="https://blog.teamtreehouse.com/gamepad-controls-html5-games" target="_blank" rel="noopener noreferrer">Gamepad Controls for HTML5 Games</a></p></li>
+  <li><a href="https://www.smashingmagazine.com/2015/11/gamepad-api-in-web-games/" target="_blank" rel="noopener noreferrer">THE BEST resource: this paper from smashingmagazine.com tells you everything about the GamePad API</a>. Very complete, explains how to set a dead zone, a keyboard fallback, etc.<br></li>
+  <li><a href="https://hacks.mozilla.org/2013/12/the-gamepad-api/" target="_blank" rel="noopener  noreferrer">Good article about using the gamepad API on the Mozilla Developer Network site</a><br></li>
+  <li><a href="https://www.html5rocks.com/en/tutorials/doodles/gamepad/" target="_blank" rel="noopener noreferrer">An interesting article on the gamepad support, published on the HTML5 Rocks Web site</a><br></li>
+  <li><a href="https://github.com/neogeek/gamepad.js" target="_blank" rel="noopener noreferrer">gamepad.js </a>is a Javascript library to enable the use of gamepads and joysticks in the browser. It smoothes over the differences between browsers, platforms, APIs, and a wide variety of gamepad/joystick devices.<br></li>
+  <li><a href="https://github.com/kallaspriit/HTML5-JavaScript-Gamepad-Controller-Library" target="_blank" rel="noopener noreferrer">Another library we used in our team for controlling a mobile robot (good support from the authors)</a><br></li>
+  <li><a href="https://blog.teamtreehouse.com/gamepad-controls-html5-games" target="_blank" rel="noopener noreferrer">Gamepad Controls for HTML5 Games</a></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch2-3-7">2.3.7 Move the monster!</h3>
@@ -13382,8 +13375,8 @@ handler with an ondrop=dropHandler(event); attribute:</p>
 
 <p>At <i>lines 7-8</i>, we get the files that have been dropped.</p>
 
-<p><i>Lines 12-15</i> iterate over the collection and build a string which contains the 
-list of file names.</p>
+<p><i>Lines 12-15</i> iterate over the collection and build a string which contains the list of 
+file names.</p>
 
 <p><i>Line 17</i> displays this string on the debugging console.</p>
 
@@ -13444,23 +13437,23 @@ function dropHandler(event) {
     rel="noopener noreferrer">Using the HTML5 drag and drop API</a>”</p></li>
   <li><p>HTML Goodies article: 
     “<a  href="https://www.htmlgoodies.com/html5/javascript/drag-files-into-the-browser-from-the-desktop-HTML5.html"
-    target="_blank" rel="noopener noreferrer">Drag Files Into the Browser From the Desktop 
-    with HTML5</a>”</p></li>
+    target="_blank" rel="noopener noreferrer">Drag Files Into the Browser From the Desktop with 
+	HTML5</a>”</p></li>
 </ul>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-4-2">3.4.2 Drag and drop files in a drop zone</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p>Hi! This time let’s look at how we can drag and</p>
 
-<p>drop files into a document. So, the first thing you must know is that, by default, 
-the browser does things when you drag and drop.</p>
+<p>drop files into a document. So, the first thing you must know is that, by default, the browser 
+does things when you drag and drop.</p>
 
 <p>If I drag and drop an image, it just shows the image in full size in a new tab.</p>
 
 <p>If I drag and drop a video, the browser will just play it using a default player.</p>
 
-<p>So, if you want to drag and drop some multimedia files, we will have to take care and 
-prevent this default behavior. So first, let’s look at a more simple example.</p>
+<p>So, if you want to drag and drop some multimedia files, we will have to take care and prevent 
+this default behavior. So first, let’s look at a more simple example.</p>
 
 <p>We will just drag and drop files, one or multiple files into a drop zone.</p>
 
@@ -16421,47 +16414,39 @@ directory.</p>
 <p>I copy it to my directory, and I rename it ‘voice’. Then I can read
 the documentation.</p>
 
-<p>I need to import voice-player and if I wanted to use voice
-recognition I would import this one… I add the import for this
-voice-player, and then I can look at the demonstration and at the
+<p>I need to import voice-player and if I wanted to use voice recognition I would import this one… 
+I add the import for this voice-player, and then I can look at the demonstration and at the 
 documentation.</p>
 
-<p>I prepared something already… This is just a voice-player element
-that will say an ‘Hi!’ sentence to you my students and I added a
-button.</p>
+<p>I prepared something already… This is just a voice-player element that will say an ‘Hi!’ sentence 
+to you my students and I added a button.</p>
 
-<p>When I click on the button it will call the speak method from this
-Web component.</p>
+<p>When I click on the button it will call the speak method from this Web component.</p>
 
-<p>Ok let’s try it. Reload. Now, I’ve got the button and listen! [Hi,
-students from the HTML5 Part 2 course. A Web component is speaking]</p>
+<p>Ok let’s try it. Reload. Now, I’ve got the button and listen! [Hi, students from the HTML5 Part 
+2 course. A Web component is speaking]</p>
 
 <p>That’s all, you saw how you can reuse existing components.</p>
 
 <p>Easy! Bye bye!</p>
 
-<p><b>Important note about the above text video:</b> <a
-href="https://www.webcomponents.org/">webcomponents.org</a> and
-customelements.io have been merged in 2017!</p>
+<p><b>Important note about the above text video:</b> <a href="https://www.webcomponents.org/">
+webcomponents.org</a> and customelements.io have been merged in 2017!</p>
 
-<p>The video uses the customelements.io Web site when searching for Web
-Components. It has now been merged with the <a
-href="https://www.webcomponents.org/">webcomponents.org</a> Web Site.
-The search field from webcomponents.org is equivalent to the search
-field that was available on the customelements.io.</p>
+<p>The video uses the customelements.io Web site when searching for Web Components. It has now been 
+merged with the <a href="https://www.webcomponents.org/">webcomponents.org</a> Web Site. 
+The search field from webcomponents.org is equivalent to the search field that was available on 
+the customelements.io.</p>
 
-<p>The zip file from the video is available for download in the section
-below.</p>
+<p>The zip file from the video is available for download in the section below.</p>
 
 <h4>Example from the video</h4>
 
-<p>You can download an archive of the example mentioned in the video
-lecture from: <a
+<p>You can download an archive of the example mentioned in the video lecture from: <a
 href="https://courses.edx.org/assets/courseware/v1/3d550fbef1593961559d28aa6e373d97/asset-v1:W3Cx+HTML5.2x+2T2020a+type@asset+block/VideoUsingWebComponents2020.zip" target="_blank" rel="noopener noreferrer">VideoUsingWebComponents2020.zip</a></p>
 
-<p>You need to unarchive it in the Web server htdocs directory of your
-WAMP/MAMP/LAMP http distribution, for example. Then open
-the index.html file located in that directory.</p>
+<p>You need to unarchive it in the Web server htdocs directory of your WAMP/MAMP/LAMP http 
+distribution, for example. Then open the index.html file located in that directory.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~ 215. running example on apache web server (411) ~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -16473,22 +16458,20 @@ the index.html file located in that directory.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-2-2">4.2.2 Introduction</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Web components provide a standard way to build your own
-widgets/components using similar methods to those used by browser
-developers to construct the &lt;video&gt;, &lt;audio&gt;, and &lt;input
+<p>Web components provide a standard way to build your own widgets/components using similar methods 
+to those used by browser developers to construct the &lt;video&gt;, &lt;audio&gt;, and &lt;input 
 type=“date”&gt; elements, for example.</p>
 
-<p>Web components enable you<i> to use custom HTML elements in your HTML
-documents</i>, that render as complex widgets: a better-looking
-calendar, an input text with vocal recognition, a nice chart, etc.</p>
+<p>Web components enable you<i> to use custom HTML elements in your HTML documents</i>, that render 
+as complex widgets: a better-looking calendar, an input text with vocal recognition, a nice chart, 
+etc.</p>
 
 <p>Let’s start with an example! This code…:</p>
 
 <pre>&lt;x-gif src=&quot;https://i.imgur.com/iKXH4E2.gif&quot; ping-pong&gt;&lt;/x-gif&gt;</pre>
 
-<p>… renders an animated GIF, and it loops forever in ping-pong mode:
-the order of the animation is reversed when the last image is reached
-and again when the animation goes back to the first image.</p>
+<p>… renders an animated GIF, and it loops forever in ping-pong mode: the order of the animation is 
+reversed when the last image is reached and again when the animation goes back to the first image.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 216. animated gif in a page (412) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -16499,25 +16482,21 @@ and again when the animation goes back to the first image.</p>
   style="width:30%;" />
 
 <p>Click on the image to run the animated GIF demo, or visit <a
-href="https://geelen.github.io/x-gif/#/https://i.imgur.com/iKXH4E2.gif" target="_blank" rel="noopener noreferrer">this
-Web site</a>.</p>
+href="https://geelen.github.io/x-gif/#/https://i.imgur.com/iKXH4E2.gif" target="_blank" 
+rel="noopener noreferrer">this Web site</a>.</p>
 
-<p>If you look at the source of the demo page, you note the following at
-the top of the page:</p>
+<p>If you look at the source of the demo page, you note the following at the top of the page:</p>
 
 <pre>&lt;link rel=&quot;import&quot; href=&quot;dist/x-gif.html&quot;&gt;</pre>
 
-<p>It’s called an “HTML import”. If your browser supports <i>HTML
-imports</i>, you can now import <i>another HTML document, </i>that will
-come with its own HTML, CSS, and JavaScript code-base, into your HTML
-page . The code for the animated GIF player, rendered when the browser
-encounters the<i> custom HTML element</i> &lt;x-gif&gt;,  is located in
-the imported HTML file (and this HTML file can in turn include or define
-CSS and JavaScript content).</p>
+<p>It’s called an “HTML import”. If your browser supports <i>HTML imports</i>, you can now import 
+<i>another HTML document, </i>that will come with its own HTML, CSS, and JavaScript code-base, into 
+your HTML page . The code for the animated GIF player, rendered when the browser encounters the<i> 
+custom HTML element</i> &lt;x-gif&gt;,  is located in the imported HTML file (and this HTML file 
+can in turn include or define CSS and JavaScript content).</p>
 
-<p>Even more impressive: if you use the devtools or the right click
-context menu to view the source of the page, you will not see the DOM of
-this animated GIF player:</p>
+<p>Even more impressive: if you use the devtools or the right click context menu to view the source 
+of the page, you will not see the DOM of this animated GIF player:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~ 217. shadow root of the x-gif web component (412) ~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -16527,20 +16506,17 @@ this animated GIF player:</p>
   alt="Shadow root of the x-gif web component."
   style="width:45%;" />
 
-<p>…<i>and your document will still be valid.</i> Looking at the source
-code or at the DOM with the devtool’s inspector will not reveal the
-source code (HTML/JavaScript/CSS) used for creating it.</p>
+<p>…<i>and your document will still be valid.</i> Looking at the source code or at the DOM with the 
+devtool’s inspector will not reveal the source code (HTML/JavaScript/CSS) used for creating it.</p>
 
 <h4>Web components availability</h4>
 
-<p>There are already hundreds of Web components made by others that you
-can use. On the <a
-href="https://www.webcomponents.org/" target="_blank" rel="noopener noreferrer">webcomponents.org</a> Web site,
-you will find lots of them. Usually, you need to import the HTML file
-that defines the components you want to use, and <a
-href="https://www.webcomponents.org/polyfills" target="_blank" rel="noopener noreferrer">maybe also a
-polyfill </a>if you want to use them with browsers that do not
-yet support Web Components.</p>
+<p>There are already hundreds of Web components made by others that you can use. On the <a
+href="https://www.webcomponents.org/" target="_blank" rel="noopener noreferrer">webcomponents.org</a> 
+Web site, you will find lots of them. Usually, you need to import the HTML file that defines the 
+components you want to use, and <a href="https://www.webcomponents.org/polyfills" target="_blank" 
+rel="noopener noreferrer">maybe also a polyfill </a>if you want to use them with browsers that do 
+not yet support Web Components.</p>
 
 <p><i>Example</i>: let’s go to the the <a
 href="https://www.webcomponents.org/" target="_blank" rel="noopener noreferrer">Web Components Web site</a>.</p>
@@ -16553,9 +16529,8 @@ href="https://www.webcomponents.org/" target="_blank" rel="noopener noreferrer">
   alt="The webcomponents.org home page."
   style="width:35%;" />
 
-<p>We then search for Web components tagged with the “voice” tag and
-find input fields with voice recognition, and a text area that could
-vocalize the text:</p>
+<p>We then search for Web components tagged with the “voice” tag and find input fields with voice 
+recognition, and a text area that could vocalize the text:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~ 219. results for a search on voice (413) ~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -16581,60 +16556,71 @@ look and feel.</p>
 
 <h4>Web components are built on four different APIS</h4>
 
-<p>In this lesson, we are talking about “Web components”. Note that this
-is not a single API - rather it’s what we call an “umbrella
-API”, <b>built on top of 4 W3C specifications, </b>which are going to be
-detailed in subsequent lessons.</p>
+<p>In this lesson, we are talking about “Web components”. Note that this is not a single API - 
+rather it’s what we call an “umbrella API”, <b>built on top of 4 W3C specifications, </b>which 
+are going to be detailed in subsequent lessons.</p>
 
-<p>The main W3C Web Components resource is on <a href="https://github.com/w3c/webcomponents" target="_blank" rel="noopener noreferrer">GitHub</a>:</p>
+<p>The main W3C Web Components resource is on <a href="https://github.com/w3c/webcomponents" 
+target="_blank" rel="noopener noreferrer">GitHub</a>:</p>
 
 <ol type="1">
-  <li><p><a href="https://www.w3.org/TR/html-templates/" target="_blank" rel="noopener noreferrer">The HTML Templates specification</a></p></li>
-  <li><p><a href="https://www.w3.org/TR/shadow-dom/" target="_blank" rel="noopener noreferrer">The Shadow DOM specification</a> (Working Group Note, part of the DOM specification) - see also this MDN’s documentation “<a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM" target="_blank" rel="noopener noreferrer">Using shadow DOM”</a></p></li>
-  <li><p>The Custom Elements specification is being incorporated into the W3C DOM specification and the WHATWG DOM Standard, the W3C HTML specification and the WHATWG HTML Standard, and other relevant specifications. Please check the W3C <a href="https://github.com/w3c/webcomponents/" target="_blank" rel="noopener noreferrer">Web Components repository</a> for continuing discussions about this subject.</p></li>
-  <li><p><a href="https://w3c.github.io/webcomponents/spec/imports/" target="_blank" rel="noopener noreferrer">The HTML Imports specification</a> (HTML imports have been deprecated, see further material in this chapter)</p></li>
+  <li><a href="https://www.w3.org/TR/html-templates/" target="_blank" rel="noopener noreferrer">
+    The HTML Templates specification</a><br></li>
+  <li><a href="https://www.w3.org/TR/shadow-dom/" target="_blank" rel="noopener noreferrer">
+    The Shadow DOM specification</a> (Working Group Note, part of the DOM specification) - see 
+	also this MDN’s documentation “<a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM" 
+	target="_blank" rel="noopener noreferrer">Using shadow DOM”</a><br></li>
+  <li>The Custom Elements specification is being incorporated into the W3C DOM specification 
+    and the WHATWG DOM Standard, the W3C HTML specification and the WHATWG HTML Standard, and 
+	other relevant specifications. Please check the W3C <a href="https://github.com/w3c/webcomponents/" target="_blank" rel="noopener noreferrer">Web Components repository</a> for continuing discussions 
+	about this subject.<br></li>
+  <li><a href="https://w3c.github.io/webcomponents/spec/imports/" target="_blank" 
+    rel="noopener noreferrer">The HTML Imports specification</a> (HTML imports have 
+	been deprecated, see further material in this chapter)</li>
 </ol>
 
 <p>You can check the current support for these APIs here: <a
 href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/?q=webcomponents" target="_blank" rel="noopener noreferrer">Microsoft Edge’s Web Components</a> and on CanIuse:</p>
 
 <ul>
-  <li><p>HTML templates are supported by nearly all modern browsers, including mobile browsers (see also this support table <a href="https://caniuse.com/#feat=template" target="_blank" rel="noopener noreferrer">online</a>).</p></li>
-  <li><p>Shadow DOM v1 is supported by Chrome and Opera, and FireFox/Safari offers partial support (see also <a href="https://caniuse.com/#feat=shadowdomv1" target="_blank" rel="noopener noreferrer">online</a>).</p></li>
-  <li><p>Custom Elements is supported by Chrome and Opera, and FireFox/Safari offers partial support. Edge is implementing them (see also <a href="https://caniuse.com/#feat=custom-elementsv1" target="_blank" rel="noopener noreferrer">online</a>).</p></li>
-  <li><p>HTML Imports is deprecated, but can be used with polyfills . A new way to import Web Components using JavaScript imports is under consideration. More about that in the “HTML imports” material later on.</p></li>
+  <li>HTML templates are supported by nearly all modern browsers, including mobile browsers (see 
+    also this support table <a href="https://caniuse.com/#feat=template" target="_blank" rel="noopener 
+	noreferrer">online</a>).<br></li>
+  <li>Shadow DOM v1 is supported by Chrome and Opera, and FireFox/Safari offers partial support 
+    (see also <a href="https://caniuse.com/#feat=shadowdomv1" target="_blank" rel="noopener noreferrer">online</a>).<br></li>
+  <li>Custom Elements is supported by Chrome and Opera, and FireFox/Safari offers partial support. 
+    Edge is implementing them (see also <a href="https://caniuse.com/#feat=custom-elementsv1" 
+	target="_blank" rel="noopener noreferrer">online</a>).<br></li>
+  <li>HTML Imports is deprecated, but can be used with polyfills . A new way to import Web Components 
+    using JavaScript imports is under consideration. More about that in the “HTML imports” material 
+	later on.</li>
 </ul>
 
 <p>HTML imports have been replaced by a more standard way involving JavaScript imports (see <a
-href="https://github.com/w3c/webcomponents/blob/gh-pages/proposals/HTML-Imports-and-ES-Modules.md" target="_blank" rel="noopener noreferrer">discussions</a>).</p>
+href="https://github.com/w3c/webcomponents/blob/gh-pages/proposals/HTML-Imports-and-ES-Modules.md" 
+target="_blank" rel="noopener noreferrer">discussions</a>).</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-2-3">4.2.3 HTML templates</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Hi! In this lesson, I am going to talk about the template API. You
-must know that Web components are what we call ‘an umbrella API’ that is
-built on four W3C specifications.</p>
+<p>Hi! In this lesson, I am going to talk about the template API. You must know that Web components 
+are what we call ‘an umbrella API’ that is built on four W3C specifications.</p>
 
-<p>One is the template specification about how to make HTML code that
-will be duplicated each time you will need to create a new widget. It is
-a sort of ’inert code’: if it includes videos they will not be played;
-if it includes JavaScript, it will not be executed, until you clone this
-template and add it to your document.</p>
+<p>One is the template specification about how to make HTML code that will be duplicated each time 
+you will need to create a new widget. It is a sort of ’inert code’: if it includes videos they will 
+not be played; if it includes JavaScript, it will not be executed, until you clone this template and 
+add it to your document.</p>
 
-<p>The other APIs we will present in the course are the shadow DOM specification 
-that will make encapsulations. In other words, it will hide the JavaScript, the 
-HTML and the CSS from your widget to the external world. If you do ’view source’ 
-in a page, you will not see anything. And if you use CSS in your document, it will 
-not cross the boundaries of the different Web components.</p>
+<p>The other APIs we will present in the course are the shadow DOM specification that will make 
+encapsulations. In other words, it will hide the JavaScript, the HTML and the CSS from your widget 
+to the external world. If you do ’view source’ in a page, you will not see anything. And if you use 
+CSS in your document, it will not cross the boundaries of the different Web components.</p>
 
-<p>The two last APIs are much more simpler. One is for designing custom
-elements like the x-gif Web component element we saw in the previous
-lesson.</p>
+<p>The two last APIs are much more simpler. One is for designing custom elements like the x-gif 
+Web component element we saw in the previous lesson.</p>
 
-<p>You will add new custom elements and the browser will render
-them.</p>
+<p>You will add new custom elements and the browser will render them.</p>
 
-<p>The last one enables the browser to import in an HTML document
-another HTML document.</p>
+<p>The last one enables the browser to import in an HTML document another HTML document.</p>
 
 <p>Here is a small example that defines a template. So you define a
 template using a template element, and usually you give it an id because
@@ -16674,23 +16660,18 @@ I detailed just earlier. If I click on the button, it will add all the
 HTML code from the template, and I can do that as many times as I
 want.</p>
 
-<p>This instantiation process is how we create a new skeleton for our
-future Web components.</p>
+<p>This instantiation process is how we create a new skeleton for our future Web components.</p>
 
 <p>I hope you liked this video. Bye! Bye!</p>
 
-<p>HTML templates are an important building-block of Web components.
-When you use a custom element like &lt;x-gif….&gt;, the browser will
-(before rendering the document) clone and add  some HTML/CSS/JS code to
-your document, thanks to the HTML template API that is used behind the
-scenes.</p>
+<p>HTML templates are an important building-block of Web components. When you use a custom element 
+like &lt;x-gif….&gt;, the browser will (before rendering the document) clone and add  some HTML/CSS/JS 
+code to your document, thanks to the HTML template API that is used behind the scenes.</p>
 
-<p>HTML templates define fragments of code (HTML, JavaScript and CSS
-styles) that can be reused.</p>
+<p>HTML templates define fragments of code (HTML, JavaScript and CSS styles) that can be reused.</p>
 
-<p>These parts of code are<i> inert</i> (i.e., CSS will not be applied,
-JavaScript will not be executed, images will not be loaded, videos will
-not be played, etc.) until the template is used.</p>
+<p>These parts of code are<i> inert</i> (i.e., CSS will not be applied, JavaScript will not be 
+executed, images will not be loaded, videos will not be played, etc.) until the template is used.</p>
 
 <p>Here is an example of code that defines a template:</p>
 
@@ -16699,20 +16680,17 @@ not be played, etc.) until the template is used.</p>
   &lt;div class=&quot;comment&quot;&gt;&lt;/div&gt;
 &lt;/template&gt;</pre>
 
-<p>Note that it’s ok to have the <b>src</b> attribute empty here, we
-will initialize it when the template is activated.</p>
+<p>Note that it’s ok to have the <b>src</b> attribute empty here, we will initialize it when the 
+template is activated.</p>
 
 <h4>To use a template, clone its content!</h4>
 
-<p>A template has “content” (the lines of code
-between &lt;template&gt; and &lt;/template&gt;), and to manipulate it we
-use the DOM API and the content attribute of the DOM node that
-corresponds to a given template (<i>line 3</i> of the source code
-example below).</p>
+<p>A template has “content” (the lines of code between &lt;template&gt; and &lt;/template&gt;), 
+and to manipulate it we use the DOM API and the content attribute of the DOM node that corresponds 
+to a given template (<i>line 3</i> of the source code example below).</p>
 
-<p>In order to use a template’s content, we clone it using
-the document.importNode(templateContent, true) method, where the node is
-the template’s content and true means “deep copy” the content.</p>
+<p>In order to use a template’s content, we clone it using the document.importNode(templateContent, 
+true) method, where the node is the template’s content and true means “deep copy” the content.</p>
 
 <p>A template is typically used like this:</p>
 
@@ -16728,20 +16706,20 @@ document.body.appendChild(clone);</pre>
 <p>:</p>
 
 <ul>
-  <li><p>In this example, <i>line 1</i> assigns the DOM node corresponding to the 
-    template we defined to variable t.</p></li>
-  <li><p>t.content (<i>line 3</i>) is the root of the subtree in the template (in 
-    other words, the lines of HTML code inside the template element)</p></li>
-  <li><p>Note that we set the value of the src attribute of the image inside the 
-    template at <i>line 3</i>, using a CSS selector on the template’s content.</p></li>
-  <li><p><i>Lines 5 and 6</i> clone the template’s content and add it to the &lt;body&gt; 
-    of the document.</p></li>
+  <li>In this example, <i>line 1</i> assigns the DOM node corresponding to the 
+    template we defined to variable t.<br></li>
+  <li>t.content (<i>line 3</i>) is the root of the subtree in the template (in 
+    other words, the lines of HTML code inside the template element)<br></li>
+  <li>Note that we set the value of the src attribute of the image inside the 
+    template at <i>line 3</i>, using a CSS selector on the template’s content.<br></li>
+  <li><i>Lines 5 and 6</i> clone the template’s content and add it to the &lt;body&gt; 
+    of the document.</li>
 </ul>
 
 <h4>Example</h4>
 
-<p>Here is <a href="https://jsbin.com/dozele/edit" target="_blank" rel="noopener noreferrer">an online example at
-JSBin</a> that uses exactly the code presented:</p>
+<p>Here is <a href="https://jsbin.com/dozele/edit" target="_blank" rel="noopener noreferrer">an 
+online example at JSBin</a> that uses exactly the code presented:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 220. template use (418) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -16778,142 +16756,125 @@ JSBin</a> that uses exactly the code presented:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p>Hello! Let’s talk about the shadow DOM. What is the</p>
 
-<p>Shadow DOM? Let’s first look at a video. You know the video element,
-we already used many times in this course.</p>
+<p>Shadow DOM? Let’s first look at a video. You know the video element, we already used many times 
+in this course.</p>
 
-<p>If you look at the source of the video element, or if you try to
-select it using the devtools, you can only select it at once, you can’t
-select individually the buttons, or the progress element, and so on.</p>
+<p>If you look at the source of the video element, or if you try to select it using the devtools, 
+you can only select it at once, you can’t select individually the buttons, or the progress element, 
+and so on.</p>
 
-<p>Look at the video, you see the video controls, autoplay, source
-elements, and so on. But you can’t look at the internals because this
-video is a Web component.</p>
+<p>Look at the video, you see the video controls, autoplay, source elements, and so on. But you 
+can’t look at the internals because this video is a Web component.</p>
 
-<p>Web components have been used by browser developers before the APIs
-went public.</p>
+<p>Web components have been used by browser developers before the APIs went public.</p>
 
-<p>You can enable in the settings (I am using Google Chrome here), you
-can enable the visualization of the user agent shadow DOM.</p>
+<p>You can enable in the settings (I am using Google Chrome here), you can enable the visualization 
+of the user agent shadow DOM.</p>
 
-<p>When this option is enabled, then you will see a shadow root in the
-debugger, when you look for a Web component.</p>
+<p>When this option is enabled, then you will see a shadow root in the debugger, when you look for 
+a Web component.</p>
 
-<p>This time, if I open the shadow root in the debugger, and if I move
-the inspector, I can see how the Web component is made.</p>
+<p>This time, if I open the shadow root in the debugger, and if I move the inspector, I can see how 
+the Web component is made.</p>
 
-<p>I can see its internals. I can look at the play button for
-example.</p>
+<p>I can see its internals. I can look at the play button for example.</p>
 
-<p>The shadow DOM is a way to hide HTML code from the end user. If you
-do ‘view source’,</p>
+<p>The shadow DOM is a way to hide HTML code from the end user. If you do ‘view source’,</p>
 
-<p>you will not see how a Web Component is made, except if you set the
-correct debugging settings option.</p>
+<p>you will not see how a Web Component is made, except if you set the correct debugging settings 
+option.</p>
 
-<p>More than that, the Web component may include some CSS files and the
-CSS of the Web component will only apply to its own elements.</p>
+<p>More than that, the Web component may include some CSS files and the CSS of the Web component 
+will only apply to its own elements.</p>
 
-<p>Let’s look at an example. Here, we(ve got a button that is called ‘a
-shadow host’.</p>
+<p>Let’s look at an example. Here, we(ve got a button that is called ‘a shadow host’.</p>
 
-<p>This is our Web component. For the moment we are not using custom
-elements, we are just associating a shadow DOM with the button element
-here.</p>
+<p>This is our Web component. For the moment we are not using custom elements, we are just associating 
+a shadow DOM with the button element here.</p>
 
-<p>This one is called ’the host’, and as you can see it is not rendered
-because it has a shadow DOM.</p>
+<p>This one is called ’the host’, and as you can see it is not rendered because it has a shadow DOM.</p>
 
-<p>The way we add a shadow DOM to an element is that we first select the
-host, then we create a shadow root.</p>
+<p>The way we add a shadow DOM to an element is that we first select the host, then we create a 
+shadow root.</p>
 
-<p>Once you got the shadow root, you can start adding content in this
-node, in order to make the shadow DOM.</p>
+<p>Once you got the shadow root, you can start adding content in this node, in order to make the 
+shadow DOM.</p 
 
-<p>Here, ‘root.textContent’ will add this text to the shadow DOM and if
-you look at the button, this is the text that is rendered: ’Hello’.</p>
+<p>Here, ‘root.textContent’ will add this text to the shadow DOM and if you look at the button, this 
+is the text that is rendered: ’Hello’.</p>
 
-<p>If I inspect this element using the devtools, I will see a button,
-and a shadow root associated.</p>
+<p>If I inspect this element using the devtools, I will see a button, and a shadow root associated.</p>
 
-<p>In another example in the course, we will talk about templates and
-shadow DOM.</p>
+<p>In another example in the course, we will talk about templates and shadow DOM.</p>
 
-<p>Instead of adding just text in the shadow DOM using textContent or
-innerHTML, we can clone a template. So in this example, I’ve got a
-template that contains a ‘H1’. This is a ‘shadowed H1’ and some CSS
-style defined in the template.</p>
+<p>Instead of adding just text in the shadow DOM using textContent or innerHTML, we can clone a 
+template. So in this example, I’ve got a template that contains a ‘H1’. This is a ‘shadowed H1’ 
+and some CSS style defined in the template.</p>
 
-<p>When I create the root element for the shadow DOM, I can append the
-cloned code of the template.</p>
+<p>When I create the root element for the shadow DOM, I can append the cloned code of the template.</p>
 
 <p>In this case I have got a skeleton: the template.</p>
 
 <p>I instantiate it and I add it to the shadow DOM.</p>
 
-<p>Look at the result here! I have got my host (that is a ‘H1’), and if
-I type things it is not rendered. What is rendered is the content here
-of the template I instantiated.</p>
+<p>Look at the result here! I have got my host (that is a ‘H1’), and if I type things it is not 
+rendered. What is rendered is the content here of the template I instantiated.</p>
 
 <p>And this template contains an ‘H1’ that is white on red.</p>
 
-<p>But look: I have got a global CSS that says that all ‘H1s’ must be
-green, and this one is not affected, it does not cross the boundaries of
-the Web component.</p>
+<p>But look: I have got a global CSS that says that all ‘H1s’ must be green, and this one is not 
+affected, it does not cross the boundaries of the Web component.</p>
 
-<p>The same thing is true for the style in the Web component, that says
-that all ‘H1s’ must be white on red, and it does not affect the ‘H1’ in
-the page.</p>
+<p>The same thing is true for the style in the Web component, that says that all ‘H1s’ must be 
+white on red, and it does not affect the ‘H1’ in the page.</p>
 
-<p>I added an ‘H1’ that is not associated with the shadow DOM and this
-one is impacted by the normal CSS style that says that the color is
-green for each ‘H1’.</p>
+<p>I added an ‘H1’ that is not associated with the shadow DOM and this one is impacted by the normal 
+CSS style that says that the color is green for each ‘H1’.</p>
 
-<p>This one is green but not the once inside the shadow DOM. So it is
-good for encapsulation: you can protect your widget (your Web component)
-so that external CSS will not affect it.</p>
+<p>This one is green but not the once inside the shadow DOM. So it is good for encapsulation: you 
+can protect your widget (your Web component) so that external CSS will not affect it.</p>
 
-<p>In the next lesson, we will see how we can allow some style to cross
-the boundaries, but under control. This is all for this video! Bye!
-Bye!</p>
+<p>In the next lesson, we will see how we can allow some style to cross the boundaries, but under 
+control. This is all for this video! Bye! Bye!</p>
 
-<p>The Shadow DOM API provides DOM encapsulation: it serves to hide what
-is not necessary to see!</p>
+<p>The Shadow DOM API provides DOM encapsulation: it serves to hide what is not necessary to see!</p>
 
-<p>If you are new to programming or object-oriented terminology you may
-find these references a helpful start:</p>
+<p>If you are new to programming or object-oriented terminology you may find these references a 
+helpful start:</p 
 
 <ol type="1">
-  <li><p><a href="https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)" target="_blank" rel="noopener noreferrer">Wikipedia offers a description</a> especially of the “information hiding” aspect</p></li>
-  <li><p>MDN offers a <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects" target="_blank" rel="noopener noreferrer">tutorial in programming JavaScript objects</a></p></li>
+  <li><a href="https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)" target="_blank" 
+    rel="noopener noreferrer">Wikipedia offers a description</a> especially of the “information 
+	hiding” aspect<br></li>
+  <li>MDN offers a <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects" 
+    target="_blank" rel="noopener noreferrer">tutorial in programming JavaScript objects</a></li>
 </ol>
 
-<p>It is not obvious but the Shadow DOM API is already used by browsers’
-developers for &lt;audio&gt; or &lt;video&gt; elements, and also for the
-new &lt;input type=“date”&gt;, &lt;input type=“color”&gt; elements,
-etc.</p>
+<p>It is not obvious but the Shadow DOM API is already used by browsers’ developers for &lt;audio&gt; 
+or &lt;video&gt; elements, and also for the new &lt;input type=“date”&gt;, &lt;input type=“color”&gt; 
+elements, etc.</p>
 
 <p><b>The three rules of Shadow DOM:</b></p>
 
 <ol type="1">
-  <li><p>With Shadow DOM, elements are associated with a new kind of node: <i>a shadow root</i>.</p></li>
-  <li><p>An element that has a shadow root associated with it is called <i>a shadow host</i>.</p></li>
-  <li><p><i>The content of a shadow host isn’t rendered; the content of the shadow root is rendered instead.</i></p></li>
+  <li>With Shadow DOM, elements are associated with a new kind of node: <i>a shadow root</i>.<br></li>
+  <li>An element that has a shadow root associated with it is called <i>a shadow host</i>.<br></li>
+  <li><i>The content of a shadow host isn’t rendered; the content of the shadow root is rendered 
+    instead.</i></li>
 </ol>
 
-<p>NB: Because other browsers do not offer the tool-set, all of the
-examples we discuss on this subject use Google Chrome or Chromium.</p>
+<p>NB: Because other browsers do not offer the tool-set, all of the examples we discuss on this 
+subject use Google Chrome or Chromium.</p>
 
 <h4>Example using the Shadow DOM: the &lt;video&gt; element</h4>
 
-<p>Let’s have a look at a simple &lt;video&gt; element.
-Open <a href="https://jsbin.com/mojoqaw/edit?html,output" target="_blank" rel="noopener noreferrer">this JSBin
-example</a> in your browser, and fire up the devtools console (F12 on
-Windows/Linux, Cmd-Alt-i on Mac OS):
-Click on the “Elements” tab in the devtools, or use the magnifying
-glass and click on the video, to look at the the DOM view of the video
-element. You will see the exact HTML code that is in this example, but
-you cannot see the elements that compose the control bar. You don’t have
-access to the play button, etc.</p>
+<p>Let’s have a look at a simple &lt;video&gt; element. Open 
+<a href="https://jsbin.com/mojoqaw/edit?html,output" target="_blank" rel="noopener noreferrer">
+this JSBin example</a> in your browser, and fire up the devtools console (F12 on Windows/Linux, Cmd-Alt-i 
+on Mac OS): Click on the “Elements” tab in the devtools, or use the magnifying glass and click on the 
+video, to look at the the DOM view of the video element. You will see the exact HTML code that is in 
+this example, but you cannot see the elements that compose the control bar. You don’t have access to 
+the play button, etc.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 221. devtools 2 (423) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -16923,9 +16884,9 @@ access to the play button, etc.</p>
   alt="Devtools2"
   style="width:50%;" />
 
-<p>Let’s take a look behind the scenes, and see the Shadow DOM associated with 
-the &lt;video&gt; element. First, click on the Settings icon (three vertical dots) 
-and select "Settings" in the drop down menu:</p>
+<p>Let’s take a look behind the scenes, and see the Shadow DOM associated with the &lt;video&gt; 
+element. First, click on the Settings icon (three vertical dots) and select "Settings" in the drop 
+down menu:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 222. shadow dom in devtools 1 (424) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -16946,8 +16907,7 @@ check it. Close the panel.</p>
   alt="Show shadow DOM option in Devtools."
   style="width:60%;" />
 
-<p>Now, look for the video element again and within the DOM view you should see 
-something new:</p>
+<p>Now, look for the video element again and within the DOM view you should see something new:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 224. devtools 4 (425) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -16957,8 +16917,7 @@ something new:</p>
   alt="Devtools4"
   style="width:60%;" />
 
-<p>Open this shadow root by clicking on it, and move the mouse pointer over the 
-different elements:</p>
+<p>Open this shadow root by clicking on it, and move the mouse pointer over the different elements:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 225. devtools 5 (426) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -16968,18 +16927,16 @@ different elements:</p>
   alt="Devtools5"
   style="width:50%;" />
 
-<p>Chrome developers are already using the shadow DOM to define their
-own Web Components, such as &lt;video&gt; or &lt;audio&gt; elements! And
-they use the Shadow DOM to hide the internal plumbing.</p>
+<p>Chrome developers are already using the shadow DOM to define their own Web Components, such 
+as &lt;video&gt; or &lt;audio&gt; elements! And they use the Shadow DOM to hide the internal 
+plumbing.</p>
 
-<p>Furthermore, there is a kind of “boundary” around
-the &lt;video&gt; element, so that external CSS cannot interfere. The
-content of the &lt;video&gt; element is <i>sandboxed</i> (protected from
-external CSS selectors, for example, or cannot be accessed
-using document.querySelector(), nor inspected by default, using a DOM
-inspector). Find further reading on the <a
-href="https://en.wikipedia.org/wiki/Sandbox_(computer_security)" target="_blank" rel="noopener noreferrer">concept
-of sandboxing</a>.</p>
+<p>Furthermore, there is a kind of “boundary” around the &lt;video&gt; element, so that external 
+CSS cannot interfere. The content of the &lt;video&gt; element is <i>sandboxed</i> (protected 
+from external CSS selectors, for example, or cannot be accessed using document.querySelector(), 
+nor inspected by default, using a DOM inspector). Find further reading on the <a
+href="https://en.wikipedia.org/wiki/Sandbox_(computer_security)" target="_blank" rel="noopener 
+noreferrer">concept of sandboxing</a>.</p>
 
 <blockquote>
   <p>Browser developers have been using Web Components for a while, and
@@ -17007,10 +16964,9 @@ of sandboxing</a>.</p>
 
 </details>
 
-<p><i>Lines 8 and 11</i> show how to associate a shadow root with an
-existing HTML element. In this example, the &lt;div&gt; defined
-at<i> line 1</i> is a shadow host, and it is associated with the shadow
-root which contains three words of text (<i>line 11</i>).</p>
+<p><i>Lines 8 and 11</i> show how to associate a shadow root with an existing HTML element. In this 
+example, the &lt;div&gt; defined at<i> line 1</i> is a shadow host, and it is associated with the 
+shadow root which contains three words of text (<i>line 11</i>).</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 226. shadow dom simple example (427) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -17031,11 +16987,10 @@ root which contains three words of text (<i>line 11</i>).</p>
 </ol>
 
 <p>And indeed, the above example (try <a
-href="https://jsbin.com/peyuxuq/edit?html,console,output" target="_blank" rel="noopener noreferrer">the online
-version here at JSBin</a>) renders the content of the shadow root, not
-the content of the button. In the online example, try to change the text
-of the div (<i>line 1</i>), and you will notice that nothing changes.
-Then modify the text at <i>line 11</i> and observe the result</p>
+href="https://jsbin.com/peyuxuq/edit?html,console,output" target="_blank" rel="noopener noreferrer">
+the online version here at JSBin</a>) renders the content of the shadow root, not the content of 
+the button. In the online example, try to change the text of the div (<i>line 1</i>), and you will 
+notice that nothing changes. Then modify the text at <i>line 11</i> and observe the result</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 227. hello shadow dom (428) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -17047,15 +17002,13 @@ Then modify the text at <i>line 11</i> and observe the result</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-2-5">4.2.5 Shadow DOM: encapsulate code</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>By mixing templates and the shadow DOM, it is possible to hide a
-template’s content by embedding it in the shadow root. In this scenario,
-it’s easy to encapsulate CSS styles and/or JavaScript code so that it
-will affect <b>only</b> the content of the shadow root. Conversely,
-external CSS will not apply inside the shadow root.</p>
+<p>By mixing templates and the shadow DOM, it is possible to hide a template’s content by embedding 
+it in the shadow root. In this scenario, it’s easy to encapsulate CSS styles and/or JavaScript code 
+so that it will affect <b>only</b> the content of the shadow root. Conversely, external CSS will not 
+apply inside the shadow root.</p>
 
-<p>This is an important feature: the content of a new “widget” that is
-hidden in a shadow root is protected from external CSS, scripts,
-etc.</p>
+<p>This is an important feature: the content of a new “widget” that is hidden in a shadow root is 
+protected from external CSS, scripts, etc.</p>
 
 <h4>An example that mixes templates and shadow DOM</h4>
 
@@ -17083,8 +17036,8 @@ shadowRoot.appendChild(document.importNode(t.content, true));</pre>
 
 </details>
 
-<p><a href="https://jsbin.com/quguwa/edit?html,js,output" target="_blank" rel="noopener noreferrer">Online example
-at JSBin</a>:</p>
+<p><a href="https://jsbin.com/quguwa/edit?html,js,output" target="_blank" rel="noopener noreferrer">
+Online example at JSBin</a>:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 228. shadow dom 3 (429) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -17094,30 +17047,25 @@ at JSBin</a>:</p>
   alt="Shadow DOM 3."
   style="width:50%;" />
 
-<p>Note that once again, the content shown is the shadow root + the
-styles applied. The styles applied are those defined <i>in the
-template’s content</i> that has been cloned and put inside the shadow
-root.</p>
+<p>Note that once again, the content shown is the shadow root + the styles applied. The styles 
+applied are those defined <i>in the template’s content</i> that has been cloned and put inside 
+the shadow root.</p>
 
-<p>NB a little bit of French squeezed past our filters. “Instanciate” in
-French (and other languages) means “Instantiate” in English. We hope
-you’ll translate, as appropriate; but if you seek definitions or use the
-word in web-searches, then the English spelling will help!</p>
+<p>NB a little bit of French squeezed past our filters. “Instanciate” in French (and other 
+languages) means “Instantiate” in English. We hope you’ll translate, as appropriate; but if 
+you seek definitions or use the word in web-searches, then the English spelling will help!</p>
 
 <h4>Internal CSS does not apply outside the template/shadow DOM</h4>
 
-<p>The CSS inside the template will not affect any other H1 elements on
-the page. This CSS rule (<i>lines 2-4</i> in the HTML part) will only
-apply to the template’s content, with no side-effects on other elements
-outside.</p>
+<p>The CSS inside the template will not affect any other H1 elements on the page. This CSS rule 
+(<i>lines 2-4</i> in the HTML part) will only apply to the template’s content, with no side-effects 
+on other elements outside.</p>
 
 <p>Look at <a
 href="https://jsbin.com/jopabat/edit?html,css,js,output" target="_blank" rel="noopener noreferrer">this example at
-JSBin</a> that uses two H1s in the document: one is associated  with a
-shadow root (defined in a template with an embedded CSS that selects H1
-elements and makes them white on red); whereas the other is located in
-the body of the document and is not affected by the CSS within the Web
-Component.</p>
+JSBin</a> that uses two H1s in the document: one is associated  with a shadow root (defined in a 
+template with an embedded CSS that selects H1 elements and makes them white on red); whereas the 
+other is located in the body of the document and is not affected by the CSS within the Web Component.</p>
 
 <h4>The HTML part:</h4>
 
@@ -17149,8 +17097,8 @@ Component.</p>
   alt="Shadow DOM 4."
   style="width:50%;" />
 
-<p>The second H1 is not affected by the CSS defined in the template used
-by the first H1. Try to add this CSS rule to this example:</p>
+<p>The second H1 is not affected by the CSS defined in the template used by the first H1. Try to 
+add this CSS rule to this example:</p>
 
 <pre>h1 {
   color:green;
@@ -17168,18 +17116,15 @@ by the first H1. Try to add this CSS rule to this example:</p>
     the one in the shadow DOM."
   style="width:40%;" />
 
-<p>In which the “regular” CSS rule changed the color of the H1 located
-in the body of the document, not the color of the H1 encapsulated in the
-Shadow DOM.</p>
+<p>In which the “regular” CSS rule changed the color of the H1 located in the body of the document, 
+not the color of the H1 encapsulated in the Shadow DOM.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch4-2-6">4.2.6 Shadow DOM: insert content</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Let’s see how to insert content from the host element within the
-Shadow DOM using slots.</p>
+<p>Let’s see how to insert content from the host element within the Shadow DOM using slots.</p>
 
-<p>It is possible to define a part of the template into which external
-HTML content will be “injected”. For this, we use
-the &lt;slot&gt;…&lt;/slot&gt; element, as shown below:</p>
+<p>It is possible to define a part of the template into which external HTML content will be 
+“injected”. For this, we use the &lt;slot&gt;…&lt;/slot&gt; element, as shown below:</p>
 
 <details>
   <summary>HTML code!</summary>
@@ -17202,11 +17147,13 @@ the &lt;slot&gt;…&lt;/slot&gt; element, as shown below:</p>
 
 <ul>
   <li>Look at <i>line 4</i>, this is the “injection point”’!</li>
-  <li>And <i>line 10</i> is the content which will be injected into the template code. So, when the classic template instantiation and its addition to a shadow host node in the page is done, the HTML produced will contain “Injected Content” instead of <slot name="my-text"></slot>.</li>
+  <li>And <i>line 10</i> is the content which will be injected into the template code. So, when the 
+    classic template instantiation and its addition to a shadow host node in the page is done, the 
+	HTML produced will contain “Injected Content” instead of &lt;slot name="my-text"&gt;&lt;/slot&gt;.</li>
 </ul>
 
-<h4>See <a href="https://jsbin.com/jepucoz/edit?html,js,output" target="_blank" rel="noopener noreferrer">the complete
-online example at JSBin</a>:</h4>
+<h4>See <a href="https://jsbin.com/jepucoz/edit?html,js,output" target="_blank" rel="noopener 
+noreferrer">the complete online example at JSBin</a>:</h4>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~ 231. content injection in html templates using slot element (432) ~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -19337,13 +19284,36 @@ questions and share your creations.</p>
 </ul>
 
   <h5>the end…</h5>
-  <br>
-  <h6>Date Created: 03-25-2024 11:50pm&nbsp;|&nbsp;Next Updated: 04-14-2024 Sun 5:36pm<br>
-  Last Updated: 04-15-2024 Mon 12:24pm&nbsp;|&nbsp;Last Updated: 05-13-2024 Mon 5:12pm<br>
-  Last Updated: 05-24-2025 Sat 9:22pm&nbsp;|&nbsp;Last Updated: 05-27-2025 Tue 11:22pm<br>
-  Last Updated: 06-25-2025 Tue 7:38pm&nbsp;|&nbsp;Last Updated: 06-27-2025 Fri 2:04pm<br>
-  Last Updated: 06-29-2025 Sun 7:42pm&nbsp;|&nbsp;Last Updated: 09-13-2025 Sat 10:27pm<br>
-  Last Updated: 01-01-2026 Thu 1:43pm&nbsp;|&nbsp;Last Updated: 01-12-2026 Mon 9:23am</h6>
+  <table>
+    <tr>
+	  <th>Dt/Tm Created</th>
+	  <th>Dt/Tm Last Updated</th>
+	</tr>
+	<tr>
+	  <td>03-25-2024 11:50pm</td>
+	  <td>04-14-2024 Sun 5:36pm</td>
+	</tr>
+	<tr>
+      <td>04-15-2024 Mon 12:24pm</td>
+	  <td>05-13-2024 Mon 5:12pm</td>
+	</tr>
+    <tr>
+	  <td>05-24-2025 Sat 9:22pm</td>
+	  <td>05-27-2025 Tue 11:22pm</td>
+	</tr>
+	<tr>
+	  <td>06-25-2025 Tue 7:38pm</td>
+	  <td>06-27-2025 Fri 2:04pm</td>
+	</tr>
+	<tr>
+	  <td>06-29-2025 Sun 7:42pm</td>
+	  <td>09-13-2025 Sat 10:27pm</td>
+	</tr>
+	<tr>
+      <td>01-01-2026 Thu 1:43pm</td>
+	  <td>01-12-2026 Mon 9:23am</td>
+	</tr>
+  </table>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <script src="./js/scripts.js"></script>
 </body>

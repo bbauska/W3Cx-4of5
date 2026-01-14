@@ -181,14 +181,14 @@ pre .cl {
   clear: both;
 }
 pre {
-  width: 400px;
+  width: 500px;  /* 400px; */
   overflow: auto;
 }
 pre[href]:hover  {
   text-decoration: none;
 }
 pre:hover, pre:focus {
-  width: 400px;  /* was: 50%, fit-content; before that; width: min-content */
+  width: 500px;  /* was: 400px; 50%, fit-content; before that; width: min-content */
 }
 
 @media all and (max-width: 500px) {

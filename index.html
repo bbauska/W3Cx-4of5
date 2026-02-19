@@ -2087,42 +2087,42 @@ noreferrer" title="JSBin example">Try this example at JSBin</a>:</p>
   <summary>CSS code!</summary>
 
 <pre>#all {
-   background-color: lightgrey;
-   border-radius:10px;
-   padding: 20px;
-   border:1px solid;
-   display:inline-block;
-   margin:30px;
-   width:90%;
+  background-color: lightgrey;
+  border-radius:10px;
+  padding: 20px;
+  border:1px solid;
+  display:inline-block;
+  margin:30px;
+  width:90%;
 }
 .cues {
-   color:blue;
+  color:blue;
 }
 .cues:hover {
-   text-decoration: underline;
+  text-decoration: underline;
 }
 .cues.current {
-   color:black;
-   font-weight: bold;
+  color:black;
+  font-weight: bold;
 }
 #myVideo {
-   display: block;
-   float : left;
-   margin-right: 3%;
-   width: 66%;
-   background-color: black;
-   position: relative;
+  display: block;
+  float : left;
+  margin-right: 3%;
+  width: 66%;
+  background-color: black;
+  position: relative;
 }
 #transcript {
-   padding: 10px;
-   border:1px solid;
-   float: left;
-   max-height: 225px;
-   overflow: auto;
-   width: 25%;
-   margin: 0;
-   font-size: 14px;
-   list-style: none;
+  padding: 10px;
+  border:1px solid;
+  float: left;
+  max-height: 225px;
+  overflow: auto;
+  width: 25%;
+  margin: 0;
+  font-size: 14px;
+  list-style: none;
 }</pre>
 
 </details>
@@ -2522,86 +2522,89 @@ scene’s captions and descriptions.</p>
 
 <pre>var tracks, video, statusDiv, subtitlesCaptionsDiv;
 function init() {
-   video = document.querySelector(&quot;#myVideo&quot;);
-   statusDiv = document.querySelector(&quot;#currentTrackStatuses&quot;);
-      subtitlesCaptionsDiv = document.querySelector(&quot;#subtitlesCaptions&quot;);
-   tracks = document.querySelectorAll(&quot;track&quot;);
-   video.addEventListener(&#39;loadedmetadata&#39;, function() {
-      console.log(&quot;metadata loaded&quot;);
-      // defines cue listeners for the active track; we can do this only after the video metadata have been ed
-      for(var i=0; i&lt;tracks.length; i++) {
-         var t = tracks[i].track;
-         if(t.mode === &quot;showing&quot;) {
-            t.addEventListener(&#39;cuechange&#39;, logCue, false);
-         }
-       }
-       // display in a div the list of tracks and their status/mode value
-       displayTrackStatus();  
-    });
+  video = document.querySelector(&quot;#myVideo&quot;);
+  statusDiv = document.querySelector(&quot;#currentTrackStatuses&quot;);
+    subtitlesCaptionsDiv = document.querySelector(&quot;#subtitlesCaptions&quot;);
+  tracks = document.querySelectorAll(&quot;track&quot;);
+  video.addEventListener(&#39;loadedmetadata&#39;, function() {
+    console.log(&quot;metadata loaded&quot;);
+    // defines cue listeners for active track; we can do this only after 
+    // video metadata has been editted.
+    for(var i=0; i&lt;tracks.length; i++) {
+      var t = tracks[i].track;
+      if(t.mode === &quot;showing&quot;) {
+        t.addEventListener(&#39;cuechange&#39;, logCue, false);
+      }
+    }
+    // display in a div the list of tracks and their status/mode value
+    displayTrackStatus();  
+  });
 }
 function displayTrackStatus() {
-    // display the status / mode value of each track.
-    // In red if disabled, in green if showing
-    for(var i=0; i&lt;tracks.length; i++) {
-       var t = tracks[i].track;
-       var mode = t.mode;
-
-       if(mode === &quot;disabled&quot;) {
-          mode = &quot;&lt;span style=&#39;color:red&#39;&gt;&quot; + t.mode + &quot;&lt;/span&gt;&quot;;
-       } else if(mode === &quot;showing&quot;) {
-          mode = &quot;&lt;span style=&#39;color:green&#39;&gt;&quot; + t.mode + &quot;&lt;/span&gt;&quot;;
-       }
-       appendToScrollableDiv(statusDiv, &quot;track &quot; + i + &quot;:&quot; + t.label
-                                        + &quot; &quot; + t.kind+&quot; in &quot;
-                                        + mode + &quot; mode&quot;);
-    }
+  // display the status / mode value of each track.
+  // In red if disabled, in green if showing
+  for(var i=0; i&lt;tracks.length; i++) {
+    var t = tracks[i].track;
+    var mode = t.mode;
+    if(mode === &quot;disabled&quot;) {
+      mode = &quot;&lt;span style=&#39;color:red&#39;&gt;&quot; + t.mode 
+        + &quot;&lt;/span&gt;&quot;;
+    } else if(mode === &quot;showing&quot;) {
+      mode = &quot;&lt;span style=&#39;color:green&#39;&gt;&quot; + t.mode 
+        + &quot;&lt;/span&gt;&quot;;
+    }
+    appendToScrollableDiv(statusDiv, &quot;track &quot; + i + &quot;:&quot; + t.label
+                                   + &quot; &quot; + t.kind+&quot; in &quot;
+                                   + mode + &quot; mode&quot;);
+  }
 }
 function appendToScrollableDiv(div, text) {
-   // we&#39;ve got two scrollable divs. This function
-   // appends text to the div passed as a parameter
-   // The div is scrollable (thanks to CSS overflow:auto)
-   var inner = div.innerHTML;
-   div.innerHTML = inner + text + &quot;&lt;br/&gt;&quot;;
-   // Make it display the last line appended
-   div.scrollTop = div.scrollHeight;
+  // we&#39;ve got two scrollable divs. This function
+  // appends text to the div passed as a parameter
+  // The div is scrollable (thanks to CSS overflow:auto)
+  var inner = div.innerHTML;
+  div.innerHTML = inner + text + &quot;&lt;br/&gt;&quot;;
+  // Make it display the last line appended
+  div.scrollTop = div.scrollHeight;
 }
 function clearDiv(div) {
-   div.innerHTML = &#39;&#39;;
+  div.innerHTML = &#39;&#39;;
 }
 function clearSubtitlesCaptions() {
-   clearDiv(subtitlesCaptionsDiv);
+  clearDiv(subtitlesCaptionsDiv);
 }
 function toggleTrack(i) {
-   // toggles the mode of track i, removes the cue listener
-   // if its mode becomes &quot;disabled&quot;
-   // adds a cue listener if its mode was &quot;disabled&quot;
-   // and becomes &quot;hidden&quot;
-   var t = tracks[i].track;
-   switch (t.mode) {
-      case &quot;disabled&quot;:
-         t.addEventListener(&#39;cuechange&#39;, logCue, false);
-         t.mode = &quot;hidden&quot;;
-         break;
-      case &quot;hidden&quot;:
-         t.mode = &quot;showing&quot;;
-         break;
-      case &quot;showing&quot;:
-         t.removeEventListener(&#39;cuechange&#39;, logCue, false);
-         t.mode = &quot;disabled&quot;;
-         break;
-    }
-    // updates the status
-    clearDiv(statusDiv);
-    displayTrackStatus();
-    appendToScrollableDiv(statusDiv,&quot;&lt;br&gt;&quot; + t.label+&quot; are now &quot; +t.mode);
+  // toggles the mode of track i, removes the cue listener
+  // if its mode becomes &quot;disabled&quot;
+  // adds a cue listener if its mode was &quot;disabled&quot;
+  // and becomes &quot;hidden&quot;
+  var t = tracks[i].track;
+  switch (t.mode) {
+    case &quot;disabled&quot;:
+      t.addEventListener(&#39;cuechange&#39;, logCue, false);
+      t.mode = &quot;hidden&quot;;
+      break;
+    case &quot;hidden&quot;:
+      t.mode = &quot;showing&quot;;
+      break;
+    case &quot;showing&quot;:
+      t.removeEventListener(&#39;cuechange&#39;, logCue, false);
+      t.mode = &quot;disabled&quot;;
+      break;
+  }
+  // updates the status
+  clearDiv(statusDiv);
+  displayTrackStatus();
+  appendToScrollableDiv(statusDiv,&quot;&lt;br&gt;&quot; 
+    + t.label+&quot; are now &quot; +t.mode);
 }
 function logCue() {
-   // callback for the cue event
-   if(this.activeCues &amp;&amp; this.activeCues.length) {
-      var t = this.activeCues[0].text; // text of current cue
-      appendToScrollableDiv(subtitlesCaptionsDiv, &quot;Active &quot;
-                                       + this.kind + &quot; changed to: &quot; + t);
-   }
+  // callback for the cue event
+  if(this.activeCues &amp;&amp; this.activeCues.length) {
+    var t = this.activeCues[0].text; // text of current cue
+    appendToScrollableDiv(subtitlesCaptionsDiv, &quot;Active &quot;
+      + this.kind + &quot; changed to: &quot; + t);
+  }
 }</pre>
 
 </details>
@@ -2632,23 +2635,23 @@ function logCue() {
 &lt;body onload=&quot;init()&quot;&gt;
  ...
 &lt;video id=&quot;myVideo&quot; preload=&quot;metadata&quot; controls crossOrigin=&quot;anonymous&quot; &gt;
-     &lt;source src=&quot;https://...../elephants-dream-medium.mp4&quot;
-             type=&quot;video/mp4&quot;&gt;
-     &lt;source src=&quot;https://...../elephants-dream-medium.webm&quot;
-             type=&quot;video/webm&quot;&gt;
-     &lt;track  label=&quot;English subtitles&quot;
-             kind=&quot;subtitles&quot;
-             srclang=&quot;en&quot;
-             src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot;
-             default&lt;/b&gt;&gt;
-     &lt;track  label=&quot;Deutsch subtitles&quot;
-             kind=&quot;subtitles&quot;
-             srclang=&quot;de&quot;
-             src=&quot;https://...../elephants-dream-subtitles-de.vtt&quot;&gt;
-     &lt;track  label=&quot;English chapters&quot;
-             kind=&quot;chapters&quot;
-             srclang=&quot;en&quot;
-             src=&quot;https://...../elephants-dream-chapters-en.vtt&quot;&gt;
+  &lt;source src=&quot;https://...../elephants-dream-medium.mp4&quot;
+    type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;https://...../elephants-dream-medium.webm&quot;
+    type=&quot;video/webm&quot;&gt;
+  &lt;track label=&quot;English subtitles&quot;
+    kind=&quot;subtitles&quot;
+    srclang=&quot;en&quot;
+    src=&quot;https://...../elephants-dream-subtitles-en.vtt&quot;
+    default&lt;/b&gt;&gt;
+  &lt;track label=&quot;Deutsch subtitles&quot;
+    kind=&quot;subtitles&quot;
+    srclang=&quot;de&quot;
+    src=&quot;https://...../elephants-dream-subtitles-de.vtt&quot;&gt;
+  &lt;track label=&quot;English chapters&quot;
+    kind=&quot;chapters&quot;
+    srclang=&quot;en&quot;
+    src=&quot;https://...../elephants-dream-chapters-en.vtt&quot;&gt;
 &lt;/video&gt;
 &lt;h3&gt;Current track: &lt;span id=&quot;currentLang&quot;&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div id=&quot;langButtonDiv&quot;&gt;&lt;/div&gt;
@@ -2665,63 +2668,63 @@ function logCue() {
 <pre>var langButtonDiv, currentLangSpan, video;
  
 function init() {
-   langButtonDiv = document.querySelector(&quot;#langButtonDiv&quot;);
-   currentLangSpan = document.querySelector(&quot;#currentLang&quot;);
-   video = document.querySelector(&quot;#myVideo&quot;);
+  langButtonDiv = document.querySelector(&quot;#langButtonDiv&quot;);
+  currentLangSpan = document.querySelector(&quot;#currentLang&quot;);
+  video = document.querySelector(&quot;#myVideo&quot;);
 
-   console.log(&quot;Number of tracks = &quot;
-               + video.textTracks.length);
-   // Updates the display of the current track activated
-   currentLangSpan.innerHTML = activeTrack();
-   // Build the buttons for choosing a track
-   buildButtons();
+  console.log(&quot;Number of tracks = &quot;
+    + video.textTracks.length);
+  // Updates the display of the current track activated
+  currentLangSpan.innerHTML = activeTrack();
+  // Build the buttons for choosing a track
+  buildButtons();
 }
  
 function activeTrack() {
-   for (var i = 0; i &lt; video.textTracks.length; i++) {
-      if(video.textTracks[i].mode === &#39;showing&#39;) {
-         return video.textTracks[i].label + &quot; (&quot;
-                + video.textTracks[i].language + &quot;)&quot;;
-      }
-   }
-   return &quot;no subtitles/caption selected&quot;;
+  for (var i = 0; i &lt; video.textTracks.length; i++) {
+    if(video.textTracks[i].mode === &#39;showing&#39;) {
+      return video.textTracks[i].label + &quot; (&quot;
+        + video.textTracks[i].language + &quot;)&quot;;
+    }
+  }
+  return &quot;no subtitles/caption selected&quot;;
 }
  
 function buildButtons() {
-   if (video.textTracks) { // if the video contains track elements
-      // For each track, create a button
-      for (var i = 0; i &lt; video.textTracks.length; i++) {
-         // We create buttons only for the caption and subtitle tracks
-         var track = video.textTracks[i];
-        if((track.kind !== &quot;subtitles&quot;) &amp;&amp; (track.kind !== &quot;captions&quot;))
-            continue;
+  if (video.textTracks) { // if the video contains track elements
+    // For each track, create a button
+    for (var i = 0; i &lt; video.textTracks.length; i++) {
+      // We create buttons only for the caption and subtitle tracks
+      var track = video.textTracks[i];
+      if((track.kind !== &quot;subtitles&quot;) &amp;&amp; (track.kind !== &quot;captions&quot;))
+        continue;
 
-         // create a button for track number i         
-         createButton(video.textTracks[i]); 
-      }
-   }
+       // create a button for track number i         
+       createButton(video.textTracks[i]); 
+    }
+  }
 }
 
 function createButton(track) {
-   // Create a button
-   var b = document.createElement(&quot;button&quot;);
-   b.value=track.label;
-   // use the lang attribute of the button to keep trace of the
-   // associated track language. Will be useful in the click listener
-   b.setAttribute(&quot;lang&quot;, track.language); 
-   b.addEventListener(&#39;click&#39;, function(e) {
-     // Check which track is the track with the language we&#39;re looking for
-     // Get the value of the lang attribute of the clicked button
-     var lang = this.getAttribute(&#39;lang&#39;); 
+  // Create a button
+  var b = document.createElement(&quot;button&quot;);
+  b.value=track.label;
+  // use the lang attribute of the button to keep trace of the
+  // associated track language. Will be useful in the click listener
+  b.setAttribute(&quot;lang&quot;, track.language); 
+  b.addEventListener(&#39;click&#39;, function(e) {
+    // Check which track is the track with the language we&#39;re looking for
+    // Get the value of the lang attribute of the clicked button
+    var lang = this.getAttribute(&#39;lang&#39;); 
 
-     for (var i = 0; i &lt; video.textTracks.length; i++) {
-       if (video.textTracks[i].language == lang) {
-          video.textTracks[i].mode = &#39;showing&#39;;
-       } else {
-          video.textTracks[i].mode = &#39;hidden&#39;;
-       }
-     }
-     // Updates the span so that it displays the new active track
+    for (var i = 0; i &lt; video.textTracks.length; i++) {
+      if (video.textTracks[i].language == lang) {
+        video.textTracks[i].mode = &#39;showing&#39;;
+      } else {
+        video.textTracks[i].mode = &#39;hidden&#39;;
+      }
+    }
+    // Updates the span so that it displays the new active track
     currentLangSpan.innerHTML = activeTrack();
   });
   // Creates a label inside the button
@@ -3060,62 +3063,62 @@ right of the video.</p>
 <pre>var video, chapterMenuDiv;
 var tracks, trackElems, tracksURLs = [];
 window.onload = function() {
-   console.log(&quot;init&quot;);
-   // When the page is loaded
-   video = document.querySelector(&quot;#myVideo&quot;);
-   chapterMenuDiv = document.querySelector(&quot;#chapterMenu&quot;);
-   // Get the tracks as HTML elements
-   trackElems = document.querySelectorAll(&quot;track&quot;);
-   for(var i = 0; i &lt; trackElems.length; i++) {
-      var currentTrackElem = trackElems[i];
-      tracksURLs[i] = currentTrackElem.src;
-   }
-   // Get the tracks as JS TextTrack objects
-   tracks = video.textTracks;
-   // Build the chapter navigation menu for the given lang and kind&lt;/b&gt;
-   buildChapterMenu(&#39;en&#39;, &#39;chapters&#39;);&lt;/b&gt;
+  console.log(&quot;init&quot;);
+  // When the page is loaded
+  video = document.querySelector(&quot;#myVideo&quot;);
+  chapterMenuDiv = document.querySelector(&quot;#chapterMenu&quot;);
+  // Get the tracks as HTML elements
+  trackElems = document.querySelectorAll(&quot;track&quot;);
+  for(var i = 0; i &lt; trackElems.length; i++) {
+    var currentTrackElem = trackElems[i];
+    tracksURLs[i] = currentTrackElem.src;
+  }
+  // Get the tracks as JS TextTrack objects
+  tracks = video.textTracks;
+  // Build the chapter navigation menu for the given lang and kind&lt;/b&gt;
+  buildChapterMenu(&#39;en&#39;, &#39;chapters&#39;);&lt;/b&gt;
 };
 function buildChapterMenu(lang, kind) {
   // Locate the track with language = lang and kind=&quot;chapters&quot;
   for(var i = 0; i &lt; tracks.length; i++) {
-     // current track
-     var track = tracks[i];
-     var trackAsHtmlElem = trackElems[i];
-     if((track.language === lang) &amp;&amp; (track.kind === kind)) {
-        // the track must be active, otherwise it will not load
-        track.mode=&quot;showing&quot;; // &quot;hidden&quot; would work too
-        if(trackAsHtmlElem.readyState === 2) {
-           // the track has already been loaded
-           displayChapterMarkers(track);
-        } else {
-         displayChapterMarkersAfterTrackLoaded(trackAsHtmlElem, track);
-        }
-     }
-   }
+    // current track
+    var track = tracks[i];
+    var trackAsHtmlElem = trackElems[i];
+    if((track.language === lang) &amp;&amp; (track.kind === kind)) {
+      // the track must be active, otherwise it will not load
+      track.mode=&quot;showing&quot;; // &quot;hidden&quot; would work too
+      if(trackAsHtmlElem.readyState === 2) {
+        // the track has already been loaded
+        displayChapterMarkers(track);
+      } else {
+        displayChapterMarkersAfterTrackLoaded(trackAsHtmlElem, track);
+      }
+    }
+  }
 }
 function displayChapterMarkers(track) {
-   var cues = track.cues;
-   // We must not see the cues on the video
-   track.mode = &quot;hidden&quot;;
-   // Iterate on cues
-   for(var i=0, len = cues.length; i &lt; len; i++) {
-      var cue = cues[i];
-      var cueObject = JSON.parse(cue.text);&lt;/b&gt;
-      var description = cueObject.description;&lt;/b&gt;
-      var imageFileName = cueObject.image;&lt;/b&gt;
-   var imageURL = &quot;https://mainline.i3s.unice.fr/mooc/&quot; + imageFileName;
+  var cues = track.cues;
+  // We must not see the cues on the video
+  track.mode = &quot;hidden&quot;;
+  // Iterate on cues
+  for(var i=0, len = cues.length; i &lt; len; i++) {
+    var cue = cues[i];
+    var cueObject = JSON.parse(cue.text);&lt;/b&gt;
+    var description = cueObject.description;&lt;/b&gt;
+    var imageFileName = cueObject.image;&lt;/b&gt;
+    var imageURL = &quot;https://mainline.i3s.unice.fr/mooc/&quot; + imageFileName;
       // Build the marker. It&#39;s a figure with an img and a figcaption inside.
       // The img has an onclick listener that will make the video jump
       // to the start time of the current cue/chapter
       var figure = document.createElement(&#39;figure&#39;);
       figure.classList.add(&quot;img&quot;);
       figure.innerHTML = &quot;&lt;img onclick=&#39;jumpTo(&quot;
-                         + cue.startTime + &quot;);&#39; class=&#39;thumb&#39; src=&#39;&quot;
-                         + imageURL + &quot;&#39;&gt;&lt;figcaption class=&#39;desc&#39;&gt;&quot;
-                         + description + &quot;&lt;/figcaption&gt;&lt;/figure&gt;&quot;;
+                       + cue.startTime + &quot;);&#39; class=&#39;thumb&#39; src=&#39;&quot;
+                       + imageURL + &quot;&#39;&gt;&lt;figcaption class=&#39;desc&#39;&gt;&quot;
+                       + description + &quot;&lt;/figcaption&gt;&lt;/figure&gt;&quot;;
       // Add the figure to the chapterMenuDiv
       chapterMenuDiv.insertBefore(figure, null);
-    }
+  }
 }
 function displayChapterMarkersAfterTrackLoaded(trackElem, track) {
   // Create a listener that will only be called when the track has
@@ -10313,7 +10316,7 @@ individual sprites:</p>
   <summary>JavaScript code!</summary>
   
 <pre>var SPRITE_WIDTH = 48;   // Characteristics of the sprites and
-    &gt; spritesheet
+  &gt; spritesheet
 var SPRITE_HEIGHT = 92;
 var NB_ROWS = 8;
 var NB_FRAMES_PER_POSTURE = 13;
@@ -10491,7 +10494,7 @@ sheet, and its size. It also has a draw method for drawing the sprite image 
 position, and at anappropriate size. </p>
 
 <details>
-  <summary>JavaScript function!</summary>
+  <summary>JavaScript code!</summary>
   
 <pre>function SpriteImage(img, x, y, width, height) {
   this.img = img; // the whole image that contains all sprites
@@ -10525,22 +10528,22 @@ position, and at anappropriate size. </p>
 <h4>Here is the code of the Sprite model:</h4>
 
 <details>
-  <summary>JavaScript function!</summary>
+  <summary>JavaScript code!</summary>
   
 <pre>function Sprite() {
   this.spriteArray = [];
   this.currentFrame = 0;
   this.delayBetweenFrames = 10;
   this.extractSprites = function(spritesheet,
-                                 nbPostures, postureToExtract,
-                                 nbFramesPerPosture,
-                                 spriteWidth, spriteHeight) {
-    // number of sprites per row in the spritesheet &gt;
-    var nbSpritesPerRow = Math.floor(spritesheet.width / spriteWidth);
-    // Extract each sprite
-    var startIndex = (postureToExtract -1) * nbFramesPerPosture;
-    var endIndex = startIndex + nbFramesPerPosture;
-    for(var index = startIndex; index &lt; maxIndex; index++) {
+    nbPostures, postureToExtract,
+    nbFramesPerPosture,
+    spriteWidth, spriteHeight) {
+      // number of sprites per row in the spritesheet &gt;
+      var nbSpritesPerRow = Math.floor(spritesheet.width / spriteWidth);
+      // Extract each sprite
+      var startIndex = (postureToExtract -1) * nbFramesPerPosture;
+      var endIndex = startIndex + nbFramesPerPosture;
+      for(var index = startIndex; index &lt; maxIndex; index++) {
       // Computation of the x and y position that corresponds to the 
       // &gt; sprite index
       // x is the rest of index/nbSpritesPerRow * width of a sprite
@@ -10550,28 +10553,28 @@ position, and at anappropriate size. </p>
       // build a spriteImage object &gt;
       var s = new SpriteImage(spritesheet, x, y, spriteWidth, spriteHeight);
       this.spriteArray.push(s);
-    }
-  };
-  this.then = performance.now();
-  this.totalTimeSinceLastRedraw = 0;
-  this.draw = function(ctx, x, y) {
-    // Use time based animation to draw only a few images per second
-    var now = performance.now();
-    var delta = now - this.then;
-    // Draw currentSpriteImage
-    var currentSpriteImage = this.spriteArray[this.currentFrame];
-    // x, y, scale. 1 = size unchanged
-    currentSpriteImage.draw(ctx, x, y, 1);
-    // if the delay between images is elapsed, go to the next one
-    if (this.totalTimeSinceLastRedraw &gt; this.delayBetweenFrames) {
-      // Go to the next sprite image
-      this.currentFrame++;
-      this.currentFrame %= this.spriteArray.length;
-      // reset the total time since last image has been drawn
-      this.totalTimeSinceLastRedraw = 0;
-    } else {
-      // sum the total time since last redraw
-      this. totalTimeSinceLastRedraw += delta;
+      }
+    };
+    this.then = performance.now();
+    this.totalTimeSinceLastRedraw = 0;
+    this.draw = function(ctx, x, y) {
+      // Use time based animation to draw only a few images per second
+      var now = performance.now();
+      var delta = now - this.then;
+      // Draw currentSpriteImage
+      var currentSpriteImage = this.spriteArray[this.currentFrame];
+      // x, y, scale. 1 = size unchanged
+      currentSpriteImage.draw(ctx, x, y, 1);
+      // if the delay between images is elapsed, go to the next one
+      if (this.totalTimeSinceLastRedraw &gt; this.delayBetweenFrames) {
+        // Go to the next sprite image
+        this.currentFrame++;
+        this.currentFrame %= this.spriteArray.length;
+        // reset the total time since last image has been drawn
+        this.totalTimeSinceLastRedraw = 0;
+      } else {
+        // sum the total time since last redraw
+        this. totalTimeSinceLastRedraw += delta;
     }
     this.then = now;
   };
@@ -10604,14 +10607,14 @@ call:</p>
   <summary>JavaScript code!</summary>
   
 <pre>womanDown.extractSprites(spritesheet, NB_POSTURES, 1,
-                         NB_FRAMES_PER_POSTURE,
-                         SPRITE_WIDTH, SPRITE_HEIGHT);
+  NB_FRAMES_PER_POSTURE,
+  SPRITE_WIDTH, SPRITE_HEIGHT);
 womanDiagonalBottomLeft.extractSprites(spritesheet, NB_POSTURES, 2,
-                        NB_FRAMES_PER_POSTURE,
-                        SPRITE_WIDTH, SPRITE_HEIGHT);
+  NB_FRAMES_PER_POSTURE,
+  SPRITE_WIDTH, SPRITE_HEIGHT);
 womanLeft.extractSprites(spritesheet, NB_POSTURES, 3,
-                         NB_FRAMES_PER_POSTURE,
-                         SPRITE_WIDTH, SPRITE_HEIGHT);
+  NB_FRAMES_PER_POSTURE,
+  SPRITE_WIDTH, SPRITE_HEIGHT);
 // etc...</pre>
 
 </details>
@@ -10806,7 +10809,7 @@ function to ensure that no balls are created on top of the monster.</p>
 <h4>Source code extract:</h4>
 
 <details open>
-  <summary>JavaScript function!</summary>
+  <summary>JavaScript code!</summary>
 
 <pre>function updateBalls(delta) {
   // for each ball in the array
@@ -11079,7 +11082,7 @@ try the game: oops, it doesn’t work! Let’s open the console:</p>
 <h4>Ball.js:</h4>
 
 <details>
-  <summary>JavaScript function!</summary>
+  <summary>JavaScript code!</summary>
 
 <pre>// constructor function for balls
 function Ball(x, y, angle, v, diameter) {
@@ -11466,66 +11469,53 @@ from HTML5Rocks.com</a> that presents the main features of XHR2.</p>
   <li>Progress monitoring of uploads and downloads.</li>
 </ul>
 
-<p>The following sections of this course present a few examples of file
-downloads/uploads together with the file API and show how to monitor
-progress.</p>
+<p>The following sections of this course present a few examples of file downloads/uploads together 
+with the file API and show how to monitor progress.</p>
 
 <p>The current support of XHR2 is excellent: see <a
-href="https://caniuse.com/#feat=xhr2" target="_blank" rel="noopener noreferrer">related CanIUse’s browser
-compatibility table</a>.</p>
+href="https://caniuse.com/#feat=xhr2" target="_blank" rel="noopener noreferrer">
+related CanIUse’s browser compatibility table</a>.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-2-2">3.2.2 Ajax/XHR2 and binary files</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Hi everyone! In this lesson, I will present you how we can manage
-file</p>
+<p>Hi everyone! In this lesson, I will present you how we can manage file</p>
 
-<p>uploads and file downloads with nice visualization of the
-progression.</p>
+<p>uploads and file downloads with nice visualization of the progression.</p>
 
-<p>In this example, I’m downloading directly binary files into the
-browser and as you will notice, we’ve got some progression bars that
-move in real time.</p>
+<p>In this example, I’m downloading directly binary files into the browser and as you will notice, 
+we’ve got some progression bars that move in real time.</p>
 
-<p>Earlier, before XHR2, the new version of Ajax, it was possible to do
-this but we had to ask at regular intervals of time the cerver. « Hey
-server! how many bytes did you receive from my Browser? » Now,
-monitoring the progression is made much easier because we’ve got
-progression callbacks that are called by the browser while it’s
-uploading or downloading a file.</p>
+<p>Earlier, before XHR2, the new version of Ajax, it was possible to do this but we had to ask at 
+regular intervals of time the cerver. « Hey server! how many bytes did you receive from my Browser? 
+» Now, monitoring the progression is made much easier because we’ve got progression callbacks that 
+are called by the browser while it’s uploading or downloading a file.</p>
 
-<p>This small multitrack player I’ve already shown during the week one,
-about Web Audio, is downloading binary files, monitoring progress, and
-so on.</p>
+<p>This small multitrack player I’ve already shown during the week one, about Web Audio, is downloading 
+binary files, monitoring progress, and so on.</p>
 
 <p>Let’s start with a very simple example.</p>
 
-<p>Here I will download a song that is located on one of my servers
-here…</p>
+<p>Here I will download a song that is located on one of my servers here…</p>
 
 <h4>mainline.i3s.unice.fr</h4>
 
-<p>When I will click on the download (button) and play the example song,
-it will start the download.</p>
+<p>When I will click on the download (button) and play the example song, it will start the download.</p>
 
-<p>Let’s look at the downloadSoundFile function, that is called when we
-click on the button.</p>
+<p>Let’s look at the downloadSoundFile function, that is called when we click on the button.</p>
 
 <p>How do we use XHR2?</p>
 
 <p>We first start by creating an object that is an XML HTTP request.</p>
 
-<p>We set the method: GET is for downloading a file, the URL, and the
-last parameter “true”, leave it like that.</p>
+<p>We set the method: GET is for downloading a file, the URL, and the last parameter “true”, leave 
+it like that.</p>
 
-<p>Then, as we are going to download a binary file, we set the response
-type to “arrayBuffer”, and this is new. It was not possible with the
-previous version of Ajax, that was available in the browsers. HTTP is a
-text based transfer protocol.</p>
+<p>Then, as we are going to download a binary file, we set the response type to “arrayBuffer”, and 
+this is new. It was not possible with the previous version of Ajax, that was available in the 
+browsers. HTTP is a text based transfer protocol.</p>
 
 <p>The text encoded files needed to be decoded in the browser or in the
-server.</p>
-
-<p>And when we manually, programmatically, in the JavaScript code, used
+server. And when we manually, programmatically, in the JavaScript code, used
 Ajax, we had two decode this by hand.</p>
 
 <p>Now, we ask the browser: “please, decode this for me” and give me
@@ -11536,68 +11526,51 @@ will send asynchronously the request.</p>
 
 <p>That means that the server will handle this in the background.</p>
 
-<p>This message “Ajax request sent…”, will be displayed as soon as this
-instruction is executed.</p>
+<p>This message <b>“Ajax request sent…”</b>, will be displayed as soon as this instruction is 
+executed.</p>
 
-<p>And if the file we are going to download is big, is large, then it
-can take from dozens of seconds, or maybe one minute.</p>
+<p>And if the file we are going to download is big, is large, then it can take from dozens of 
+seconds, or maybe one minute.</p>
 
-<p>And when the file is arrived the callback, xhr.onload callback, will
-be called by the browser.</p>
+<p>And when the file is arrived the callback, <b>xhr.onload</b> callback, will be called by the 
+browser. Then, we call the initSound() function that will decode in memory the mp3 file, and then 
+enable the start and stop buttons, so that we can play the song using Web Audio. Before looking 
+at the <b>initSound (function)</b> let’s start it. I click…</p>
 
-<p>Then, we call the initSound() function that will decode in memory the
-mp3 file, and then enable the start and stop buttons, so that we can
-play the song using Web Audio. Before looking at the initSound
-(function) let’s start it. I click…</p>
+<p>You can see that the message <b>“Ajax request sent”</b> is displayed first, then <b>“song 
+downloaded”</b>. This is on the onload callback, and then we call the initSound function that 
+will decode the file and display the rest of the messages.</p>
 
-<p>You can see that the message “Ajax request sent” is displayed first,
-then “song downloaded”.</p>
-
-<p>This is on the onload callback, and then we call the initSound
-function that will decode the file and display the rest of the
-messages.</p>
-
-<p>And now I can play the song.</p>
-
-<p>In this example, we are using Web Audio: it’s not streaming the
-sound.</p>
-
-<p>It’s playing a sample directly in memory so… you can give a look at
-the code.</p>
+<p>And now I can play the song. In this example, we are using Web Audio: it’s not streaming the
+sound. t’s playing a sample directly in memory so… you can give a look at the code.</p>
 
 <p>It uses what we saw during the first week.</p>
 
-<p>The playSound function builds a small graph with the decoded buffer
-as a source and directly to the speakers (to the destination).</p>
+<p>The <b>playSound</b> function builds a small graph with the decoded buffer as a source and 
+directly to the speakers (to the destination).</p>
 
 <p>If you want to monitor progress during download (so, this is the same
 example), it’s very easy.</p>
 
 <p>Just use a progress HTML element with a value of zero, and it will
 grow depending on the number of bytes the browser will have sent to the
-remote server.</p>
+remote server. Or will have downloaded… in case of a download.</p>
 
-<p>Or will have downloaded… in case of a download.</p>
-
-<p>When we started the request, we added a xhr.onprogress callback here
-that gets in event sent by the browser, that has two properties.</p>
-
-<p>One is called “total”, that is a total number of bytes in the files
-we are downloading, and “loaded” is the number of bytes we have actually
-downloaded.</p>
+<p>When we started the request, we added a <b>xhr.onprogress</b> callback here
+that gets in event sent by the browser, that has two properties. One is called “total”, 
+that is a total number of bytes in the files we are downloading, and “loaded” is the number 
+of bytes we have actually downloaded.</p>
 
 <p>And we can set these two properties directly to the “value” property
 of the progress element and to the “max” property.</p>
 
 <p>And if we try this (download the file), we can see the progress bar
-growing because this onprogress callback is called regularly by the
+growing because this <b>onprogress</b> callback is called regularly by the
 browser every second or something like that.</p>
 
-<p>It’s very easy to monitor the progress.</p>
-
-<p>You can put vertically this bar using CSS, change the style.</p>
-
-<p>Refer to the HTML5 Part 1 course for that.</p>
+<p>It’s very easy to monitor the progress.
+You can put vertically this bar using CSS, change the style.
+Refer to the HTML5 Part 1 course for that.</p>
 
 <h4>Ajax and binary files - downloading files and monitoring progress</h4>
 
@@ -11613,12 +11586,10 @@ data. With XHR2, you can ask the browser to encode/decode the file you
 send/receive, natively. To do this, when you use XMLHttpRequest to send
 or receive a file, you must set the xhr.responseType as arrayBuffer.</p>
 
-<p>Below is a function that loads a sound sample
-using XMLHttpRequest level 2.</p>
+<p>Below is a function that loads a sound sample using <b>XMLHttpRequest</b> level 2.</p>
 
-<p><i>Note</i>: 1) the simple and concise syntax, and 2) the use of
-the new arrayBuffer type for the expected response (<i>line
-5</i>):</p>
+<p><i>Note</i>: 1) the simple and concise syntax, and 2) the use of the new arrayBuffer type 
+for the expected response (<i>line 5</i>):</p>
 
 <pre>// Load a binary file from a URL as an ArrayBuffer.
 function loadSoundFile(url) {
@@ -11631,13 +11602,13 @@ function loadSoundFile(url) {
   xhr.send();
 }</pre>
 
-<h4>Example: download a binary song file using XHR2 and responseType=‘arraybuffer’, and play it using Web Audio</h4>
+<h4>Example: download a binary song file using XHR2 and responseType=‘arraybuffer’, and play it 
+using Web Audio</h4>
 
-<p><a href="https://jsbin.com/mecakaz/edit?html,js,console,output" target="_blank" rel="noopener noreferrer">Try
-this example on JSBin</a>:</p>
+<p><a href="https://jsbin.com/mecakaz/edit?html,js,console,output" target="_blank" 
+rel="noopener noreferrer">Try this example on JSBin</a>:</p>
 
-<p>In this example, instead of reading the file from disk, we download
-it using XHR2.</p>
+<p>In this example, instead of reading the file from disk, we download it using XHR2.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~ 164. download file using xhr2 (268) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -11650,7 +11621,7 @@ it using XHR2.</p>
 <h4>Complete source code:</h4>
 
 <details>
-  <summary>Complete source code!</summary>
+  <summary>Complete code!</summary>
   
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -11732,10 +11703,16 @@ type&lt;/h2&gt;
 <h4>Explanations</h4>
 
 <ul style="list-style-type: circle;">
-  <li><i>Line 12</i>: a click on this button will call the downloadSoundFile function, passing it the URL of a sample mp3 file.<br></li>
-  <li><i>Lines 58-73</i>: this function sends the Ajax request, and when the file has arrived, the xhr.onload callback is called (<i>line 63</i>).<br></li>
-  <li><i>Lines 39-55</i>: The initSound function decodes the mp3 into memory using the WebAudio API, and enables the play and stop buttons.<br></li>
-  <li>When the play button is enabled and clicked (<i>line 15</i>) it calls the playSound function. This builds a minimal Web Audio graph with a BufferSource node that contains the decoded sound (<i>lines 31-32</i>), connects it to the speakers (<i>line 35</i>), and  then plays it.</li>
+  <li><i>Line 12</i>: a click on this button will call the downloadSoundFile function, passing it 
+    the URL of a sample mp3 file.<br></li>
+  <li><i>Lines 58-73</i>: this function sends the Ajax request, and when the file has arrived, 
+    the xhr.onload callback is called (<i>line 63</i>).<br></li>
+  <li><i>Lines 39-55</i>: The initSound function decodes the mp3 into memory using the WebAudio API, 
+    and enables the play and stop buttons.<br></li>
+  <li>When the play button is enabled and clicked (<i>line 15</i>) it calls the playSound 
+    function. This builds a minimal Web Audio graph with a BufferSource node that contains the 
+	decoded sound (<i>lines 31-32</i>), connects it to the speakers (<i>line 35</i>), and  then 
+	plays it.</li>
 </ul>
 
 <h4>Monitoring uploads or downloads using a progress event</h4>
@@ -11750,11 +11727,9 @@ type&lt;/h2&gt;
 
 <h4>1 - Declare a progress event handler</h4>
 
-<p>XHR2 now provides progress event attributes for monitoring data
-transfers. Previous implementations of XmlHttpRequest didn’t tell us
-anything about how much data has been sent or received.
-The ProgressEvent interface adds 7 events relating to uploading or
-downloading files.</p>
+<p>XHR2 now provides progress event attributes for monitoring data transfers. Previous implementations
+of XmlHttpRequest didn’t tell us anything about how much data has been sent or received. The 
+ProgressEvent interface adds 7 events relating to uploading or downloading files.</p>
 
 <table>
 <colgroup>
@@ -11783,7 +11758,8 @@ downloading files.</p>
   <tr class="odd">
     <td>onabort</td>
     <td>abort</td>
-    <td>When the request has been aborted, either by invoking the abort() method or navigating away from the page.</td>
+    <td>When the request has been aborted, either by invoking the abort() method or navigating 
+	  away from the page.</td>
   </tr>
   <tr class="even">
     <td>onerror</td>
@@ -11808,10 +11784,9 @@ downloading files.</p>
 </tbody>
 </table>
 
-<p>The syntax for declaring progress event handlers is slightly
-different depending on the type of operation: a download (using the GET
-HTTP method), or an upload (using POST).</p>
-<p><b>Syntax for download:</b></p>
+<p>The syntax for declaring progress event handlers is slightly different depending on the type of 
+operation: a download (using the GET HTTP method), or an upload (using POST). <b>Syntax for 
+download:</b></p>
 
 <pre>var xhr = new XMLHttpRequest();
 xhr.open(&#39;GET&#39;, url, true);
@@ -11823,8 +11798,8 @@ xhr.onprogress = function(e) {
 &lt;!-- --&gt;
 xhr.send();</pre>
 
-<p>Note that an alternative syntax such as xhr.addEventListener(‘progress’, callback, false) also works.</p>
-<p><b>Syntax for upload:</b></p>
+<p>Note that an alternative syntax such as xhr.addEventListener(‘progress’, callback, false) also 
+works. <b>Syntax for upload:</b></p>
 
 <pre>var xhr = new XMLHttpRequest();
 xhr.open(&#39;POST&#39;, url, true);
@@ -11834,17 +11809,13 @@ xhr.upload.onprogress = function(e) {
 }
 xhr.send();</pre>
 
-<p>Notice that the only difference is the “upload” added after the name
-of the request object: with GET we use xhr.onprogress and with POST we
-use xhr.upload.onprogress.</p>
-<p>Note that an alternative syntax such
-as xhr.upload.addEventListener(‘progress’, callback, false) also
-works.</p>
+<p>Notice that the only difference is the “upload” added after the name of the request object: with 
+GET we use xhr.onprogress and with POST we use xhr.upload.onprogress. Note that an alternative syntax 
+such as xhr.upload.addEventListener(‘progress’, callback, false) also works.</p>
 
 <h4>2 - Get progress values (how many bytes have been downloaded) and the total file size</h4>
 
-<p>The event e passed to the onprogress callback has two pertinent
-properties:</p>
+<p>The event e passed to the onprogress callback has two pertinent properties:</p>
 
 <ol type="1" start="1">
   <li>loaded which corresponds to the number of bytes that have been downloaded or uploaded by the 
@@ -11879,15 +11850,12 @@ function downloadSoundFile(url) {
 
 </details>
 
-<p><b>Explanations</b>: by setting the value and max attributes of
-the &lt;progress&gt; element with the current number of bytes downloaded
-by the browser and the total size of the file (<i>lines 10-11</i>),
-it will reflect the actual proportions of the file downloaded/still to
-come.</p>
+<p><b>Explanations</b>: by setting the value and max attributes of the &lt;progress&gt; element 
+with the current number of bytes downloaded by the browser and the total size of the file 
+(<i>lines 10-11</i>), it will reflect the actual proportions of the file downloaded/still to come.</p>
 
-<p>For example, with a file that is 10,000 bytes long, if the current
-number of bytes downloaded is 1000, then &lt;progress value=1000
-max=10000&gt; will look like this:</p>
+<p>For example, with a file that is 10,000 bytes long, if the current number of bytes downloaded 
+is 1000, then &lt;progress value=1000 max=10000&gt; will look like this:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 166. 1000 of 10,000 (272) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -11897,7 +11865,8 @@ max=10000&gt; will look like this:</p>
   title="Progress bar 1,000 of 10,000 (10%)"
   alt="Progress bar 1,000 of 10,000 (10%)." />
 
-<p>And a current download of 2000 bytes will define &lt;progress value=2000 max=10000&gt; and will look like this:</p>
+<p>And a current download of 2000 bytes will define &lt;progress value=2000 max=10000&gt; and will 
+look like this:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 167. 2000 of 10,000 (272) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -11917,74 +11886,68 @@ max=10000&gt; will look like this:</p>
   title="Monitoring download"
   alt="Monitoring download." />
 
-<p>This is a variant of the previous example that uses the progress event and a &lt;progress&gt; HTML5 element to display an animated progression bar while the download is going on.</p>
+<p>This is a variant of the previous example that uses the progress event and a &lt;progress&gt; 
+HTML5 element to display an animated progression bar while the download is going on.</p>
 
-<p><a href="https://jsbin.com/nuxanaf/edit?html,output" target="_blank" rel="noopener noreferrer">Try it on JSBin</a> - look at the code, which includes the previous source code extract.</p>
+<p><a href="https://jsbin.com/nuxanaf/edit?html,output" target="_blank" rel="noopener noreferrer">
+Try it on JSBin</a> - look at the code, which includes the previous source code extract.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-2-3">3.2.3 Uploading files and monitoring progress</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>We saw how to download files. Let’s see now how we can upload
-files!</p>
+<p>We saw how to download files. Let’s see now how we can upload files!</p>
 
-<p>Uploading a file means sending it to a remote server. In this
-example, we will just look at the simplest possible thing: uploading one
-single file. Later on, in the course, course you will see how to upload
-multiple files, including form input fields and so on. We’ve got a file
-selector here: an input type=file, and we will select one file.</p>
+<p>Uploading a file means sending it to a remote server. In this example, we will just look at the 
+simplest possible thing: uploading one single file. Later on, in the course, you will see how to 
+upload multiple files, including form input fields and so on. We’ve got a file selector here: 
+an input type=file, and we will select one file.</p>
 
-<p>For example, here I’m selecting an mp3 song. As soon as the file has
-been selected, in this example, you see that the file is uploaded to a
-remote server.</p>
+<p>For example, here I’m selecting an mp3 song. As soon as the file has been selected, in this 
+example, you see that the file is uploaded to a remote server.</p>
 
 <p>Let’s look at how we can get the file we selected and send it.</p>
 
-<p>We attached to the file selector a change event listener, that will
-be called as soon as we select the file. In this callback we create an
-XML HTTP request and we indicate that it’s a POST request.</p>
+<p>We attached to the file selector, a change event listener, that will be called as soon as we 
+select the file. In this <b>callback</b> we create an <b>XML HTTP</b> request and we indicate 
+that it’s a <b>POST</b> request.</p>
 
-<p>POST is used for sending data to a remote server. We are using JSBin,
-and the upload.html.</p>
+<p><b>POST</b> is used for sending data to a remote server. We are using <b>JSBin</b>, and the 
+<b>upload.html</b>.</p>
 
-<p>You see, here, is the URL of a fake server. We don’t have a remote
-server ready in this example, however JSBin handles that and pretends
-that the server exists.</p>
-<p>We created the request, indicated the method and the URL of the
-server. Then, we will prepare an object that is a FormData object.</p>
-<p>It’s a container in which you can append files or append any sort of
-data.</p>
-<p>And the data are key/value pairs. Here I added an object called
-“file” with a value that is the file I have selected earlier using the
-file input type=file element.</p>
-<p>And when I send the request, I pass the FormData object that contains
-the file.</p>
-<p>And then, as soon as the send method is called, the browser will
-handle the upload in background.</p>
-<p>And this may take some time.</p>
-<p>Let’s start again here… if I select a file, you see that it takes
-some time before it’s uploaded.</p>
-<p>And when the upload you see the “upload complete message” because
-when the upload is complete the browser will call to onload callback for
-your request.</p>
-<p>And during the upload, it will call the xhr.upload.onprogress
-callback.</p>
-<p>That’s a function that works exactly like the xhr.onprogress callback
-we used for downloading.</p>
-<p>It’s just this “.upload” that you write before the “onprogress” here.
-That’s the only difference with monitoring progress with download.</p>
-<p>And here you can see that the “upload complete” message appears. If
-we want to send multiple files, we can append multiple files here.</p>
-<p>That’s all for this video! Bye! Bye!</p>
-<p>Here is an example that uses a FormData object for uploading one or
-more files to an HTTP server.</p>
-<p>Notice that the URL of the server is fake, so the request will fail.
-However, the simulation takes time, and it is interesting to see how it
-works.</p>
-<p>Later on, we will show full examples of real working code with
-server-side PHP source, during the “File API, drag and drop and XHR2”
-lecture.</p>
+<p>You see, here, the <b>URL</b> of a fake server. We don’t have a remote server ready in this example, 
+however <b>JSBin</b> handles that and pretends that the server exists.</p>
 
-<p><a href="https://jsbin.com/pidusap/edit" target="_blank" rel="noopener noreferrer">Try the example on
-JSBin</a>:</p>
+<p>We created the request, indicated the method and the URL of the server. Then, we will prepare an 
+object that is a FormData object.</p>
+
+<p>It’s a container in which you can append files or append any sort of data. And the data are 
+<b>key/value</b> pairs. Here I added an object called “file” with a value that is the file I have 
+selected earlier using the file input <b>type=file</b> element.</p>
+
+<p>And when I send the request, I pass the <b>FormData</b> object that contains the file. And then, 
+as soon as the send method is called, the browser will handle the upload in background. This may take 
+some time.</p>
+
+<p>Let’s start again here… If I select a file, you see that it takes some time before it’s uploaded.
+And when the upload finishes, you see the “upload complete message” because when the upload is 
+complete the browser will call the <b>onload callback</b> for your request.</p>
+
+<p>And during the upload, it will call the <b>xhr.upload.onprogress</b> callback. That’s a function 
+that works exactly like the <b>xhr.onprogress</b> callback we used for downloading.</p>
+
+<p>It’s just this <b>“.upload”</b> that you write before the <b>“onprogress”</b> here. That’s the 
+only difference with monitoring progress with download.</p>
+
+<p>And here you can see that the “upload complete” message appears. If we want to send multiple files, 
+we can append multiple files here. That’s all for this video! Bye! Bye!</p>
+
+<p>Here is an example that uses a <b>FormData</b> object for uploading one or more files to an 
+HTTP server. Notice that the URL of the server is fake, so the request will fail. However, the 
+simulation takes time, and it is interesting to see how it works. Later on, we will show full 
+examples of real working code with server-side PHP source, during the “File API, drag and drop 
+and XHR2” lecture.</p>
+
+<p><a href="https://jsbin.com/pidusap/edit" target="_blank" rel="noopener noreferrer">
+Try the example on JSBin</a>:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 169. file update example 1 (274) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -11997,7 +11960,7 @@ JSBin</a>:</p>
 <h4>Source code of the example:</h4>
 
 <details>
-  <summary>HTML source code!</summary>
+  <summary>HTML code!</summary>
   
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -12068,8 +12031,8 @@ similar to that used for monitoring file downloads:</p>
   progress.max = e.total;    // total number of bytes in the file
 };</pre>
 
-<p><a href="https://jsbin.com/qedaja/edit?html,css,output" target="_blank" rel="noopener noreferrer">Try the
-example on JSBin</a>:</p>
+<p><a href="https://jsbin.com/qedaja/edit?html,css,output" target="_blank" rel="noopener noreferrer">
+Try the example on JSBin</a>:</p>
 
 <h4>Code from this example (nearly the same as previous example’s code):</h4>
 
@@ -12221,34 +12184,25 @@ back the data that was copied in the drag and drop clipboard, using getData.
 We wrote a value with a key=“fruit”, we get this value back here. And
 in the drop handler, in that case, we create a list item element and
 then we initialize, we set the text content of the list item, with the
-value corresponding to the value we got back from the clipboard.
-And then, we just add to do drop zone… (#droppedFruits)…appendChild()
-the list item. Let’s look at how the drop zone was defined: the drop
-zone in that example is a div. We’ve got an ondrop listener, that calls
-the drop callback we just saw.
-And we also added an ondragover=“return false” listener. This will
-avoid the propagation of the event, because when we drag over the drop
-zone, each mouse movement will fire a lot of dagover events and this can
-slow down the browser… so in that case we just returned false for
-performance reasons.</p>
+value corresponding to the value we got back from the clipboard.</p>
 
-<p>When I drop it, I’m in the drop handler, I get back “Apples », I
-creates a list item, I set the list item content with”Apples”, and I
-append the list item to the drop, to the div.
-That’s all for this video! You understood the main steps for doing
-drag and drop: detect a drag, copy some data in the clipboard, detect a
-drop, get back the data and do something.
-And avoid firing too many events by just stopping the propagation
-with an ondragover=“return false”;
-See you for the next video! I will explain how to give a nice visual
-feedback when we drag and drop things.</p>
+<p>And then, we just add to do drop zone… (#droppedFruits)…appendChild() the list item. Let’s look 
+at how the drop zone was defined: the drop zone in that example is a div. We’ve got an ondrop 
+listener, that calls the drop callback we just saw. And we also added an ondragover=“return false” 
+listener. This will avoid the propagation of the event, because when we drag over the drop zone, 
+each mouse movement will fire a lot of dagover events and this can slow down the browser… so in that 
+case we just returned false for performance reasons.</p>
 
-<p>In order to make any visible element <i>draggable</i>, add
-the draggable=“true” attribute to any visible HTML5 element. Notice that
-some elements are draggable by default, such
-as &lt;img&gt; elements.
-In order to detect a drag, add an event listener for
-the dragstart event:</p>
+<p>When I drop it, I’m in the drop handler, I get back “Apples », I creates a list item, I set the 
+list item content with”Apples”, and I append the list item to the drop, to the div. That’s all for 
+this video! You understood the main steps for doing drag and drop: detect a drag, copy some data in 
+the clipboard, detect a drop, get back the data and do something. And avoid firing too many events 
+by just stopping the propagation with an ondragover=“return false”; See you for the next video! I 
+will explain how to give a nice visual feedback when we drag and drop things.</p>
+
+<p>In order to make any visible element <i>draggable</i>, add the draggable=“true” attribute to any 
+visible HTML5 element. Notice that some elements are draggable by default, such as &lt;img&gt; 
+elements. In order to detect a drag, add an event listener for the dragstart event:</p>
 
 <pre>&lt;ol ondragstart=&quot;dragStartHandler(event)&quot;&gt;
   &lt;li draggable=&quot;true&quot; data-value=&quot;fruit-apple&quot;&gt;Apples&lt;/li&gt;
@@ -12268,10 +12222,10 @@ the &lt;ol&gt; level, so any subordinate &lt;li&gt; element will fire
 the event.</p>
 </blockquote>
 
-<p>Try the following interactive example in your browser (just click and
-drag one of the list items) or <a
-href="https://codepen.io/w3devcampus/pen/MaWKZb" target="_blank" rel="noopener noreferrer">play with it at
-CodePen</a>.</p>
+<p>Try the following interactive example in your browser (just click and drag one of the list 
+items) or 
+<a href="https://codepen.io/w3devcampus/pen/MaWKZb" target="_blank" rel="noopener noreferrer">
+play with it at CodePen</a>.</p>
 
 <h4>Screenshot:</h4>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -12311,29 +12265,28 @@ CodePen</a>.</p>
 
 </details>
 
-<p>In this script, the event handler will only display an alert showing
-the name of the target element that launched the event.</p>
+<p>In this script, the event handler will only display an alert showing the name of the target 
+element that launched the event.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-3-3">3.3.3 Drop detection</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>Let’s continue to develop the example. We show how to drag an element
-and detect a drop, receiving a value which corresponds to the dragged
-element. Then we change the page content accordingly.</p>
+<p>Let’s continue to develop the example. We show how to drag an element and detect a drop, 
+receiving a value which corresponds to the dragged element. Then we change the page content 
+accordingly.</p>
 
 <h4>Step #1: in the dragstart handler, copy a value in the drag and drop clipboard for later use</h4>
 
-<p>When a draggable &lt;li&gt; element is being dragged, in
-the dragstart handler <a
-href="https://html5doctor.com/html5-custom-data-attributes/" target="_blank" rel="noopener noreferrer">get the
-value of its data-value attribute</a> and copy it to <i>the “drag and
-drop clipboard” </i>for later use.</p>
-<p>When data is copied to this clipboard, a key/value pair must be
-given. The data copied to the clipboard is associated with this
-name.</p>
-<p>The variable event.target at <i>line 5</i> below is
-the &lt;li&gt; element that has been dragged, and
-event.target.dataset.value is the value of its data-value attribute (in
-our case “apples”, “oranges” or “pears”):</p>
+<p>When a draggable &lt;li&gt; element is being dragged, in the dragstart handler 
+<a href="https://html5doctor.com/html5-custom-data-attributes/" target="_blank" rel="noopener noreferrer">
+get the value of its data-value attribute</a> and copy it to <i>the “drag and drop clipboard” </i>for 
+later use.</p>
+
+<p>When data is copied to this clipboard, a key/value pair must be given. The data copied to the 
+clipboard is associated with this name.</p>
+
+<p>The variable event.target at <i>line 5</i> below is the &lt;li&gt; element that has been dragged, 
+and event.target.dataset.value is the value of its data-value attribute (in our case “apples”, 
+“oranges” or “pears”):</p>
 
 <pre>function dragStartHandler(event) {
   console.log(&#39;dragstart event, target:
@@ -12366,7 +12319,7 @@ the false value at <i>line 1</i>.</p>
 <!-- <summary>function dropHandler!</summary> -->
 
 <details>
-  <summary>JavaScript</summary>
+  <summary>JavaScript code!</summary>
   
 <pre>function dropHandler(event) {
   console.log(&#39;drop event, target: &#39; + event.target.innerHTML);
@@ -12534,11 +12487,10 @@ mapping, etc.</b></p>
 
 <h4>JavaScript API: the dataset property</h4>
 
-<p>Data attributes can be created and accessed using
-the dataset property of any HTML element.
-Here
-is <a href="https://jsbin.com/yowimebawo/edit?html,css,js,output" target="_blank" rel="noopener noreferrer">an
-online at JsBin</a> example:</p>
+<p>Data attributes can be created and accessed using the dataset property of any HTML element. 
+Here is 
+<a href="https://jsbin.com/yowimebawo/edit?html,css,js,output" target="_blank" rel="noopener noreferrer">
+an online at JsBin</a> example:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 173. using css attr() function (297) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -12589,18 +12541,17 @@ are taken from data­-* attributes of the &lt;li&gt; element.</p>
 
 </details>
 
-<p>All data‐ attributes are accessed using the dataset property of the
-HTML element: in this example, user.dataset[phrase.name] is
-either user.dataset.city, user.dataset.food, or user.dataset.lang.</p>
+<p>All data‐ attributes are accessed using the dataset property of the HTML element: in this 
+example, user.dataset[phrase.name] is either user.dataset.city, user.dataset.food, or 
+user.dataset.lang.</p>
 
-<h4>Using CSS pseudo elements ::before and ::after with the attr() function
-to display the value of data-* attributes</h4>
+<h4>Using CSS pseudo elements ::before and ::after with the attr() function to display the value 
+of data-* attributes</h4>
 
-<p>This example shows how data-* attributes can be added on the fly by
-JavaScript code and accessed from a CSS rule using
-the attr() CSS function.
-Try <a href="https://jsbin.com/alunuk/6/edit" target="_blank" rel="noopener noreferrer">the online example at
-JsBin</a>.</p>
+<p>This example shows how data-* attributes can be added on the fly by JavaScript code and accessed 
+from a CSS rule using the attr() CSS function. Try 
+<a href="https://jsbin.com/alunuk/6/edit" target="_blank" rel="noopener noreferrer">
+the online example at JsBin</a>.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~ 174. using css attr() function (298) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -12637,9 +12588,8 @@ input::after {
 }
 &lt;/style&gt;</pre>
 
-<p>The attr() function takes an attribute name as a parameter and
-returns its value. Here we used the name of the attribute we added on
-the fly.</p>
+<p>The attr() function takes an attribute name as a parameter and returns its value. Here we used 
+the name of the attribute we added on the fly.</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-3-5">3.3.5 Add visual feedback</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -12668,38 +12618,31 @@ addition, and with this classList interface you can remove CSS classes or add CS
 classes. When we enter the drop zone, we add, to the element we entered, the
 “draggedOver” CSS class, that corresponds to a border and a background color.</p>
 
-<p>This is how, when I enter the drop zone, the div becomes green. And
-when I leave (this is a ‘dragleave’ handler), that will remove the
-class. And the same with the the dragstart handler.
-When I start to drag an element, I add the class here.
-And I exaggerate the opacity, the transparency, by setting a higher
-value for the opacity. Because when you drag and drop elements, they are
-a bit lighter than normal, and here we accentuate this effect.</p>
+<p>This is how, when I enter the drop zone, the div becomes green. And when I leave (this is a 
+‘dragleave’ handler), that will remove the class. And the same with the the dragstart handler.
+When I start to drag an element, I add the class here. And I exaggerate the opacity, the 
+transparency, by setting a higher value for the opacity. Because when you drag and drop elements, 
+they are a bit lighter than normal, and here we accentuate this effect.</p>
 
-<p>We can go further by using some properties called the “dropEffect”
-and the “allowEffect” properties. In that case, when we start moving
-here, we can change the cursor and the “+” sign that you see here, can
-be also customized by setting the dropEffect property in the ‘dropenter
-listener’. Let’s look at how we can do that: in the ‘dragstart’
-listener, here… in the dragStartHandler, we create an image, we set it
-to a source, we give it a width, and we use the
-dataTransfert.setDragImage(dragIcon). This is the name of the image I
-created (it’s the HTML5 logo).</p>
+<p>We can go further by using some properties called the “dropEffect” and the “allowEffect” 
+properties. In that case, when we start moving here, we can change the cursor and the “+” sign 
+that you see here, can be also customized by setting the dropEffect property in the ‘dropenter 
+listener’. Let’s look at how we can do that: in the ‘dragstart’ listener, here… in the 
+dragStartHandler, we create an image, we set it to a source, we give it a width, and we use 
+the dataTransfert.setDragImage(dragIcon). This is the name of the image I created (it’s the HTML5 
+logo).</p>
 
-<p>We can also proposes an offset relative to the cursor, the mouse
-cursor. When I enter (in the dragEnterHandler), by setting the
-dropEffect property of the dataTransfer object, it produces a “+” sign.
-You can use different values for the allowEffect and dropEffect, that I
-explained in the course for producing small icons similar to the ones
-you’ve got on Windows when making shortcuts or just moving a file from
-one folder to another. Bye bye!</p>
+<p>We can also proposes an offset relative to the cursor, the mouse cursor. When I enter (in the 
+dragEnterHandler), by setting the dropEffect property of the dataTransfer object, it produces a 
+“+” sign. You can use different values for the allowEffect and dropEffect, that I explained in the 
+course for producing small icons similar to the ones you’ve got on Windows when making shortcuts 
+or just moving a file from one folder to another. Bye bye!</p>
 
 <h4>Add visual feedback when you drag something, when the mouse enters a drop zone, etc.</h4>
 
-<p>We can associate some CSS styling with the lifecycle of a drag and
-drop. This is easy to do as the drag and drop API provides many events
-we can listen to, and can be used on the draggable elements as well as
-in the drop zones:</p>
+<p>We can associate some CSS styling with the lifecycle of a drag and drop. This is easy to do as 
+the drag and drop API provides many events we can listen to, and can be used on the draggable 
+elements as well as in the drop zones:</p>
 
 <ul style="list-style-type: circle;">
   <li><b>dragstart</b>: this event, which we discussed in a previous section, 
@@ -12711,12 +12654,10 @@ in the drop zones:</p>
     it is a best practice to reset the style of the draggable object to default.</li>
 </ul>
 
-<p>The next screenshot shows the use of CSS styles (green background +
-dashed border) triggered by the start of a drag operation. As soon as
-the drag ends and the element is dropped, we reset the style of the
-dragged object to its default. The full runnable online example is a bit
-further down the page (it includes, in addition, visual feedback on the
-drop zone):</p>
+<p>The next screenshot shows the use of CSS styles (green background + dashed border) triggered by 
+the start of a drag operation. As soon as the drag ends and the element is dropped, we reset the 
+style of the dragged object to its default. The full runnable online example is a bit further down 
+the page (it includes, in addition, visual feedback on the drop zone):</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 175. css drag operation (301) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -12771,20 +12712,25 @@ manipulation from JavaScript.</p>
 <h4>Other events can also be handled:</h4>
 
 <ul style="list-style-type: circle;">
-  <li><b>dragenter</b>: usually we bind this event to the drop zone. The event occurs when a dragged object enters a drop zone. So, we could change the look of the drop zone.<br></li>
-  <li><b>dragleave</b>: this event is also used in relation to the drop zone. When a dragged element leaves the drop zone (maybe the user changed his mind?), we must set the look of the drop zone back to normal.<br></li>
-  <li><b>dragover</b>: this event is also generally bound to elements that correspond to a drop zone. A best practice here is to prevent the propagation of the event, and also to prevent the default behavior of the browser (i.e. if we drop an image, the default behavior is to display its full size in a new page, etc.)<br></li>
-  <li><b>drop</b>: also on the drop zone. This is when we actually process the drop (get the value from the clipboard, etc). It’s also necessary to reset the look of the drop zone to default.</li>
+  <li><b>dragenter</b>: usually we bind this event to the drop zone. The event occurs when a dragged 
+    object enters a drop zone. So, we could change the look of the drop zone.<br></li>
+  <li><b>dragleave</b>: this event is also used in relation to the drop zone. When a dragged element 
+    leaves the drop zone (maybe the user changed his mind?), we must set the look of the drop zone 
+	back to normal.<br></li>
+  <li><b>dragover</b>: this event is also generally bound to elements that correspond to a drop zone. 
+    A best practice here is to prevent the propagation of the event, and also to prevent the default 
+	behavior of the browser (i.e. if we drop an image, the default behavior is to display its full 
+	size in a new page, etc.)<br></li>
+  <li><b>drop</b>: also on the drop zone. This is when we actually process the drop (get the value 
+    from the clipboard, etc). It’s also necessary to reset the look of the drop zone to default.</li>
 </ul>
 
 <p>Complete example with visual feedback on draggable objects and the drop zone.
-The following example shows how to use these events in a droppable
-zone.
+The following example shows how to use these events in a droppable zone.
 Try it in your browser below or <a
-href="https://codepen.io/w3devcampus/pen/ojNLEL" target="_blank" rel="noopener noreferrer">directly at
-CodePen</a>:
-Complete source code (for clarity’s sake, we put the CSS and
-JavaScript into a single HTML page):</p>
+href="https://codepen.io/w3devcampus/pen/ojNLEL" target="_blank" rel="noopener noreferrer">
+directly at CodePen</a>: Complete source code (for clarity’s sake, we put the CSS and JavaScript 
+into a single HTML page):</p>
 
 <details>
   <summary>HTML code!</summary>
@@ -12813,8 +12759,8 @@ JavaScript into a single HTML page):</p>
       border: 2px dashed #000;
       background-color: green;
     }
-&lt;/style&gt;
-&lt;script&gt;
+  &lt;/style&gt;
+  &lt;script&gt;
     function dragStartHandler(event) {
       // Change css class for visual feedback
       event.target.style.opacity = &#39;0.4&#39;;
@@ -12892,12 +12838,10 @@ JavaScript into a single HTML page):</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h4>More feedback using the dropEffect property: changing the cursor’s shape</h4>
 
-<p>It is possible to change the cursor’s shape during the drag process.
-The cursor will turn into a “copy”, “move” or “link” icon, depending on
-the semantic of your drag and drop, when you enter a drop zone during a
-drag. For example, if you “copy” a fruit into the drop zone, as we did
-in the previous example, a “copy” cursor like the one below would be
-appropriate:</p>
+<p>It is possible to change the cursor’s shape during the drag process. The cursor will turn into 
+a “copy”, “move” or “link” icon, depending on the semantic of your drag and drop, when you enter a 
+drop zone during a drag. For example, if you “copy” a fruit into the drop zone, as we did in the 
+previous example, a “copy” cursor like the one below would be appropriate:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 176. copy cursor image (304) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -12937,8 +12881,10 @@ appropriate:</p>
   title="Drop effect with image"
   alt="Drop effect with image." />
 
-<p>To give this visual feedback, we use the effectAllowed and dropEffect properties of the dataTransfer object. To set one of the possible predefined cursors, we specify an effect in
-the dragstart handler, and we set the effect (to “move”, “copy”, etc.) in the dragEnter or dragOver handler.</p>
+<p>To give this visual feedback, we use the effectAllowed and dropEffect properties of the dataTransfer 
+object. To set one of the possible predefined cursors, we specify an effect in the dragstart handler, 
+and we set the effect (to “move”, “copy”, etc.) in the dragEnter or dragOver handler.</p>
+
 <p>Here is an extract of the code we can add to the example we saw earlier:</p>
 
 <pre>function dragStartHandler(event) {
@@ -12958,7 +12904,7 @@ the dragstart handler, and we set the effect (to “move”, “copy”, etc.)
 <p>To set a custom image, we also do the following in the dragstart handler:</p>
 
 <details>
-  <summary>JavaScript Extract!</summary>
+  <summary>JavaScript code!</summary>
   
 <pre>function dragStartHandler(event) {
   // allowed cursor effects
@@ -13227,7 +13173,7 @@ have been dragged and dropped from the desktop to a drop zone associated with 
 handler with an ondrop=dropHandler(event); attribute:</p>
 
 <details>
-  <summary>JavaScript Extract!</summary>
+  <summary>JavaScript code!</summary>
 
 <pre>function dropHandler(event) {
   // Do not propagate the event
@@ -13284,20 +13230,20 @@ to the dragOver handler attached to the drop zone!</p>
 <h4>… like in this example:</h4>
 
 <details>
-  <summary>JavaScript Extract!</summary>
+  <summary>JavaScript code!</summary>
   
 <pre>function dragOverHandler(event) {
-   // Do not propagate the event
-   event.stopPropagation();
-   // Prevent default behavior, in particular when we drop images or links
-   event.preventDefault();
-   ...
+  // Do not propagate the event
+  event.stopPropagation();
+  // Prevent default behavior, in particular when we drop images or links
+  event.preventDefault();
+  ...
 }
 function dropHandler(event) {
-   // Do not propagate the event
-   event.stopPropagation();
-   // Prevent default behavior, in particular when we drop images or links
-   event.preventDefault();
+  // Do not propagate the event
+  event.stopPropagation();
+  // Prevent default behavior, in particular when we drop images or links
+  event.preventDefault();
    ...
 }</pre>
 
@@ -13389,74 +13335,76 @@ target="_blank" rel="noopener noreferrer">play with it at CodePen</a>:</p>
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-   &lt;style&gt;
-      div {
-         height: 150px;
-         width: 350px;
-         float: left;
-         border: 2px solid #666666;
-         background-color: #ccc;
-         margin-right: 5px;
-         border-radius: 10px;
-         box-shadow: inset 0 0 3px #000;
-         text-align: center;
-         cursor: move;
-      }
-      .dragged {
-         border: 2px dashed #000;
-         background-color: green;
-      }
-      .draggedOver {
-         border: 2px dashed #000;
-         background-color: green;
-      }
-    &lt;/style&gt;
-    &lt;script&gt;
-      function dragLeaveHandler(event) {
-          console.log(&quot;drag leave&quot;);
-          // Set style of drop zone to default
-          event.target.classList.remove(&#39;draggedOver&#39;);
-      }
-      function dragEnterHandler(event) {
-          console.log(&quot;Drag enter&quot;);
-          // Show some visual feedback
-          event.target.classList.add(&#39;draggedOver&#39;);
-      }
-      function dragOverHandler(event) {
-          //console.log(&quot;Drag over a droppable zone&quot;);
-          // Do not propagate the event
-          event.stopPropagation();
-          // Prevent default behavior, in particular when we drop images or links
-          event.preventDefault();
-      }
-      function dropHandler(event) {
-          console.log(&#39;drop event&#39;);
-          // Do not propagate the event
-          event.stopPropagation();
-          // Prevent default behavior, in particular when we drop images or links
-          event.preventDefault();
-          // reset the visual look of the drop zone to default
-          event.target.classList.remove(&#39;draggedOver&#39;);
-          // get the files from the clipboard
-          var files = event.dataTransfer.files;
-          var filesLen = files.length;
-          var filenames = &quot;&quot;;
-          // iterate on the files, get details using the file API
-          // Display file names in a list.
-          for(var i = 0 ; i &lt; filesLen ; i++) {
-              filenames += &#39;n&#39; + files[i].name;
-              // Create a li, set its value to a file name, add it to the ol
-              var li = document.createElement(&#39;li&#39;);
-                li.textContent = files[i].name; document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
-          }
-          console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
-      }
-  &lt;/script&gt;
+  &lt;style&gt;
+    div {
+      height: 150px;
+      width: 350px;
+      float: left;
+      border: 2px solid #666666;
+      background-color: #ccc;
+      margin-right: 5px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 3px #000;
+      text-align: center;
+      cursor: move;
+    }
+    .dragged {
+      border: 2px dashed #000;
+      background-color: green;
+    }
+    .draggedOver {
+      border: 2px dashed #000;
+      background-color: green;
+    }
+  &lt;/style&gt;
+  &lt;script&gt;
+  function dragLeaveHandler(event) {
+    console.log(&quot;drag leave&quot;);
+    // Set style of drop zone to default
+    event.target.classList.remove(&#39;draggedOver&#39;);
+  }
+  function dragEnterHandler(event) {
+    console.log(&quot;Drag enter&quot;);
+    // Show some visual feedback
+    event.target.classList.add(&#39;draggedOver&#39;);
+  }
+  function dragOverHandler(event) {
+    //console.log(&quot;Drag over a droppable zone&quot;);
+    // Do not propagate the event
+    event.stopPropagation();
+    // Prevent default behavior, in particular when we drop images or links
+    event.preventDefault();
+  }
+  function dropHandler(event) {
+    console.log(&#39;drop event&#39;);
+    // Do not propagate the event
+    event.stopPropagation();
+    // Prevent default behavior, in particular when we drop images or links
+    event.preventDefault();
+    // reset the visual look of the drop zone to default
+    event.target.classList.remove(&#39;draggedOver&#39;);
+    // get the files from the clipboard
+    var files = event.dataTransfer.files;
+    var filesLen = files.length;
+    var filenames = &quot;&quot;;
+    // iterate on the files, get details using the file API
+    // Display file names in a list.
+    for(var i = 0 ; i &lt; filesLen ; i++) {
+      filenames += &#39;n&#39; + files[i].name;
+      // Create a li, set its value to a file name, add it to the ol
+      var li = document.createElement(&#39;li&#39;);
+      li.textContent = files[i].name; document.querySelector(&quot;#droppedFiles&quot;).appendChild(li);
+    }
+    console.log(files.length + &#39; file(s) have been dropped:n&#39; + filenames);
+  }
+  &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;h2&gt;Drop your files here!&lt;/h2&gt;
-  &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; ondrop=&quot;dropHandler(event)&quot; 
-    ondragover=&quot;dragOverHandler(event)&quot;  ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
+  &lt;div id=&quot;droppableZone&quot; ondragenter=&quot;dragEnterHandler(event)&quot; 
+    ondrop=&quot;dropHandler(event)&quot; 
+    ondragover=&quot;dragOverHandler(event)&quot;  
+    ondragleave=&quot;dragLeaveHandler(event)&quot;&gt;
     Drop zone
     &lt;ol id=&quot;droppedFiles&quot;&gt;&lt;/ol&gt;
   &lt;/div&gt;
@@ -13476,22 +13424,20 @@ target="_blank" rel="noopener noreferrer">play with it at CodePen</a>:</p>
     the current file in the collection, and added to the &lt;ol&gt; list.</li>
 </ul>
 
-<p>In principle, this example is very similar to the “fruit” examples we
-worked through earlier, except that this time we’re working with
-files. <i>And when we work with files, it is important to prevent the
-browser’s default behavior.</i></p>
+<p>In principle, this example is very similar to the “fruit” examples we worked through earlier, 
+except that this time we’re working with files. <i>And when we work with files, it is important 
+to prevent the browser’s default behavior.</i></p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-4-3">3.4.3 Images with thumbnails</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<p>This time, let’s reuse the readFilesAndDisplayPreview() method
-(studied in the W3Cx HTML5 Coding Essentials and Best Practices course).
-We have reproduced the example here - please review the source code to
-refresh your memory (click on the JS tab or <a
-href="https://codepen.io/w3devcampus/pen/ZbExbM" target="_blank" rel="noopener noreferrer">look at the example at
-CodePen</a>).</p>
-<p>Click the “Choose files” button (an &lt;input
-type=“file”&gt; element), select one or more images – and you should see
-image thumbnails displayed in the open space beneath it:</p>
+<p>This time, let’s reuse the readFilesAndDisplayPreview() method (studied in the W3Cx HTML5 Coding 
+Essentials and Best Practices course). We have reproduced the example here - please review the source 
+code to refresh your memory (click on the JS tab or 
+<a href="https://codepen.io/w3devcampus/pen/ZbExbM" target="_blank" rel="noopener noreferrer">
+look at the example at CodePen</a>).</p>
+
+<p>Click the “Choose files” button (an &lt;input type=“file”&gt; element), select one or more 
+images – and you should see image thumbnails displayed in the open space beneath it:</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 182. choose multiple files (308) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -13507,45 +13453,43 @@ image thumbnails displayed in the open space beneath it:</p>
   <summary>JavaScript code!</summary>
   
 <pre>function readFilesAndDisplayPreview(files) {
-   // Loop through the FileList and render image files
-   // as thumbnails.
-   for (var i = 0, f; f = files[i]; i++) {
-     // Only process image files.
-     if (!f.type.match(&#39;image.*&#39;)) {
-        continue;
-     }
-     var reader = new FileReader();
-     //capture the file information.
-     reader.onload = function(e) {
-         // Render thumbnail.
-         var span = document.createElement(&#39;span&#39;);
-         span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; src=&#39;&quot; +
-                           e.target.result + &quot;&#39;/&gt;&quot;;
-         document.getElementById(&#39;list&#39;).insertBefore(span, null);
-     };
-     // Read the image file as a data URL. Will trigger
-     // a call to the onload callback above
-     // only once the image is completely loaded
-     reader.readAsDataURL(f);
-   }
+  // Loop through the FileList and render image files
+  // as thumbnails.
+  for (var i = 0, f; f = files[i]; i++) {
+    // Only process image files.
+    if (!f.type.match(&#39;image.*&#39;)) {
+      continue;
+    }
+    var reader = new FileReader();
+    //capture the file information.
+    reader.onload = function(e) {
+      // Render thumbnail.
+      var span = document.createElement(&#39;span&#39;);
+      span.innerHTML = &quot;&lt;img class=&#39;thumb&#39; src=&#39;&quot; +
+                       e.target.result + &quot;&#39;/&gt;&quot;;
+      document.getElementById(&#39;list&#39;).insertBefore(span, null);
+    };
+    // Read the image file as a data URL. Will trigger
+    // a call to the onload callback above
+    // only once the image is completely loaded
+    reader.readAsDataURL(f);
+  }
 }</pre>
 
 </details>
 
-<p>At <i>line7</i>, there is a test that will avoid processing non image
-files. The “!” is the NOT operator in JavaScript. The call to continue
-at <i>line 8</i> will make the for loop go to its end and process the
-next file. See the HTML5 part 1 course about the file API for more
-details (each file has a name, type,
-lastModificationDate and size attribute. The call to match(…) here is a
-standard way in JavaScript to match a string value with a regular
+<p>At <i>line7</i>, there is a test that will avoid processing non image files. The “!” is the 
+NOT operator in JavaScript. The call to continue at <i>line 8</i> will make the for loop go to 
+its end and process the next file. See the HTML5 part 1 course about the file API for more 
+details (each file has a name, type, lastModificationDate and size attribute. The call to 
+match(…) here is a standard way in JavaScript to match a string value with a regular 
 expression).</p>
-<p>At <i>line 19</i>, we insert the &lt;img&gt; element that was created
-and initialized with the dataURL of the image file, into the HTML list
-with an id of “list”.</p>
-<p>So, let’s add this method to our code example, to display file
-details once dropped, and also add an &lt;output
-id=“list”&gt;&lt;/output&gt; to the HTML of this example.</p>
+
+<p>At <i>line 19</i>, we insert the &lt;img&gt; element that was created and initialized with the 
+dataURL of the image file, into the HTML list with an id of “list”.</p>
+
+<p>So, let’s add this method to our code example, to display file details once dropped, and also 
+add an &lt;output id=“list”&gt;&lt;/output&gt; to the HTML of this example.</p>
 
 <p>Complete example of drag and drop + thumbnails of images</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -13563,7 +13507,7 @@ zone) or play with it at CodePen:</p>
 <h4>Complete source code:</h4>
 
 <details>
-  <summary>HTML source code!</summary>
+  <summary>HTML code!</summary>
   
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -13632,7 +13576,7 @@ zone) or play with it at CodePen:</p>
         readFilesAndDisplayPreview(files);
       }
       function readFilesAndDisplayPreview(files) {
-        // Loop through the FileList and render image files as  thumbnails.
+        // Loop through the FileList and render image files as thumbnails.
         for (var i = 0, f; f = files[i]; i++) {
           // Only process image files.
           if (!f.type.match(&#39;image.*&#39;)) {
@@ -13647,8 +13591,8 @@ zone) or play with it at CodePen:</p>
               src=&#39;&quot; + e.target.result + &quot;&#39;/&gt;&quot;;
               document.getElementById(&#39;list&#39;).insertBefore(span, null);
           };
-          // Read the image file as a data URL. Will trigger the    call to the above callback when
-          // the image file is completely loaded
+          // Read the image file as a data URL. Will trigger the call to the above 
+          // callback when the image file is completely loaded.
           reader.readAsDataURL(f);
         }
       }
@@ -13670,18 +13614,17 @@ zone) or play with it at CodePen:</p>
 
 </details>
 
-<p>Above, we added the readFilesAndDisplayPreview() method detailed earlier. We called 
-it at the end of the drop handler (<i>line 77</i>), and we added the &lt;output&gt; 
-&lt;p&gt; element as a container for the &lt;img&gt; elements (constructed by the 
-JavaScript code <i>lines 94-96</i>) which will display the thumbnails (<i>line 114</i>).</p>
+<p>Above, we added the readFilesAndDisplayPreview() method detailed earlier. We called it at the 
+end of the drop handler (<i>line 77</i>), and we added the &lt;output&gt; &lt;p&gt; element as a 
+container for the &lt;img&gt; elements (constructed by the JavaScript code <i>lines 94-96</i>) 
+which will display the thumbnails (<i>line 114</i>).</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3 id="ch3-4-4">3.4.4 Mixing drag and drop and input type=file</h3>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <p>Let’s go further and also add an &lt;input type=“file”&gt;</p>
 
-<p>The example below allows files to be selected using a file chooser or by drag and 
-dropping them, like in the screenshot below (the interactive example is a bit further 
-down the page):</p>
+<p>The example below allows files to be selected using a file chooser or by drag and dropping them, 
+like in the screenshot below (the interactive example is a bit further down the page):</p>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!--~~~~~~~~~~~~~~~~~~~~~~ 184. example of file/directory chooser (313) ~~~~~~~~~~~~~~~~~~~~~~~~-->
 <img class="displayed"
@@ -13746,7 +13689,7 @@ CodePen</a>:</p>
 <h4>Complete source code:</h4>
 
 <details>
-  <summary>HTML source code!</summary>
+  <summary>HTML code!</summary>
   
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -13899,7 +13842,7 @@ try to connect):</p>
 <h4>Source code extract (we omitted the CSS):</h4>
 
 <details>
-  <summary>HTML source code!</summary>
+  <summary>HTML code!</summary>
   
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -14573,7 +14516,7 @@ an age and an email address.</p>
 <h4>Example of a transaction:</h4>
 
 <details>
-  <summary>Transaction code!</summary>
+  <summary>JavaScript code!</summary>
 
 <pre>// Open a transaction for reading and writing on the DB &quot;customer&quot;
 var transaction = db.transaction([&quot;customers&quot;], &quot;readwrite&quot;);
@@ -15087,7 +15030,7 @@ be rounded to “1”.</p>
 <h4>JavaScript code from example:</h4>
 
 <details>
-  <summary>function createDatabase!</summary>
+  <summary>JavaScript code!</summary>
 
 <pre>var db; // the database connection we need to initialize
 function createDatabase() {
@@ -19125,7 +19068,7 @@ target="_blank" rel="noopener noreferrer">use this URL instead</a>!</p>
       if (Math.abs(velocity.y) &gt; maxVelocity) {
         if (velocity.y &gt; 0) velocity.y = maxVelocity;
           else velocity.y = -maxVelocity;
-        }
+      }
     }
     function updateBall() {
       if (offset.left &lt;= -(ball.width() / 2)) {
@@ -19233,12 +19176,14 @@ questions and share your creations.</p>
 	<tr>
 	  <td>01-13-2026 Tue 9:07am</td>
 	  <td>01-14-2026 Wed 10:31pm</td>
+	  <td>02-18-2026 Wed 2:05pm</td>
 	</tr>
   </table>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <script src="./js/scripts.js"></script>
 </body>
 </html>
+
 
 
 
